@@ -1,0 +1,17 @@
+{
+  "general": {
+    "text": "数据标注就是给原始数据（如图片、文字、语音）打上标签，让 AI 能看懂、能学习。\n\n小例子：  \n给一张猫的照片框出猫的位置，并标注“猫”。这样 AI 以后看到类似图片，就知道“这是猫”。",
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro"
+  },
+  "question": {
+    "text": "先看整体轮廓和头部特征：耳朵形状、脸型、口鼻比例。再对比两个选项的典型差异，找出图中最明显、最稳定的特征。",
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash-vision-exp"
+  },
+  "vision_image": {
+    "text": "先整体看画面，再比较两只猫的体型和位置，注意哪一只占据的视觉面积更大。框选时尽量贴合目标边缘，不要包含旁边的遥控器或背景。",
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash-vision-exp"
+  }
+}

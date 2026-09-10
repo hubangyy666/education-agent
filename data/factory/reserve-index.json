@@ -1,0 +1,1855 @@
+{
+  "updated_at": "2026-09-10T09:12:03.726827+00:00",
+  "abilities": {
+    "A1": {
+      "A1-S1": {
+        "approved": 11
+      },
+      "A1-S2": {
+        "approved": 11
+      },
+      "A1-S3": {
+        "approved": 11
+      },
+      "A1-S4": {
+        "approved": 8
+      },
+      "A1-S5": {
+        "approved": 1
+      }
+    },
+    "A2": {
+      "A2-S1": {
+        "approved": 12
+      },
+      "A2-S2": {
+        "approved": 11
+      },
+      "A2-S3": {
+        "approved": 5
+      },
+      "A2-S4": {
+        "approved": 8
+      },
+      "A2-S5": {
+        "approved": 9
+      }
+    },
+    "A3": {
+      "A3-S1": {
+        "approved": 6
+      },
+      "A3-S2": {
+        "approved": 9
+      },
+      "A3-S3": {
+        "approved": 8
+      },
+      "A3-S4": {
+        "approved": 1
+      },
+      "A3-S5": {}
+    },
+    "A4": {
+      "A4-S1": {
+        "approved": 12
+      },
+      "A4-S2": {
+        "approved": 7
+      },
+      "A4-S3": {
+        "approved": 8
+      },
+      "A4-S4": {
+        "approved": 8
+      },
+      "A4-S5": {
+        "approved": 7
+      }
+    },
+    "A5": {
+      "A5-S1": {
+        "approved": 12
+      },
+      "A5-S2": {
+        "approved": 10
+      },
+      "A5-S3": {
+        "approved": 4
+      },
+      "A5-S4": {
+        "approved": 5
+      },
+      "A5-S5": {
+        "approved": 5
+      }
+    },
+    "A6": {
+      "A6-S1": {
+        "approved": 12
+      },
+      "A6-S2": {
+        "approved": 10
+      },
+      "A6-S3": {
+        "approved": 4
+      },
+      "A6-S4": {
+        "approved": 4
+      },
+      "A6-S5": {
+        "approved": 6
+      }
+    },
+    "A7": {
+      "A7-S1": {
+        "approved": 9
+      },
+      "A7-S2": {
+        "approved": 6
+      },
+      "A7-S3": {
+        "approved": 5
+      },
+      "A7-S4": {
+        "approved": 4
+      },
+      "A7-S5": {
+        "approved": 5
+      }
+    },
+    "A8": {
+      "A8-S1": {
+        "approved": 12
+      },
+      "A8-S2": {
+        "approved": 8
+      },
+      "A8-S3": {
+        "approved": 11
+      },
+      "A8-S4": {
+        "approved": 11
+      },
+      "A8-S5": {
+        "approved": 11
+      }
+    },
+    "A9": {
+      "A9-S1": {
+        "approved": 11
+      },
+      "A9-S2": {
+        "approved": 11
+      },
+      "A9-S3": {
+        "approved": 11
+      },
+      "A9-S4": {
+        "approved": 11
+      },
+      "A9-S5": {
+        "approved": 7
+      }
+    },
+    "A10": {
+      "A10-S1": {
+        "approved": 11
+      },
+      "A10-S2": {
+        "approved": 7
+      },
+      "A10-S3": {
+        "approved": 9
+      },
+      "A10-S4": {
+        "approved": 11
+      },
+      "A10-S5": {
+        "approved": 11
+      }
+    }
+  },
+  "images": [
+    {
+      "sample_id": "39769",
+      "file": "000000039769.jpg",
+      "sha256": "dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e",
+      "source_url": "http://farm1.staticflickr.com/60/210383891_f91a89fd5e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "785",
+      "file": "000000000785.jpg",
+      "sha256": "83981537a7baeafbeb9c8cb67b3484dc26433f574b3685d021fa537e277e4726",
+      "source_url": "http://farm8.staticflickr.com/7015/6795644157_f019453ae7_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "872",
+      "file": "000000000872.jpg",
+      "sha256": "c2aa138ee3a59b057a7ba6fc5a6a18e62af531aa7dab78a7bfd33c1cd7e55eb6",
+      "source_url": "http://farm9.staticflickr.com/8447/7805810128_605424213d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "1000",
+      "file": "000000001000.jpg",
+      "sha256": "24bb77a31928404e45a0454b06f6a0bd54a8db103590c9d7917288a1e0269f05",
+      "source_url": "http://farm5.staticflickr.com/4115/4906536419_6113bd7de4_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 12,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "1268",
+      "file": "000000001268.jpg",
+      "sha256": "8e85a2e71ee512fe748a3a3be9bb40b8591e8c501c0f3896efcb5be5999ec236",
+      "source_url": "http://farm6.staticflickr.com/5454/9413846304_881d5e5c3b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "1296",
+      "file": "000000001296.jpg",
+      "sha256": "34a98da7c11bc8811e6eec445145bb16f3d5f4338945ba116edcc1fe554d181b",
+      "source_url": "http://farm5.staticflickr.com/4010/4690487654_90536a4a16_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "2592",
+      "file": "000000002592.jpg",
+      "sha256": "ffa3d472d44184b1f48878f7b097189723e57a24f36c44c29e4bc561110fbf41",
+      "source_url": "http://farm4.staticflickr.com/3271/2864950455_3f5b5086da_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "3553",
+      "file": "000000003553.jpg",
+      "sha256": "4286197d2b6fc18809a37a4ef3035109509fcf52782fb83894835faaa5743bea",
+      "source_url": "http://farm4.staticflickr.com/3433/3863384254_02e869d699_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "5001",
+      "file": "000000005001.jpg",
+      "sha256": "99600c56dc25c72dc1cc1d1f2b09aa33b97142560b54d034fa83a38fcf3c5b0f",
+      "source_url": "http://farm6.staticflickr.com/5298/5457068434_0929d78491_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 14,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "7511",
+      "file": "000000007511.jpg",
+      "sha256": "105e70c573b87d7e3f034e1dc08cedcced39be4e52197139f52616c920dda3d7",
+      "source_url": "http://farm1.staticflickr.com/51/173980729_349afaca85_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "8021",
+      "file": "000000008021.jpg",
+      "sha256": "235537407867a7b894e78b3aecb55b33b14b64cbb23ca376a00d34c62a1a63a6",
+      "source_url": "http://farm7.staticflickr.com/6117/6240308255_77782d0723_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "8690",
+      "file": "000000008690.jpg",
+      "sha256": "feca143d5e249b9fcaca7090c2400125ee19c7ad883c11fffe55e8bb451e7429",
+      "source_url": "http://farm4.staticflickr.com/3753/9867545575_fa972e6c4a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "8844",
+      "file": "000000008844.jpg",
+      "sha256": "bd8133fe5862ea2b0b308db3c1d96b23012f2f667d43cb524d35ac1b710670a4",
+      "source_url": "http://farm7.staticflickr.com/6109/6283843124_f4091ce78a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "9483",
+      "file": "000000009483.jpg",
+      "sha256": "c7e6e15f4db067c3e09ab8605759be9d850e2d5c45ea4dfb9cda8f5d85308ea4",
+      "source_url": "http://farm4.staticflickr.com/3179/2986591710_d76622fdf0_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "10707",
+      "file": "000000010707.jpg",
+      "sha256": "a361abb7579193709ef3debbec6298bf0c540bece429c4aadb19be82e04ab6a0",
+      "source_url": "http://farm1.staticflickr.com/147/434840964_a9c5bc3b58_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "11149",
+      "file": "000000011149.jpg",
+      "sha256": "5973b8f1d5a30de98b1dcb715f1c94928a676fff8e45283515d0474e51ac0abc",
+      "source_url": "http://farm4.staticflickr.com/3625/3323418866_ea5017538d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "13291",
+      "file": "000000013291.jpg",
+      "sha256": "1e46187ec49947bfd8dd22f4d774bddfe3e29ca863fe09530516598998b8e640",
+      "source_url": "http://farm4.staticflickr.com/3394/3491087208_8efdfeb6d4_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "13659",
+      "file": "000000013659.jpg",
+      "sha256": "b357d19dee467587a8788ac4e5b45677f4fde1b62726c690795e188ae75d822b",
+      "source_url": "http://farm7.staticflickr.com/6144/5987177856_785814a990_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 13,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "17029",
+      "file": "000000017029.jpg",
+      "sha256": "d619327903c6b05520f0d6768807c067cce2d6d908d2d83da018a1da3b1792cf",
+      "source_url": "http://farm8.staticflickr.com/7304/8746020648_f1e2075b86_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "18837",
+      "file": "000000018837.jpg",
+      "sha256": "70f986167a5f1ea723ee2a25273f39ee1d1d7a3bf8b2fa3a37eca946111f1d93",
+      "source_url": "http://farm9.staticflickr.com/8219/8372455764_124e052754_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 7,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "19402",
+      "file": "000000019402.jpg",
+      "sha256": "b08173e02dc865e7f13fecbcbed574b70271c07fef6023236d0dea8d6bf77619",
+      "source_url": "http://farm5.staticflickr.com/4135/5435897535_a9b3e0a053_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "19432",
+      "file": "000000019432.jpg",
+      "sha256": "fa54de5a592c892ed3aceb11ebacff27abad01dc3bcef308943b097c1d65c0f0",
+      "source_url": "http://farm6.staticflickr.com/5131/5533564723_6f1633b85e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 13,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "19924",
+      "file": "000000019924.jpg",
+      "sha256": "b0bb42c6674456ecd9155b790a6a595646aacfe45ce80bd7667ac75fb7fe8bc8",
+      "source_url": "http://farm4.staticflickr.com/3407/3642510664_1c89fbc90a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "21167",
+      "file": "000000021167.jpg",
+      "sha256": "b77df96f91ed9a0842559ea8a238d602d4a09069b9129c43a9d62a27361df156",
+      "source_url": "http://farm4.staticflickr.com/3469/3397730036_36219f4c6e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "21903",
+      "file": "000000021903.jpg",
+      "sha256": "3fa9ccedfc3ac829c07e14b0e7ef4211b5963f7700dc6e30dde3054f704efa09",
+      "source_url": "http://farm9.staticflickr.com/8088/8456686192_fccee8c5bb_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "22479",
+      "file": "000000022479.jpg",
+      "sha256": "9f09af60f0a4f214a8b34ff6badbd25111cd8438c39097197a629255408cdb75",
+      "source_url": "http://farm4.staticflickr.com/3447/3880630600_2c837dbf23_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "22705",
+      "file": "000000022705.jpg",
+      "sha256": "01627a2e4b79593b0debcffcdcf9b6c795d0d9e71aa2a3e9e22a9db05a70bc85",
+      "source_url": "http://farm3.staticflickr.com/2338/1940631815_acd4f4458e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "23899",
+      "file": "000000023899.jpg",
+      "sha256": "b7ef13fe4d8ab47a77e55dadd30295110ca97b7b3c3b8c85603009e7dc497983",
+      "source_url": "http://farm2.staticflickr.com/1419/4598390017_b554e5d29b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "25057",
+      "file": "000000025057.jpg",
+      "sha256": "8208c5aa7a2aa8b805e7581289a91c8ed0cad5cd8a90e826d1ea0ca59d1cb773",
+      "source_url": "http://farm4.staticflickr.com/3209/2591785434_803df36d11_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "25394",
+      "file": "000000025394.jpg",
+      "sha256": "f13f54a3cbe28140004425b1b010c51bd5be0e4c4da1d4b1e382e3e0b426e316",
+      "source_url": "http://farm1.staticflickr.com/38/87248274_fe9dc3879b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "27620",
+      "file": "000000027620.jpg",
+      "sha256": "035a452ad79eb267a669fad48b220b1bf7d2e3500a5d736a195dc007df01bbfe",
+      "source_url": "http://farm2.staticflickr.com/1052/1338060761_ababfaeb9b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "29393",
+      "file": "000000029393.jpg",
+      "sha256": "378763dec71a25c7cb44ff9e345c84ca0fe2d8bf993b88775c360549edf3b733",
+      "source_url": "http://farm3.staticflickr.com/2556/4228514131_81f3416db3_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "30213",
+      "file": "000000030213.jpg",
+      "sha256": "27fdc374629bb5fc3c059eb7f5516b940596f0b50087adf364b6b09922089eaf",
+      "source_url": "http://farm9.staticflickr.com/8376/8561578295_08827d4611_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "30504",
+      "file": "000000030504.jpg",
+      "sha256": "6a07fb2882010ba47140c43ffd7cd4a51331f197666ea9837b43bc077e88f552",
+      "source_url": "http://farm6.staticflickr.com/5088/5320611177_13273d2c90_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "32887",
+      "file": "000000032887.jpg",
+      "sha256": "f85c17ab33d54631410d6335a5eaa1de780904b777f1da15f9c06ce6e61d3520",
+      "source_url": "http://farm6.staticflickr.com/5126/5218142854_bca4459220_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "33368",
+      "file": "000000033368.jpg",
+      "sha256": "8744e00ee252788e713def22b9d93710db7676dd5bda496241d14fe03661187c",
+      "source_url": "http://farm5.staticflickr.com/4066/4287990820_0a3c8096ec_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "35682",
+      "file": "000000035682.jpg",
+      "sha256": "1844cfa76d23a9768578f2c27306ecbad99326d2d374b070af9c56d50058c155",
+      "source_url": "http://farm5.staticflickr.com/4062/4666441455_b9bac3570c_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 9,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "38210",
+      "file": "000000038210.jpg",
+      "sha256": "0317a0094f357ea07c293ee9c32e58a87e5e0a5438c6d9c09250266df1249a00",
+      "source_url": "http://farm4.staticflickr.com/3654/3467469324_f2a706586c_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "39551",
+      "file": "000000039551.jpg",
+      "sha256": "4c84a652af01f02005d2116c351bdadcb1b82445c2fae9cd47adaccf6470a136",
+      "source_url": "http://farm5.staticflickr.com/4145/4963684976_cc0fa0b133_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "40036",
+      "file": "000000040036.jpg",
+      "sha256": "4668e4529c5e8a2e60df6fe4fb3882c089ce93e59ea8c8a5cd86856b6d6b66dc",
+      "source_url": "http://farm3.staticflickr.com/2848/9450285307_5873fbb209_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "40757",
+      "file": "000000040757.jpg",
+      "sha256": "60f4f240bb8fdd983afdb8966fcb7994e74d36b8e65d77f47066ea95fa297dba",
+      "source_url": "http://farm5.staticflickr.com/4066/4705721976_a7c6bc8e97_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "42102",
+      "file": "000000042102.jpg",
+      "sha256": "13adc5e53fd4b2e2610663744fbc76be64abf81a2932bf2acf26afb5e107368c",
+      "source_url": "http://farm7.staticflickr.com/6086/6077717404_3994af90dd_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "42528",
+      "file": "000000042528.jpg",
+      "sha256": "842d6691981b2204da0e59afb546a251846336ae71e1e95f6dd87b346d0a5efc",
+      "source_url": "http://farm4.staticflickr.com/3205/2849230650_402d291378_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "45070",
+      "file": "000000045070.jpg",
+      "sha256": "0048f03ce376c1c3de6143ea8462c609cf0ff15847e20a20d042f0c4d968eeb8",
+      "source_url": "http://farm4.staticflickr.com/3819/9272204163_a30ebf1d58_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "46378",
+      "file": "000000046378.jpg",
+      "sha256": "927a104a4eb1ba7960946cf89ed6cc199bd7c840674787b8e77b74a7dd60aafe",
+      "source_url": "http://farm3.staticflickr.com/2163/1809310489_e2707eed0b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "47571",
+      "file": "000000047571.jpg",
+      "sha256": "0398da07fb61f7dd096005253c01a669358c81507ac913c2d86fdd8ca396853a",
+      "source_url": "http://farm4.staticflickr.com/3771/10008328626_e50e829f0b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "49759",
+      "file": "000000049759.jpg",
+      "sha256": "b2e2e3a373ca6925746ce645689b6d38a730ce3f6f29b6d2fd67d18b2ba0600a",
+      "source_url": "http://farm9.staticflickr.com/8024/7582138098_1d39d0e871_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 12,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "50638",
+      "file": "000000050638.jpg",
+      "sha256": "7bddfb9dcb6fced3a5d40fa18ba6bd6ee2f769b37d980989620007b29765ff84",
+      "source_url": "http://farm4.staticflickr.com/3085/5708760061_15445422e8_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "50811",
+      "file": "000000050811.jpg",
+      "sha256": "c69067b49ec7f1f07045130495c56fd29da44178965a33861b51a503a041acfa",
+      "source_url": "http://farm9.staticflickr.com/8328/8133371246_ae679ac932_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "51309",
+      "file": "000000051309.jpg",
+      "sha256": "843073a1b40d454f132da06607d3ed525ce46eddd87c7f4de0b59378b8a02164",
+      "source_url": "http://farm5.staticflickr.com/4081/4737610316_f8bf6beb3b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "52996",
+      "file": "000000052996.jpg",
+      "sha256": "0be041c42db05b3e7a7074e5fc857a7b5d616697504048f751ea5025e856f406",
+      "source_url": "http://farm6.staticflickr.com/5482/9358344788_7dd31c5a98_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 8,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "53909",
+      "file": "000000053909.jpg",
+      "sha256": "80df4444d544c27440621d44cc8726f9b49fe26f55550f0690861a0ec73c620e",
+      "source_url": "http://farm8.staticflickr.com/7402/8714966583_f0853928b4_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "54164",
+      "file": "000000054164.jpg",
+      "sha256": "32ce2bb44c2650a805d6282b852f1d5c312cec7df0f8296835bf71005acbe29f",
+      "source_url": "http://farm3.staticflickr.com/2516/3973938540_7aa9b27812_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "54605",
+      "file": "000000054605.jpg",
+      "sha256": "7faf996ad9ff347643c1e94acadf2ff62c16d042344ef04567cdd3382bcccc75",
+      "source_url": "http://farm9.staticflickr.com/8396/8645114496_3c5bd1615f_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 9,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "54931",
+      "file": "000000054931.jpg",
+      "sha256": "a49694d5dc982701f33a1d449a3ff7ebf953d1947ca141352097fb2528b10d1b",
+      "source_url": "http://farm4.staticflickr.com/3707/9707884793_36195de2b5_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "56545",
+      "file": "000000056545.jpg",
+      "sha256": "852f95c0f7d5d72ec994fcead05a2a5501e7459966a360d92c26a5827584c744",
+      "source_url": "http://farm3.staticflickr.com/2894/9470927378_921b919b7e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "57149",
+      "file": "000000057149.jpg",
+      "sha256": "4e57fdaa7e50f2f384087931a026ad14252f976289b636213d24b2f61f64f544",
+      "source_url": "http://farm9.staticflickr.com/8505/8541387897_fbf4b3050a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "57232",
+      "file": "000000057232.jpg",
+      "sha256": "d2608c361bce2a50706e7b840819dbc3c01147bacfe35752c4ff59ebb467ce93",
+      "source_url": "http://farm9.staticflickr.com/8119/8693708685_4b469e01aa_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "58111",
+      "file": "000000058111.jpg",
+      "sha256": "2c476318934bf7b8e6ddbb0bcb119b8ce5ed9409e3444a6b8f8b4622e59fa1fe",
+      "source_url": "http://farm2.staticflickr.com/1212/1432440864_7e0f17c51a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "60899",
+      "file": "000000060899.jpg",
+      "sha256": "57c62f60ea71b9d40d33fa94635153fc02b1eec74b167324e874ee2ffb12ecab",
+      "source_url": "http://farm6.staticflickr.com/5004/5212692994_bcf4194494_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 6,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "63047",
+      "file": "000000063047.jpg",
+      "sha256": "a22d4aa86990d164396b37a5e95eba6e82ff36cddcfca557fc8501136591133e",
+      "source_url": "http://farm2.staticflickr.com/1104/823971263_ac4677ca84_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "65350",
+      "file": "000000065350.jpg",
+      "sha256": "963a129714e3675b99b6a405a2cb46eca5678241358bb6b6bbefc3c3f1943ae0",
+      "source_url": "http://farm5.staticflickr.com/4139/4869131880_ae3de10447_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 10,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "66231",
+      "file": "000000066231.jpg",
+      "sha256": "9f4fe7d747ae0d163c865e6478afc0a39822817b650b11094bbcb4fe37b46680",
+      "source_url": "http://farm9.staticflickr.com/8352/8375313873_80051bc3e2_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 7,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "67534",
+      "file": "000000067534.jpg",
+      "sha256": "f6aab4c789a4a04db8a31071efbee504f1764497a8a48aae43e82d89d0cc3db9",
+      "source_url": "http://farm3.staticflickr.com/2467/4002909092_1c44ff3c81_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "70774",
+      "file": "000000070774.jpg",
+      "sha256": "2875fc00637b25e6a8308de0fa574072b49df8f0a588e56a18e34f27f25a01ed",
+      "source_url": "http://farm6.staticflickr.com/5219/5517860224_7973e10013_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "73946",
+      "file": "000000073946.jpg",
+      "sha256": "83f98b5f14fdfa024bf06ff2699aa8152133f012a0b17741d026ef3a2fbd8178",
+      "source_url": "http://farm5.staticflickr.com/4042/4345743530_c1ed3e4eab_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "74733",
+      "file": "000000074733.jpg",
+      "sha256": "d99c93fb6d22a5d51bbb6e09ca5f10c11bdcf90a711abf6cc83188df52cc456a",
+      "source_url": "http://farm6.staticflickr.com/5461/9330037796_1700b955f3_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 14,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "75612",
+      "file": "000000075612.jpg",
+      "sha256": "ad55b7fe3105db47f033892e97ffe87a92c3545ae303f129d4bd59c5f211148a",
+      "source_url": "http://farm3.staticflickr.com/2579/4191595324_3c1f160567_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 15,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "76416",
+      "file": "000000076416.jpg",
+      "sha256": "f21eb87831efba38ef9ccea8a5699b222b614fddf716e1486653ce79ffaef463",
+      "source_url": "http://farm9.staticflickr.com/8478/8225218510_04ff392494_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "76547",
+      "file": "000000076547.jpg",
+      "sha256": "f4f730a011b99aaa7b9ee851b6ba4c77fe2e3c4c81d12d58b7221d0f1b199c01",
+      "source_url": "http://farm9.staticflickr.com/8557/8771723390_13dc9d18fa_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "78170",
+      "file": "000000078170.jpg",
+      "sha256": "e9ccccb034030771eafc383d2872bce55e7ff395313b610ffc1215eeb72912a3",
+      "source_url": "http://farm9.staticflickr.com/8466/8108218074_bacf160a3c_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "78823",
+      "file": "000000078823.jpg",
+      "sha256": "d9fe245622dc52d9c977eb501aa70d23a9e0fb61e2873879db6c0a89b1bc6b88",
+      "source_url": "http://farm1.staticflickr.com/9/13918737_12ed28cb16_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "79014",
+      "file": "000000079014.jpg",
+      "sha256": "5d11b9c5b9e3d3f3b752b2d12a92343ff8dfcd9399ace932a99da39b11c78720",
+      "source_url": "http://farm3.staticflickr.com/2258/2269567997_08065fe404_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "79031",
+      "file": "000000079031.jpg",
+      "sha256": "b82c8d3cc12b0bd3de1481db37e53932ed2d116805d2f9eff726bd2a01370123",
+      "source_url": "http://farm9.staticflickr.com/8147/7630088322_e0bd2184fa_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "80153",
+      "file": "000000080153.jpg",
+      "sha256": "3805f4e59254e155f166f340ee8eff2beaea49ee475ae837782da3cfc65bf8ea",
+      "source_url": "http://farm6.staticflickr.com/5142/5650798989_4e830b5a03_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "80671",
+      "file": "000000080671.jpg",
+      "sha256": "4f8723a042a40503cf9dad690214f8b770eebfa16b474430baa592965d57d917",
+      "source_url": "http://farm8.staticflickr.com/7067/7040483871_bae1b789be_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "80932",
+      "file": "000000080932.jpg",
+      "sha256": "c5bdb620680ad74c2bb788cabbf3374d68285bec3a2023fadf0ffc7eb257ba72",
+      "source_url": "http://farm5.staticflickr.com/4075/5487804660_f06d600b35_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 6,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "80949",
+      "file": "000000080949.jpg",
+      "sha256": "b61281d7ad2ca043eb4a6066becd42586ab66394757171ee2f31277241b4bc51",
+      "source_url": "http://farm3.staticflickr.com/2221/2232846153_5eee9c75fc_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "81061",
+      "file": "000000081061.jpg",
+      "sha256": "d609877d71bb235a132923cb287d90f3d0d0cf3299f01dc4b6b8b660240e1544",
+      "source_url": "http://farm7.staticflickr.com/6114/6343957302_e2b3590013_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "81988",
+      "file": "000000081988.jpg",
+      "sha256": "d0504a1ed78d6d875de3b0af307cc3349cafb4ff51f0bc9f4237f0a7a2cf36ac",
+      "source_url": "http://farm7.staticflickr.com/6080/6038911779_36e4613d84_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "82696",
+      "file": "000000082696.jpg",
+      "sha256": "ffb33316dedb78408fc1b7db2532b4df3b2e35d3ae76162d333e92ea17c0164c",
+      "source_url": "http://farm4.staticflickr.com/3075/3205065177_7864fb5c3d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 10,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "84170",
+      "file": "000000084170.jpg",
+      "sha256": "74de1d85ded730e719dbf35407dc4160976d9da86f2b310f8df6bb388586afa3",
+      "source_url": "http://farm9.staticflickr.com/8190/8134254727_0b28cabe93_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "84477",
+      "file": "000000084477.jpg",
+      "sha256": "182bab08d6173f7d044f291b2493833dcd7ce61f54bd83e0ecfc2e58b22e33b2",
+      "source_url": "http://farm9.staticflickr.com/8454/7897786544_4e902801e3_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "85157",
+      "file": "000000085157.jpg",
+      "sha256": "027adfd5c8d13be607a05da2098af34e7350b5f70a5bfd16f266e8c802a3a59b",
+      "source_url": "http://farm3.staticflickr.com/2620/3776048035_fb7c6fc8d5_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 14,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "85376",
+      "file": "000000085376.jpg",
+      "sha256": "0c61f0ddf5a17a348a194e16232f78d62391008b3e0aa4a204ce77c4ef6182c8",
+      "source_url": "http://farm8.staticflickr.com/7059/6867232585_0d4ea34bae_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 9,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "85772",
+      "file": "000000085772.jpg",
+      "sha256": "c21e2a798c8463fa01aace0312ddfb55bd6898565c8c3f6c22e87ea0d803128d",
+      "source_url": "http://farm6.staticflickr.com/5206/5724188680_6c2980c45e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "86956",
+      "file": "000000086956.jpg",
+      "sha256": "468cd2502e79a5ac8973fd4a709c620437879feeb0510d0f2dc9e96c29604453",
+      "source_url": "http://farm4.staticflickr.com/3096/3125314369_32cb27ef9d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "88265",
+      "file": "000000088265.jpg",
+      "sha256": "91f854ea66dbbc6fc3dd1cfe4410157be13194bc8e083dc79032aef5af2c81cc",
+      "source_url": "http://farm6.staticflickr.com/5541/9095670368_d6a61781a3_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "88432",
+      "file": "000000088432.jpg",
+      "sha256": "8e0a6e5eb383a0550ee70fca079826a0e9c4468c4b17e8a60c4372043780253c",
+      "source_url": "http://farm4.staticflickr.com/3447/3837630278_f938bd2f4e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "88485",
+      "file": "000000088485.jpg",
+      "sha256": "07cab32f1eac576ec11720ba77b4c2756a5d3f6cdd0352043c4c3a98b1dc362f",
+      "source_url": "http://farm3.staticflickr.com/2593/5721763173_16433bab1c_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "89078",
+      "file": "000000089078.jpg",
+      "sha256": "cb6ba6d871f582c4f9342032d05f86248c52d5741816ad501d647619ea618a16",
+      "source_url": "http://farm9.staticflickr.com/8087/8353842968_0fb221e792_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "89556",
+      "file": "000000089556.jpg",
+      "sha256": "b78eb0eb1250b86210658687ff5063428e0cbff2858d4e07d8dee107ae1964f8",
+      "source_url": "http://farm7.staticflickr.com/6093/6210323230_57fab50c4b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 8,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "89880",
+      "file": "000000089880.jpg",
+      "sha256": "4cc6935c4f45d41f57a53c5fb2ac917a81b3ff40e6dde5d6265357c32e93f7b5",
+      "source_url": "http://farm4.staticflickr.com/3353/3424594672_333e3ee522_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "90284",
+      "file": "000000090284.jpg",
+      "sha256": "6337308cc3e54d38c875788f1906158697fc25fe48b05bf4b8f8ef1850469f18",
+      "source_url": "http://farm4.staticflickr.com/3595/3591078425_be6b5caa3d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "90891",
+      "file": "000000090891.jpg",
+      "sha256": "d3ca274ad2a7c3620c54f1024a65325fe7bfa0d6bb91a818edfc9fc5b1ea2be6",
+      "source_url": "http://farm7.staticflickr.com/6145/5938772497_5a89d3ec7c_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "91406",
+      "file": "000000091406.jpg",
+      "sha256": "a6019381432c4b2517a5d1fecb8c9b2bf59a50c431d69fd3078ff82fe26ca1e9",
+      "source_url": "http://farm8.staticflickr.com/7170/6843637155_9379f537f6_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 7,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "92053",
+      "file": "000000092053.jpg",
+      "sha256": "b31ae99dde64c615138636ae6f3c3d139d7d398e830126594532a701da146ac3",
+      "source_url": "http://farm6.staticflickr.com/5244/5375419008_044fb14543_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "94326",
+      "file": "000000094326.jpg",
+      "sha256": "492ffd8a904c5f016947af4928607b8978c10d3d46dbf9231e394162c26f6263",
+      "source_url": "http://farm3.staticflickr.com/2691/4461834727_ac4efc5cce_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "94336",
+      "file": "000000094336.jpg",
+      "sha256": "147bfe5b064eea4fb43be7189fe9c3f9b4ef770ca20f698668f66834eed454db",
+      "source_url": "http://farm4.staticflickr.com/3110/2412271569_4e03bbb349_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "94871",
+      "file": "000000094871.jpg",
+      "sha256": "568808faf0e3ca50a66434ac7b053c6f493e48a45bf986e8bdcc7c48e3ee74eb",
+      "source_url": "http://farm9.staticflickr.com/8503/8282824777_4495950c61_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "94944",
+      "file": "000000094944.jpg",
+      "sha256": "a3fdb98ece1ececeadca3a00c1dc4ef0cb609bb2efd164d58907fbe65a0fb3cf",
+      "source_url": "http://farm5.staticflickr.com/4008/4414517057_541fe5e979_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "96493",
+      "file": "000000096493.jpg",
+      "sha256": "cecec146af7564d8229b996b99d25289924c039bf41475b0c533909699b39351",
+      "source_url": "http://farm4.staticflickr.com/3226/3076742158_8615337d86_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "97278",
+      "file": "000000097278.jpg",
+      "sha256": "dd79077cea11398cd456ee48f7f1124265881a75eb3459c1f527681d1d859590",
+      "source_url": "http://farm4.staticflickr.com/3255/3161956651_8c8631d721_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "97679",
+      "file": "000000097679.jpg",
+      "sha256": "7d636d406352e1643cab6f85925dd2fccd7ac11c471f1c58bd627a9512154efc",
+      "source_url": "http://farm3.staticflickr.com/2215/2727641554_ea1cca26c2_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "97924",
+      "file": "000000097924.jpg",
+      "sha256": "015ca73dcfa846a1d24d87f7676fbb4e095fb044f378ebe9dfe3bf2ebab5a798",
+      "source_url": "http://farm9.staticflickr.com/8527/8546652580_94dbb43241_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 6,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "98261",
+      "file": "000000098261.jpg",
+      "sha256": "6d73f5967db3ef19680f17791dd7252e1acf189ddb0cf6590ed211f8da123475",
+      "source_url": "http://farm6.staticflickr.com/5343/9354894019_5b5a169b2b_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "98392",
+      "file": "000000098392.jpg",
+      "sha256": "c976adf7599725c1bab7fbae692611501e7a33fb5e182c3e301f985205340ecf",
+      "source_url": "http://farm3.staticflickr.com/2502/4159425709_43b95a16d7_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "100238",
+      "file": "000000100238.jpg",
+      "sha256": "aeebb3301d652e291323df9567bed787a7966fefbefeb0629634424b1567769b",
+      "source_url": "http://farm4.staticflickr.com/3192/5846630152_e082bbc6ea_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "100428",
+      "file": "000000100428.jpg",
+      "sha256": "b93715083071f1c221b9221191225533062d07fce19814760ec72fb5156106af",
+      "source_url": "http://farm4.staticflickr.com/3812/9057179560_9849d58a64_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "100510",
+      "file": "000000100510.jpg",
+      "sha256": "a2e2766e27122461d4770e240c9f9fd3e443fb369fd892703df1d8b2171dabe4",
+      "source_url": "http://farm6.staticflickr.com/5547/9059818049_548550bd8f_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "100624",
+      "file": "000000100624.jpg",
+      "sha256": "853ddfac5c8827aa25601a84670c8b162830421f9759ef0e21f9be980aa1ae98",
+      "source_url": "http://farm3.staticflickr.com/2035/1874994806_da5fee8f5a_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 5,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "102805",
+      "file": "000000102805.jpg",
+      "sha256": "66e6c4530c4a84e97b77bf32227f5f7dfebb1c22accb0e7fa5dbd009308a8c0a",
+      "source_url": "http://farm7.staticflickr.com/6205/6101493857_573faccfab_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 3,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "105335",
+      "file": "000000105335.jpg",
+      "sha256": "c304cfc54f2b3ee939e1e9cb5a710a42cd8647c1256348c3e24cfd218e8a77a9",
+      "source_url": "http://farm4.staticflickr.com/3753/9165139551_307fa8f59d_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "107226",
+      "file": "000000107226.jpg",
+      "sha256": "285a3dfd666d35fb60eb63b9dd46b7b49aae4fcafe194f51d7e4b446abdab725",
+      "source_url": "http://farm3.staticflickr.com/2139/2185708967_4da3c7fb32_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 14,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "108244",
+      "file": "000000108244.jpg",
+      "sha256": "e39fd50c25c647c09b8ddde81b8d8c25f34236d268cbc4dc0a7ada22b8ab4518",
+      "source_url": "http://farm1.staticflickr.com/49/165710819_fb98979f1e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "110449",
+      "file": "000000110449.jpg",
+      "sha256": "b4f1012183b47482a31955ac38bbad9b7711b018ff20e2cb60b355033f323dc6",
+      "source_url": "http://farm4.staticflickr.com/3189/2947274789_a1a35b33c3_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "111036",
+      "file": "000000111036.jpg",
+      "sha256": "24635e2814536e1c2727643e34ef1793791c99bbfb598a1b6d36cec47fd0235f",
+      "source_url": "http://farm5.staticflickr.com/4064/4219975527_b359d71fb0_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 1,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "111207",
+      "file": "000000111207.jpg",
+      "sha256": "78d7b7eff999cee5eaf64be560eaa42c562b1105b275188d93fced89f01a417a",
+      "source_url": "http://farm5.staticflickr.com/4143/4786676935_209abc2a42_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 2,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "114907",
+      "file": "000000114907.jpg",
+      "sha256": "1ef6feb0a8d8886de8dc4db6e6c379cdd8fad15111a8edc570eeda66bcc17dba",
+      "source_url": "http://farm9.staticflickr.com/8303/7825237468_9345ce9a8e_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by/2.0/",
+        "id": 4,
+        "name": "Attribution License"
+      },
+      "target_count": 14,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    },
+    {
+      "sample_id": "117425",
+      "file": "000000117425.jpg",
+      "sha256": "3ce22b1b2e55db6f118b1b057ddb7563970d09bce66b4b95d1f896df88605b6c",
+      "source_url": "http://farm5.staticflickr.com/4037/4395733509_2c1aa888b2_z.jpg",
+      "license": {
+        "url": "http://creativecommons.org/licenses/by-sa/2.0/",
+        "id": 5,
+        "name": "Attribution-ShareAlike License"
+      },
+      "target_count": 4,
+      "verified_skills": [],
+      "requires_image_adapter_validation": true
+    }
+  ]
+}

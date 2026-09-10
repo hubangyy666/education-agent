@@ -1,0 +1,497 @@
+{"at": "2026-09-10T04:42:03.310733+00:00", "stage": "generation_review", "skill_id": "A3-S1", "requested": 12, "generated": 6, "accepted": 6, "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20", "review_request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78"}
+{"at": "2026-09-10T04:42:11.595603+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:11.596601+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:11.596601+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:11.608295+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:11.609907+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:11.610949+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.230012+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.232698+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.236597+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.238156+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.240164+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:19.241943+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.365653+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.366653+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.367653+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.368653+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.370156+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:53.371163+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.958403+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.959421+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.960428+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.961934+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.963445+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:01.964449+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.056172+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.058259+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.059266+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.061265+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.062770+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:09.064329+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.963953+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.964952+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.965956+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.966956+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.968959+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:15.969959+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:25.888558+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 5, "decision": "approved", "source_support": 1, "skill_match": 1, "ground_truth": 1, "teaching_quality": 0.8, "unambiguous": 1, "independent_answer": "选择“猫”和“鱼”", "duplicate": false, "reason": "图片有猫和鱼，多选应选两者；其他选项含未出现类别或遗漏。与第1题结构相近但对象不同，仍可接受。"}}
+{"at": "2026-09-10T04:46:25.891644+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 6, "generated": 6, "accepted": 5, "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9", "review_request_id": "90818a61-252d-415c-afdb-2122a4fc95e7"}
+{"at": "2026-09-10T04:46:32.956546+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.958056+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.960654+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.964942+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.970552+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.972541+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:39.516146+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:39.519378+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:39.521378+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:39.525287+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:39.528554+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:40.906458+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 6, "generated": 6, "accepted": 1, "generation_request_id": "de0223f0-aed1-498d-aa95-a28ad523d59f", "review_request_id": "87b09baf-7060-4fd2-9bff-4ca706595219"}
+{"at": "2026-09-10T04:46:47.355665+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:47.358662+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:47.359666+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:47.362193+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:47.365708+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:47.367837+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:55.483104+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:55.484120+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:55.485113+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:55.488584+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:55.489573+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:57.112827+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.4, "skill_match": 0.5, "ground_truth": 0.2, "teaching_quality": 0.4, "unambiguous": 0.2, "independent_answer": "选择“室外”", "duplicate": true, "reason": "该题与旧题几乎完全相同：旧题已给出“室内、室外、白天、夜晚”单选、白天室外场景，并问如何选择；本题仅删去“多选模式允许同时选择多个类别”等表述，属于同题换壳。更严重的是，在单选模式下“室外”和“白天”都真实符合白天室外场景，题干没有给出任何优先规则或类别体系约束来判定必须选“室外”，因此唯一正确答案不成立。解释中“室外更直接描述整图场景类型”是候选自加的偏好，KB-A3-002只说明单选需在规定类别体系内完成一次明确选择，并未支持该偏好。"}}
+{"at": "2026-09-10T04:46:57.115833+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "3d34bc20-8a24-4024-a422-58f1892cda4b", "review_request_id": "d2c5c0f2-c0c5-4048-aecc-49e97755db7a"}
+{"at": "2026-09-10T04:47:07.183132+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:07.185283+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:07.186099+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:07.187107+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:08.692837+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 6, "generated": 6, "accepted": 2, "generation_request_id": "73f61af6-d677-4ec8-b686-91759e223a50", "review_request_id": "0069bb96-6b33-4cf9-bac0-c9f95f2ee92b"}
+{"at": "2026-09-10T04:47:17.716951+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:17.719945+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:17.720945+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:17.722452+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:17.724611+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:17.725619+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.164307+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.165080+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.165977+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.167253+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.169261+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:26.172319+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.395363+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.396977+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.396977+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.397977+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.402047+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:34.405549+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.355065+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.357071+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.357071+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.360756+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.362769+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:42.365290+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.209295+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.210365+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.210991+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.212469+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.213569+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:51.214739+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.422128+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.423395+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.424401+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.425401+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.426490+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.429675+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.179335+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.179893+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.180902+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.182933+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.183938+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:06.185945+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:13.940462+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:13.941456+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:13.944965+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:13.945966+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:13.948358+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:15.599886+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 0.5, "skill_match": 0.3, "ground_truth": 0.4, "teaching_quality": 0.4, "unambiguous": 0.4, "independent_answer": "选择“建筑”，因为建筑占据画面大部分区域。", "duplicate": true, "reason": "该题与旧题几乎完全重复：旧题“一张图片中主要是一座建筑物，背景有少量树木”单选风景/人物/建筑，答案同为选择“建筑”；本题仅把背景改为角落人物，仍属同题换细节。且来源KB-A3-001只说明整图分类标签作用于整张图，并未规定“占据画面大部分区域即应选该类别”，因此“建筑”为唯一正确答案缺乏来源支持，存在歧义。"}}
+{"at": "2026-09-10T04:48:15.604246+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "0f03db8b-dc93-465a-84b6-56235774d354", "review_request_id": "f444aa93-ba6c-46b1-b316-21a01a5c8af7"}
+{"at": "2026-09-10T04:48:23.246088+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:23.247593+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:23.250261+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:23.252769+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:23.255130+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:23.257166+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.471907+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.473426+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.474433+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.475433+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.476944+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:30.478954+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:51:57.939826+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:51:57.941557+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:51:57.941557+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:51:57.943592+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:51:57.945607+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:51:57.946607+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:13.606978+00:00", "stage": "generation_attempt_failed", "skill_id": "A3-S1", "reason": "generation_count_invalid"}
+{"at": "2026-09-10T04:52:21.191817+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:21.193314+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:21.193838+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:21.194919+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:21.196843+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:21.197843+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.924708+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.925363+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.926999+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.926999+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.929358+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:29.930120+00:00", "stage": "candidate_rejected", "skill_id": "A3-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.221605+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.223113+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.225294+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.227800+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.230806+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:37.232807+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.657593+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.658596+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.661592+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.664103+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.666103+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:43.668463+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.062832+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.064835+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.066836+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.068833+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.071958+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:51.073462+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.188506+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.190679+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.193009+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.195022+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.197543+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:59.200536+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.892709+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.893214+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.894361+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.895368+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.897368+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:07.900664+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.966593+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.967596+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.969596+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.970605+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.971603+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:16.975107+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.578273+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.582396+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.586222+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.590612+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.594974+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:26.598914+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.319162+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.323689+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.323689+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.324996+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.327528+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:35.329201+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.907548+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.908627+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.909740+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.912749+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.916049+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:44.918586+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.884642+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.886914+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.889428+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.892945+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.896772+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:54.899773+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.867742+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.868311+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.868872+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.870471+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.871024+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:04.873035+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.570255+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.575268+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.576281+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.576281+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.579273+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:13.581785+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.792216+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.793248+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.793799+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.795897+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.796815+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:21.798116+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.382182+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.383188+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.384231+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.386238+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.387241+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:30.388753+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.404453+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.405466+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.406465+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.407460+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.409459+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.410465+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.737645+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.740029+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.740029+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.742427+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.745944+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:46.748943+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.276997+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.279004+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:52.085593+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.6, "unambiguous": 0.9, "independent_answer": "选择“白天”“室外”“动物”", "duplicate": true, "reason": "与旧题“白天、夜晚、室内、室外、人物、动物”多选场景几乎完全相同，仅去掉人物并调整选项，属于同题换选项/数字，不构成新题。"}}
+{"at": "2026-09-10T04:58:52.086601+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.6, "unambiguous": 0.9, "independent_answer": "选择“猫”“鸟”", "duplicate": true, "reason": "与旧题“猫、狗、鸟、其他”多选场景高度重复，仅把“只有一只猫”改为“猫和鸟”，属于同题换数字/情境，不构成新题。"}}
+{"at": "2026-09-10T04:58:52.086601+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 2, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.6, "unambiguous": 0.9, "independent_answer": "选择“建筑”“动物”", "duplicate": true, "reason": "与旧题“风景、人物、建筑、动物”多选场景重复，仅将“建筑和狗”作为新事实，仍属同题换数字/情境，不构成新题。"}}
+{"at": "2026-09-10T04:58:52.091600+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 5, "generated": 5, "accepted": 0, "generation_request_id": "ca650c4a-a75f-474c-8d7a-90349b275046", "review_request_id": "0746df2a-80ba-41d2-851d-6a2713505ea4"}
+{"at": "2026-09-10T04:59:01.517650+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.8, "independent_answer": "选择“室外”“白天”“动物”", "duplicate": true, "reason": "与旧题第7题几乎相同：同样是白天室外场景、画面有狗、多选类别含室内/室外/白天/夜晚/人物/动物，仅题干措辞和选项顺序略有变化，不构成新题。"}}
+{"at": "2026-09-10T04:59:01.518658+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.8, "independent_answer": "选择“红色”“蓝色”“圆形”“方形”", "duplicate": true, "reason": "与旧题第9题实质相同：同样是红色圆形和蓝色方形、多选类别为红色/蓝色/绿色/圆形/方形，仅题干措辞和选项顺序略有变化，不构成新题。"}}
+{"at": "2026-09-10T04:59:01.519659+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 2, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.8, "independent_answer": "只选择“猫”", "duplicate": true, "reason": "与旧题第12题实质相同：同样是只有一只猫、多选类别为猫/狗/鸟/其他，仅题干措辞和选项顺序略有变化，不构成新题。"}}
+{"at": "2026-09-10T04:59:01.519659+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 3, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.8, "independent_answer": "选择“建筑”“动物”", "duplicate": true, "reason": "与旧题第11题实质相同：同样是有建筑和狗、没有人物、多选类别为风景/人物/建筑/动物，仅题干措辞和选项顺序略有变化，不构成新题。"}}
+{"at": "2026-09-10T04:59:01.521166+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 4, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.8, "independent_answer": "选择“室内”“夜晚”“人物”", "duplicate": true, "reason": "与旧题第10题实质相同：同样是夜晚室内场景、画面有人、多选类别为室内/室外/白天/夜晚/人物，仅题干措辞和选项顺序略有变化，不构成新题。"}}
+{"at": "2026-09-10T04:59:01.526526+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 5, "generated": 5, "accepted": 0, "generation_request_id": "fdeebc87-3c6a-42e6-b9f5-279a69060e98", "review_request_id": "6b2aab41-450e-404c-adbb-587015ac6f32"}
+{"at": "2026-09-10T04:59:09.506697+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:09.509375+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:09.511767+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:09.513387+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:09.516192+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:15.906347+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:15.908530+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:15.911362+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:15.914238+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:16.901849+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "选择“室外”“白天”“动物”", "duplicate": true, "reason": "与旧题几乎同构：旧题已有“白天/夜晚/室内/室外/人物/动物”多选，图片为白天室外且有一只狗，正确选项相同，仅题干措辞微调，属于同题换写，不构成新题。"}}
+{"at": "2026-09-10T04:59:16.906909+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 5, "generated": 5, "accepted": 0, "generation_request_id": "32b6652c-e700-490f-8d29-8533ec571856", "review_request_id": "803bfb4c-bd02-4339-a5e0-a25befe383f2"}
+{"at": "2026-09-10T04:59:23.971060+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:26.776711+00:00", "stage": "generation_attempt_failed", "skill_id": "A3-S2", "reason": "review_coverage_invalid"}
+{"at": "2026-09-10T04:59:33.273426+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:35.363366+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "选择“室外”“白天”“动物”", "duplicate": true, "reason": "与旧题“白天室外场景+狗”的多选标签题实质相同，仅增加“无人物”和选项，属于同题换数字/选项，不构成新题。"}}
+{"at": "2026-09-10T04:59:35.364402+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "选择“猫”和“鸟”", "duplicate": true, "reason": "与旧题“猫和鸟同时出现”的多选标签题实质相同，仅调整位置描述，属于同题换数字/选项，不构成新题。"}}
+{"at": "2026-09-10T04:59:35.364402+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 2, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "选择“红色”“蓝色”“圆形”“方形”", "duplicate": true, "reason": "与旧题“红色圆形和蓝色方形”的多选标签题实质相同，仅调整选项顺序，属于同题换选项顺序，不构成新题。"}}
+{"at": "2026-09-10T04:59:35.365109+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 3, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "选择“建筑”“动物”", "duplicate": true, "reason": "与旧题“建筑和狗、无人物”的多选标签题实质相同，仅调整选项，属于同题换数字/选项，不构成新题。"}}
+{"at": "2026-09-10T04:59:35.370544+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 5, "generated": 5, "accepted": 0, "generation_request_id": "b7e6e29c-58e3-48e0-b0d2-ea92d09f6240", "review_request_id": "d11de8d1-57f5-4075-b0a2-a04789430d41"}
+{"at": "2026-09-10T04:59:44.083269+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:44.085800+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:44.087796+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:44.091185+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:44.093712+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:51.447814+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:51.455719+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:51.458208+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:52.687828+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 1, "decision": "approved", "source_support": 0.85, "skill_match": 0.9, "ground_truth": 0.95, "teaching_quality": 0.9, "unambiguous": 0.95, "independent_answer": "选择“动物 > 猫”和“植物 > 树”", "duplicate": false, "reason": "层级多选分类题，规则自足；图中猫和树，应选对应叶子节点，不选父节点或未出现的狗/花。来源KB-A2-004支持层级选取深度，KB-A3-002支持多选配置。与旧题不重复。"}}
+{"at": "2026-09-10T04:59:52.692918+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 5, "generated": 5, "accepted": 1, "generation_request_id": "168307a0-f28d-4172-b3f4-881ea1b2ae20", "review_request_id": "c49113c6-5a74-47c5-a9d3-e5ff45c38027"}
+{"at": "2026-09-10T05:00:04.360795+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:04.364386+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:04.367380+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:04.370902+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:04.374308+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:04.377971+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:21.927706+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 6, "generated": 6, "accepted": 6, "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475", "review_request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078"}
+{"at": "2026-09-10T05:00:32.942148+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:32.947372+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:34.392373+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.9, "teaching_quality": 0.6, "unambiguous": 0.9, "independent_answer": "重新核对当前对象为红色卡车，将“颜色”改为“红色”，将“车型”改为“卡车”。", "duplicate": true, "reason": "与旧题第18题（车辆颜色/车型两字段，切换对象后重新核对）实质相同，仅把上一辆红色SUV/下一辆黑色轿车改为蓝色轿车/红色卡车，属于换数字/换属性的同题改写，不构成新题。"}}
+{"at": "2026-09-10T05:00:34.398505+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "84ed167d-8d50-4e8a-b370-963642cf5fd3", "review_request_id": "ddbff6f3-fdb0-4617-9201-d0ec67629c9e"}
+{"at": "2026-09-10T05:00:43.686272+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:43.691350+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:44.898488+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.5, "teaching_quality": 0.5, "unambiguous": 0.4, "independent_answer": "保持当前对象不变，切换到“状态”字段，根据该车实际停放情况选择“停放”", "duplicate": true, "reason": "该题与旧题第16题几乎完全相同：同为CVAT车辆属性任务，标签为车辆，字段颜色（红蓝黑）和状态（行驶/停放），当前对象为黑色/蓝色轿车停在路边，已选颜色后仍停留在颜色字段，问下一步。仅颜色由黑色改为蓝色，属于换数字/改写的同题，不构成新题。"}}
+{"at": "2026-09-10T05:00:44.905066+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "964ab01d-d2df-46ab-93f5-04c4795b12a4", "review_request_id": "ed9e4864-0dd5-42e8-9a65-f36ffb92a639"}
+{"at": "2026-09-10T05:00:50.742522+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:50.750227+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:51.866788+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.9, "skill_match": 0.6, "ground_truth": 0.5, "teaching_quality": 0.5, "unambiguous": 0.7, "independent_answer": "切换到“状态”字段，核对当前对象后选择“停放”", "duplicate": true, "reason": "与旧题第16题几乎完全相同：同为CVAT车辆属性任务，颜色红/蓝/黑、状态行驶/停放，红色汽车停放，已选颜色后问下一步；仅将“黑色轿车”改为“红色汽车”，属于换数字/换属性的同题改写，不构成新题。"}}
+{"at": "2026-09-10T05:00:51.873455+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "29b03185-92e6-4074-a38f-f55ed159fcc4", "review_request_id": "0650c582-bff1-49c9-8f33-a2c84b06c487"}
+{"at": "2026-09-10T05:00:58.201937+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:00:59.976686+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.7, "skill_match": 0.8, "ground_truth": 0.6, "teaching_quality": 0.7, "unambiguous": 0.5, "independent_answer": "确认当前对象仍是那辆黑色轿车，然后在“状态”字段选择“停放”", "duplicate": true, "reason": "与旧题“黑色轿车停在路边、颜色选黑后界面仍停留/跳转字段，下一步应继续填状态”高度同构，仅把‘仍停留在颜色字段’改为‘自动跳转到状态字段’，属于同题换措辞，不构成新题。"}}
+{"at": "2026-09-10T05:00:59.977191+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.4, "teaching_quality": 0.5, "unambiguous": 0.3, "independent_answer": "选中白色汽车，在“颜色”字段的现有选项中如实选择最接近的一项，或按项目规则记录该情况，而不是新建类别", "duplicate": false, "reason": "选项“如实选择最接近的一项”没有来源或本练习规则支持，且‘最接近’不可判定；正确项还包含‘或按项目规则记录’的模糊分支，导致唯一正确答案不成立。旧题已覆盖白色汽车不在红蓝黑选项内、不得新建类别的情形，本题实质重复。"}}
+{"at": "2026-09-10T05:00:59.983425+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "d5f25f18-e26f-422f-830d-36def000e6fe", "review_request_id": "338b24aa-6952-4d5a-b6a5-03be6d223826"}
+{"at": "2026-09-10T05:01:05.729352+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:05.735490+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:05.742361+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:11.806175+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:11.810536+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:11.816314+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:22.793530+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:27.728575+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.5, "teaching_quality": 0.6, "unambiguous": 0.4, "independent_answer": "选择“猫”，因为猫占据画面大部分区域，最能代表整张图主要内容", "duplicate": true, "reason": "与旧题第1题几乎相同：同为Label Studio单选整图分类、猫狗同图、猫占大部分，仅把“狗”改为“狗在角落”，属于换数字/细节的重复题；且“最能代表整张图主要内容”的规则未在来源中给出，来源只说明标签作用于整图，未规定多对象时按面积选择。"}}
+{"at": "2026-09-10T05:01:27.729585+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 1, "decision": "rejected", "source_support": 0.5, "skill_match": 0.6, "ground_truth": 0.6, "teaching_quality": 0.5, "unambiguous": 0.5, "independent_answer": "选择“动物 > 猫”，因为图像中只有猫，且猫是分类树中的叶子节点", "duplicate": true, "reason": "与旧题第5题同属Label Studio分类树/层级标签题，仅把别名编码情境改为猫狗叶子节点选择，未构成新的决策动作；且题干未说明任务为单选，选项D“同时选择两个叶子节点”是否违规依赖未给出的配置，唯一性不足。"}}
+{"at": "2026-09-10T05:01:27.729585+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 2, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.5, "teaching_quality": 0.6, "unambiguous": 0.4, "independent_answer": "选择“正常”，因为当前帧内容明显属于正常，这是主要判断", "duplicate": true, "reason": "与旧题第2题高度重复：同为CVAT帧级单选分类、当前帧明显正常、要求不画框；仅增加“夜间”干扰项，属于换选项的重复题。且“应选择最能描述当前帧主要判断的类别”并非来源明确规则，单选下“正常”与“夜间”的优先级由题干自定，唯一性依赖未充分说明的练习规则。"}}
+{"at": "2026-09-10T05:01:27.730584+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 3, "decision": "approved", "source_support": 0.8, "skill_match": 0.8, "ground_truth": 0.8, "teaching_quality": 0.8, "unambiguous": 0.8, "independent_answer": "继续为当前对象填写“状态”字段，选择“停放”，因为该对象正停在路边", "duplicate": false, "reason": "题面给出车辆属性字段、当前对象和已填颜色，要求继续补全未填的“状态”字段，正确执行“逐对象逐字段”规则；与旧题中只填颜色后切换对象或只填一个字段的题相比，本题聚焦同一对象剩余字段，情境和决策动作有区别，答案唯一。"}}
+{"at": "2026-09-10T05:01:27.730584+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 4, "decision": "rejected", "source_support": 0.4, "skill_match": 0.6, "ground_truth": 0.4, "teaching_quality": 0.5, "unambiguous": 0.3, "independent_answer": "从现有选项中选择最接近的颜色，并在项目规范允许的记录中说明实际为白色，同时反馈选项缺失", "duplicate": false, "reason": "来源仅说明属性值应来自当前标签允许选项、不能把临时说明当类别，并未规定“选项不覆盖时选择最接近颜色并记录反馈”这一具体操作；该做法属于无来源支持的行业通用规定，且“最接近的颜色”在红蓝黑中不唯一，正确答案不可独立确定。"}}
+{"at": "2026-09-10T05:01:27.737072+00:00", "stage": "generation_review", "skill_id": "A3-S4", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "ec59c48a-fa14-47e7-9bb3-db2258506e29", "review_request_id": "3583f972-d018-4ff9-9037-9cce1838c6d5"}
+{"at": "2026-09-10T05:01:36.857291+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:36.859541+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:36.861148+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:36.864379+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:36.866091+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:37.930733+00:00", "stage": "generation_review", "skill_id": "A3-S4", "requested": 6, "generated": 6, "accepted": 1, "generation_request_id": "ce6cef03-0e18-4f32-94b3-ca5c5a4adea4", "review_request_id": "1e8e65e1-687e-4801-8d24-007bbb757bc6"}
+{"at": "2026-09-10T05:01:47.006773+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:47.011331+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:47.016893+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:47.022904+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:47.027120+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:47.040619+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.855048+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.856055+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.857916+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.859433+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.860433+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:01:54.865553+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:05.588918+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:05.594791+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:05.598096+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:08.172975+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.7, "teaching_quality": 0.5, "unambiguous": 0.4, "independent_answer": "选择“建筑”，因为建筑占据画面大部分区域，是图像整体主要内容", "duplicate": true, "reason": "与旧题第6题高度重复：同为Label Studio整图单选、类别风景/人物/建筑、建筑占主要区域，仅增加人物角落，属于换数字/换细节的重复题。"}}
+{"at": "2026-09-10T05:02:08.173619+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.7, "ground_truth": 0.7, "teaching_quality": 0.5, "unambiguous": 0.5, "independent_answer": "选择“正常”，因为当前帧整体内容明显属于正常", "duplicate": true, "reason": "与旧题第2题高度重复：同为CVAT帧级单选、正常/异常/待定、当前帧明显正常，仅增加边缘模糊细节，不构成新决策动作。"}}
+{"at": "2026-09-10T05:02:08.174392+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "review": {"index": 2, "decision": "rejected", "source_support": 0.5, "skill_match": 0.6, "ground_truth": 0.3, "teaching_quality": 0.3, "unambiguous": 0.2, "independent_answer": "颜色字段选择“蓝”或“黑”中较接近的选项，状态字段选择“停放”", "duplicate": false, "reason": "规则要求属性值来自允许选项，但白色汽车在红/蓝/黑中并无唯一正确近似项，答案“蓝或黑”不唯一；且“较接近”缺乏依据，不能作为可判定标注规则。"}}
+{"at": "2026-09-10T05:02:08.181723+00:00", "stage": "generation_review", "skill_id": "A3-S4", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "ef94e11f-75e9-4598-80ab-52b47be99e5a", "review_request_id": "1f8b072f-eb9f-4dbd-85e0-74b85215505b"}
+{"at": "2026-09-10T05:02:17.077804+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:17.079338+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:17.081880+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:17.088209+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:17.093131+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:17.098069+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.728936+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.730560+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.731565+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.734077+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.735079+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:26.740762+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.685169+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.686436+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.687443+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.688455+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.690188+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:35.691723+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.072197+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.073215+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.074224+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.075677+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.078228+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:49.080800+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.210907+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.213055+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.214304+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.215118+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.216817+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T05:02:58.221094+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:00.376491+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:00.378745+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:02.345018+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.6, "unambiguous": 0.9, "independent_answer": "选择“白天”“室外”“动物”", "duplicate": true, "reason": "与旧题“白天室外场景+狗”的多选分类题实质相同，仅选项顺序和措辞略变，属于同题换选项顺序/改写，不构成新题。"}}
+{"at": "2026-09-10T09:08:02.345018+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 1, "decision": "approved", "source_support": 0.8, "skill_match": 0.9, "ground_truth": 0.95, "teaching_quality": 0.85, "unambiguous": 0.9, "independent_answer": "选择“动物 > 猫”和“植物 > 树”", "duplicate": false, "reason": "题干自足，结合层级叶子节点与多选规则，图中猫和树对应唯一正确叶子路径；父节点、狗、花均被规则或事实排除，教学上能检验层级深度与多标签分类。"}}
+{"at": "2026-09-10T09:08:02.351532+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 4, "generated": 4, "accepted": 0, "generation_request_id": "80aa29e8-970f-4203-8438-1dd7c87299e1", "review_request_id": "585ff4a5-515f-4fe7-81da-a3de2a61bc23"}
+{"at": "2026-09-10T09:08:09.135448+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:09.138160+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:09.142393+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:10.601694+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.9, "teaching_quality": 0.4, "unambiguous": 0.9, "independent_answer": "选择“猫”和“鸟”", "duplicate": true, "reason": "该题与旧题“多选模式，类别：猫、狗、鸟、其他，图片中同时出现一只猫和一只鸟”几乎完全相同，仅删去“猫在画面左侧，鸟在右侧”的位置描述，属于同题换表述，不构成新题。虽然答案本身正确，但违反禁止重复旧题的要求。"}}
+{"at": "2026-09-10T09:08:10.607747+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 4, "generated": 4, "accepted": 0, "generation_request_id": "47812246-cf3c-4582-9d9e-3c7b0375e8e8", "review_request_id": "5920a1ba-bc15-4a36-b14a-f6f1784e7542"}
+{"at": "2026-09-10T09:08:16.721422+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:16.725440+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:16.730172+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:18.426858+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 4, "generated": 4, "accepted": 1, "generation_request_id": "eef601fb-ae2d-4fd2-8deb-3673bb45ee15", "review_request_id": "10f1878d-426a-4162-a411-513bd1f4d576"}
+{"at": "2026-09-10T09:08:23.992640+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:23.996200+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:25.614620+00:00", "stage": "generation_review", "skill_id": "A3-S2", "requested": 3, "generated": 3, "accepted": 1, "generation_request_id": "3f2e80a1-d0ba-4faf-b4f0-c0f7a1b8ca07", "review_request_id": "7ff974bc-d758-4855-a207-b826c7f8e642"}
+{"at": "2026-09-10T09:08:29.273168+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:29.279352+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:33.104889+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:33.109833+00:00", "stage": "candidate_rejected", "skill_id": "A3-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:38.813690+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:38.817279+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:40.937614+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.9, "skill_match": 0.6, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "停留在当前对象，继续核对并填写“车型”字段，选择“轿车”", "duplicate": true, "reason": "该题与旧题第13题几乎完全相同：同为CVAT车辆属性任务、颜色（红/蓝/黑）与车型（轿车/SUV/卡车）、蓝色轿车、刚选完颜色且仍停留在颜色字段，问下一步；仅题干措辞略有改写，不构成新题。"}}
+{"at": "2026-09-10T09:08:40.945261+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "f300a492-21fc-4707-a843-2b1657d465f7", "review_request_id": "049368e8-4a65-4177-a4b2-bb2a11b07621"}
+{"at": "2026-09-10T09:08:47.612533+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:49.301810+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.9, "skill_match": 0.85, "ground_truth": 0.9, "teaching_quality": 0.7, "unambiguous": 0.9, "independent_answer": "先核对当前对象是蓝色汽车且正在行驶，再分别将“颜色”改为“蓝色”、“状态”改为“行驶”", "duplicate": true, "reason": "与旧题第18题高度同构：均为切换车辆对象后需重新核对颜色和状态/车型字段，仅换颜色和状态值，属于同题换数字，不构成新题。"}}
+{"at": "2026-09-10T09:08:49.303326+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 1, "decision": "rejected", "source_support": 0.9, "skill_match": 0.8, "ground_truth": 0.85, "teaching_quality": 0.7, "unambiguous": 0.9, "independent_answer": "切换到黑色轿车对象，重新核对当前对象和当前字段，再为它填写“颜色：黑色”和“车型：轿车”", "duplicate": true, "reason": "与旧题第21题高度同构：均为当前车辆已填完属性后，发现同图另一辆车需单独补全属性，仅换颜色和车型值，属于同题换数字。"}}
+{"at": "2026-09-10T09:08:49.308635+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "599a240a-a38a-46e8-bdda-aa5968344633", "review_request_id": "3c851663-f67a-4da7-8b28-9148c79f417e"}
+{"at": "2026-09-10T09:08:55.045127+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:55.049105+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:08:57.085112+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.9, "skill_match": 0.9, "ground_truth": 0.9, "teaching_quality": 0.7, "unambiguous": 0.9, "independent_answer": "先确认当前对象是红色汽车，再把“颜色”改为“红色”，把“状态”改为“行驶”", "duplicate": true, "reason": "该题与旧题第18题几乎完全相同：同为CVAT车辆属性任务、颜色+状态字段、蓝色停放车切换到红色行驶车、要求逐对象逐字段核对并更新两个字段；仅颜色由黑色轿车改为蓝色汽车，属于换数字/换属性的同题重发，不构成新题。"}}
+{"at": "2026-09-10T09:08:57.091613+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "ca6b61eb-508b-4150-a9db-5c750b217663", "review_request_id": "a29dca9f-c582-400e-8b54-d92c0a5269bc"}
+{"at": "2026-09-10T09:09:04.282370+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:06.980718+00:00", "stage": "generation_attempt_failed", "skill_id": "A3-S3", "reason": "review_coverage_invalid"}
+{"at": "2026-09-10T09:09:12.989670+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:14.828225+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "approved", "source_support": 0.9, "skill_match": 0.9, "ground_truth": 0.9, "teaching_quality": 0.85, "unambiguous": 0.9, "independent_answer": "确认当前对象两个属性字段均已填写正确，然后切换到下一辆汽车对象继续标注", "duplicate": false, "reason": "题干给出车辆两个属性字段均已正确填写，依据KB-A3-003逐对象逐字段核对规则，应确认后切换下一对象；选项唯一正确，无旧题重复。"}}
+{"at": "2026-09-10T09:09:14.829294+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 1, "decision": "approved", "source_support": 0.9, "skill_match": 0.9, "ground_truth": 0.9, "teaching_quality": 0.85, "unambiguous": 0.9, "independent_answer": "暂停该对象的属性填写，向项目负责人确认白色车辆应如何处理", "duplicate": false, "reason": "白色不在允许选项红蓝黑中，依据KB-A2-003属性值须来自当前标签允许选项、不能随意新增类别，应暂停并确认；选项唯一正确，非旧题重复。"}}
+{"at": "2026-09-10T09:09:14.840036+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "5e49e7aa-db8f-4aed-b85b-848864d4903e", "review_request_id": "fb8ffa9b-d4ef-44fd-bc07-ce7a85d602e5"}
+{"at": "2026-09-10T09:09:21.827890+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:21.832054+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:23.152261+00:00", "stage": "candidate_rejected", "skill_id": "A3-S3", "review": {"index": 0, "decision": "rejected", "source_support": 0.7, "skill_match": 0.6, "ground_truth": 0.8, "teaching_quality": 0.5, "unambiguous": 0.6, "independent_answer": "切换到“状态”字段，核对当前对象是停在路边的红色汽车后，选择“停放”", "duplicate": true, "reason": "与旧题第16题几乎完全相同：同为CVAT车辆属性任务、颜色+状态字段、红色汽车停在路边、已选颜色后询问下一步，仅将“黑色轿车”改为“红色汽车”，属于换姓名/数字式重复，不构成新题。"}}
+{"at": "2026-09-10T09:09:23.157771+00:00", "stage": "generation_review", "skill_id": "A3-S3", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "2fc8040e-a8f2-43fd-9552-1a0ff70cd47d", "review_request_id": "1a5eb16d-9c71-4830-b1ad-5d3d4b009347"}
+{"at": "2026-09-10T09:09:32.178474+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:32.183497+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:32.185493+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:32.190781+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:32.195451+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:32.196451+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.652281+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.653329+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.658122+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.661267+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.666490+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:42.667881+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.539387+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.543867+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.544370+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.547381+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.553558+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:09:53.554825+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.047196+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.048189+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.049695+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.051204+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.052412+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:03.053875+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.573520+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.574521+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.575527+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.576524+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.577518+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:12.579520+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.820581+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.821592+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.826837+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.830404+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.834438+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:22.838082+00:00", "stage": "candidate_rejected", "skill_id": "A3-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:31.795580+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:31.802111+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:31.808785+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:31.812548+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:33.963255+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.4, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "同时选择“猫”和“狗”", "duplicate": true, "reason": "与旧题“猫、狗、鸟、其他”多选猫和狗几乎完全相同，仅删去鸟的干扰描述，属于换数字/换措辞的重复题，不构成新题。"}}
+{"at": "2026-09-10T09:10:33.965088+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 1, "decision": "rejected", "source_support": 0.7, "skill_match": 0.4, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "只添加“正常”标签", "duplicate": true, "reason": "与旧题“CVAT帧级分类，正常/异常/待定，单选，当前帧正常”实质相同，仅把“待定”换成“模糊”并增加“清晰”描述，属于同题改写。"}}
+{"at": "2026-09-10T09:10:33.972644+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "fa812de3-e068-4275-8400-f887fa4d1ea3", "review_request_id": "4842a1fb-6e9d-4509-b6ba-816018f99ba1"}
+{"at": "2026-09-10T09:10:42.163944+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:42.168656+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:42.174160+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:42.177665+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:44.125253+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 1, "skill_match": 0.3, "ground_truth": 1, "teaching_quality": 0.4, "unambiguous": 1, "independent_answer": "同时选择“猫”和“狗”", "duplicate": true, "reason": "与旧题“一张图片中同时出现一只猫和一只鸟”几乎相同，仅把鸟换成狗，属于同题换对象，不构成新题。"}}
+{"at": "2026-09-10T09:10:44.126263+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 1, "decision": "rejected", "source_support": 1, "skill_match": 0.3, "ground_truth": 1, "teaching_quality": 0.4, "unambiguous": 1, "independent_answer": "选择“正常”", "duplicate": true, "reason": "与旧题“当前帧画面清晰，内容明显属于正常”高度重复，仅增加“夜间”干扰项，决策动作未变化。"}}
+{"at": "2026-09-10T09:10:44.132297+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "e3f38367-1e29-478c-88fb-f9273763306b", "review_request_id": "9d05d0e7-3f34-4d48-9044-6a8551b599bf"}
+{"at": "2026-09-10T09:10:52.907589+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:52.910588+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:52.913600+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:52.918760+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:10:54.904768+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 0.7, "skill_match": 0.6, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.8, "independent_answer": "同时选择“猫”和“狗”", "duplicate": true, "reason": "与旧题“猫狗鸟其他”多选猫狗题几乎完全重复，仅语序微调，不构成新题。"}}
+{"at": "2026-09-10T09:10:54.905822+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 1, "decision": "rejected", "source_support": 0.6, "skill_match": 0.5, "ground_truth": 0.7, "teaching_quality": 0.5, "unambiguous": 0.6, "independent_answer": "选择“正常”", "duplicate": false, "reason": "帧级标签单选与“夜间”属性冲突；本练习规则称单选且选最相符类别，但“正常”和“夜间”并非同一维度，规则未明确主类别优先级，存在歧义。"}}
+{"at": "2026-09-10T09:10:54.912469+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "b640a49b-37fb-4d96-9600-12bddf6b481f", "review_request_id": "a65823f5-1842-40c3-a334-fbb793a75ba3"}
+{"at": "2026-09-10T09:11:03.660393+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:03.663713+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:03.667711+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:03.671702+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:06.017793+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 0.9, "skill_match": 0.8, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "同时选择“猫”和“狗”", "duplicate": true, "reason": "与旧题“多选模式，猫和鸟同时出现”高度同构，仅将鸟改为狗，属于换对象/数字的重复题，不构成新题。"}}
+{"at": "2026-09-10T09:11:06.018863+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 1, "decision": "rejected", "source_support": 0.9, "skill_match": 0.8, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "为当前帧添加“正常”标签", "duplicate": true, "reason": "与旧题“CVAT视频帧级分类，单选，正常/异常/待定，当前帧正常”几乎相同，仅增加“模糊”类别，属于同题改写，不构成新题。"}}
+{"at": "2026-09-10T09:11:06.028415+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "d2e938d8-b99c-48ce-b81a-62e9cabf796a", "review_request_id": "87ff5ad1-00c8-4c32-ad61-7482c22ea42e"}
+{"at": "2026-09-10T09:11:15.278774+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:15.280827+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:15.283840+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:15.288835+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:15.293526+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:17.022664+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "review": {"index": 0, "decision": "rejected", "source_support": 0.6, "skill_match": 0.3, "ground_truth": 0.9, "teaching_quality": 0.5, "unambiguous": 0.9, "independent_answer": "同时选择“猫”和“狗”", "duplicate": true, "reason": "该题与旧题“多选模式，类别：猫、狗、鸟、其他，图片中有一只猫和一只鸟”几乎完全同构，仅将“鸟”替换为“狗”，属于换数字/换选项的重复题；且技能为“类别平衡”，本题仅考查多选与内容相符，未体现类别平衡判断，技能匹配不足。"}}
+{"at": "2026-09-10T09:11:17.028752+00:00", "stage": "generation_review", "skill_id": "A3-S5", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "068df6d4-d496-4233-8cb5-399725794f32", "review_request_id": "ed74f000-6bb3-4fd2-877f-0df8147e8559"}
+{"at": "2026-09-10T09:11:26.057435+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:26.059582+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:26.061848+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:26.064504+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:26.067127+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T09:11:26.073850+00:00", "stage": "candidate_rejected", "skill_id": "A3-S5", "reason": "duplicate_content"}

@@ -1,0 +1,482 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-09-10",
+  "purpose": "智基Question Factory初始化来源目录；此文件只证明已搜集来源，不证明已建立本地样本储备",
+  "download_status": "not_downloaded",
+  "resources": [
+    {
+      "id": "oxford-pets",
+      "source_name": "Oxford-IIIT Pet",
+      "source_url": "https://www.robots.ox.ac.uk/~vgg/data/pets/",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-SA 4.0；页面声明可用于商业和研究，原始图像版权属于原作者",
+      "license_url": "https://www.robots.ox.ac.uk/~vgg/data/pets/",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "分类",
+        "目标检测",
+        "分割",
+        "判错返修",
+        "导出验收"
+      ],
+      "ground_truth": "品种标签、动物头部ROI、像素级前景背景Trimap",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "37类宠物；头部框不等于完整动物框，出题必须保留这一任务差异。引用论文与作者，复用按许可署名并保持相同方式共享；未下载。"
+    },
+    {
+      "id": "uci-optdigits",
+      "source_name": "UCI Optical Recognition of Handwritten Digits",
+      "source_url": "https://archive.ics.uci.edu/dataset/80/optical%2Brecognition%2Bof%2Bhandwritten%2Bdigits.",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY 4.0",
+      "license_url": "https://archive.ics.uci.edu/dataset/80/optical%2Brecognition%2Bof%2Bhandwritten%2Bdigits.",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A1",
+        "A2",
+        "A3",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "数字分类",
+        "标签校验",
+        "数据划分",
+        "交付格式"
+      ],
+      "ground_truth": "0至9的数字类别；官方区分训练和测试文件",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "提供64维整数特征，可按8×8矩阵显示；原始位图还有单独文件。适合低负担分类入门，不作为检测或精细分割真值；未下载。"
+    },
+    {
+      "id": "open-images-v7",
+      "source_name": "Google Open Images V7",
+      "source_url": "https://storage.googleapis.com/openimages/web/factsfigures_v7.html",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "标注 CC BY 4.0；图像列为 CC BY 2.0，官方要求逐图核验许可",
+      "license_url": "https://storage.googleapis.com/openimages/web/factsfigures_v4.html",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "图像分类",
+        "目标检测",
+        "实例分割",
+        "视觉关系",
+        "点标签",
+        "质检"
+      ],
+      "ground_truth": "图像级标签、边界框、实例掩码、视觉关系、点级标签",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "数据模态有不同覆盖范围，不能假定每张图片都有全部标注。正式使用先选子集并逐图核对作者/许可；不把模型生成字段直接当人工Ground Truth；未下载。"
+    },
+    {
+      "id": "mvtec-ad",
+      "source_name": "MVTec AD",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-NC-SA 4.0；仅非商业用途、署名、相同方式共享",
+      "license_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A6",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "正常异常分类",
+        "缺陷定位",
+        "像素掩码质检"
+      ],
+      "ground_truth": "异常图像的像素级真值；训练集为正常样本",
+      "access_requirements": "公开介绍和官方下载入口；下载页有表单，按官方流程获取",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "十五种对象/纹理类别。适合工业缺陷训练；商业使用不允许。未下载。"
+    },
+    {
+      "id": "mvtec-loco",
+      "source_name": "MVTec LOCO AD",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-NC-SA 4.0；仅非商业用途、署名、相同方式共享",
+      "license_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A6",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "结构异常",
+        "逻辑异常",
+        "位置约束",
+        "缺件判断"
+      ],
+      "ground_truth": "异常区域像素级真值",
+      "access_requirements": "公开介绍和官方下载入口；下载页有表单，按官方流程获取",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "包含结构和逻辑异常；不能只以表面纹理变化判断全部缺陷。官方提供评估代码。未下载。"
+    },
+    {
+      "id": "mvtec-ad2",
+      "source_name": "MVTec AD 2",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-NC-SA 4.0；仅非商业用途、署名、相同方式共享",
+      "license_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A6",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "光照变化下异常识别",
+        "缺陷定位",
+        "公开集评估"
+      ],
+      "ground_truth": "测试集第一部分公开像素真值；第二部分真值非公开",
+      "access_requirements": "公开介绍和官方下载入口；下载页有表单；私有真值不可下载",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "只能使用公开部分制作可本地判分题；私有测试部分需要官方评估服务，不能伪造本地答案。未下载。"
+    },
+    {
+      "id": "mvtec-3d-ad",
+      "source_name": "MVTec 3D-AD",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-NC-SA 4.0；仅非商业用途、署名、相同方式共享",
+      "license_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A6",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "三维异常识别",
+        "点云或扫描定位",
+        "多模态质检"
+      ],
+      "ground_truth": "异常测试样本的精确真值",
+      "access_requirements": "公开介绍和官方下载入口；下载页有表单，按官方流程获取",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "超过四千个工业三维扫描、十个类别；需要支持三维输入的工具，不能把二维预览当完整数据。未下载。"
+    },
+    {
+      "id": "mvtec-d2s",
+      "source_name": "MVTec D2S",
+      "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-NC-SA 4.0；仅非商业用途、署名、相同方式共享",
+      "license_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A3",
+        "A4",
+        "A5",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "商品分类",
+        "密集实例分割",
+        "复杂光照和背景",
+        "场景泛化"
+      ],
+      "ground_truth": "对象实例像素标签；测试标注不公开",
+      "access_requirements": "公开介绍和官方下载入口；下载页有表单；测试集真值不公开",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "六十种日用品/食品类别；使用公开训练或验证真值出题，测试图不得伪造答案。未下载。"
+    },
+    {
+      "id": "ud-chinese-gsdsimp",
+      "source_name": "Universal Dependencies Chinese GSDSimp",
+      "source_url": "https://universaldependencies.org/treebanks/zh_gsdsimp/",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-SA 4.0；须同时核对底层文本和标注的权利范围",
+      "license_url": "https://universaldependencies.org/treebanks/zh_gsdsimp/",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A1",
+        "A2",
+        "A8",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "分词",
+        "词性",
+        "依存关系",
+        "文本格式质检"
+      ],
+      "ground_truth": "CoNLL-U结构化词元/词性/依存标注",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "简体中文语料，由繁体GSD转换并人工修正；不是命名实体金标准。按官方声明保留来源与许可，区分人工标注和程序转换字段。未下载。"
+    },
+    {
+      "id": "squad2",
+      "source_name": "Stanford SQuAD 2.0",
+      "source_url": "https://rajpurkar.github.io/SQuAD-explorer/",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://rajpurkar.github.io/SQuAD-explorer/",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A1",
+        "A2",
+        "A8",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "答案片段",
+        "有无文本证据",
+        "无答案判断",
+        "文本质检"
+      ],
+      "ground_truth": "公开训练和开发集的答案片段及无答案标签",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "英文阅读理解材料，可用于证据判断进阶练习；不把英文题直接称作中文实体题。隐藏测试集不公开，不能用于本地有真值出题。未下载。"
+    },
+    {
+      "id": "oxford-moca",
+      "source_name": "Oxford MoCA: Moving Camouflaged Animals",
+      "source_url": "https://www.robots.ox.ac.uk/~vgg/data/MoCA/",
+      "source_type": "official_dataset_documentation",
+      "authority_level": "S",
+      "license": "CC BY 4.0；视频版权属于原作者",
+      "license_url": "https://www.robots.ox.ac.uk/~vgg/data/MoCA/",
+      "access_date": "2026-09-10",
+      "ability_ids": [
+        "A4",
+        "A7",
+        "A9",
+        "A10"
+      ],
+      "supported_tasks": [
+        "难目标发现",
+        "视频框选",
+        "运动类型分类",
+        "跨帧定位"
+      ],
+      "ground_truth": "边界框、运动类型标签",
+      "access_requirements": "官方公开下载入口",
+      "download_status": "not_downloaded",
+      "downloaded": false,
+      "local_sample_count": 0,
+      "ground_truth_validation": "not_run",
+      "usage_status": "catalogued_use_requires_license_compliance",
+      "notes": "包含伪装动物视频，运动类型含位置移动、形变和静止；有框不代表有精细分割真值。保留原作者和论文署名；未下载。"
+    }
+  ],
+  "ability_reservoirs": [
+    {
+      "ability_id": "A1",
+      "title": "标注基础认知",
+      "source_ids": [
+        "uci-optdigits",
+        "oxford-pets",
+        "ud-chinese-gsdsimp"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A2",
+      "title": "标注规范理解",
+      "source_ids": [
+        "oxford-pets",
+        "open-images-v7",
+        "ud-chinese-gsdsimp"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A3",
+      "title": "分类与属性判断",
+      "source_ids": [
+        "uci-optdigits",
+        "oxford-pets",
+        "mvtec-d2s"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A4",
+      "title": "目标检测与定位",
+      "source_ids": [
+        "oxford-pets",
+        "open-images-v7",
+        "oxford-moca"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A5",
+      "title": "精细分割",
+      "source_ids": [
+        "oxford-pets",
+        "mvtec-d2s",
+        "open-images-v7"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A6",
+      "title": "工业缺陷识别",
+      "source_ids": [
+        "mvtec-ad",
+        "mvtec-loco",
+        "mvtec-ad2",
+        "mvtec-3d-ad"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A7",
+      "title": "复杂视觉场景",
+      "source_ids": [
+        "oxford-moca",
+        "mvtec-d2s",
+        "open-images-v7",
+        "mvtec-loco"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A8",
+      "title": "文本与语义标注",
+      "source_ids": [
+        "ud-chinese-gsdsimp",
+        "squad2"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A9",
+      "title": "AI协同与质量审核",
+      "source_ids": [
+        "oxford-pets",
+        "open-images-v7",
+        "mvtec-ad",
+        "squad2"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    },
+    {
+      "ability_id": "A10",
+      "title": "综合项目交付",
+      "source_ids": [
+        "oxford-pets",
+        "ud-chinese-gsdsimp",
+        "open-images-v7",
+        "mvtec-ad"
+      ],
+      "material_status": "catalogued_not_downloaded",
+      "downloaded_sample_count": 0,
+      "question_generation_status": "not_generated_from_these_datasets"
+    }
+  ],
+  "rejected_or_unresolved_sources": [
+    {
+      "source_name": "COCO 数据集许可直接页面",
+      "source_url": "https://cocodataset.org/#terms",
+      "status": "deferred",
+      "notes": "官方主页可访问，但本轮未从可读的官方许可正文完成逐类许可核对；未采用GitHub普通用户评论为许可依据；COCO API的软件许可不能代替图像/数据许可。保留CVAT官方COCO格式知识摘要，未将COCO原图加入可直接使用来源。"
+    }
+  ]
+}

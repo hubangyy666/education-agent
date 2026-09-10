@@ -1,0 +1,4843 @@
+[
+  {
+    "id": "KB-GENERAL-001",
+    "scope": "GENERAL",
+    "ability_id": null,
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "一个标注项目包含哪些基本步骤",
+    "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+    "keywords": [
+      "数据标注",
+      "工作流",
+      "导入",
+      "导出"
+    ],
+    "source_name": "Label Studio · Overview",
+    "source_url": "https://labelstud.io/guide/get_started",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.96,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.964,
+      "decision": "approved",
+      "rationale": "官方项目工作流直接列出项目设置、界面配置、导入、标注和导出；教学顺序是透明的应用建议。",
+      "source_evidence": {
+        "section": "Labeling workflow",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/guide/get_started",
+        "original_url": "https://labelstud.io/guide/get_started",
+        "source_snapshot_sha256": "d76ad86d310f5e5560c7362d36557a12fb72f7c97a90abb1b705a4427091539d",
+        "snapshot_url": "https://labelstud.io/guide/get_started"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-002",
+        "content_trigram_jaccard": 0.0534,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": null,
+      "skill_name": null,
+      "decision": "unchanged",
+      "rationale": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-GENERAL-002",
+    "scope": "GENERAL",
+    "ability_id": null,
+    "skill_id": null,
+    "kind": "concept",
+    "title": "Ground Truth为什么能用于标注质检",
+    "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+    "keywords": [
+      "Ground Truth",
+      "质检",
+      "验证集",
+      "参考标注"
+    ],
+    "source_name": "CVAT · Automated QA, Review & Honeypots",
+    "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.95,
+      "duplication_risk": 0.2,
+      "conflict_detected": false,
+      "final_score": 0.9635,
+      "decision": "approved",
+      "rationale": "验证子集与参考作业比较、统计估计及参考集可靠性均有明确说明；没有把抽检写成全量审核。",
+      "source_evidence": {
+        "section": "Basics; Ground truth jobs",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "original_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_snapshot_sha256": "e079e90fd8c234af763b90292834bf4eecfadf758a6b4afbbc823c4b8267f273",
+        "snapshot_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A9-005",
+        "content_trigram_jaccard": 0.019,
+        "max_title_trigram_jaccard": 0.0345,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": null,
+      "skill_name": null,
+      "decision": "unchanged",
+      "rationale": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-GENERAL-003",
+    "scope": "GENERAL",
+    "ability_id": null,
+    "skill_id": null,
+    "kind": "principle",
+    "title": "数据工作为什么要记录范围与责任",
+    "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+    "keywords": [
+      "可追溯",
+      "责任分工",
+      "数据范围",
+      "监督"
+    ],
+    "source_name": "NIST · AI RMF Core",
+    "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+    "source_type": "standards_body",
+    "authority_level": "S",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.99,
+      "factual_consistency": 0.96,
+      "scope_relevance": 0.89,
+      "clarity": 0.92,
+      "duplication_risk": 0.1,
+      "conflict_detected": false,
+      "final_score": 0.946,
+      "decision": "approved",
+      "rationale": "职责、用途、范围、监督和第三方数据风险均可定位；改为框架强调的做法并标明岗位应用建议。",
+      "source_evidence": {
+        "section": "GOVERN 2.1; MAP 1.1/2.2/3.3/3.5/4.1; MEASURE",
+        "access_status": 200,
+        "verified_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "original_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_snapshot_sha256": "12dd6b2b096fd23669ae89e835e92a89004dbbef80b65aecb5f958c367dfe119",
+        "snapshot_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A1-002",
+        "content_trigram_jaccard": 0.0073,
+        "max_title_trigram_jaccard": 0.0909,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "a6f675e8c65296a01665168250b84bb153c055f3a70f124e9c5d909640658746",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": null,
+      "skill_name": null,
+      "decision": "unchanged",
+      "rationale": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-GENERAL-004",
+    "scope": "GENERAL",
+    "ability_id": null,
+    "skill_id": null,
+    "kind": "principle",
+    "title": "公开数据还需要核对哪些使用条件",
+    "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+    "keywords": [
+      "许可",
+      "来源",
+      "公开数据",
+      "素材"
+    ],
+    "source_name": "Universal Dependencies · Licensing UD data",
+    "source_url": "https://universaldependencies.org/contributing/licensing.html",
+    "source_type": "research_project_documentation",
+    "authority_level": "S",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.94,
+      "clarity": 0.94,
+      "duplication_risk": 0.13,
+      "conflict_detected": false,
+      "final_score": 0.9605,
+      "decision": "approved",
+      "rationale": "官方明确要求授权、记录许可，并说明部分许可不覆盖底层文本；数据许可与网页摘要用途分开理解。",
+      "source_evidence": {
+        "section": "Licensing UD treebanks",
+        "access_status": 200,
+        "verified_url": "https://universaldependencies.org/contributing/licensing.html",
+        "original_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_snapshot_sha256": "a32ca72d78c9db4476ef16b34748e0cb1b6f1b411a7761ff3e9c9700d8a7687e",
+        "snapshot_url": "https://universaldependencies.org/contributing/licensing.html"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A1-005",
+        "content_trigram_jaccard": 0.0722,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": null,
+      "skill_name": null,
+      "decision": "unchanged",
+      "rationale": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-GENERAL-005",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": null,
+    "kind": "principle",
+    "title": "当文本没有支持答案时如何处理",
+    "content": "阅读理解标注应依据给定文本判断答案是否存在。斯坦福 SQuAD 2.0 同时包含可从段落中找到答案片段的问题，以及看似合理但段落不支持回答的问题；后一类问题需要识别为无答案。这个任务设计说明，不能仅因问题符合常识就补写答案。处理同类语义任务时，要检查证据是否真的位于给定材料中，再按项目规则记录答案或无答案状态。",
+    "keywords": [
+      "文本证据",
+      "无答案",
+      "阅读理解",
+      "标注依据"
+    ],
+    "source_name": "Stanford · SQuAD Explorer",
+    "source_url": "https://rajpurkar.github.io/SQuAD-explorer/",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集声明为 CC BY-SA 4.0；本条仅为独立事实摘要",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。 保留候选 ID 便于追踪；阅读理解内容已从 GENERAL 归入 A8，不再向通用范围传播。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.95,
+      "clarity": 0.96,
+      "duplication_risk": 0.16,
+      "conflict_detected": false,
+      "final_score": 0.964,
+      "decision": "approved",
+      "rationale": "可回答与无答案样本及基于段落证据拒答均被原文支持；阅读理解内容重新归入 A8。",
+      "source_evidence": {
+        "section": "What is SQuAD?; Getting Started",
+        "access_status": 200,
+        "verified_url": "https://rajpurkar.github.io/SQuAD-explorer/",
+        "original_url": "https://rajpurkar.github.io/SQuAD-explorer/",
+        "source_snapshot_sha256": "989f7e43f27faa490ed9fc8fb440e6f0aa791c49131346a27b8361deb4a18baf",
+        "snapshot_url": "https://rajpurkar.github.io/SQuAD-explorer/"
+      },
+      "changes": [
+        "修订字段：scope, ability_id, skill_id"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：scope, ability_id, skill_id"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-003",
+        "content_trigram_jaccard": 0.0146,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "5939e57919a552b16e3fbf6cd03b71d081556996411c1e0a3c676df793b8dd00",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": null,
+      "skill_name": null,
+      "decision": "unchanged",
+      "rationale": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A1-001",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": "A1-S2",
+    "kind": "concept",
+    "title": "不同视觉任务需要不同标注形状",
+    "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+    "keywords": [
+      "任务类型",
+      "矩形",
+      "多边形",
+      "标注形状"
+    ],
+    "source_name": "CVAT · Overview",
+    "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.96,
+      "scope_relevance": 0.97,
+      "clarity": 0.93,
+      "duplication_risk": 0.22,
+      "conflict_detected": false,
+      "final_score": 0.9485,
+      "decision": "approved",
+      "rationale": "形状工具及用途与官方概览一致；未照搬概览对骨架/立方体的宽泛分割描述。",
+      "source_evidence": {
+        "section": "Annotation modes; Creating shapes; Shape tools",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "original_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_snapshot_sha256": "2bf885a74b289d409c8caa9d8f63880244547c78b239179fa75eb28b400d34ba",
+        "snapshot_url": "https://docs.cvat.ai/docs/getting_started/overview/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A9-004",
+        "content_trigram_jaccard": 0.0426,
+        "max_title_trigram_jaccard": 0.08,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A1-S1",
+      "skill_name": "标注任务类型",
+      "decision": "remapped",
+      "rationale": "核心是按任务类型选择标注形状",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A1-002",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": "A1-S1",
+    "kind": "concept",
+    "title": "区分原始任务、区域与标签",
+    "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+    "keywords": [
+      "任务",
+      "区域",
+      "标签",
+      "Annotation"
+    ],
+    "source_name": "Label Studio · Terminology",
+    "source_url": "https://labelstud.io/guide/glossary",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.97,
+      "duplication_risk": 0.19,
+      "conflict_detected": false,
+      "final_score": 0.969,
+      "decision": "approved",
+      "rationale": "四个术语及图像区域、文本片段和任务的区别逐项匹配词汇表。",
+      "source_evidence": {
+        "section": "Annotations; Labels; Region; Task",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/guide/glossary",
+        "original_url": "https://labelstud.io/guide/glossary",
+        "source_snapshot_sha256": "15475331656a34d8c7f6ab69001c9be09f94efe32bd0804f3eb78ec47224bbff",
+        "snapshot_url": "https://labelstud.io/guide/glossary"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-GENERAL-001",
+        "content_trigram_jaccard": 0.0474,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A1-S2",
+      "skill_name": "数据与标签",
+      "decision": "remapped",
+      "rationale": "直接解释原始任务、区域与标签的含义",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A1-003",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": null,
+    "kind": "concept",
+    "title": "认识手工、半自动与自动标注",
+    "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+    "keywords": [
+      "手工标注",
+      "半自动标注",
+      "自动标注",
+      "轨迹"
+    ],
+    "source_name": "CVAT · Vocabulary",
+    "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "手工、半自动、自动及插值示例与定义一致；删除不属于同一核心问题的轨迹解释。",
+      "source_evidence": {
+        "section": "Annotation",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "original_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_snapshot_sha256": "e11011bbc573a61ca65ebf75b516a8d1f6ca91ab584687d8ae8b75f69bf98717",
+        "snapshot_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-005",
+        "content_trigram_jaccard": 0.0146,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "4eb0575ed153b42f2a34812e81fb6a78d1ad78e9b8ef047bc8ef1a7261a30f51",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A1-S3",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "产生方式不等同于现课程的任务类型或标准答案",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A1-004",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": "A1-S4",
+    "kind": "concept",
+    "title": "作业列表中的阶段与状态各指什么",
+    "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+    "keywords": [
+      "作业",
+      "阶段",
+      "状态",
+      "分配"
+    ],
+    "source_name": "CVAT · Jobs",
+    "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.96,
+      "scope_relevance": 0.93,
+      "clarity": 0.94,
+      "duplication_risk": 0.17,
+      "conflict_detected": false,
+      "final_score": 0.9445,
+      "decision": "approved",
+      "rationale": "编号、维度、阶段、状态、大小和负责人均存在；二维不局限于静态图像，已修正文句。",
+      "source_evidence": {
+        "section": "Jobs; Supported properties for jobs list",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "original_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_snapshot_sha256": "00729b26cbde792576ac01184f159b7805d425d1f5b5052b49bc96276ac0a71d",
+        "snapshot_url": "https://docs.cvat.ai/docs/workspace/jobs-page/"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-004",
+        "content_trigram_jaccard": 0.0221,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "6cec1a1f5adc87315dcd429ca1f1fd2ec4f3eeea027dcf9e44014e1621b2d3bb",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A1-S4",
+      "skill_name": "工作流程",
+      "decision": "unchanged",
+      "rationale": "作业阶段与状态属于工作流程",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A1-005",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "按 UD 约定分别组织训练、开发和测试文件",
+    "content": "Universal Dependencies 的语料仓库约定把训练、开发和测试数据分别保存为命名明确的文件，并要求数据采用统一的 CoNLL-U 格式和通过格式验证；部分小型语料可能只有测试数据。对初学标注员而言，数据划分不仅是界面标签，也会体现在实际交付文件中。整理语料时应保持这些文件及其用途对应，不能把不同集合任意拼成一份后仍沿用原名称。",
+    "keywords": [
+      "训练集",
+      "开发集",
+      "测试集",
+      "文件结构"
+    ],
+    "source_name": "Universal Dependencies · Repository and files",
+    "source_url": "https://universaldependencies.org/contributing/repository_files.html",
+    "source_type": "research_project_documentation",
+    "authority_level": "S",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.93,
+      "clarity": 0.94,
+      "duplication_risk": 0.2,
+      "conflict_detected": false,
+      "final_score": 0.952,
+      "decision": "approved",
+      "rationale": "文件命名、CoNLL-U 验证和小型语料例外有直接依据；标题限定 UD 约定，避免泛化全部项目。",
+      "source_evidence": {
+        "section": "Repository and Files; Data split",
+        "access_status": 200,
+        "verified_url": "https://universaldependencies.org/contributing/repository_files.html",
+        "original_url": "https://universaldependencies.org/contributing/repository_files.html",
+        "source_snapshot_sha256": "961f7d592496700e2e8e5a8e66191193503075c184c6b8330cdded5763f14b4f",
+        "snapshot_url": "https://universaldependencies.org/contributing/repository_files.html"
+      },
+      "changes": [
+        "修订字段：title"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：title"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-GENERAL-004",
+        "content_trigram_jaccard": 0.0722,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "d4c0229021519c63fe55447da03a6c1c01f307c74f0eca32aae77e9a23016ff6",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A1-S5",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "数据集文件划分不对应数据安全技能",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A2-001",
+    "scope": "ABILITY",
+    "ability_id": "A2",
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "开工前在哪里确认标注规范",
+    "content": "CVAT 的 Guide 功能允许把标注说明绑定到项目或具体任务，说明支持格式化文字、图片和清单。标注员第一次打开新分配范围内的作业时可看到说明，也能在标注界面主动打开。执行岗位任务时，先确认说明对应的是当前项目还是当前任务，再依据其中的类别和操作要求开始；接手新任务不能仅凭上一个项目的操作习惯判断。",
+    "keywords": [
+      "标注规范",
+      "项目说明",
+      "开工检查"
+    ],
+    "source_name": "CVAT · Specification for annotators",
+    "source_url": "https://docs.cvat.ai/docs/annotation/specification/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.14,
+      "conflict_detected": false,
+      "final_score": 0.968,
+      "decision": "approved",
+      "rationale": "项目/任务说明、首次打开和主动查看机制都有明确依据。",
+      "source_evidence": {
+        "section": "Access to specification for annotators; Markdown editor guide",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/specification/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/specification/",
+        "source_snapshot_sha256": "57bfda2af993f542f86c152928f939fd56758b90a4ac448e90b71299988f1dd9",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/specification/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A7-004",
+        "content_trigram_jaccard": 0.0186,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A2-S1",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "说明查找位置与适用范围，不直接讲标签定义",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A2-002",
+    "scope": "ABILITY",
+    "ability_id": "A2",
+    "skill_id": "A2-S1",
+    "kind": "rule",
+    "title": "标签配置发生变化为什么会影响已有结果",
+    "content": "Label Studio 的标签配置决定待标数据、可选标签和标注方式，项目可以使用模板或自定义配置。官方文档指出，已有进行中的标注引用某标签时，不能直接删除该标签或更改相应标注类型，除非先处理使用它的已有标注。这说明标签集合是数据结构的一部分；修改规范时要核对现存结果受影响的范围，避免新旧标签含义和结果结构混用。",
+    "keywords": [
+      "标签配置",
+      "规范变更",
+      "一致性"
+    ],
+    "source_name": "Label Studio · Configure labeling interface",
+    "source_url": "https://labelstud.io/guide/setup",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.95,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.9615,
+      "decision": "approved",
+      "rationale": "已有标注引用标签时的修改限制直接见原文，版本一致性的教学提醒合理。",
+      "source_evidence": {
+        "section": "Modify the labeling interface",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/guide/setup",
+        "original_url": "https://labelstud.io/guide/setup",
+        "source_snapshot_sha256": "f7cff143e7bc56314dad1500e4095430f8f6b8f32d903ab28df3e70ef7d97daf",
+        "snapshot_url": "https://labelstud.io/guide/setup"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-GENERAL-001",
+        "content_trigram_jaccard": 0.0534,
+        "max_title_trigram_jaccard": 0.0385,
+        "max_keyword_jaccard": 0.1667,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A2-S2",
+      "skill_name": "标签定义",
+      "decision": "remapped",
+      "rationale": "标签集合及配置变更对应标签定义维护",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A2-003",
+    "scope": "ABILITY",
+    "ability_id": "A2",
+    "skill_id": "A2-S4",
+    "kind": "rule",
+    "title": "类别和属性为什么要分开定义",
+    "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+    "keywords": [
+      "类别",
+      "属性",
+      "标签定义",
+      "默认值"
+    ],
+    "source_name": "CVAT · Tasks",
+    "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.28,
+      "conflict_detected": false,
+      "final_score": 0.955,
+      "decision": "approved",
+      "rationale": "旧链接经官方跳转到 Tasks；类别、属性输入类型、可变性与默认值均已核实。",
+      "source_evidence": {
+        "section": "Label shape; Add an attribute",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "original_url": "https://docs.cvat.ai/docs/manual/basics/create-annotation-task/",
+        "source_snapshot_sha256": "625195bd6f0c131b92f664c25fa7464897f155bf908c4236014cd9149c977e11",
+        "snapshot_url": "https://docs.cvat.ai/docs/workspace/tasks-page/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-003",
+        "content_trigram_jaccard": 0.0425,
+        "max_title_trigram_jaccard": 0.0909,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/basics/create-annotation-task/",
+    "original_candidate_sha256": "ea2055bdececc0614e95c38c39b5e1fcc721b8fbe50f5a36f0838bc46d976bd7",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A2-S3",
+      "skill_name": "属性规范",
+      "decision": "remapped",
+      "rationale": "直接讲类别与属性的配置区别",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A2-004",
+    "scope": "ABILITY",
+    "ability_id": "A2",
+    "skill_id": "A2-S1",
+    "kind": "rule",
+    "title": "层级标签要遵守选取深度",
+    "content": "Label Studio 的层级分类控件可以记录一个或多个选择及其祖先节点，还能限制只能选择叶子节点。叶子节点是分类树中没有下级的末端选项；父节点与子节点表示不同的分类层次。处理层级标签任务时，应先看规范要求选到哪一层、是否允许多选，再选择对应路径。结果中的完整路径能说明标签所属层级，单看末端名称可能丢失上下文。",
+    "keywords": [
+      "层级标签",
+      "叶子节点",
+      "分类树",
+      "标签路径"
+    ],
+    "source_name": "Label Studio · Taxonomy tag",
+    "source_url": "https://labelstud.io/tags/taxonomy",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.34,
+      "conflict_detected": false,
+      "final_score": 0.958,
+      "decision": "approved",
+      "rationale": "层级祖先、叶子限制和完整路径参数直接支持内容；与 A3 的编码映射是不同核心问题。",
+      "source_evidence": {
+        "section": "Taxonomy; Parameters",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/tags/taxonomy",
+        "original_url": "https://labelstud.io/tags/taxonomy",
+        "source_snapshot_sha256": "971c96f8d76c58900da0c1b85b16476fd6716762900773696a085cf307d09042",
+        "snapshot_url": "https://labelstud.io/tags/taxonomy"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-002",
+        "content_trigram_jaccard": 0.0443,
+        "max_title_trigram_jaccard": 0.0556,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A2-S4",
+      "skill_name": "标签定义",
+      "decision": "remapped",
+      "rationale": "层级标签选取深度属于标签定义与取值范围",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A2-005",
+    "scope": "ABILITY",
+    "ability_id": "A2",
+    "skill_id": null,
+    "kind": "rule",
+    "title": "交付格式会限制可保留的标注信息",
+    "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+    "keywords": [
+      "交付格式",
+      "Pascal VOC",
+      "属性",
+      "轨迹"
+    ],
+    "source_name": "CVAT · Pascal VOC",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.93,
+      "duplication_risk": 0.27,
+      "conflict_detected": false,
+      "final_score": 0.955,
+      "decision": "approved",
+      "rationale": "框、标签、分割及轨迹不支持和复选属性要求均列于格式支持表。",
+      "source_evidence": {
+        "section": "Pascal VOC export",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "original_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_snapshot_sha256": "9deef01c3394146d9a5fa9d0ee2218fcb2ab9f2b9a0ece23bf5ed5e9d0cd4dc3",
+        "snapshot_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A4-004",
+        "content_trigram_jaccard": 0.0221,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A2-S5",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "导出格式约束不对应一致性检查的具体能力",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A3-001",
+    "scope": "ABILITY",
+    "ability_id": "A3",
+    "skill_id": "A3-S1",
+    "kind": "concept",
+    "title": "整图分类的标签作用于整张图",
+    "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+    "keywords": [
+      "图像分类",
+      "整图标签",
+      "类别判断"
+    ],
+    "source_name": "Label Studio · Image Classification template",
+    "source_url": "https://labelstud.io/templates/image_classification.html",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.97,
+      "duplication_risk": 0.26,
+      "conflict_detected": false,
+      "final_score": 0.9655,
+      "decision": "approved",
+      "rationale": "图像对象与整图选择控件关联明确；不额外产生区域几何信息的结论可直接从输出任务类型推出。",
+      "source_evidence": {
+        "section": "About the labeling configuration",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/templates/image_classification.html",
+        "original_url": "https://labelstud.io/templates/image_classification.html",
+        "source_snapshot_sha256": "b6c132169c27fa257e0690d133686ba938b6648196bba804d71312c67e3f8f59",
+        "snapshot_url": "https://labelstud.io/templates/image_classification.html"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A8-003",
+        "content_trigram_jaccard": 0.0455,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A3-S1",
+      "skill_name": "类别判断",
+      "decision": "unchanged",
+      "rationale": "整图分类直接对应类别判断",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A3-002",
+    "scope": "ABILITY",
+    "ability_id": "A3",
+    "skill_id": "A3-S2",
+    "kind": "rule",
+    "title": "单选和多选由任务配置决定",
+    "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+    "keywords": [
+      "单选",
+      "多选",
+      "分类规则"
+    ],
+    "source_name": "Label Studio · Choices tag",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.97,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.9695,
+      "decision": "approved",
+      "rationale": "单选、单选按钮、多选三种配置直接列明。",
+      "source_evidence": {
+        "section": "Choices; Parameters",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/tags/choices.html",
+        "original_url": "https://labelstud.io/tags/choices.html",
+        "source_snapshot_sha256": "6ad41b93b5465263a8c7924b685d6bd42975fdf44ffa718cdb5984e667952636",
+        "snapshot_url": "https://labelstud.io/tags/choices.html"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-002",
+        "content_trigram_jaccard": 0.0473,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A3-S2",
+      "skill_name": "多标签分类",
+      "decision": "unchanged",
+      "rationale": "单选和多选配置直接对应多标签分类",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A3-003",
+    "scope": "ABILITY",
+    "ability_id": "A3",
+    "skill_id": "A3-S3",
+    "kind": "workflow",
+    "title": "属性补全应逐对象逐字段进行",
+    "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+    "keywords": [
+      "属性判断",
+      "对象切换",
+      "字段补全"
+    ],
+    "source_name": "CVAT · Attribute annotation mode",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.28,
+      "conflict_detected": false,
+      "final_score": 0.9515,
+      "decision": "approved",
+      "rationale": "当前属性、对象切换、类别筛选及快捷键均见页面；内容聚焦逐对象字段操作。",
+      "source_evidence": {
+        "section": "Attribute annotation mode",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_snapshot_sha256": "bcb33696206fc04a5cd6df296b7596f836fe8233cf304b38f367d58d931a249f",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-003",
+        "content_trigram_jaccard": 0.0425,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A3-S3",
+      "skill_name": "属性识别",
+      "decision": "unchanged",
+      "rationale": "逐对象逐字段补全属性",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A3-004",
+    "scope": "ABILITY",
+    "ability_id": "A3",
+    "skill_id": null,
+    "kind": "rule",
+    "title": "分类树和分类结果的显示名称可能不同",
+    "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+    "keywords": [
+      "分类编码",
+      "显示名称",
+      "别名",
+      "层级分类"
+    ],
+    "source_name": "Label Studio · Taxonomy template",
+    "source_url": "https://labelstud.io/templates/taxonomy",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.34,
+      "conflict_detected": false,
+      "final_score": 0.9545,
+      "decision": "approved",
+      "rationale": "外部 JSON/API、value 与 alias 的显示和导出区别有表格说明。",
+      "source_evidence": {
+        "section": "Taxonomies defined using a remote source",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/templates/taxonomy",
+        "original_url": "https://labelstud.io/templates/taxonomy",
+        "source_snapshot_sha256": "caf2504ce4f9d471061cf73fe95fc41c629e232276aaf4bcffcbc49b3e927a83",
+        "snapshot_url": "https://labelstud.io/templates/taxonomy"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-GENERAL-001",
+        "content_trigram_jaccard": 0.0415,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A3-S4",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "显示名称与导出编码映射不等同于相似类别辨别",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A3-005",
+    "scope": "ABILITY",
+    "ability_id": "A3",
+    "skill_id": "A3-S1",
+    "kind": "workflow",
+    "title": "帧级标签不需要绘制目标框",
+    "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+    "keywords": [
+      "帧级分类",
+      "整帧标签",
+      "视频标签"
+    ],
+    "source_name": "CVAT · Annotation with tags",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.97,
+      "duplication_risk": 0.26,
+      "conflict_detected": false,
+      "final_score": 0.9605,
+      "decision": "approved",
+      "rationale": "整帧标签、快捷键与自动进入下一帧均有依据；与图像分类概念相邻但提供独立视频操作知识。",
+      "source_evidence": {
+        "section": "Annotation with tags",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_snapshot_sha256": "b179058dfcc72e7d63497904e0ea882fe3a4df7ff1daf88c0b0c6270a087f4f3",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-003",
+        "content_trigram_jaccard": 0.0258,
+        "max_title_trigram_jaccard": 0.0556,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A3-S5",
+      "skill_name": "类别判断",
+      "decision": "remapped",
+      "rationale": "帧级分类属于整帧类别判断，不是类别平衡",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A4-001",
+    "scope": "ABILITY",
+    "ability_id": "A4",
+    "skill_id": "A4-S1",
+    "kind": "rule",
+    "title": "目标发现要覆盖任务要求的所有实例",
+    "content": "Open Images 目标检测挑战要求为指定类别的全部目标实例预测紧贴目标的边界框，其检测任务与实例分割、视觉关系任务分别定义。这意味着检测标注首先要解决是否找全目标，再处理各目标位置。练习时要依据题目给定类别逐一寻找可标注实例，确认哪些对象属于目标范围；仅发现最显眼的一个对象，还不能说明已经完成包含多实例的任务。",
+    "keywords": [
+      "目标发现",
+      "漏标",
+      "实例",
+      "目标检测"
+    ],
+    "source_name": "Google Open Images · Challenge overview",
+    "source_url": "https://storage.googleapis.com/openimages/web/challenge_overview.html",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.13,
+      "conflict_detected": false,
+      "final_score": 0.9705,
+      "decision": "approved",
+      "rationale": "挑战明确提出全部指定类别实例的紧框；训练建议始终受当前项目目标范围约束。",
+      "source_evidence": {
+        "section": "Overview of the Open Images Challenge",
+        "access_status": 200,
+        "verified_url": "https://storage.googleapis.com/openimages/web/challenge_overview.html",
+        "original_url": "https://storage.googleapis.com/openimages/web/challenge_overview.html",
+        "source_snapshot_sha256": "bb16d89fda9b76c20ff36c59902493844e2896cc240269fb74ea091603fae566",
+        "snapshot_url": "https://storage.googleapis.com/openimages/web/challenge_overview.html"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-001",
+        "content_trigram_jaccard": 0.0179,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A4-S1",
+      "skill_name": "目标发现",
+      "decision": "unchanged",
+      "rationale": "逐一找全实例直接对应目标发现",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A4-002",
+    "scope": "ABILITY",
+    "ability_id": "A4",
+    "skill_id": "A4-S2",
+    "kind": "workflow",
+    "title": "用两个对角点创建单目标框",
+    "content": "CVAT 的形状模式允许先选择矩形工具和目标标签，再用两个相对角点建立一个独立矩形。框建立后仍可调整边界和位置，也能修改对象属性或删除对象。单目标框选练习可以按选择工具、确认类别、确定对角点、检查边界的顺序完成；第一次画出的框只是可编辑结果，提交前仍应核对它是否对应当前目标以及是否放在正确位置。",
+    "keywords": [
+      "单目标框选",
+      "矩形",
+      "对角点",
+      "边界"
+    ],
+    "source_name": "CVAT · Shape mode",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/shape-mode-basics/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.97,
+      "duplication_risk": 0.23,
+      "conflict_detected": false,
+      "final_score": 0.967,
+      "decision": "approved",
+      "rationale": "两对角点、标签选择、调整边界及删除对象全部被正文支持。",
+      "source_evidence": {
+        "section": "Shape mode",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/shape-mode-basics/",
+        "original_url": "https://docs.cvat.ai/docs/manual/basics/shape-mode-basics/",
+        "source_snapshot_sha256": "23ed3f4adfb7cd68e6c5bbf111c843c3d0d7245c3c537f2964bf78eebce562e1",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/shape-mode-basics/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A5-001",
+        "content_trigram_jaccard": 0.0276,
+        "max_title_trigram_jaccard": 0.0526,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/basics/shape-mode-basics/",
+    "original_candidate_sha256": "a0858acadfa2be5f34d5b35d30a7486e4a9408eebcb63bcd38f9a82951a0ccd9",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A4-S2",
+      "skill_name": "单目标框选",
+      "decision": "unchanged",
+      "rationale": "通过对角点创建单目标框",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A4-003",
+    "scope": "ABILITY",
+    "ability_id": "A4",
+    "skill_id": "A4-S3",
+    "kind": "workflow",
+    "title": "用四个极值点理解目标边界",
+    "content": "CVAT 的四点画框方式需要分别点击目标最上、最下、最左和最右的物理极值点，第四次点击后自动形成边界框；文档没有把这里的列举规定为固定点击顺序。极值点用于确定目标在横向和纵向上的覆盖范围，并不是随便选四个角落。练习边界控制时，可先观察目标的四个最外侧位置，再检查生成的矩形是否合理包围它，并遵守当前项目规定的框类型。",
+    "keywords": [
+      "边界控制",
+      "极值点",
+      "四点框选"
+    ],
+    "source_name": "CVAT · Annotation with rectangles",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-rectangles/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.22,
+      "conflict_detected": false,
+      "final_score": 0.966,
+      "decision": "approved",
+      "rationale": "源文要求四个极值点但没有规定固定点击顺序；已将依次改为分别。",
+      "source_evidence": {
+        "section": "Annotation with rectangle by 4 points",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-rectangles/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-rectangles/",
+        "source_snapshot_sha256": "48cdc18ba7f6701e08562ab423a9ec235629de6e4d5e2ec6d1a494460f9672aa",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-rectangles/"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A9-004",
+        "content_trigram_jaccard": 0.0255,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "73fedf0948bf90d1d3e44c4c4d28a3eda574f7d8661edd5aaa07d7925ad32064",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A4-S3",
+      "skill_name": "边界控制",
+      "decision": "unchanged",
+      "rationale": "极值点方法直接帮助控制边界",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A4-004",
+    "scope": "ABILITY",
+    "ability_id": "A4",
+    "skill_id": "A4-S4",
+    "kind": "workflow",
+    "title": "用对象列表检查多目标标注",
+    "content": "CVAT 的对象侧栏显示当前帧已有对象，支持查看标签、属性、排序和锁定，也可以为具体对象创建定位链接。多目标标注时，可通过列表与画面对应确认每个对象，再逐项检查类别和位置；锁定已完成对象有助于避免误改。列表提供的是已经创建的对象，因此仍需返回原图检查尚未创建标注的目标，不能只凭列表存在多条记录判断没有漏标。",
+    "keywords": [
+      "多目标",
+      "对象列表",
+      "漏标检查",
+      "锁定"
+    ],
+    "source_name": "CVAT · Objects sidebar",
+    "source_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/objects-sidebar/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.16,
+      "conflict_detected": false,
+      "final_score": 0.963,
+      "decision": "approved",
+      "rationale": "对象列表、锁定、标签属性与定位链接存在；明确列表不能发现尚未创建的漏标。",
+      "source_evidence": {
+        "section": "Objects properties; Object action menu",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/objects-sidebar/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/objects-sidebar/",
+        "source_snapshot_sha256": "bc48b094806a269fa9b616210b60f8de9cc83eee730c959cd239674a3baa04f9",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/objects-sidebar/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-003",
+        "content_trigram_jaccard": 0.0221,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A4-S4",
+      "skill_name": "多目标",
+      "decision": "unchanged",
+      "rationale": "对象列表与原图核对对应多目标完整性",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A4-005",
+    "scope": "ABILITY",
+    "ability_id": "A4",
+    "skill_id": "A4-S5",
+    "kind": "workflow",
+    "title": "小目标检查需要局部放大与全图核对",
+    "content": "CVAT 提供适应图像、放大感兴趣区域和滚轮缩放等导航操作，感兴趣区域工具可快速放大画面中的局部。处理小目标时，可以先在全图确定目标位置，再放大局部观察，完成后回到整体检查。移动图像与移动标注对象是不同操作，拖动高亮目标可能改变其位置；因此放大查看时也要注意当前工具状态，避免在检查过程中误移动已经画好的框。",
+    "keywords": [
+      "小目标",
+      "放大",
+      "图像导航",
+      "误操作"
+    ],
+    "source_name": "CVAT · Controls sidebar",
+    "source_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/controls-sidebar/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.16,
+      "conflict_detected": false,
+      "final_score": 0.961,
+      "decision": "approved",
+      "rationale": "局部放大、全图适应、滚轮缩放与误移动框的工具差异均有直接支持。",
+      "source_evidence": {
+        "section": "Navigation; Zoom; Move image",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/controls-sidebar/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/controls-sidebar/",
+        "source_snapshot_sha256": "8360e4d3527ed4f409e02ce0deda32de706f3bb2d75b13339362d98775a88631",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/annotation-editor/controls-sidebar/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A4-003",
+        "content_trigram_jaccard": 0.0182,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A4-S5",
+      "skill_name": "小目标",
+      "decision": "unchanged",
+      "rationale": "局部放大和全图复核直接面向小目标",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A5-001",
+    "scope": "ABILITY",
+    "ability_id": "A5",
+    "skill_id": "A5-S1",
+    "kind": "workflow",
+    "title": "多边形通过沿轮廓布点形成区域",
+    "content": "CVAT 的多边形手工绘制用于语义或实例分割。操作时先选择多边形及标签，再逐点点击轮廓，也可以按住相应快捷键拖动生成点；完成后结束形状，并按需要移动或删除顶点。多边形的输出由这些顶点连接形成，所以每次加点都应对应轮廓变化。绘制过程中可以调整缩放和透明度，以便看清目标边界及已覆盖区域。",
+    "keywords": [
+      "多边形",
+      "精细分割",
+      "轮廓",
+      "顶点"
+    ],
+    "source_name": "CVAT · Polygon manual drawing",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/manual-drawing/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.21,
+      "conflict_detected": false,
+      "final_score": 0.9665,
+      "decision": "approved",
+      "rationale": "轮廓点绘制、拖动、完成形状、透明度及编辑点操作逐项一致。",
+      "source_evidence": {
+        "section": "Manual drawing",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/manual-drawing/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/manual-drawing/",
+        "source_snapshot_sha256": "d7ad0244aee2bf13c695a65086243177883cd28d1cd5eea7ba25efc2b74ae711",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/manual-drawing/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A7-003",
+        "content_trigram_jaccard": 0.0329,
+        "max_title_trigram_jaccard": 0.0417,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/manual-drawing/",
+    "original_candidate_sha256": "56b2f38641517f150f7699d2a24f1d8b5075481e94fc1c5c26665a17f28254eb",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A5-S1",
+      "skill_name": "多边形描绘",
+      "decision": "unchanged",
+      "rationale": "沿轮廓布点构建多边形",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A5-002",
+    "scope": "ABILITY",
+    "ability_id": "A5",
+    "skill_id": "A5-S5",
+    "kind": "workflow",
+    "title": "画笔掩码可以表示不连续的可见部分",
+    "content": "CVAT 画笔工具可以为同一对象的多个不连续部分创建掩码，例如目标被其他物体挡住时分开的可见区域。画笔增加选中像素，橡皮擦去除选中像素，还可把多边形选择转换为掩码。执行像素级标注时，需要根据任务规则处理区域归属并检查边界；保存单个掩码后还要保存整个作业，两个动作对应不同层面的保存步骤。",
+    "keywords": [
+      "像素掩码",
+      "画笔",
+      "橡皮擦",
+      "不连续区域"
+    ],
+    "source_name": "CVAT · Annotation with brush tool",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-brush-tool/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.2,
+      "conflict_detected": false,
+      "final_score": 0.967,
+      "decision": "approved",
+      "rationale": "不连续可见部分、画笔/橡皮及保存掩码后保存作业均为原文明确操作。",
+      "source_evidence": {
+        "section": "Brush tool menu; Annotation with brush",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-brush-tool/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-brush-tool/",
+        "source_snapshot_sha256": "4eb8488b1e180b8fa29922611771aa9e0d76a27dd8ae48f4e5a11a6e2b917aa5",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-brush-tool/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A1-001",
+        "content_trigram_jaccard": 0.0237,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-brush-tool/",
+    "original_candidate_sha256": "990fffa7e1166441a1c1f91044a542c720e7706b79b1d13d50fa42847ce27a28",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A5-S2",
+      "skill_name": "遮挡分割",
+      "decision": "remapped",
+      "rationale": "被遮挡对象的不连续可见区域掩码",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A5-003",
+    "scope": "ABILITY",
+    "ability_id": "A5",
+    "skill_id": "A5-S4",
+    "kind": "workflow",
+    "title": "相邻区域可通过吸附保持边界对齐",
+    "content": "CVAT 的轮廓吸附能够在绘制多边形时沿已有形状边缘添加顶点，点吸附则让新点与附近已有顶点对齐。这两种功能解决的是相邻形状边界复用与顶点对齐问题。使用前应先确认被参考的轮廓本身正确，再预览将被加入的顶点；工具会依据现有形状工作，因此吸附成功只代表对齐完成，并不能自动证明原先的边界符合标注规范。",
+    "keywords": [
+      "边界对齐",
+      "吸附",
+      "相邻区域"
+    ],
+    "source_name": "CVAT · Snap tools",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/snap-tools/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.94,
+      "duplication_risk": 0.19,
+      "conflict_detected": false,
+      "final_score": 0.9565,
+      "decision": "approved",
+      "rationale": "轮廓复用、顶点吸附和预览均有依据；未把吸附等同于语义正确。",
+      "source_evidence": {
+        "section": "Snap to contour; Snap to point",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/snap-tools/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/snap-tools/",
+        "source_snapshot_sha256": "c76fef86bc0908f5d01abf57b55b35f7a7150d0ae4021472fe886317588bcd45",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/snap-tools/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A5-004",
+        "content_trigram_jaccard": 0.0192,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A5-S3",
+      "skill_name": "边界贴合",
+      "decision": "remapped",
+      "rationale": "吸附和顶点对齐直接面向边界贴合",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A5-004",
+    "scope": "ABILITY",
+    "ability_id": "A5",
+    "skill_id": "A5-S4",
+    "kind": "workflow",
+    "title": "多边形局部返修可以替换一段轮廓",
+    "content": "CVAT 的多边形编辑器允许在已有多边形上增加点，或把一段新线连接到原有点来替换局部轮廓。启用智能裁剪时，工具会参考被裁点数量和曲线长度决定保留哪部分；两种判断不一致时需要用户选择。进行返修时，应检查最终保留的区域是否是目标部分，必要时取消本次编辑，不能只因工具自动结束操作就认为轮廓已经修好。",
+    "keywords": [
+      "轮廓返修",
+      "局部编辑",
+      "多边形裁剪"
+    ],
+    "source_name": "CVAT · Edit polygon",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/edit-polygon/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.94,
+      "duplication_risk": 0.21,
+      "conflict_detected": false,
+      "final_score": 0.9615,
+      "decision": "approved",
+      "rationale": "被裁点数、被裁曲线长度和二者不一致时人工选择准确；已核对官方迁移地址。",
+      "source_evidence": {
+        "section": "Edit polygon",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/edit-polygon/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/edit-polygon/",
+        "source_snapshot_sha256": "6324cf56f92f5a833794463ea1347c31202cac08d62a0143712232cafa0494b4",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/edit-polygon/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A7-003",
+        "content_trigram_jaccard": 0.0279,
+        "max_title_trigram_jaccard": 0.0417,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/edit-polygon/",
+    "original_candidate_sha256": "87c3786cf94edf01a0866eac95370dbfc778d724b699e01c476d31b9cffb1216",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A5-S4",
+      "skill_name": "边界贴合",
+      "decision": "unchanged",
+      "rationale": "局部返修直接修正轮廓边界",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A5-005",
+    "scope": "ABILITY",
+    "ability_id": "A5",
+    "skill_id": "A5-S3",
+    "kind": "concept",
+    "title": "全景分割同时表达类别与实例",
+    "content": "全景分割把语义分割和实例分割统一到一个任务中。原论文用语义类别与实例编号表达像素归属：两辆车可以类别相同而实例不同；对天空、道路等背景材质类别，实例编号被忽略。每个有效像素只归属一个分割区域，模糊或不在类别范围内的像素还可使用空值标记。标注时应先读项目的类别划分与空值规则，再分别核对类别、对象归属和区域边界。",
+    "keywords": [
+      "全景分割",
+      "语义分割",
+      "实例分割",
+      "像素"
+    ],
+    "source_name": "Kirillov 等 · Panoptic Segmentation (CVPR 2019)",
+    "source_url": "https://arxiv.org/html/1801.00868v3",
+    "source_type": "peer_reviewed_paper",
+    "authority_level": "S",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.99,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.97,
+      "clarity": 0.93,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "补读原论文全文第 3 节，补充背景实例编号忽略、void 例外及不重叠限制，收窄每像素标签的绝对说法。",
+      "source_evidence": {
+        "section": "Introduction; Panoptic Segmentation Format",
+        "access_status": 200,
+        "verified_url": "https://arxiv.org/html/1801.00868v3",
+        "original_url": "https://arxiv.org/abs/1801.00868",
+        "source_snapshot_sha256": "f54ed3190e892102db6dbc404a760aea84b64b633dda4c9abff336b889353a4a",
+        "snapshot_url": "https://arxiv.org/html/1801.00868v3"
+      },
+      "changes": [
+        "修订字段：source_url, content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：source_url, content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-001",
+        "content_trigram_jaccard": 0.0147,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://arxiv.org/abs/1801.00868",
+    "original_candidate_sha256": "bb2372ea7900ba3244c96ebdcbbe4710ace25449e90000c62e6fa30da0d8d22d",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A5-S5",
+      "skill_name": "实例分割",
+      "decision": "remapped",
+      "rationale": "全景分割的实例编号与同类对象区分直接支撑实例分割",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A6-001",
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "skill_id": "A6-S4",
+    "kind": "concept",
+    "title": "工业异常识别先理解正常参考样本",
+    "content": "MVTec AD 面向工业检查中的异常检测，包含十五种对象与纹理类别。各类别的训练图像是无缺陷样本，测试集合同时包含正常图像和不同缺陷图像，并提供异常的像素级标注。这种数据安排把正常外观作为重要参考。开展同类练习时，要先看懂正常样本的形状和纹理，再依据题目指定的异常范围判断，不能把任何外观差异都直接当成缺陷。",
+    "keywords": [
+      "工业缺陷",
+      "正常样本",
+      "异常检测"
+    ],
+    "source_name": "MVTec · AD dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.35,
+      "conflict_detected": false,
+      "final_score": 0.9605,
+      "decision": "approved",
+      "rationale": "十五类别、无缺陷训练与正常/异常测试及像素标注准确；与 A6-005 区分正常参考和定位输出。",
+      "source_evidence": {
+        "section": "Abstract; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+        "source_snapshot_sha256": "6ebe3365ed9bdd9585a28dc3257932fb2eff689460cd689baae610c22b839288",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"
+      },
+      "changes": [
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-005",
+        "content_trigram_jaccard": 0.05,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "adf9e35f3d29a6d20a8c7bdfea666d1e010202907fd70d928714d014fc6b79c6",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A6-S1",
+      "skill_name": "正常与异常",
+      "decision": "remapped",
+      "rationale": "利用正常参考样本辨别异常",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A6-002",
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "skill_id": "A6-S1",
+    "kind": "concept",
+    "title": "结构异常和逻辑异常有什么区别",
+    "content": "MVTec LOCO AD 同时包含结构异常和逻辑异常。结构异常是划痕、凹痕或污染等产品外观变化；逻辑异常则违反对象之间的约束，例如允许出现的物品放在错误位置，或必须存在的物品缺失。因此，工业缺陷标注不能只检查表面是否破损，还要按任务规则核对位置、存在性等关系，分别说明自己发现的是外观损伤还是结构配置不符合要求。",
+    "keywords": [
+      "结构异常",
+      "逻辑异常",
+      "划痕",
+      "缺件"
+    ],
+    "source_name": "MVTec · LOCO AD dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.12,
+      "conflict_detected": false,
+      "final_score": 0.974,
+      "decision": "approved",
+      "rationale": "结构异常及逻辑异常的例子均由官方定义直接支持。",
+      "source_evidence": {
+        "section": "Abstract; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad",
+        "source_snapshot_sha256": "09e87c3cc844de006490747f38ef9b88e7414590a7e207bf874d9108b757d5aa",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-loco-ad"
+      },
+      "changes": [
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A7-005",
+        "content_trigram_jaccard": 0.0185,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "141e4e71d606e39c11d7bccb51f53cbcf16af54bc77954ce2e7c86f14fbf387d",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A6-S2",
+      "skill_name": "缺陷定义",
+      "decision": "remapped",
+      "rationale": "明确结构异常与逻辑异常的定义",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A6-003",
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "skill_id": null,
+    "kind": "concept",
+    "title": "光照变化会改变工业图像的测试条件",
+    "content": "MVTec AD 2 的测试图像在多种光照条件下采集，其中部分条件可能没有出现在训练数据中；训练与验证图像则是无缺陷样本。测试数据又分为公开像素标注和非公开参考答案两部分。这一设计说明，工业任务的输入条件需要单独记录。学员比较正常与异常图像时，应注意光照条件是否变化，并依据当前题目规则区分成像差异和实际异常。",
+    "keywords": [
+      "光照变化",
+      "工业检查",
+      "分布差异"
+    ],
+    "source_name": "MVTec · AD 2 dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.2,
+      "conflict_detected": false,
+      "final_score": 0.9645,
+      "decision": "approved",
+      "rationale": "光照变化、无缺陷训练/验证与测试答案公开范围准确。",
+      "source_evidence": {
+        "section": "Abstract; Evaluation; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2",
+        "source_snapshot_sha256": "c735c4b61c27d267660cba2feb79dbd95df0da26fd629fc62334dcd9db9fca7b",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad-2"
+      },
+      "changes": [
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-001",
+        "content_trigram_jaccard": 0.0449,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "eee457ef757c8daadbb8e4aabe0967435737d82a75bb5e6493e94f7d22328d41",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A6-S3",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "主要讲数据集光照测试条件，未提供划痕识别依据",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A6-004",
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "skill_id": null,
+    "kind": "concept",
+    "title": "三维缺陷定位的输入不是普通照片",
+    "content": "MVTec 3D-AD 使用工业三维传感器获得高分辨率扫描，覆盖十种对象类别，并为异常测试样本提供精确参考标注。每类都有无缺陷的训练和验证样本，测试中包含不同缺陷。三维任务要求理解扫描所描述的几何结构及异常位置，不能仅把它当作普通二维照片处理。接手此类任务前，应先确认数据维度、工具支持和所需的定位输出形式。",
+    "keywords": [
+      "三维缺陷",
+      "扫描",
+      "几何异常"
+    ],
+    "source_name": "MVTec · 3D-AD dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.96,
+      "clarity": 0.94,
+      "duplication_risk": 0.15,
+      "conflict_detected": false,
+      "final_score": 0.9605,
+      "decision": "approved",
+      "rationale": "工业三维传感器、十类别、训练验证与异常测试参考标注直接支持。",
+      "source_evidence": {
+        "section": "Abstract; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad",
+        "source_snapshot_sha256": "6d1eafcc0864ac5f11f61171eb0fe84534cf028348cb34b08705165e8915156c",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-3d-ad"
+      },
+      "changes": [
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-001",
+        "content_trigram_jaccard": 0.0372,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "afdbb2ebe0044b38877bcf2d0632b9e2596619a65f668a56daf14beb322ac257",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A6-S4",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "三维扫描输入与定位要求没有对应现有具体技能",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A6-005",
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "skill_id": null,
+    "kind": "rule",
+    "title": "异常存在性判断与异常区域定位要分别核对",
+    "content": "MVTec AD 不仅区分正常与异常图像，还提供异常区域的像素级标注。这说明判断一张图是否存在缺陷与标出缺陷具体位置是不同输出层次：整图判断表达存在性，区域标注表达空间范围。工业实训如果同时要求这两项，应分别核对图像结论与区域位置是否一致；不能因为整图选对异常类别，就默认缺陷轮廓已经标得准确。",
+    "keywords": [
+      "异常分类",
+      "缺陷定位",
+      "像素标注"
+    ],
+    "source_name": "MVTec · AD dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.35,
+      "conflict_detected": false,
+      "final_score": 0.9575,
+      "decision": "approved",
+      "rationale": "正常/异常存在性与像素定位是独立输出；原标题异常类别易暗示具体缺陷类，已收窄。",
+      "source_evidence": {
+        "section": "Abstract; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad",
+        "source_snapshot_sha256": "6ebe3365ed9bdd9585a28dc3257932fb2eff689460cd689baae610c22b839288",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-ad"
+      },
+      "changes": [
+        "修订字段：title",
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：title",
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-001",
+        "content_trigram_jaccard": 0.05,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "ebe731fa394b262710f53ec87a94ab0d15e888cbaeadaa3d1a6a1ec826e21f12",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A6-S5",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "存在性与定位是两类输出，不是相似缺陷判断",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A7-001",
+    "scope": "ABILITY",
+    "ability_id": "A7",
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "视频轨迹需要处理消失与再次出现",
+    "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+    "keywords": [
+      "视频轨迹",
+      "关键帧",
+      "消失",
+      "插值"
+    ],
+    "source_name": "CVAT · Track mode advanced",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.95,
+      "duplication_risk": 0.22,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "关键帧插值、目标消失或太小时 Outside，以及再出现时合并轨迹均存在。",
+      "source_evidence": {
+        "section": "Track mode",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/track-mode-advanced/",
+        "source_snapshot_sha256": "683d6037ca68dd6483549fe086ffa5dfe2efa0d7dce666c063f21307768961f5",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址",
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址",
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A7-003",
+        "content_trigram_jaccard": 0.019,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/track-mode-advanced/",
+    "original_candidate_sha256": "b3a2c77cc662c69e976c6b715bbe68c288f490d3c0fbd4528bf20b2296ffbae0",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A7-S1",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "视频消失/重现及轨迹合并不能等同于遮挡目标规则",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A7-002",
+    "scope": "ABILITY",
+    "ability_id": "A7",
+    "skill_id": "A7-S1",
+    "kind": "rule",
+    "title": "关键点遮挡、出界和界面隐藏含义不同",
+    "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+    "keywords": [
+      "关键点",
+      "遮挡",
+      "出界",
+      "可见性"
+    ],
+    "source_name": "CVAT · Annotation with skeletons",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.95,
+      "duplication_risk": 0.13,
+      "conflict_detected": false,
+      "final_score": 0.969,
+      "decision": "approved",
+      "rationale": "Outside、Occluded、Hidden 的语义及临时隐藏不跨会话保存直接一致。",
+      "source_evidence": {
+        "section": "Editing skeletons on the sidebar",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/skeletons/",
+        "source_snapshot_sha256": "46ed553926132081339e27bfc3885ae715bd4c7f9f07cb603ea97dc85b7d335b",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A5-002",
+        "content_trigram_jaccard": 0.0193,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/skeletons/",
+    "original_candidate_sha256": "f377f8048e4099e3b6156ebc8fd2cb5fcd07661ab03036dde73a0bb8abc1e7cb",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A7-S2",
+      "skill_name": "遮挡目标",
+      "decision": "remapped",
+      "rationale": "逐点区分遮挡、出界与界面隐藏直接支撑遮挡理解",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A7-003",
+    "scope": "ABILITY",
+    "ability_id": "A7",
+    "skill_id": null,
+    "kind": "rule",
+    "title": "跨帧多边形要保持对应点方向一致",
+    "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+    "keywords": [
+      "多边形轨迹",
+      "点对应",
+      "方向一致"
+    ],
+    "source_name": "CVAT · Track mode with polygons",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.95,
+      "duplication_risk": 0.23,
+      "conflict_detected": false,
+      "final_score": 0.962,
+      "decision": "approved",
+      "rationale": "起点对应与绘制方向一致为官方显式要求；逐帧外观和插值对应关系明确区分。",
+      "source_evidence": {
+        "section": "Track mode with polygons",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/track-mode-with-polygons/",
+        "source_snapshot_sha256": "3b50bad679de9bd3c9a177597927f0c88dbcb7ca68ad005c02a044f98db0637a",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A5-001",
+        "content_trigram_jaccard": 0.0329,
+        "max_title_trigram_jaccard": 0.0417,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/annotation-with-polygons/track-mode-with-polygons/",
+    "original_candidate_sha256": "dee91369ec15541a59a7759415cc1cb23e2e1e68c80ee4552a4c3036c6070517",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A7-S3",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "跨帧顶点对应不属于小目标技能",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A7-004",
+    "scope": "ABILITY",
+    "ability_id": "A7",
+    "skill_id": "A7-S2",
+    "kind": "rule",
+    "title": "拥挤对象组在COCO导出中有专门表示",
+    "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+    "keywords": [
+      "拥挤场景",
+      "对象组",
+      "COCO",
+      "RLE"
+    ],
+    "source_name": "CVAT · COCO format",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.94,
+      "duplication_risk": 0.24,
+      "conflict_detected": false,
+      "final_score": 0.958,
+      "decision": "approved",
+      "rationale": "is_crowd 的 RLE/多边形转换及最大形状确定组属性与支持表一致。",
+      "source_evidence": {
+        "section": "COCO export",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "original_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_snapshot_sha256": "4811be37306dba0add8a09310df11c70544379f602b0c883b8edf9bb85a17136",
+        "snapshot_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-001",
+        "content_trigram_jaccard": 0.0186,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A7-S4",
+      "skill_name": "密集目标",
+      "decision": "remapped",
+      "rationale": "拥挤实例的对象组与交付表示属于密集目标处理",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A7-005",
+    "scope": "ABILITY",
+    "ability_id": "A7",
+    "skill_id": "A7-S5",
+    "kind": "concept",
+    "title": "复杂场景可能同时改变背景、旋转和光照",
+    "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+    "keywords": [
+      "复杂背景",
+      "旋转",
+      "光照",
+      "实例分割"
+    ],
+    "source_name": "MVTec · D2S dataset",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+    "source_type": "official_dataset_documentation",
+    "authority_level": "S",
+    "license": "数据集采用 CC BY-NC-SA 4.0，禁止商业用途；本条仅为独立事实摘要，未复制原始数据或媒体。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.98,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.18,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "训练单类均匀背景与测试变化准确；正文不声称隐藏测试标注可下载。",
+      "source_evidence": {
+        "section": "Abstract; Test Set Evaluation; License Terms",
+        "access_status": 200,
+        "verified_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "original_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_snapshot_sha256": "b2cab5bd888725f98ee23070605148708311bc3775452cc56d16a417ab5cf604",
+        "snapshot_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s"
+      },
+      "changes": [
+        "补充官方已明确的数据集许可及非商业限制"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "补充官方已明确的数据集许可及非商业限制"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-001",
+        "content_trigram_jaccard": 0.022,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "e19aa2bde00ec749fcb69f28ce2e4439e0736612134e83940abb6b4836adeec8",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A7-S5",
+      "skill_name": "困难样本",
+      "decision": "unchanged",
+      "rationale": "多变背景、旋转与光照属于困难样本识别条件",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A8-001",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": "A8-S1",
+    "kind": "concept",
+    "title": "命名实体识别标注的是有类别的文本片段",
+    "content": "命名实体通常是被命名的现实对象，例如人名、国家、产品或书名。spaCy 的命名实体功能将文本中的相应片段与实体类别关联，分词则是把文本划分为有意义的单位。处理实体标注时，要同时确定文本范围和类别，而不是只在整段文本上选择一个主题标签。实体识别的输出还可以用于后续实体链接，但识别片段本身并不等于已确定唯一的现实对象。",
+    "keywords": [
+      "命名实体",
+      "文本片段",
+      "NER",
+      "分词"
+    ],
+    "source_name": "spaCy · Linguistic Features",
+    "source_url": "https://spacy.io/usage/linguistic-features",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.29,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "实体片段、标签、分词与实体链接的区别均有直接解释。",
+      "source_evidence": {
+        "section": "Named Entity Recognition; Entity Linking; Tokenization",
+        "access_status": 200,
+        "verified_url": "https://spacy.io/usage/linguistic-features",
+        "original_url": "https://spacy.io/usage/linguistic-features",
+        "source_snapshot_sha256": "4dbfc3a20ff858e6225a16adfe953dab49229b5542ae3ed42b53262102511c46",
+        "snapshot_url": "https://spacy.io/usage/linguistic-features"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A8-004",
+        "content_trigram_jaccard": 0.0289,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A8-S1",
+      "skill_name": "实体识别",
+      "decision": "unchanged",
+      "rationale": "有类别的命名实体片段定义",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A8-002",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": "A8-S2",
+    "kind": "rule",
+    "title": "实体边界一致性会影响训练数据可用性",
+    "content": "spaCy 的标准命名实体组件识别不重叠的带标签词元片段，每个词元只能归属一个实体标签，写入实体集合时也要求片段合法且不重叠。官方文档特别指出，标注者对实体边界词元分歧较大会影响该组件表现。因此，制作这类训练数据时，应明确实体起止位置，并检查边界与分词是否一致；不能把重叠或嵌套结构直接塞入不支持它们的结果字段。",
+    "keywords": [
+      "实体边界",
+      "重叠",
+      "词元",
+      "一致性"
+    ],
+    "source_name": "spaCy · EntityRecognizer",
+    "source_url": "https://spacy.io/api/entityrecognizer",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.95,
+      "duplication_risk": 0.31,
+      "conflict_detected": false,
+      "final_score": 0.96,
+      "decision": "approved",
+      "rationale": "非重叠词元片段、边界分歧影响和 Doc.ents 有效性约束准确，限定为标准组件。",
+      "source_evidence": {
+        "section": "EntityRecognizer; Assigned Attributes",
+        "access_status": 200,
+        "verified_url": "https://spacy.io/api/entityrecognizer",
+        "original_url": "https://spacy.io/api/entityrecognizer",
+        "source_snapshot_sha256": "12eeb26b20c356f351fccb78aa798c30cf2291fa2dbe06046a22e3732227ea78",
+        "snapshot_url": "https://spacy.io/api/entityrecognizer"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A8-001",
+        "content_trigram_jaccard": 0.0255,
+        "max_title_trigram_jaccard": 0.0333,
+        "max_keyword_jaccard": 0.1667,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A8-S2",
+      "skill_name": "实体边界",
+      "decision": "unchanged",
+      "rationale": "实体起止与词元合法性直接对应边界",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A8-003",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "关系抽取需要实体、关系类型与方向",
+    "content": "Label Studio 的关系抽取模板先让标注员选择文本片段并标注实体类型，再通过关系箭头和关系标签表示片段之间的联系。示例区分人物、组织和时间，并使用创立关系连接人物与组织。执行关系题时，应先确认两个端点确实是正确的实体片段，再根据规定选择关系及方向；只把两段文字连起来而不核对关系含义，还不足以形成完整关系标注。",
+    "keywords": [
+      "关系抽取",
+      "实体关系",
+      "方向",
+      "关系类型"
+    ],
+    "source_name": "Label Studio · Relation Extraction template",
+    "source_url": "https://labelstud.io/templates/relation_extraction",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.16,
+      "conflict_detected": false,
+      "final_score": 0.969,
+      "decision": "approved",
+      "rationale": "实体片段、关系标签与箭头方向由官方模板支持。",
+      "source_evidence": {
+        "section": "Relation Extraction; About the labeling configuration",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/templates/relation_extraction",
+        "original_url": "https://labelstud.io/templates/relation_extraction",
+        "source_snapshot_sha256": "d081f4333b59c762127806d96361990d0889ed368ca3d8ceaddcc776c998bd93",
+        "snapshot_url": "https://labelstud.io/templates/relation_extraction"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-001",
+        "content_trigram_jaccard": 0.0455,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A8-S3",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "关系抽取不在现有情感分析技能内",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A8-004",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": null,
+    "kind": "rule",
+    "title": "重叠片段任务需要支持重叠的数据结构",
+    "content": "spaCy 的 spancat 片段分类组件先提出候选文本范围，这些范围可以重叠，再为每个范围预测零个或多个标签；结果保存在文档的片段集合中。同系列的单标签版本则限制每个范围至多一个类别。处理嵌套或重叠片段时，应先确认项目允许的结构、标签数量和存储字段，再按对应格式记录。不要套用标准实体识别组件的非重叠约束而删去本来合法的片段。",
+    "keywords": [
+      "重叠片段",
+      "嵌套",
+      "片段分类"
+    ],
+    "source_name": "spaCy · SpanCategorizer",
+    "source_url": "https://spacy.io/api/spancategorizer",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.94,
+      "duplication_risk": 0.31,
+      "conflict_detected": false,
+      "final_score": 0.9565,
+      "decision": "approved",
+      "rationale": "明确多标签 spancat 与至多单标签版本之别；允许重叠与结果存储均已核对。",
+      "source_evidence": {
+        "section": "SpanCategorizer; Assigned Attributes",
+        "access_status": 200,
+        "verified_url": "https://spacy.io/api/spancategorizer",
+        "original_url": "https://spacy.io/api/spancategorizer",
+        "source_snapshot_sha256": "0e44539d70b2d7aeb434abcac0a86224b04a957e958fd8b69d85783264d65ef4",
+        "snapshot_url": "https://spacy.io/api/spancategorizer"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A8-001",
+        "content_trigram_jaccard": 0.0289,
+        "max_title_trigram_jaccard": 0.08,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "ed9594bc5cde8569870a8e02208e42bd371fed57da8d7db4eedf89832e927d9c",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A8-S4",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "通用重叠片段分类不等于意图分类或标准NER边界",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A8-005",
+    "scope": "ABILITY",
+    "ability_id": "A8",
+    "skill_id": "A8-S3",
+    "kind": "concept",
+    "title": "情感分类和文本实体标注是不同任务",
+    "content": "Label Studio 的情感分析模板为整段文本提供正向、负向和中性等预设选项，并可配置为单选。文档也展示如何在同一界面组合文本分类和实体标注，这些结果分别由不同控件产生。学员处理情感题时，应依据项目的情感标签定义判断整段内容；选出情感不等于已经标好人名或组织名，组合任务中的各项输出都需要分别完成和核对。",
+    "keywords": [
+      "情感分类",
+      "正向",
+      "负向",
+      "中性"
+    ],
+    "source_name": "Label Studio · Sentiment Analysis template",
+    "source_url": "https://labelstud.io/templates/sentiment_analysis",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.24,
+      "conflict_detected": false,
+      "final_score": 0.965,
+      "decision": "approved",
+      "rationale": "情感三类、单选及与实体标注的组合有直接模板依据。",
+      "source_evidence": {
+        "section": "Labeling Configuration; Combine multiple types of labeling in three columns",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/templates/sentiment_analysis",
+        "original_url": "https://labelstud.io/templates/sentiment_analysis",
+        "source_snapshot_sha256": "7d86bd7ed115f113cb2fcb31bd8f31675ff00ea689a1497602e51667d0cb5bac",
+        "snapshot_url": "https://labelstud.io/templates/sentiment_analysis"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-001",
+        "content_trigram_jaccard": 0.0421,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A8-S5",
+      "skill_name": "情感分析",
+      "decision": "remapped",
+      "rationale": "整段情感判断直接对应情感分析",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A9-001",
+    "scope": "ABILITY",
+    "ability_id": "A9",
+    "skill_id": "A9-S1",
+    "kind": "workflow",
+    "title": "模型预标注应保留来源并经过修正",
+    "content": "Label Studio 可以导入机器学习模型的预测，用于后续查看和修正。预测结果保存在专门字段，可记录生成它的模型版本；原始预测本身只读，界面可以将其复制为可编辑标注。处理预标注任务时，应区分模型建议和提交结果，在副本中核对类别、边界与缺失对象。保留原预测有助于比较模型输出与经过复核后的标注差异。",
+    "keywords": [
+      "预标注",
+      "模型版本",
+      "人工修正",
+      "预测"
+    ],
+    "source_name": "Label Studio · Import pre-annotations",
+    "source_url": "https://labelstud.io/guide/predictions",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.16,
+      "conflict_detected": false,
+      "final_score": 0.969,
+      "decision": "approved",
+      "rationale": "模型版本、只读预测和复制到可编辑标注的条件都符合文档。",
+      "source_evidence": {
+        "section": "JSON format for pre-annotations; Predictions are read-only",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/guide/predictions",
+        "original_url": "https://labelstud.io/guide/predictions",
+        "source_snapshot_sha256": "9c65d100029acb795b315696ff1cace75a3467173fb4f11db9ab063eb0ca8557",
+        "snapshot_url": "https://labelstud.io/guide/predictions"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-004",
+        "content_trigram_jaccard": 0.0417,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A9-S1",
+      "skill_name": "预标注审核",
+      "decision": "unchanged",
+      "rationale": "模型预测来源及人工修正对应预标注审核",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A9-002",
+    "scope": "ABILITY",
+    "ability_id": "A9",
+    "skill_id": "A9-S2",
+    "kind": "concept",
+    "title": "共识标注比较多份独立意见",
+    "content": "CVAT 的共识标注把同一数据分配给多份作业，再比较并合并不同标注意见，常见策略包括多数投票。该方法能减少个体偏差，但会增加标注成本。合并结果中的低共识分数可能提示对象模糊、规范不一致或需要进一步检查。审核时应把分歧作为复查线索，结合原始材料与项目规范判断，而不能把票数高直接当作每一处细节都正确的证明。",
+    "keywords": [
+      "共识标注",
+      "多数投票",
+      "分歧",
+      "复核"
+    ],
+    "source_name": "CVAT · Consensus-based annotation",
+    "source_url": "https://docs.cvat.ai/docs/qa-analytics/consensus/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.94,
+      "duplication_risk": 0.25,
+      "conflict_detected": false,
+      "final_score": 0.9595,
+      "decision": "approved",
+      "rationale": "多数投票、偏差与成本、低共识复查线索均有原文支持，未宣称共识保证正确。",
+      "source_evidence": {
+        "section": "Basics; Understanding consensus scores",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/qa-analytics/consensus/",
+        "original_url": "https://docs.cvat.ai/docs/qa-analytics/consensus/",
+        "source_snapshot_sha256": "50eb27de73a541a41102a1e3f4340dddfd597a0891e1b6200b812cea7403716c",
+        "snapshot_url": "https://docs.cvat.ai/docs/qa-analytics/consensus/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A2-003",
+        "content_trigram_jaccard": 0.0189,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A9-S2",
+      "skill_name": "一致性检查",
+      "decision": "unchanged",
+      "rationale": "独立意见共识与分歧对应一致性检查",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A9-003",
+    "scope": "ABILITY",
+    "ability_id": "A9",
+    "skill_id": "A9-S5",
+    "kind": "workflow",
+    "title": "审核问题需要定位、描述和关闭记录",
+    "content": "CVAT 的审核模式允许在画面具体位置创建问题，描述错误，并把作业交回修正。修正人员查看问题详情、修改标注后，可以添加评论并将问题标记为已解决；全部修正后再保存并更新作业状态。训练质检能力时，反馈应能指向明确对象和错误类型，例如位置或属性错误，让返修人员能够找到问题并验证修改，而不是只给出笼统的不合格结论。",
+    "keywords": [
+      "质量审核",
+      "问题定位",
+      "返修",
+      "关闭"
+    ],
+    "source_name": "CVAT · Manual QA and Review",
+    "source_url": "https://docs.cvat.ai/docs/qa-analytics/manual-qa/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.97,
+      "duplication_risk": 0.17,
+      "conflict_detected": false,
+      "final_score": 0.97,
+      "decision": "approved",
+      "rationale": "创建定位问题、描述、返修、评论及 Resolve 闭环直接一致。",
+      "source_evidence": {
+        "section": "Reporting issues; Correcting reported issues",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/qa-analytics/manual-qa/",
+        "original_url": "https://docs.cvat.ai/docs/qa-analytics/manual-qa/",
+        "source_snapshot_sha256": "0b40c7a13e5225f2609e035509456b8f542671444579f1e66170f3b9b8c9dc74",
+        "snapshot_url": "https://docs.cvat.ai/docs/qa-analytics/manual-qa/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A4-002",
+        "content_trigram_jaccard": 0.0187,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A9-S3",
+      "skill_name": "返修复核",
+      "decision": "remapped",
+      "rationale": "定位问题、修正和关闭记录对应返修复核",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A9-004",
+    "scope": "ABILITY",
+    "ability_id": "A9",
+    "skill_id": null,
+    "kind": "workflow",
+    "title": "交互式分割的正负点有不同作用",
+    "content": "CVAT 的交互式人工智能工具通过正点表示目标所在区域，通过负点表示不属于目标的区域，模型据此生成多边形或掩码。部分模型支持的提示点数量和方式不同，输出轮廓还可以继续编辑。标注员使用该类工具时，应清楚每个提示的含义并检查生成边界；增加提示点可能改善轮廓，但更多顶点也会让后续编辑更复杂，需要按实际轮廓质量调整。",
+    "keywords": [
+      "AI协同",
+      "交互分割",
+      "正点",
+      "负点"
+    ],
+    "source_name": "CVAT · AI Tools",
+    "source_url": "https://docs.cvat.ai/docs/annotation/auto-annotation/ai-tools/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.99,
+      "clarity": 0.95,
+      "duplication_risk": 0.25,
+      "conflict_detected": false,
+      "final_score": 0.957,
+      "decision": "approved",
+      "rationale": "正负点作用、部分模型限制、掩码转多边形和点数/编辑复杂性均有依据。",
+      "source_evidence": {
+        "section": "Interactors; AI tools: add extra points",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/annotation/auto-annotation/ai-tools/",
+        "original_url": "https://docs.cvat.ai/docs/annotation/auto-annotation/ai-tools/",
+        "source_snapshot_sha256": "fb10e15b830971e0a6e744e02abf726b3e673441e7a9c094e917a0304b793101",
+        "snapshot_url": "https://docs.cvat.ai/docs/annotation/auto-annotation/ai-tools/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A1-001",
+        "content_trigram_jaccard": 0.0426,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A9-S4",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "交互式分割提示点操作不是错误归因",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A9-005",
+    "scope": "ABILITY",
+    "ability_id": "A9",
+    "skill_id": null,
+    "kind": "concept",
+    "title": "即时质量反馈依赖预先配置的验证集",
+    "content": "CVAT 的即时反馈功能在普通标注作业完成时展示计算分数和最低要求，前提是任务已配置验证集。允许的反馈次数可以限制，界面不会向标注员公布具体参考答案所在帧和错误细节。学员应理解即时分数是依据既定指标计算的结果，项目需要先确定指标和阈值；分数、是否允许返修以及最终接受状态应分别解释，不能把即时反馈看作无条件可重复查询的答案。",
+    "keywords": [
+      "即时反馈",
+      "验证集",
+      "质量阈值",
+      "返修次数"
+    ],
+    "source_name": "CVAT · Immediate job feedback",
+    "source_url": "https://docs.cvat.ai/docs/qa-analytics/immediate-feedback/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.95,
+      "duplication_risk": 0.25,
+      "conflict_detected": false,
+      "final_score": 0.963,
+      "decision": "approved",
+      "rationale": "验证集前提、计算分数和阈值、次数限制及不展示错误详情都与原文一致。",
+      "source_evidence": {
+        "section": "Overview; How to configure; Available feedbacks",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/qa-analytics/immediate-feedback/",
+        "original_url": "https://docs.cvat.ai/docs/qa-analytics/immediate-feedback/",
+        "source_snapshot_sha256": "de4f8c34032de7ec52a911f0d8e57ab405a4ebbed956c4e9bf64fe373231064e",
+        "snapshot_url": "https://docs.cvat.ai/docs/qa-analytics/immediate-feedback/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-GENERAL-002",
+        "content_trigram_jaccard": 0.019,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A9-S5",
+      "skill_name": null,
+      "decision": "ability_only",
+      "rationale": "配置验证集后的即时分数不直接说明抽样方法或返修复核操作",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A10-001",
+    "scope": "ABILITY",
+    "ability_id": "A10",
+    "skill_id": "A10-S5",
+    "kind": "rule",
+    "title": "导出前确认坐标单位与原始尺寸",
+    "content": "Label Studio 导出的 JSON 矩形标注用图像尺寸的百分比记录位置和大小。转换其中的横坐标和宽度时，分别乘原图宽度再除以一百；纵坐标和高度则分别乘原图高度再除以一百。交付前应确认接收方要求的格式、坐标单位和原始尺寸；这套换算用于相应矩形字段，不能直接套到掩码编码或所有导出格式。只复制数字却改变单位，会让标注落在错误位置。",
+    "keywords": [
+      "导出",
+      "坐标单位",
+      "原始尺寸",
+      "百分比"
+    ],
+    "source_name": "Label Studio · Export annotations",
+    "source_url": "https://labelstud.io/guide/export",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.29,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "公式已逐变量核对；将适用范围收窄为 JSON 矩形的坐标和大小，避免泛化掩码或所有导出格式。",
+      "source_evidence": {
+        "section": "Convert image annotation units",
+        "access_status": 200,
+        "verified_url": "https://labelstud.io/guide/export",
+        "original_url": "https://labelstud.io/guide/export",
+        "source_snapshot_sha256": "ecdcf3a0fd31682eb7709e733c74e3631af4bd914fe0e5cf161b45578325f424",
+        "snapshot_url": "https://labelstud.io/guide/export"
+      },
+      "changes": [
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A3-004",
+        "content_trigram_jaccard": 0.04,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "efc98b2806b0cf1890354fbccbbd18418115769077d64e267389265ebc3e9931",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A10-S1",
+      "skill_name": "交付归档",
+      "decision": "remapped",
+      "rationale": "导出坐标单位及尺寸换算直接对应交付检查",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A10-002",
+    "scope": "ABILITY",
+    "ability_id": "A10",
+    "skill_id": "A10-S5",
+    "kind": "rule",
+    "title": "原生标注格式保留对象属性与结构",
+    "content": "CVAT 的原生图像标注格式支持多种几何对象及属性，导出包可包含图像文件和标注文件。标注结构保存对象类别、坐标、遮挡等信息，某些对象还包含层次顺序或关联轨迹编号。交付或归档时，应检查目标格式是否保留项目需要的字段，并核对图像与标注文件对应关系。原生导出有助于保存工具内信息，但仍需要按接收方约定确认可读取的格式。",
+    "keywords": [
+      "原生格式",
+      "属性",
+      "归档",
+      "标注结构"
+    ],
+    "source_name": "CVAT · CVAT for image",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-cvat/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.94,
+      "duplication_risk": 0.26,
+      "conflict_detected": false,
+      "final_score": 0.956,
+      "decision": "approved",
+      "rationale": "几何对象、属性、遮挡、层次顺序和轨迹字段均见格式文档与示例。",
+      "source_evidence": {
+        "section": "CVAT for image export; Format specifications; Annotation",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-cvat/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/formats/format-cvat/",
+        "source_snapshot_sha256": "20191b5717cd3e5c17f7ad16416538a779f7229bb16ac926bae8c8febb97a818",
+        "snapshot_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-cvat/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A10-005",
+        "content_trigram_jaccard": 0.0325,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1429,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/formats/format-cvat/",
+    "original_candidate_sha256": "c9dcd1d3a57c15c27a0c10da43befcdb79f826e572464044d13e4796f60e89f4",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A10-S2",
+      "skill_name": "交付归档",
+      "decision": "remapped",
+      "rationale": "原生格式的字段保留与文件关联直接对应交付归档",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A10-003",
+    "scope": "ABILITY",
+    "ability_id": "A10",
+    "skill_id": "A10-S5",
+    "kind": "rule",
+    "title": "YOLO归一化坐标要与图像一一对应",
+    "content": "CVAT 的 Ultralytics YOLO 检测格式记录类别编号、目标框中心坐标和宽高。横向中心坐标与宽度除以图像宽度，纵向中心坐标与高度除以图像高度，得到归一化数值；标注文本与图像文件应一一对应。CVAT 文档提示 YOLOv8 会忽略含越界坐标的标签。交付时需核对文件对应、零到一的数值范围，以及中心点是否被误写为左上角。",
+    "keywords": [
+      "YOLO",
+      "归一化",
+      "文件对应",
+      "坐标检查"
+    ],
+    "source_name": "CVAT · Ultralytics YOLO",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-yolo-ultralytics/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.99,
+      "clarity": 0.96,
+      "duplication_risk": 0.29,
+      "conflict_detected": false,
+      "final_score": 0.9625,
+      "decision": "approved",
+      "rationale": "核对中心坐标、归一化公式、文件对应与 YOLOv8 越界说明，避免与左上角坐标混用。",
+      "source_evidence": {
+        "section": "Ultralytics YOLO export",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-yolo-ultralytics/",
+        "original_url": "https://docs.cvat.ai/docs/manual/advanced/formats/format-yolo-ultralytics/",
+        "source_snapshot_sha256": "94b79a47d2c8b1b4ed43f7b9c607157a544f8607daa53b6eb2c9f1d4f964e639",
+        "snapshot_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-yolo-ultralytics/"
+      },
+      "changes": [
+        "跟随官方 HTML 跳转并使用可读的新地址",
+        "修订字段：content"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "跟随官方 HTML 跳转并使用可读的新地址",
+            "修订字段：content"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A10-002",
+        "content_trigram_jaccard": 0.0302,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_source_url": "https://docs.cvat.ai/docs/manual/advanced/formats/format-yolo-ultralytics/",
+    "original_candidate_sha256": "fb3080a308c58907ce382c5489592e3a53eeade3502b3921486c99987bae3a5e",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A10-S3",
+      "skill_name": "交付归档",
+      "decision": "remapped",
+      "rationale": "YOLO导出坐标及图文对应直接对应交付检查",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A10-004",
+    "scope": "ABILITY",
+    "ability_id": "A10",
+    "skill_id": "A10-S5",
+    "kind": "workflow",
+    "title": "数据清单能记录文件顺序和尺寸",
+    "content": "CVAT 数据清单使用逐行 JSON 文本描述输入数据。图像条目可以记录文件名、扩展名、宽高和可选校验值；在预定义排序模式下，文件顺序可由清单决定。整理项目交付材料时，可以用清单确认数据项与顺序，检查尺寸信息是否齐全。清单表达的是数据组织和元信息，并不包含每个目标的几何标注，因此应与实际标注文件一起核对。",
+    "keywords": [
+      "数据清单",
+      "JSONL",
+      "文件顺序",
+      "元信息"
+    ],
+    "source_name": "CVAT · Dataset Manifest",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/dataset_manifest/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面未明确声明内容许可；仅保留独立撰写的事实摘要，不复制页面或媒体",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.97,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.17,
+      "conflict_detected": false,
+      "final_score": 0.9665,
+      "decision": "approved",
+      "rationale": "JSONL、文件顺序、尺寸、可选校验值均有格式定义；清单不被误称为几何标注。",
+      "source_evidence": {
+        "section": "The predefined sorting method; Dataset manifest for images and other data types",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/dataset_management/dataset_manifest/",
+        "original_url": "https://docs.cvat.ai/docs/dataset_management/dataset_manifest/",
+        "source_snapshot_sha256": "880cad92feff865737fb24eb6b0dec95dd470982af60f4f06a4bcbe757b5bca4",
+        "snapshot_url": "https://docs.cvat.ai/docs/dataset_management/dataset_manifest/"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "approved",
+          "findings": [
+            "事实、来源与知识范围可对应，未发现需要修改的问题。"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A10-002",
+        "content_trigram_jaccard": 0.0147,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A10-S4",
+      "skill_name": "交付归档",
+      "decision": "remapped",
+      "rationale": "清单用于交付文件组织，不是质量报告指标",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "id": "KB-A10-005",
+    "scope": "ABILITY",
+    "ability_id": "A10",
+    "skill_id": "A10-S5",
+    "kind": "workflow",
+    "title": "项目备份与数据集导出用途不同",
+    "content": "CVAT 的项目操作分别提供备份和数据集导出。备份面向保存或恢复项目的任务、作业、标注及设置，数据集导出则按指定格式输出图像与标注，也可以选择只导出标注。交付时应根据接收方需求选择产物：用于继续项目工作需要保留项目结构，用于训练模型需要符合其读取格式。无论选择哪种，都应核对是否包含所需媒体，不能仅以压缩包存在作为完整交付依据。",
+    "keywords": [
+      "项目备份",
+      "数据集导出",
+      "交付",
+      "恢复"
+    ],
+    "source_name": "CVAT · Project recipes",
+    "source_url": "https://docs.cvat.ai/docs/api_sdk/sdk/examples/projects/",
+    "source_type": "official_tool_documentation",
+    "authority_level": "A",
+    "license": "页面示例代码标注 MIT；网页正文许可未明确。本条仅为独立事实摘要，未复制示例代码。",
+    "access_date": "2026-09-10",
+    "notes": "已由未参与候选生成的独立 Codex 审核者逐条核实来源及最终正文。工具文档知识受对应工具/版本约束，教学操作建议不构成所有项目的强制规范。正式向量入库尚需程序校验、Embedding 去重。",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.96,
+      "scope_relevance": 0.99,
+      "clarity": 0.95,
+      "duplication_risk": 0.28,
+      "conflict_detected": false,
+      "final_score": 0.9525,
+      "decision": "approved",
+      "rationale": "备份任务/作业/标注/设置与按格式导出不同，include_images=False 示例明确仅导标注；媒体核对提醒必要。",
+      "source_evidence": {
+        "section": "Back up a project; Export a project’s tasks individually",
+        "access_status": 200,
+        "verified_url": "https://docs.cvat.ai/docs/api_sdk/sdk/examples/projects/",
+        "original_url": "https://docs.cvat.ai/docs/api_sdk/sdk/examples/projects/",
+        "source_snapshot_sha256": "fe50f34416d57b8fc09e2d9dc99709cbbb0766f7563a8be1e63437301a9172ec",
+        "snapshot_url": "https://docs.cvat.ai/docs/api_sdk/sdk/examples/projects/"
+      },
+      "changes": [
+        "区分示例代码 MIT 许可与网页正文许可"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_review",
+          "decision": "rewrite",
+          "findings": [
+            "区分示例代码 MIT 许可与网页正文许可"
+          ]
+        },
+        {
+          "stage": "recheck_final_text",
+          "decision": "approved",
+          "basis": "重新对照来源范围、语义和明示例外，采用本记录分数及阈值判断。"
+        }
+      ],
+      "dedup_method": "独立语义审查 + 标题/正文字符三元组与关键词比较；Embedding 相似度须由正式入库程序另行计算。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A10-002",
+        "content_trigram_jaccard": 0.0325,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.0,
+        "embedding_similarity": null
+      }
+    },
+    "original_candidate_sha256": "97257fb461f02cab787a50580dfad1515ddfaca45372bef020e06971d165e004",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "old_skill_id": "A10-S5",
+      "skill_name": "交付归档",
+      "decision": "unchanged",
+      "rationale": "备份与导出用途直接对应交付归档",
+      "factual_review_scores_preserved": true
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "论文原文明确 CC BY；仅保存独立事实摘要，图片/数据集本身的许可需另核对。",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.93,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.22,
+      "conflict_detected": false,
+      "final_score": 0.949,
+      "decision": "approved",
+      "rationale": "原文明确为细小裂纹、不规则纹理或条纹及复杂形态。正文保留NEU-DET范围，观察顺序是教学建议；未把所有细线认定裂纹，也未推定真实深度。",
+      "source_evidence": {
+        "section": "Table 2, Crazing row",
+        "verified_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12899703/fullTextXML",
+        "original_url": "https://www.mdpi.com/1424-8220/26/3/1022",
+        "access_status": 200,
+        "source_snapshot_sha256": "273bd042bd006a556df6ab93700eead04dc494982ff605c6aa550fde4c913448",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\sensors.xml",
+        "evidence_type": "full_original_paper"
+      },
+      "changes": [
+        "通过Europe PMC原文permissions确认论文CC BY，替换候选的未确认许可说明。"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "原文明确为细小裂纹、不规则纹理或条纹及复杂形态。正文保留NEU-DET范围，观察顺序是教学建议；未把所有细线认定裂纹，也未推定真实深度。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "通过Europe PMC原文permissions确认论文CC BY，替换候选的未确认许可说明。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-004",
+        "content_trigram_jaccard": 0.036,
+        "max_title_trigram_jaccard": 0.0303,
+        "max_keyword_jaccard": 0.1111,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-001",
+    "skill_id": "A6-S2",
+    "kind": "concept",
+    "title": "NEU细裂纹的形态线索是不规则细纹",
+    "content": "NEU-DET 钢材缺陷研究把 Crazing 描述为表面的细小裂纹，常呈不规则纹理或条纹，形态较复杂。裂纹识别练习可以先观察细纹的走向及局部形态，再与该任务的已审核样例比较。这里介绍的是特定钢材数据集的视觉特征，不能把所有细线都直接归入裂纹，也不能仅凭一张灰度图确定裂纹的实际深度。",
+    "keywords": [
+      "裂纹识别",
+      "Crazing",
+      "细裂纹",
+      "不规则纹理",
+      "NEU-DET"
+    ],
+    "source_name": "MobileSteelNet · Sensors 26(3), 1022 · Table 2",
+    "source_url": "https://www.mdpi.com/1424-8220/26/3/1022",
+    "source_locator": "Table 2, Crazing row",
+    "notes": "只支持NEU-DET细裂纹类别的定性形态；观察顺序是本平台教学建议。MDPI直访429，已通过该论文官方出版页搜索结果读取表2；独立审核者另已获得Europe PMC正式全文XML。",
+    "concept_limitations": [
+      "不是所有工业材料的通用裂纹定义",
+      "表中的浅表描述不是二维图像测深方法",
+      "不是合格/不合格尺寸阈值"
+    ],
+    "official_fulltext_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12899703/fullTextXML",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "裂纹识别",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "本轮仅核实事实段落；未确认该具体全文的再利用许可，保留独立事实摘要，不复制图片或长文",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.97,
+      "clarity": 0.95,
+      "duplication_risk": 0.26,
+      "conflict_detected": false,
+      "final_score": 0.9555,
+      "decision": "approved",
+      "rationale": "作者实验室发布原文第5页明确电气换向器塑料嵌体微小裂纹；第3/5/7页明确像素分割与整图二元判断。不能推导出划痕子类的限制由二元任务定义直接得到。",
+      "source_evidence": {
+        "section": "PDF pp. 3, 5, 7: proposed approach; Kolektor surface-defect dataset; binary evaluation",
+        "verified_url": "https://data.vicos.si/publications/tabernik2020segmentation-based.pdf",
+        "original_url": "https://data.vicos.si/publications/tabernik2020segmentation-based.pdf",
+        "access_status": 200,
+        "source_snapshot_sha256": "9cc52b5e0e750abacdb309d75c6b6e8160d9b0ba936c28af84943f99f50ec6f1",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\kolektor-paper.pdf",
+        "evidence_type": "full_original_paper"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "作者实验室发布原文第5页明确电气换向器塑料嵌体微小裂纹；第3/5/7页明确像素分割与整图二元判断。不能推导出划痕子类的限制由二元任务定义直接得到。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "正文与原文范围匹配，未需改写。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-005",
+        "content_trigram_jaccard": 0.0194,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1111,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-002",
+    "skill_id": "A6-S2",
+    "kind": "case",
+    "title": "Kolektor裂纹识别要对应塑料表面及像素参考",
+    "content": "KolektorSDD 的原始研究针对电气换向器塑料嵌体表面观察到的微小裂纹类缺陷，图像与标注来自实际工业检查。论文把缺陷分割作为二元像素判断，同时另行判断整张图是否异常。使用这组裂纹案例时，应把看到的疑似裂纹与对应像素标注核对；它能训练发现与定位，但不能凭这个二元标签推导出划痕等另一套细分类别。",
+    "keywords": [
+      "裂纹识别",
+      "KolektorSDD",
+      "塑料表面",
+      "像素参考",
+      "二元缺陷"
+    ],
+    "source_name": "Tabernik et al. · Segmentation-Based Deep-Learning Approach for Surface-Defect Detection",
+    "source_url": "https://data.vicos.si/publications/tabernik2020segmentation-based.pdf",
+    "source_locator": "PDF pp. 3, 5, 7: proposed approach; Kolektor surface-defect dataset; binary evaluation",
+    "notes": "使用作者实验室ViCoS发布的原论文，限定为换向器塑料嵌体与该数据集。论文的fractions/cracks描述不用于编造更细的材料失效机理。二元标签限制由论文任务定义推得。",
+    "concept_limitations": [
+      "Kolektor原始GT是缺陷/背景，不包含划痕子类",
+      "不能把该塑料表面的视觉样例当作所有钢材裂纹规范"
+    ],
+    "doi": "10.1007/s10845-019-01476-x",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "裂纹识别",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "论文原文明确 CC BY；仅保存独立事实摘要，图片/数据集本身的许可需另核对。",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.93,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.98,
+      "clarity": 0.95,
+      "duplication_risk": 0.28,
+      "conflict_detected": false,
+      "final_score": 0.9445,
+      "decision": "approved",
+      "rationale": "原文描述线状或带状、外力相关、长度和深浅变化。正文将其作为定性查找线索，明确单张外观不能用于成因或深度鉴定，与裂纹条目分类目标不同。",
+      "source_evidence": {
+        "section": "Table 2, Scratches row",
+        "verified_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12899703/fullTextXML",
+        "original_url": "https://www.mdpi.com/1424-8220/26/3/1022",
+        "access_status": 200,
+        "source_snapshot_sha256": "273bd042bd006a556df6ab93700eead04dc494982ff605c6aa550fde4c913448",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\sensors.xml",
+        "evidence_type": "full_original_paper"
+      },
+      "changes": [
+        "通过Europe PMC原文permissions确认论文CC BY，替换候选的未确认许可说明。"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "原文描述线状或带状、外力相关、长度和深浅变化。正文将其作为定性查找线索，明确单张外观不能用于成因或深度鉴定，与裂纹条目分类目标不同。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "通过Europe PMC原文permissions确认论文CC BY，替换候选的未确认许可说明。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-004",
+        "content_trigram_jaccard": 0.0279,
+        "max_title_trigram_jaccard": 0.0303,
+        "max_keyword_jaccard": 0.1111,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-003",
+    "skill_id": "A6-S3",
+    "kind": "concept",
+    "title": "NEU划痕的线状或带状外观需要结合类别定义",
+    "content": "NEU-DET 研究中的 Scratches 是表面线状或带状划痕，长度和深浅可能不同，文献将其与外力作用联系起来。划痕识别时，可把线状或带状外观作为查找候选区域的线索，再核对项目示例与类别范围；这些线索本身不是充分判据。仅凭图像中存在一条线，不能确认其形成原因，也不能直接推断真实划伤深度。",
+    "keywords": [
+      "划痕识别",
+      "Scratches",
+      "线状",
+      "带状",
+      "形态线索"
+    ],
+    "source_name": "MobileSteelNet · Sensors 26(3), 1022 · Table 2",
+    "source_url": "https://www.mdpi.com/1424-8220/26/3/1022",
+    "source_locator": "Table 2, Scratches row",
+    "notes": "只保留表2关于NEU-DET划痕的形态和定性成因描述；不把外观识别升级为力学原因鉴定。与裂纹条目关注的类别不同。",
+    "concept_limitations": [
+      "不是所有材质划痕的排他性外观规则",
+      "不提供工业验收宽度、长度或深度阈值"
+    ],
+    "official_fulltext_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12899703/fullTextXML",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "划痕识别",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "本轮仅核实事实段落；未确认该具体全文的再利用许可，保留独立事实摘要，不复制图片或长文",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.93,
+      "factual_consistency": 0.98,
+      "scope_relevance": 0.98,
+      "clarity": 0.96,
+      "duplication_risk": 0.21,
+      "conflict_detected": false,
+      "final_score": 0.9525,
+      "decision": "approved",
+      "rationale": "原文直接列出同类划痕的水平、竖直、倾斜方向，能支持不把固定方向当必要条件的教学推论；未推广成任意线状物的判据。",
+      "source_evidence": {
+        "section": "Section 4.1 Dataset / Figure 6 discussion",
+        "verified_url": "https://doi.org/10.3390%2Felectronics12081856",
+        "original_url": "https://www.mdpi.com/2079-9292/12/8/1856",
+        "access_status": "primary_source_excerpt_verified",
+        "source_snapshot_sha256": "593245d3c7f61797d5a22db05adebbb6186bdf5dbc3f32da3026a143d4c14852",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\electronics-source-verification.json",
+        "evidence_type": "independent_locator_and_fact_verification"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "原文直接列出同类划痕的水平、竖直、倾斜方向，能支持不把固定方向当必要条件的教学推论；未推广成任意线状物的判据。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "正文与原文范围匹配，未需改写。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-001",
+        "content_trigram_jaccard": 0.036,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1111,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-004",
+    "skill_id": "A6-S3",
+    "kind": "rule",
+    "title": "划痕方向变化不等于缺陷类别变化",
+    "content": "NEU-DET 的研究明确指出，同一划痕类别内部包含水平、竖直和倾斜方向的样本。因此，划痕识别不能把某一个固定方向当成必须条件，也不能仅因线条旋转就改成另一类缺陷。训练时可以比较不同方向的已审核划痕样例，观察哪些类别特征仍然保留；这个例子说明类内变化，具体是否属于划痕仍要由当前项目定义确认。",
+    "keywords": [
+      "划痕识别",
+      "方向变化",
+      "水平划痕",
+      "倾斜划痕",
+      "类内差异"
+    ],
+    "source_name": "Surface Defect Detection of Hot Rolled Steel Based on Attention Mechanism and Dilated Convolution for Industrial Robots",
+    "source_url": "https://www.mdpi.com/2079-9292/12/8/1856",
+    "source_locator": "Section 4.1 Dataset / Figure 6 discussion",
+    "notes": "原文直接列出horizontal、vertical、inclined scratches；基于此提出不要固定方向的教学规则。不涉及其他数据集未明确标注的子类别。",
+    "concept_limitations": [
+      "方向不是NEU划痕的唯一判据",
+      "不意味着任意线状物体都应标成划痕"
+    ],
+    "doi": "10.3390/electronics12081856",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "划痕识别",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "本轮仅核实事实段落；未确认该具体全文的再利用许可，保留独立事实摘要，不复制图片或长文",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.93,
+      "factual_consistency": 0.95,
+      "scope_relevance": 0.96,
+      "clarity": 0.94,
+      "duplication_risk": 0.35,
+      "conflict_detected": false,
+      "final_score": 0.9295,
+      "decision": "approved",
+      "rationale": "同类灰度因光照和材料变化有直接依据；比较形状与参考案例属于明确教学建议。与旧A6光照测试条件条目有主题交叉，但本条解决依据明暗分配相似类别的错误策略，重复风险相应调高。",
+      "source_evidence": {
+        "section": "Section 4.1 Dataset / same-category gray-level variation",
+        "verified_url": "https://doi.org/10.3390%2Felectronics12081856",
+        "original_url": "https://www.mdpi.com/2079-9292/12/8/1856",
+        "access_status": "primary_source_excerpt_verified",
+        "source_snapshot_sha256": "593245d3c7f61797d5a22db05adebbb6186bdf5dbc3f32da3026a143d4c14852",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\electronics-source-verification.json",
+        "evidence_type": "independent_locator_and_fact_verification"
+      },
+      "changes": [],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "同类灰度因光照和材料变化有直接依据；比较形状与参考案例属于明确教学建议。与旧A6光照测试条件条目有主题交叉，但本条解决依据明暗分配相似类别的错误策略，重复风险相应调高。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "正文与原文范围匹配，未需改写。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-003",
+        "content_trigram_jaccard": 0.0244,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.125,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-005",
+    "skill_id": "A6-S5",
+    "kind": "rule",
+    "title": "相似缺陷比较不能只靠明暗分配类别",
+    "content": "NEU-DET 研究指出，即使属于同一种缺陷，图像灰度也会因为光照和材料变化而不同。比较疑似裂纹、划痕等相似外观时，不能建立“黑色一定是某类、浅色一定是另一类”的固定映射。可以先核对采集条件，再比较形状与项目参考案例；若现有信息不足，应记录不确定性，而不是把灰度变化直接解释成缺陷类别变化。",
+    "keywords": [
+      "相似缺陷判断",
+      "灰度变化",
+      "光照",
+      "材料变化",
+      "裂纹与划痕"
+    ],
+    "source_name": "Surface Defect Detection of Hot Rolled Steel Based on Attention Mechanism and Dilated Convolution for Industrial Robots",
+    "source_url": "https://www.mdpi.com/2079-9292/12/8/1856",
+    "source_locator": "Section 4.1 Dataset / same-category gray-level variation",
+    "notes": "同类灰度变化由论文直接支持；不能只凭颜色分配类别是教学推论，不宣称来源给出完整裂纹/划痕鉴别标准。当前项目流程未知时不写成强制审批要求。",
+    "concept_limitations": [
+      "不表示颜色或对比度完全没有判别价值",
+      "不提供仅凭二维外观测量缺陷深度的方法"
+    ],
+    "doi": "10.3390/electronics12081856",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "相似缺陷判断",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  },
+  {
+    "scope": "ABILITY",
+    "ability_id": "A6",
+    "source_type": "peer_reviewed_research_paper",
+    "authority_level": "S",
+    "license": "存档原文保留Springer专有版权，并附带限疫情期间的研究再利用条款；本知识仅独立改写事实，不宣称当前具有无限制再利用许可，不复制全文或图片。",
+    "access_date": "2026-09-10",
+    "ai_review": {
+      "reviewer": "Codex independent reviewer /root/requirements_review",
+      "review_date": "2026-09-10",
+      "independent_from_candidate_generation": true,
+      "source_reliability": 0.95,
+      "factual_consistency": 0.97,
+      "scope_relevance": 0.95,
+      "clarity": 0.95,
+      "duplication_risk": 0.22,
+      "conflict_detected": false,
+      "final_score": 0.9475,
+      "decision": "approved",
+      "rationale": "正式公开存档原文明确显微镜测量、材料转移但无明显划伤单独分类，以及按最大深度分级。正文正确限定DP980/QP980接触滑动实验，没有把实验分档数字写成行业标准。",
+      "source_evidence": {
+        "section": "Image database of surface scratches / Image data processing; Figure 2",
+        "verified_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9596349/fullTextXML",
+        "original_url": "https://link.springer.com/article/10.1007/s00170-022-10335-8",
+        "access_status": 200,
+        "source_snapshot_sha256": "8c97b3c7ea8af9c93de5246ef1facafe0241c22dd1a16bf2a7f44fd85278cca1",
+        "local_evidence_file": "C:\\Users\\Lenovo\\.codex\\tmp\\zhiji-review\\wearnet.xml",
+        "evidence_type": "full_original_paper"
+      },
+      "changes": [
+        "出版方页面仅开放摘要，改用合法公开PMC原文作为source_url，并明确存档版权条款限制。"
+      ],
+      "review_history": [
+        {
+          "stage": "independent_source_and_scope_review",
+          "decision": "approved",
+          "findings": [
+            "正式公开存档原文明确显微镜测量、材料转移但无明显划伤单独分类，以及按最大深度分级。正文正确限定DP980/QP980接触滑动实验，没有把实验分档数字写成行业标准。"
+          ]
+        },
+        {
+          "stage": "final_text_and_metadata_recheck",
+          "decision": "approved",
+          "findings": [
+            "出版方页面仅开放摘要，改用合法公开PMC原文作为source_url，并明确存档版权条款限制。"
+          ]
+        }
+      ],
+      "dedup_method": "逐条语义对照旧55与新增候选，并计算正文/标题字符三元组和关键词重合；正式Embedding去重仍由入库程序执行。",
+      "lexical_dedup": {
+        "nearest_content_id": "KB-A6-MORPH-001",
+        "content_trigram_jaccard": 0.0156,
+        "max_title_trigram_jaccard": 0.0,
+        "max_keyword_jaccard": 0.1111,
+        "embedding_similarity": null
+      }
+    },
+    "review_status": "independent_review_approved",
+    "id": "KB-A6-MORPH-006",
+    "skill_id": "A6-S5",
+    "kind": "case",
+    "title": "相似摩擦表面要区分材料转移与实际划伤",
+    "content": "一项钢材接触滑动实验把完整表面、材料转移和不同程度的划伤分开标注：发生材料转移但没有明显划伤的图像，不直接归入划伤类；划伤程度则依据显微测得的最大深度划分。这个案例提醒学员，相似的摩擦痕迹需要核对类别定义及测量证据，不能仅凭颜色或视觉粗细分配严重程度；文中的实验分类不能直接代替工厂验收规范。",
+    "keywords": [
+      "相似缺陷判断",
+      "材料转移",
+      "划伤",
+      "最大深度",
+      "测量证据"
+    ],
+    "source_name": "Li et al. · A new lightweight deep neural network for surface scratch detection",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9596349/",
+    "source_locator": "Image database of surface scratches / Image data processing; Figure 2",
+    "notes": "原论文针对DP980/QP980与DC53工具的接触滑动实验。只陈述其实际使用的类别区分和测量依据，故意不把论文深度分档数字写成通用验收阈值。",
+    "concept_limitations": [
+      "仅适用于文中接触滑动实验及其定义",
+      "不是所有划痕与裂纹互斥的证明",
+      "仅有普通照片时不能凭外观冒充显微深度测量"
+    ],
+    "doi": "10.1007/s00170-022-10335-8",
+    "official_fulltext_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9596349/fullTextXML",
+    "publisher_url": "https://link.springer.com/article/10.1007/s00170-022-10335-8",
+    "skill_mapping_review": {
+      "reviewer": "/root/requirements_review",
+      "date": "2026-09-10",
+      "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+      "skill_name": "相似缺陷判断",
+      "decision": "precise_mapping_approved",
+      "rationale": "正文直接提供该技能的形态、类内变化或相似缺陷区分依据。"
+    }
+  }
+]

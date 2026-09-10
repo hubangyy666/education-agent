@@ -1,0 +1,107 @@
+{
+  "A1": {
+    "status": "not_ready",
+    "reason": "技能储备不足：A1-S3"
+  },
+  "A2": {
+    "status": "not_ready",
+    "reason": "技能储备不足：A2-S3"
+  },
+  "A3": {
+    "status": "not_ready",
+    "reason": "技能储备不足：A3-S4"
+  },
+  "A4": {
+    "status": "published",
+    "version": 2,
+    "count": 55,
+    "skills": {
+      "A4-S1": 11,
+      "A4-S2": 11,
+      "A4-S3": 11,
+      "A4-S4": 11,
+      "A4-S5": 11
+    },
+    "unique_content": 55,
+    "types": {
+      "choice": 10,
+      "box": 45
+    }
+  },
+  "A5": {
+    "status": "not_ready",
+    "reason": "技能储备不足：A5-S3"
+  },
+  "A6": {
+    "status": "not_ready",
+    "reason": "技能储备不足：A6-S3"
+  },
+  "A7": {
+    "status": "published",
+    "version": 2,
+    "count": 55,
+    "skills": {
+      "A7-S1": 11,
+      "A7-S2": 11,
+      "A7-S3": 11,
+      "A7-S4": 11,
+      "A7-S5": 11
+    },
+    "unique_content": 55,
+    "types": {
+      "choice": 10,
+      "box": 45
+    }
+  },
+  "A8": {
+    "status": "published",
+    "version": 2,
+    "count": 55,
+    "skills": {
+      "A8-S1": 11,
+      "A8-S2": 11,
+      "A8-S3": 11,
+      "A8-S4": 11,
+      "A8-S5": 11
+    },
+    "unique_content": 55,
+    "types": {
+      "choice": 37,
+      "entity": 18
+    }
+  },
+  "A9": {
+    "status": "published",
+    "version": 2,
+    "count": 55,
+    "skills": {
+      "A9-S1": 11,
+      "A9-S2": 11,
+      "A9-S3": 11,
+      "A9-S4": 11,
+      "A9-S5": 11
+    },
+    "unique_content": 55,
+    "types": {
+      "choice": 46,
+      "box": 9
+    }
+  },
+  "A10": {
+    "status": "published",
+    "version": 2,
+    "count": 55,
+    "skills": {
+      "A10-S1": 11,
+      "A10-S2": 11,
+      "A10-S3": 11,
+      "A10-S4": 11,
+      "A10-S5": 11
+    },
+    "unique_content": 55,
+    "types": {
+      "choice": 37,
+      "box": 18
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "knowledge_count": 61,
+  "scope_counts": {
+    "GENERAL": 4,
+    "A8": 6,
+    "A1": 5,
+    "A2": 5,
+    "A3": 5,
+    "A4": 5,
+    "A5": 5,
+    "A6": 11,
+    "A7": 5,
+    "A9": 5,
+    "A10": 5
+  },
+  "embedding_dimensions": [
+    1024
+  ],
+  "review_metadata_count": 61
+}

@@ -1,0 +1,25 @@
+{
+  "active_set_count": 10,
+  "question_count": 550,
+  "unique_question_id_count": 550,
+  "versions": {
+    "A1": 1,
+    "A2": 1,
+    "A3": 1,
+    "A4": 1,
+    "A5": 1,
+    "A6": 1,
+    "A7": 1,
+    "A8": 1,
+    "A9": 1,
+    "A10": 1
+  },
+  "question_type_counts": {
+    "choice": 305,
+    "box": 170,
+    "polygon": 45,
+    "entity": 30
+  },
+  "golden_correct_count": 550,
+  "golden_full_score_count": 550
+}

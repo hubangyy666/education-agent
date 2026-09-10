@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+*.pyc
+*.tsbuildinfo
+data/runtime/
+data/downloads/
+logs/
+模型配置.md
+.openai/
+
+.runtime/

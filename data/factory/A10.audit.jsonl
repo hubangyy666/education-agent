@@ -1,0 +1,235 @@
+{"at": "2026-09-10T04:42:17.293646+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "review": {"index": 6, "decision": "approved", "source_support": 1, "skill_match": 1, "ground_truth": 1, "teaching_quality": 1, "unambiguous": 1, "independent_answer": "先向项目经理或客户澄清格式、坐标单位、是否包含图像以及用途，再决定导出方式", "duplicate": true, "reason": "与第3题高度同质：均为需求信息不足时先澄清格式、坐标单位、是否包含图像及用途，仅换角色和措辞，不构成新题。"}}
+{"at": "2026-09-10T04:42:17.296650+00:00", "stage": "generation_review", "skill_id": "A10-S1", "requested": 12, "generated": 12, "accepted": 11, "generation_request_id": "1fb4a40d-bf2b-4ecf-a451-f15c1073d9f0", "review_request_id": "fc21f85b-6fc4-43ef-9391-9c544c339ffe"}
+{"at": "2026-09-10T04:42:19.593321+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:42:22.548513+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:49.064385+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:51.988340+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:45:54.415423+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.867121+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.869127+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.871126+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.872125+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.873628+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.874632+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.876135+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.878139+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.880139+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.882139+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:10.884647+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:23.571097+00:00", "stage": "generation_review", "skill_id": "A10-S2", "requested": 6, "generated": 6, "accepted": 6, "generation_request_id": "c237e9fe-fcde-40c1-9e41-420dad977a9c", "review_request_id": "56d007a8-c10c-48ff-80aa-aa07116292a4"}
+{"at": "2026-09-10T04:46:31.301565+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:31.304075+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:31.307078+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:31.311240+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:31.313289+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:32.963166+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "review": {"index": 0, "decision": "approved", "source_support": 0.9, "skill_match": 0.9, "ground_truth": 0.9, "teaching_quality": 0.85, "unambiguous": 0.9, "independent_answer": "要求试标员补充遮挡属性，并重新提交全部标注文件。", "duplicate": false, "reason": "题干给出明确项目规则（至少5张、至少2张遮挡、检查类别/坐标/遮挡属性），事实为5张均缺遮挡属性，按规则应判不合格并要求补充重交。选项B唯一符合规则；A、C、D均违反“缺少遮挡属性视为不合格”的验收要求。来源KB-A10-002支持原生格式保留遮挡等属性，技能匹配试标验收。与旧题相比，旧题多为缺少遮挡目标数量或缺少校验值/越界坐标/像素坐标/缺少遮挡属性等，但本题聚焦“所有文件均缺遮挡属性”的验收处置，仍属同技能下的具体判断，未构成简单换名换数。"}}
+{"at": "2026-09-10T04:46:32.971379+00:00", "stage": "generation_review", "skill_id": "A10-S2", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "e894327f-b87a-47aa-9acc-89fa31844d3a", "review_request_id": "e2d2794b-7190-433b-b65c-b687f6eaf80c"}
+{"at": "2026-09-10T04:46:41.736783+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:41.739483+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:41.742997+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:41.745513+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:41.749510+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:41.752013+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.946277+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.949372+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.952870+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.955020+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.959021+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:46:49.961362+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:05.137489+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "review": {"index": 1, "decision": "rejected", "source_support": 0.8, "skill_match": 0.6, "ground_truth": 0.4, "teaching_quality": 0.5, "unambiguous": 0.5, "independent_answer": "认为该标注的横坐标和宽度是百分比，但需要确认原始尺寸是否正确，然后交付。", "duplicate": false, "reason": "题干说接收方要求Label Studio JSON百分比格式，但项目规则又要求确认原始尺寸；候选答案虽符合规则，但选项C“确认原始尺寸是否正确”与“然后交付”在无原始尺寸错误事实时逻辑不清晰，且未体现批量交付中应核对一一对应，独立可判性弱。"}}
+{"at": "2026-09-10T04:47:05.144138+00:00", "stage": "generation_review", "skill_id": "A10-S3", "requested": 6, "generated": 6, "accepted": 5, "generation_request_id": "da8e14ae-617b-4fea-a8fc-33343afe21fa", "review_request_id": "f0ac4be7-85a0-4395-854b-7fdfd77616b0"}
+{"at": "2026-09-10T04:47:13.784056+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:13.788029+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:13.791537+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:13.796049+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:13.799553+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:13.803059+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.076640+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.081129+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.085413+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.089924+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.094928+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:22.096940+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.406695+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.411210+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.415542+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.420071+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.423585+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:30.427542+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:40.560647+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "review": {"index": 0, "decision": "approved", "source_support": 0.9, "skill_match": 0.9, "ground_truth": 0.9, "teaching_quality": 0.85, "unambiguous": 0.9, "independent_answer": "先核对数据清单中的文件顺序和尺寸信息，再确认坐标单位，最后检查标注文件与图像对应关系", "duplicate": false, "reason": "题干给出质量报告必须包含三项核对结果，正确选项按清单、坐标单位、对应关系依次核对，符合KB-A10-004、KB-A10-001、KB-A10-003；其他选项均与项目规则冲突或遗漏核对。"}}
+{"at": "2026-09-10T04:47:40.566782+00:00", "stage": "generation_review", "skill_id": "A10-S4", "requested": 6, "generated": 6, "accepted": 5, "generation_request_id": "8da47525-3383-40ba-82e7-72fc4aa52c21", "review_request_id": "4d58e888-fe6d-45c6-ab19-6aede8f03f70"}
+{"at": "2026-09-10T04:47:48.531433+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:48.536031+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:48.539941+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:48.545141+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:48.550454+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:49.731075+00:00", "stage": "generation_review", "skill_id": "A10-S4", "requested": 6, "generated": 6, "accepted": 1, "generation_request_id": "e611215e-e23a-4664-8700-d5260be0f1c5", "review_request_id": "4729d364-3d73-4b3f-8cbc-136b13524352"}
+{"at": "2026-09-10T04:47:59.795993+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.799996+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.804478+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.808470+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.814020+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:47:59.818931+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:09.409656+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:09.415167+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:09.421147+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:09.426697+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:09.431882+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:10.736197+00:00", "stage": "generation_review", "skill_id": "A10-S4", "requested": 6, "generated": 6, "accepted": 1, "generation_request_id": "80f9d743-c2c9-4fc8-ae63-fc6d0ebca0c5", "review_request_id": "348a4376-5d5d-4c0e-a45e-5b612b03bdd8"}
+{"at": "2026-09-10T04:48:25.031008+00:00", "stage": "generation_review", "skill_id": "A10-S5", "requested": 6, "generated": 7, "accepted": 7, "generation_request_id": "15424068-16b6-447e-b7fb-2e8a2fe041cd", "review_request_id": "b1cc4547-7ff5-4d77-b7a6-716dd437e4ef"}
+{"at": "2026-09-10T04:48:36.351387+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.357112+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.362125+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.367418+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.374986+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.381000+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:36.387371+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.861051+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.866114+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.871717+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.876939+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.882964+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.888920+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:48:46.895008+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.073988+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.079841+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.087686+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.094985+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.103005+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.108761+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:49:00.116784+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "schema_gt_or_duplicate"}
+{"at": "2026-09-10T04:52:05.074045+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.075045+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.075045+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.076549+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.078555+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.080755+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.082767+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.083879+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.085880+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.088545+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:05.090540+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.803234+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.804557+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.804557+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.806746+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.808251+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.809419+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.811329+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.812840+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.814359+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.817164+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:52:23.819386+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:03.468584+00:00", "stage": "generation_attempt_failed", "skill_id": "A10-S1", "reason": "generation_count_invalid"}
+{"at": "2026-09-10T04:53:19.054619+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.055627+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.057627+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.059134+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.060582+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.063102+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.066118+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.068117+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.069117+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.071629+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:19.074489+00:00", "stage": "candidate_rejected", "skill_id": "A10-S1", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:27.646267+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:27.650130+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:27.653192+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:27.656675+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:27.659783+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:29.070022+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "review": {"index": 0, "decision": "approved", "source_support": 0.7, "skill_match": 0.9, "ground_truth": 1, "teaching_quality": 0.9, "unambiguous": 1, "independent_answer": "要求试标员补充至少1张包含遮挡目标的图像标注，再重新验收。", "duplicate": false, "reason": "本练习规则明确要求至少2张含遮挡目标，提交仅1张，不满足；选项B正确执行规则。来源KB-A10-002支持原生格式保留遮挡属性，但数量规则来自题干自足规则，不冲突。"}}
+{"at": "2026-09-10T04:53:29.078285+00:00", "stage": "generation_review", "skill_id": "A10-S2", "requested": 6, "generated": 6, "accepted": 0, "generation_request_id": "d55066f2-7ff6-4ca2-a3b9-1a928c83ec85", "review_request_id": "27ee74f9-3523-4808-bcf0-7b51599f08d3"}
+{"at": "2026-09-10T04:53:36.955881+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:36.959392+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:36.962907+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:36.965925+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:36.969426+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:36.973641+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.966556+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.969714+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.972946+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.976570+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.979282+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:47.984362+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:57.186165+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:57.190108+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:57.193285+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:57.197307+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:57.199306+00:00", "stage": "candidate_rejected", "skill_id": "A10-S2", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:53:58.288201+00:00", "stage": "generation_review", "skill_id": "A10-S2", "requested": 6, "generated": 6, "accepted": 1, "generation_request_id": "22c280fb-49ae-4eaa-95d7-739ce86d8146", "review_request_id": "608ee1dd-698e-442b-b116-809c18195344"}
+{"at": "2026-09-10T04:54:09.682805+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:09.694523+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:12.005729+00:00", "stage": "generation_review", "skill_id": "A10-S3", "requested": 6, "generated": 6, "accepted": 4, "generation_request_id": "cde399b6-a723-4499-acfc-9eae29ceda40", "review_request_id": "b708ffac-ef14-4d56-ad09-06caae69a4e7"}
+{"at": "2026-09-10T04:54:18.964862+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:18.974109+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:18.983513+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:25.583149+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:25.591667+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:25.599100+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:31.644944+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:31.654135+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:31.662184+00:00", "stage": "candidate_rejected", "skill_id": "A10-S3", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.630677+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.636711+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.642118+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.647402+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:38.652924+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:47.841459+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:47.846976+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:47.851654+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:47.857815+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:47.863880+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:55.236561+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:55.241092+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:55.245983+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:55.251543+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:54:55.257055+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:02.771985+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:02.777011+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:02.781727+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:02.787263+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:02.793335+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:13.978641+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:13.984650+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:13.991173+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:13.997124+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:14.004286+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:14.010026+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:14.017126+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.731324+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.737674+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.743196+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.749637+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.756562+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.761699+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:24.769806+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.440531+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.446364+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.453084+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.460155+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.466161+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:37.474174+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:38.758437+00:00", "stage": "generation_review", "skill_id": "A10-S5", "requested": 5, "generated": 7, "accepted": 1, "generation_request_id": "5aa373c4-5507-4f99-b053-ef634c3cc8dd", "review_request_id": "6aa1c595-f3ec-4f36-8946-65224d40297c"}
+{"at": "2026-09-10T04:55:55.217486+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.222906+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.228556+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.235979+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.243271+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.250357+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.257055+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.263061+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.269085+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.275044+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.281558+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:55:55.289372+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.177254+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.181577+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.186417+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:58:50.191480+00:00", "stage": "candidate_rejected", "skill_id": "A10-S4", "reason": "duplicate_content"}
+{"at": "2026-09-10T04:59:02.597663+00:00", "stage": "generation_review", "skill_id": "A10-S4", "requested": 4, "generated": 4, "accepted": 4, "generation_request_id": "76a6a416-4394-4fe0-bba4-a246e6932b41", "review_request_id": "6ef576d3-1ebb-4b81-8906-b131bb260085"}
+{"at": "2026-09-10T04:59:11.006061+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "review": {"index": 0, "decision": "rejected", "source_support": 1, "skill_match": 1, "ground_truth": 1, "teaching_quality": 0.6, "unambiguous": 1, "independent_answer": "选择数据集导出，并首先确认导出格式能被YOLO训练流程读取、且包含所需图像与标注。", "duplicate": true, "reason": "与旧题“你负责一个图像标注项目的交付归档。接收方在需求中写：‘请提供用于训练 YOLO 检测模型的数据，不需要继续在 CVAT 中编辑项目。’……”实质相同，仅措辞微调，不构成新题。"}}
+{"at": "2026-09-10T04:59:11.006747+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "review": {"index": 1, "decision": "rejected", "source_support": 1, "skill_match": 1, "ground_truth": 1, "teaching_quality": 0.6, "unambiguous": 1, "independent_answer": "导出CVAT原生图像标注格式，并检查对象类别、坐标、遮挡信息以及图像与标注文件对应关系是否保留。", "duplicate": true, "reason": "与旧题“你负责一个图像标注项目的交付归档。接收方要求提供 CVAT 原生图像标注格式，并说明‘后续还要继续处理’……”实质相同，仅增加字段列举，不构成新题。"}}
+{"at": "2026-09-10T04:59:11.006747+00:00", "stage": "candidate_rejected", "skill_id": "A10-S5", "review": {"index": 2, "decision": "rejected", "source_support": 1, "skill_match": 1, "ground_truth": 1, "teaching_quality": 0.6, "unambiguous": 1, "independent_answer": "数据清单用于确认文件顺序和图像尺寸等元信息，不包含每个目标的几何标注，应与实际标注文件一起核对。", "duplicate": true, "reason": "与旧题“你负责一个图像标注项目的交付归档。接收方要求提供数据清单，以便确认文件顺序和每张图的尺寸……”实质相同，仅改写表述，不构成新题。"}}
+{"at": "2026-09-10T04:59:11.017474+00:00", "stage": "generation_review", "skill_id": "A10-S5", "requested": 3, "generated": 3, "accepted": 0, "generation_request_id": "1bda0096-6a99-47d9-a682-d04bad3a18dc", "review_request_id": "844265d9-bba9-4b7d-8acf-a0a2a281499a"}
+{"at": "2026-09-10T04:59:19.835449+00:00", "stage": "generation_review", "skill_id": "A10-S5", "requested": 3, "generated": 3, "accepted": 3, "generation_request_id": "fd1862a0-dc2b-427b-ad9a-130572c13358", "review_request_id": "705572a4-9e13-4cc9-bc64-8160bbc0ddf6"}
+{"at": "2026-09-10T05:03:17.449800+00:00", "stage": "offline_validated_publish", "status": "published", "version": 2, "count": 55, "skills": {"A10-S1": 11, "A10-S2": 11, "A10-S3": 11, "A10-S4": 11, "A10-S5": 11}, "unique_content": 55, "types": {"choice": 37, "box": 18}}

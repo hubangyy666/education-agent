@@ -1,0 +1,14 @@
+{
+  "test": "background_competition_expiration_without_run_api",
+  "run_id": "f945e7ba-3158-4e08-936c-58ec70581d36",
+  "waited_seconds": 3.0,
+  "deadline": "2026-09-10T09:47:02.734943+00:00",
+  "observed_at": "2026-09-10T09:47:05.502695+00:00",
+  "status": "completed",
+  "finished_at": "2026-09-10T09:47:02.809835+00:00",
+  "report_score": 0.0,
+  "report_missed_rate": 100.0,
+  "report_count": 10,
+  "progress_attempts": 1,
+  "run_api_calls_after_creation": 0
+}

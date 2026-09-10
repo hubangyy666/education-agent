@@ -1,0 +1,245 @@
+{
+  "official_archive": "https://data.vicos.si/datasets/KSDD/KolektorSDD.zip",
+  "archive_bytes": 101831129,
+  "downloaded_bytes": 3266496,
+  "range_requests": [
+    [
+      101831107,
+      101831128
+    ],
+    [
+      101831087,
+      101831106
+    ],
+    [
+      101757083,
+      101831106
+    ],
+    [
+      1565158,
+      1566284
+    ],
+    [
+      1818435,
+      2079583
+    ],
+    [
+      3677803,
+      3678857
+    ],
+    [
+      3137885,
+      3405023
+    ],
+    [
+      5264109,
+      5265146
+    ],
+    [
+      5541427,
+      5807328
+    ],
+    [
+      7639035,
+      7640086
+    ],
+    [
+      6343419,
+      6613768
+    ],
+    [
+      10018424,
+      10019470
+    ],
+    [
+      10279726,
+      10553082
+    ],
+    [
+      11871435,
+      11872704
+    ],
+    [
+      12149324,
+      12412754
+    ],
+    [
+      13727432,
+      13728639
+    ],
+    [
+      13201655,
+      13464080
+    ],
+    [
+      15850689,
+      15852032
+    ],
+    [
+      16118455,
+      16384115
+    ],
+    [
+      18450318,
+      18451398
+    ],
+    [
+      17930886,
+      18185585
+    ],
+    [
+      20251157,
+      20252400
+    ],
+    [
+      18968819,
+      19228228
+    ],
+    [
+      1033602,
+      1035523
+    ],
+    [
+      1294597,
+      1563481
+    ],
+    [
+      3682329,
+      3684256
+    ],
+    [
+      2869690,
+      3134393
+    ]
+  ],
+  "samples": [
+    {
+      "id": "ksdd_kos01_Part5",
+      "image_sha256": "eab8b6596d1d0d70303c62ac49d8a6f82ead148ddbe751acafac46020cc375fd",
+      "mask_sha256": "1e81f7f9eb0f1f8782b995894232fc1fbe6c96f4daea76c8ec4e3edcfbb485a0",
+      "positive_pixels": 1143,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        278
+      ]
+    },
+    {
+      "id": "ksdd_kos02_Part6",
+      "image_sha256": "506f97b9bdc6c689f09f5c4bcaab63886dc6707f5797385c90c83b08d8573bf6",
+      "mask_sha256": "a8e76471ea30f0a759232425eede942faeecef112ed8da7bd34b77e548ab5b6b",
+      "positive_pixels": 829,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        174
+      ]
+    },
+    {
+      "id": "ksdd_kos03_Part2",
+      "image_sha256": "cd5b7c060a957d6f8e9a3816a3d8acf901cfee49aa4d11e86df9b419f79a6132",
+      "mask_sha256": "2e05823aaa85db7e8f70d397f3a42d083516c55a7bd338a5393e64559efb9fd3",
+      "positive_pixels": 1001,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        172
+      ]
+    },
+    {
+      "id": "ksdd_kos04_Part3",
+      "image_sha256": "408247d27ddc44b7d520171ac469ffd491baa733e8709977e01cf39337d9c4c8",
+      "mask_sha256": "59afeaef6054f2bd349ff8293abf80a9cdc3349ef68b546afa1d4e20979d0ef1",
+      "positive_pixels": 790,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        144
+      ]
+    },
+    {
+      "id": "ksdd_kos05_Part5",
+      "image_sha256": "f23d8a6de6188017e5d8090bc12cb2b87e6a263fc936dcec2fb81ea06244d1b1",
+      "mask_sha256": "fa7c0ea48eedf0312e9839f22c211b035abfd566184f518bb01c39e626881d8e",
+      "positive_pixels": 1350,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        162
+      ]
+    },
+    {
+      "id": "ksdd_kos06_Part7",
+      "image_sha256": "b85cd873f57bdb0415bdd121ee62bd754261fe62d5a2322814795513262350f1",
+      "mask_sha256": "d46650790b16208ea47fecef7041d59838de5467077cb2db351f29339a9fdece",
+      "positive_pixels": 2908,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        430
+      ]
+    },
+    {
+      "id": "ksdd_kos07_Part1",
+      "image_sha256": "3f654661dc80e2e0af4078604a0642302ae63fb146a1e70930aa1ba9fe1defe2",
+      "mask_sha256": "219223fbdc5fc2714002cae8fd3831bdc7ff475a714a89fa0dce7178d56f935f",
+      "positive_pixels": 2340,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        322
+      ]
+    },
+    {
+      "id": "ksdd_kos08_Part2",
+      "image_sha256": "ef2c2f53751386c6967453981374b88ba71755a1b0ac1b6d0f0049aa670060f9",
+      "mask_sha256": "d6fab18cf4f6fcb1670df9e3664eac5bcfd7d181987dbd5e9388dd053b073b5e",
+      "positive_pixels": 2663,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        430
+      ]
+    },
+    {
+      "id": "ksdd_kos09_Part6",
+      "image_sha256": "afe2a62ddb3d8ad15daa17d36e9d5a8ed6cb8bdeb176faae42222fb0cac2fe58",
+      "mask_sha256": "0ec419a0159b6297d6edc4fdf123d54dc908ac94a77df4fec99edad16360ddd6",
+      "positive_pixels": 1603,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        204
+      ]
+    },
+    {
+      "id": "ksdd_kos10_Part3",
+      "image_sha256": "635345dd038b5fdca369e999e1a5d5b082c0fabdb64acc3e4fa1c68bdea7c1fe",
+      "mask_sha256": "07671e0500158dcb7a85c5f7b4116dba6fd0f7ad7c0334d0af3377680bda7414",
+      "positive_pixels": 3402,
+      "outer_contours": 1,
+      "holes": 0,
+      "polygon_vertices": [
+        370
+      ]
+    },
+    {
+      "id": "ksdd_kos01_Part2",
+      "image_sha256": "2123d9b79fab20bc35a3c1a70ffcf7e8835e86498e4d08b24f22f8b50071190a",
+      "mask_sha256": "4d5e2a481647ceb65b2d5ff6c9d5e7744675fd61ad54c8ee26bd3bc7d20d99a8",
+      "positive_pixels": 0,
+      "outer_contours": 0,
+      "holes": 0,
+      "polygon_vertices": []
+    },
+    {
+      "id": "ksdd_kos02_Part0",
+      "image_sha256": "dba96caf1948728760a092b3aadea77e4d979bbf5112ab2c1180b4b4941f4934",
+      "mask_sha256": "9ea20a8991606b4a93d7a000284e0c77f8fd2802f0a412eab3f62ca20d035610",
+      "positive_pixels": 0,
+      "outer_contours": 0,
+      "holes": 0,
+      "polygon_vertices": []
+    }
+  ]
+}

@@ -1,0 +1,3163 @@
+[
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中用轨迹模式标注一段视频中的行人。第1至40帧行人完整可见，第41至55帧被公交车完全挡住，第56帧起行人从公交车另一侧重新出现且外观连续。本练习规定：只有外观连续且位置衔接合理时才视为同一目标。根据项目规则，第41至55帧应如何处理？",
+    "project_rule": "本练习规定：只有外观连续且位置衔接合理时才视为同一目标；对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。",
+    "options": [
+      "在第41帧把轨迹设为Outside，第56帧重新出现后继续同一轨迹并合并，使遮挡期间不产生可见框",
+      "在第41至55帧继续用插值生成矩形，因为轨迹模式会自动延续到所有后续帧",
+      "删除第1至40帧的轨迹，从第56帧重新开始一条新轨迹，不进行合并",
+      "把第41至55帧的矩形缩小到1像素，表示目标被遮挡"
+    ],
+    "answer": "在第41帧把轨迹设为Outside，第56帧重新出现后继续同一轨迹并合并，使遮挡期间不产生可见框",
+    "explanation": "知识说明对象消失或变得过小时可用 Outside 状态表示该处不再延续可见轨迹，再次出现时可合并轨迹；不能把一次插值自动延续到所有后续帧。因此遮挡期间应设为 Outside，重新出现后合并同一轨迹。",
+    "hint": [
+      "先判断遮挡期间目标是否仍可见。",
+      "轨迹模式不会自动替你把不可见帧处理成正确状态。",
+      "重新出现且外观连续时，应把前后轨迹视为同一目标。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "该题直接考查遮挡目标在轨迹中的消失与再次出现处理，要求区分Outside与自动插值，精确对应遮挡目标技能。",
+    "content_hash": "ae042ca4dd9c827c084d06f6fe1c7f0d2cf93842fbd7dd9057652361210f86fb",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:43:08.321598+00:00",
+    "generation_request_id": "86797d3a-bc89-410e-a08b-f1769aa93b0a",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "在第41帧把轨迹设为Outside，第56帧重新出现后继续同一轨迹并合并，使遮挡期间不产生可见框",
+      "duplicate": false,
+      "reason": "KB-A7-001明确支持Outside状态与合并轨迹；题干自足，规则清晰，唯一正确选项，解释正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1f351047-70e3-48b0-bbd7-22b37146653b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:43:08.321598+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-ae042ca4dd9c827c084d06f6"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中标注一段监控视频里的车辆轨迹。车辆在第20帧驶出画面右边界，第35帧从画面左边界重新驶入，中间15帧完全不在画面内。本练习规定：出界期间不得保留可见矩形，重新进入且外观连续时视为同一目标。应如何处理？",
+    "project_rule": "本练习规定：出界期间不得保留可见矩形；重新进入且外观连续时视为同一目标；对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。",
+    "options": [
+      "在第20帧设为Outside，第35帧重新进入后继续并合并同一轨迹",
+      "在第20至35帧继续插值生成矩形，让车辆轨迹保持连续",
+      "在第20帧结束轨迹，第35帧新建轨迹且不合并，视为两个不同目标",
+      "把第20至35帧的矩形移到画面外，保留轨迹但不显示"
+    ],
+    "answer": "在第20帧设为Outside，第35帧重新进入后继续并合并同一轨迹",
+    "explanation": "车辆出界期间不在画面内，按规则不得保留可见矩形，应使用 Outside 状态；重新进入且外观连续时视为同一目标，可合并轨迹。继续插值或新建不合并都不符合规则。",
+    "hint": [
+      "出界期间目标是否还在画面内？",
+      "规则要求出界期间不得保留可见矩形。",
+      "重新进入且外观连续时，应保持同一目标身份。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "该题考查遮挡目标中出界与重新进入的轨迹状态处理，直接训练Outside与合并轨迹的判定。",
+    "content_hash": "db161c21b349d927f0c5ee1a291af394746253bb1e247b33ec76fa87d28c3f69",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:43:08.321598+00:00",
+    "generation_request_id": "86797d3a-bc89-410e-a08b-f1769aa93b0a",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "在第20帧设为Outside，第35帧重新进入后继续并合并同一轨迹",
+      "duplicate": false,
+      "reason": "出界后重新进入且外观连续，按KB-A7-001应设Outside并合并轨迹；选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1f351047-70e3-48b0-bbd7-22b37146653b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:43:08.321598+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-db161c21b349d927f0c5ee1a"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频里的行人骨架。第10帧行人右手腕被手提包挡住，但人仍在画面内；第25帧行人走出画面左边界，右手腕位于画面外。本练习规定：遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外。第10帧和第25帧的右手腕应分别标记为什么状态？",
+    "project_rule": "本练习规定：遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏只是界面显示设置，不能当作交付状态。",
+    "options": [
+      "第10帧标记为遮挡，第25帧标记为出界",
+      "第10帧标记为出界，第25帧标记为遮挡",
+      "两帧都标记为隐藏，因为操作时看不见该点",
+      "两帧都标记为出界，因为该点都不可见"
+    ],
+    "answer": "第10帧标记为遮挡，第25帧标记为出界",
+    "explanation": "第10帧手腕仍在画面内但被手提包挡住，属于遮挡；第25帧手腕位于画面外，属于出界。隐藏只是界面显示设置，不能当作交付状态。",
+    "hint": [
+      "先判断点是否仍在画面内。",
+      "被其他对象挡住和位于画面边界之外含义不同。",
+      "界面暂时看不见不等于出界或遮挡。"
+    ],
+    "source_id": "KB-A7-002",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+    "skill_rationale": "该题考查遮挡目标中关键点遮挡与出界的区分，直接对应骨架点状态判定技能。",
+    "content_hash": "5a116caa89085d938c3a69dcb2b371107cd91eddb5a81381dfafd32ceaf28d5a",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:43:08.321598+00:00",
+    "generation_request_id": "86797d3a-bc89-410e-a08b-f1769aa93b0a",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第10帧标记为遮挡，第25帧标记为出界",
+      "duplicate": false,
+      "reason": "KB-A7-002区分遮挡、出界与隐藏；题干明确点仍在画面内/外，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1f351047-70e3-48b0-bbd7-22b37146653b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:43:08.321598+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-5a116caa89085d938c3a69dc"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段视频中的被遮挡物体。第1帧物体轮廓完整，第20帧物体被前景柱子挡住约一半，第40帧物体完全被挡住。本练习规定：多边形轨迹跨帧时起点与先前起点对应，绘制方向一致；完全不可见时使用Outside状态。第20帧和第40帧应如何处理？",
+    "project_rule": "本练习规定：多边形轨迹跨帧时起点与先前起点对应，绘制方向一致；完全不可见时使用Outside状态；不能把一次插值自动延续到所有后续帧。",
+    "options": [
+      "第20帧按可见部分重画轮廓并保持起点与方向一致，第40帧设为Outside",
+      "第20帧直接沿用第1帧完整轮廓，第40帧继续插值生成完整轮廓",
+      "第20帧把轮廓缩小到1像素，第40帧删除整条轨迹",
+      "第20帧和第40帧都设为Outside，因为物体被遮挡"
+    ],
+    "answer": "第20帧按可见部分重画轮廓并保持起点与方向一致，第40帧设为Outside",
+    "explanation": "第20帧物体部分可见，应按可见部分重画轮廓并保持起点与方向一致；第40帧完全不可见，应设为Outside。沿用完整轮廓或继续插值都不符合规则。",
+    "hint": [
+      "部分可见和完全不可见需要不同处理。",
+      "多边形轨迹跨帧时起点与方向要保持一致。",
+      "完全不可见时不应继续生成可见轮廓。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "该题考查遮挡目标在多边形轨迹中的部分可见与完全不可见处理，直接训练轮廓重画与Outside状态判定。",
+    "content_hash": "6a0d2d628ae0750db6f3e2d34070573f25c8bbdfeff7f6ffac464b73580a7544",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:43:08.323117+00:00",
+    "generation_request_id": "86797d3a-bc89-410e-a08b-f1769aa93b0a",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 4,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第20帧按可见部分重画轮廓并保持起点与方向一致，第40帧设为Outside",
+      "duplicate": false,
+      "reason": "KB-A7-003支持多边形跨帧起点/方向一致，完全不可见用Outside；答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1f351047-70e3-48b0-bbd7-22b37146653b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:43:08.323117+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-6a0d2d628ae0750db6f3e2d3"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤场景视频。画面中有多辆车相互遮挡，其中两辆车在连续帧中外观和位置都连续，但被其他车辆部分挡住。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；拥挤对象组属性为真时同组形状可合并为游程编码掩码。应如何处理这两辆车的轨迹？",
+    "project_rule": "本练习规定：只有外观连续且位置衔接合理时才视为同一目标；拥挤对象组属性为真时同组形状可合并为游程编码掩码；不能仅凭画面里对象很多就随意合组。",
+    "options": [
+      "分别保留两条轨迹，按各自可见部分标注，不因拥挤而随意合并",
+      "把两辆车合并为一条轨迹，因为它们在画面中相互遮挡",
+      "把两辆车都设为Outside，因为部分被挡住",
+      "只标注未被遮挡的那辆车，另一辆忽略"
+    ],
+    "answer": "分别保留两条轨迹，按各自可见部分标注，不因拥挤而随意合并",
+    "explanation": "两辆车外观和位置连续，应分别保留轨迹并按可见部分标注；拥挤对象组属性不能仅凭画面对象多就随意合组。设为Outside或忽略都不符合规则。",
+    "hint": [
+      "先判断两辆车是否各自外观连续。",
+      "拥挤不等于同一目标。",
+      "组属性会影响交付表示，不能随意设置。"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "该题考查遮挡目标在拥挤场景中的轨迹区分与组属性使用，直接训练遮挡下实例身份判定。",
+    "content_hash": "c7686976de087ae8f06938f6799768d51e514fed46d4baeac97a5e5a395a88bc",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:43:08.331437+00:00",
+    "generation_request_id": "86797d3a-bc89-410e-a08b-f1769aa93b0a",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 6,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "分别保留两条轨迹，按各自可见部分标注，不因拥挤而随意合并",
+      "duplicate": false,
+      "reason": "KB-A7-004说明拥挤组属性不能随意合组；题干明确两车各自连续，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1f351047-70e3-48b0-bbd7-22b37146653b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:43:08.331437+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-c7686976de087ae8f06938f6"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中用轨迹模式标注一段视频中的行人。第1至30帧行人完整可见，第31至45帧被公交车完全挡住，第46帧起行人从公交车另一侧重新出现且外观连续、位置衔接合理。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。根据项目规则，第31至45帧应如何处理？",
+    "project_rule": "本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。",
+    "options": [
+      "将第31至45帧标记为Outside状态，不保留可见矩形，第46帧起重新标注同一轨迹",
+      "将第31至45帧继续用插值矩形表示，第46帧起重新标注同一轨迹",
+      "将第31至45帧标记为Outside状态，第46帧起新建不同轨迹",
+      "将第31至45帧继续用插值矩形表示，第46帧起新建不同轨迹"
+    ],
+    "answer": "将第31至45帧标记为Outside状态，不保留可见矩形，第46帧起重新标注同一轨迹",
+    "explanation": "根据CVAT轨迹模式规则，当对象完全不可见时应使用Outside状态表示该处不再延续可见轨迹，不能把插值自动延续到所有后续帧。第46帧起行人外观连续且位置衔接合理，应视为同一目标，继续使用同一轨迹。",
+    "hint": [
+      "回忆CVAT中Outside状态的含义：表示对象在该处不再延续可见轨迹。",
+      "判断第31至45帧行人是否完全不可见，是否应保留可见矩形。",
+      "确认第46帧起行人是否满足同一目标的连续性条件。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题精确训练遮挡目标处理技能，要求根据完全不可见和重新出现的连续性规则，正确使用Outside状态并决定是否合并轨迹。",
+    "content_hash": "bbe6304fb6537c1413a436b3e475b8bc3a806a340e610d2b4e520a131329fb17",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:22.516987+00:00",
+    "generation_request_id": "f49ed39f-e1a2-4705-a249-07b109cec227",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "将第31至45帧标记为Outside状态，不保留可见矩形，第46帧起重新标注同一轨迹",
+      "duplicate": false,
+      "reason": "题干给出完全不可见与重新出现且外观连续、位置衔接合理的具体事实，规则明确；正确选项符合KB-A7-001中Outside状态和同一轨迹连续性要求，其余选项分别错误保留插值或错误新建轨迹，唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bd240c9-e934-4b46-9fdb-b8c39f0312ba",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:22.516987+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-bbe6304fb6537c1413a436b3"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频中的行人轨迹。第1至50帧行人完整可见，第51至60帧行人被树木完全挡住，第61帧起行人从树木另一侧重新出现，但外观与之前明显不同且位置跳跃较大。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。根据项目规则，第51至60帧及第61帧起应如何处理？",
+    "project_rule": "本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。",
+    "options": [
+      "第51至60帧标记为Outside状态，第61帧起新建不同轨迹",
+      "第51至60帧标记为Outside状态，第61帧起继续同一轨迹",
+      "第51至60帧继续用插值矩形表示，第61帧起新建不同轨迹",
+      "第51至60帧继续用插值矩形表示，第61帧起继续同一轨迹"
+    ],
+    "answer": "第51至60帧标记为Outside状态，第61帧起新建不同轨迹",
+    "explanation": "第51至60帧行人完全不可见，应使用Outside状态。第61帧起外观明显不同且位置跳跃较大，不满足同一目标的连续性条件，应新建不同轨迹。",
+    "hint": [
+      "第51至60帧行人是否完全不可见？应使用什么状态？",
+      "第61帧起行人外观和位置是否满足同一目标的连续性条件？",
+      "如果不满足连续性条件，应继续同一轨迹还是新建轨迹？"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题训练遮挡后重新出现时的轨迹决策，要求根据外观连续性和位置衔接判断是否合并轨迹。",
+    "content_hash": "9d6a944d59ce9c834008937abfd0b45e7333c253028f89bc5984cbde3ef788a6",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:22.516987+00:00",
+    "generation_request_id": "f49ed39f-e1a2-4705-a249-07b109cec227",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第51至60帧标记为Outside状态，第61帧起新建不同轨迹",
+      "duplicate": false,
+      "reason": "题干明确完全不可见且重新出现时外观明显不同、位置跳跃较大，不满足同一目标连续性；正确选项同时处理Outside状态与新建轨迹，符合KB-A7-001，且与第0题在重新出现连续性判断上形成不同操作，非简单重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bd240c9-e934-4b46-9fdb-b8c39f0312ba",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:22.516987+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-9d6a944d59ce9c834008937a"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中用轨迹模式标注一段视频中的快递员。第1至25帧快递员完整可见，第26至40帧被路边停放的货车完全挡住，第41帧起快递员从货车另一侧重新出现，但外观与之前明显不同（衣服颜色改变）且位置跳跃较大。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。根据项目规则，第26至40帧及第41帧起应如何处理？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。",
+    "options": [
+      "第26至40帧使用Outside状态；第41帧起视为同一目标，继续原轨迹并插值。",
+      "第26至40帧保留可见矩形；第41帧起视为同一目标，继续原轨迹。",
+      "第26至40帧使用Outside状态；第41帧起视为新目标，新建轨迹。",
+      "第26至40帧使用Outside状态；第41帧起视为同一目标，但需手动调整关键帧。"
+    ],
+    "answer": "第26至40帧使用Outside状态；第41帧起视为新目标，新建轨迹。",
+    "explanation": "根据本练习规定，完全不可见时使用Outside状态，因此第26至40帧应标记为Outside。第41帧起外观明显不同且位置跳跃较大，不满足外观连续且位置衔接合理的条件，因此不能合并为同一目标，应新建轨迹。",
+    "hint": [
+      "先判断第26至40帧是否完全不可见。",
+      "再判断第41帧起的目标是否满足外观连续和位置衔接合理。",
+      "最后根据规则决定是否合并轨迹。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题直接训练遮挡目标处理中消失与再次出现的判断，要求依据外观连续性和位置衔接决定是否合并轨迹，精确对应技能A7-S1。",
+    "content_hash": "9d13fcc2c85b1691612c265a10f41afeab12c806e101e4b550d9c21f473d0bc8",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:32.755845+00:00",
+    "generation_request_id": "7b454808-8827-4bf9-9623-6e7b17460d60",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第26至40帧使用Outside状态；第41帧起视为新目标，新建轨迹。",
+      "duplicate": false,
+      "reason": "完全不可见用Outside、外观位置不连续不得合并，均直接对应KB-A7-001；与旧题相比新增了外观改变且位置跳跃的不连续条件，判断操作不同。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "78f16dc3-0955-4cdb-8c7b-c205631d023b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:32.755845+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-9d13fcc2c85b1691612c265a"
+  },
+  {
+    "skill_id": "A7-S1",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频中的行人骨架。第5帧行人左手腕被手提包挡住，但人仍在画面内；第15帧行人走出画面右边界，左手腕位于画面外；第25帧行人回到画面内，左手腕再次被手提包挡住。本练习规定：遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记。根据项目规则，第5帧、第15帧和第25帧的左手腕应分别标记为什么状态？",
+    "project_rule": "遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记。",
+    "options": [
+      "第5帧遮挡，第15帧出界，第25帧遮挡。",
+      "第5帧出界，第15帧遮挡，第25帧出界。",
+      "第5帧遮挡，第15帧隐藏，第25帧遮挡。",
+      "第5帧隐藏，第15帧出界，第25帧隐藏。"
+    ],
+    "answer": "第5帧遮挡，第15帧出界，第25帧遮挡。",
+    "explanation": "第5帧左手腕在画面内但被手提包挡住，应标记为遮挡；第15帧左手腕位于画面外，应标记为出界；第25帧左手腕再次在画面内被挡住，应标记为遮挡。隐藏是临时显示设置，不影响交付标记。",
+    "hint": [
+      "区分遮挡和出界的定义：遮挡是画面内被挡，出界是画面外。",
+      "检查每一帧左手腕是否在画面内。",
+      "注意隐藏状态不是交付标记。"
+    ],
+    "source_id": "KB-A7-002",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+    "skill_rationale": "此题训练关键点遮挡与出界的区分，属于遮挡目标处理中状态判断的核心技能A7-S1。",
+    "content_hash": "5751ce430fa8956b93e2bb75a2ce1da171dac09bcc2c61c0cf4108c5defcd465",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:32.755845+00:00",
+    "generation_request_id": "7b454808-8827-4bf9-9623-6e7b17460d60",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第5帧遮挡，第15帧出界，第25帧遮挡。",
+      "duplicate": false,
+      "reason": "遮挡、出界、隐藏三态区分直接来自KB-A7-002；第25帧再次遮挡形成回环，与旧题仅两帧判断不同。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "78f16dc3-0955-4cdb-8c7b-c205631d023b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:32.755845+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-5751ce430fa8956b93e2bb75"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤街道视频，画面中有多辆外观相似的汽车相互遮挡。第10帧到第30帧，其中一辆红色轿车始终可见，但被其他车辆部分遮挡。本练习规定：拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要保留每个实例的独立分割表示。根据项目规则，应如何处理这辆红色轿车的标注？",
+    "project_rule": "拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要保留每个实例的独立分割表示。",
+    "options": [
+      "将红色轿车与其他车辆合并为一个对象组，并设置拥挤属性为真",
+      "将红色轿车单独标注，不设置拥挤属性，保持独立实例",
+      "将红色轿车与其他车辆合并为一个对象组，并设置拥挤属性为假",
+      "将红色轿车标注为多边形，并设置拥挤属性为真"
+    ],
+    "answer": "将红色轿车单独标注，不设置拥挤属性，保持独立实例",
+    "explanation": "项目要求保留每个实例的独立分割表示，因此不应将红色轿车与其他车辆合并。拥挤属性为真时会合并为游程编码掩码，会丢失独立实例；为假时虽可转换为多边形，但合并组仍会改变实例表示。只有单独标注且不设置拥挤属性，才能满足独立实例的要求。",
+    "hint": [
+      "回忆COCO导出中拥挤属性对实例表示的影响。",
+      "项目要求保留独立实例，合并组会如何影响这一点？",
+      "单独标注且不设拥挤属性是否满足要求？"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "此题训练在密集目标场景下，根据项目规则正确应用拥挤对象组属性，以保持实例独立性。",
+    "content_hash": "aed9d4ec38c3560e8ac70a880a27d93b934a903e17061bbec6eb8b56b68bfb06",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:58.397825+00:00",
+    "generation_request_id": "9f3925bc-ca5c-40a5-9b13-7c2e0804a825",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "将红色轿车单独标注，不设置拥挤属性，保持独立实例",
+      "duplicate": false,
+      "reason": "来源KB-A7-004明确拥挤属性为真会合并为RLE掩码、为假可转多边形，项目要求保留独立实例，故单独标注不设拥挤属性正确；选项唯一，解释与来源一致。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "b2a89d91-6b87-4d43-a1e9-86dd37237159",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:58.397825+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-aed9d4ec38c3560e8ac70a88"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段拥挤市场视频中的多个水果摊。第1帧到第50帧，每个水果摊的轮廓都可见，但相互紧挨。本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）。第1帧你从每个水果摊的左上角开始顺时针绘制。第30帧，由于视角变化，水果摊的左上角被遮挡，你决定从右上角开始绘制。根据项目规则，第30帧的多边形应如何调整？",
+    "project_rule": "跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）。",
+    "options": [
+      "保持从右上角开始，因为左上角被遮挡",
+      "重新从左上角开始，即使该点被遮挡，也要按顺时针方向绘制",
+      "从任意可见点开始，只要轮廓正确即可",
+      "改变绘制方向为逆时针，以适应遮挡"
+    ],
+    "answer": "重新从左上角开始，即使该点被遮挡，也要按顺时针方向绘制",
+    "explanation": "项目规则要求跨帧多边形轨迹保持起点对应和绘制方向一致。第1帧从左上角开始顺时针，第30帧也应从左上角开始顺时针，即使该点被遮挡，也需按对应点位置绘制，以确保工具正确插值。",
+    "hint": [
+      "回顾多边形轨迹跨帧时对起点和方向的要求。",
+      "遮挡是否允许改变起点或方向？",
+      "如何确保中间帧插值正确？"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "此题训练在密集目标场景下，跨帧多边形轨迹保持点对应和方向一致，避免插值错误。",
+    "content_hash": "e39cd709d4a14d977accd40f710396b245d655842bb8bf0e3001eb454747651c",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:58.397825+00:00",
+    "generation_request_id": "9f3925bc-ca5c-40a5-9b13-7c2e0804a825",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "重新从左上角开始，即使该点被遮挡，也要按顺时针方向绘制",
+      "duplicate": false,
+      "reason": "来源KB-A7-003要求跨帧多边形起点对应、方向一致；第1帧左上角顺时针，第30帧应保持对应点，遮挡不改变规则。选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "b2a89d91-6b87-4d43-a1e9-86dd37237159",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:58.397825+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-e39cd709d4a14d977accd40f"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤人群视频中的行人骨架。第5帧，行人A的右手腕被前面的人挡住，但行人A仍在画面内；第10帧，行人A走出画面右边界，右手腕位于画面外；第15帧，行人A回到画面内，右手腕再次被挡住。本练习规定：遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记。根据项目规则，第5帧、第10帧和第15帧的右手腕应分别标记为什么状态？",
+    "project_rule": "遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记。",
+    "options": [
+      "第5帧：遮挡；第10帧：出界；第15帧：遮挡",
+      "第5帧：出界；第10帧：遮挡；第15帧：出界",
+      "第5帧：隐藏；第10帧：出界；第15帧：隐藏",
+      "第5帧：遮挡；第10帧：隐藏；第15帧：遮挡"
+    ],
+    "answer": "第5帧：遮挡；第10帧：出界；第15帧：遮挡",
+    "explanation": "第5帧行人A在画面内但手腕被挡，属于遮挡；第10帧手腕位于画面外，属于出界；第15帧回到画面内且被挡，属于遮挡。隐藏是临时显示设置，不应用于交付标记。",
+    "hint": [
+      "区分遮挡、出界和隐藏的定义。",
+      "第10帧手腕是否在画面内？",
+      "第5帧和第15帧手腕是否在画面内但被挡？"
+    ],
+    "source_id": "KB-A7-002",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+    "skill_rationale": "此题训练在密集目标场景下，正确区分骨架关键点的遮挡、出界和隐藏状态。",
+    "content_hash": "cc31ef80af37dbe9cb1ffe280e6a76143814b02345c1f2c31ccc8e0a958bb7c8",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:58.397825+00:00",
+    "generation_request_id": "9f3925bc-ca5c-40a5-9b13-7c2e0804a825",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "第5帧：遮挡；第10帧：出界；第15帧：遮挡",
+      "duplicate": false,
+      "reason": "来源KB-A7-002区分遮挡、出界、隐藏；第5/15帧画面内被挡为遮挡，第10帧画面外为出界，隐藏不用于交付。答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "b2a89d91-6b87-4d43-a1e9-86dd37237159",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:58.397825+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-cc31ef80af37dbe9cb1ffe28"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤停车场视频中的车辆轨迹。第1帧到第20帧，车辆A完整可见；第21帧到第30帧，车辆A被一辆大卡车完全挡住；第31帧，车辆A从卡车另一侧重新出现，外观和位置连续。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。根据项目规则，第21帧到第30帧应如何处理？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态。",
+    "options": [
+      "保持车辆A的矩形可见，并插值位置",
+      "将车辆A的矩形标记为Outside状态",
+      "删除车辆A的轨迹，重新开始标注",
+      "将车辆A与其他车辆合并为一个轨迹"
+    ],
+    "answer": "将车辆A的矩形标记为Outside状态",
+    "explanation": "车辆A在第21帧到第30帧完全不可见，根据规则应使用Outside状态表示不再延续可见轨迹。保持矩形可见或插值会错误延续轨迹；删除轨迹会丢失连续性；合并轨迹缺乏依据。",
+    "hint": [
+      "完全不可见时，轨迹应如何表示？",
+      "Outside状态适用于什么情况？",
+      "插值是否适用于完全不可见的帧？"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题训练在密集目标场景下，正确使用Outside状态处理完全不可见的轨迹段。",
+    "content_hash": "8e017e51a9be7df0a5fdb720867b32027698ee6e38d995bb150aa6d617ed6409",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:50:58.397825+00:00",
+    "generation_request_id": "9f3925bc-ca5c-40a5-9b13-7c2e0804a825",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "将车辆A的矩形标记为Outside状态",
+      "duplicate": false,
+      "reason": "来源KB-A7-001说明完全不可见时用Outside状态，不应插值延续；第21-30帧完全被挡，应标Outside。选项唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "b2a89d91-6b87-4d43-a1e9-86dd37237159",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:50:58.397825+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-8e017e51a9be7df0a5fdb720"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤货架视频中的商品。画面中有多个同类商品紧密排列，部分商品相互遮挡。本练习规定：拥挤对象组属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要区分每个商品的独立实例。根据项目规则，应如何设置这些商品的拥挤属性？",
+    "project_rule": "本练习规定：拥挤对象组属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要区分每个商品的独立实例。",
+    "options": [
+      "将所有商品合并为一个对象组，并设置拥挤属性为真",
+      "将所有商品合并为一个对象组，并设置拥挤属性为假",
+      "将每个商品单独标注，并设置拥挤属性为真",
+      "将每个商品单独标注，并设置拥挤属性为假"
+    ],
+    "answer": "将每个商品单独标注，并设置拥挤属性为假",
+    "explanation": "项目要求区分每个商品的独立实例，因此不能合并对象组。拥挤属性为真时同组形状会合并为游程编码掩码，破坏实例独立性；为假时可转换为多边形，保留独立分割。所以应单独标注并设置拥挤属性为假。",
+    "hint": [
+      "明确项目对实例区分的要求。",
+      "分析拥挤属性为真或假对实例表示的影响。",
+      "决定是否合并商品以及如何设置拥挤属性。"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "该题在密集排列商品场景中，要求依据COCO导出拥挤属性规则决定实例表示方式，直接训练密集目标技能。",
+    "content_hash": "666ec0bc828f295f849f63ced5d7092856e0f1145d067cd951f4b1093211b0c8",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:14.537145+00:00",
+    "generation_request_id": "472f3059-0d18-4f7d-a999-ed8d552143d2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "将每个商品单独标注，并设置拥挤属性为假",
+      "duplicate": false,
+      "reason": "来源KB-A7-004明确拥挤属性为真会合并为游程编码掩码、为假可转多边形；项目要求区分独立实例，故应单独标注且拥挤属性为假。题干自足，选项唯一正确，与旧题不重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "a49d4b16-2a4b-4f61-976a-0b7b604c5693",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:14.537145+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-666ec0bc828f295f849f63ce"
+  },
+  {
+    "skill_id": "A7-S2",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段拥挤街道视频中的多个行人。第1帧到第40帧，每个行人的轮廓可见，但相互遮挡。本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）。第1帧你从每个行人的头顶开始顺时针绘制。第20帧，由于行人低头，头顶被遮挡，你决定从脚底开始绘制。根据项目规则，第20帧的多边形应如何调整？",
+    "project_rule": "本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）。",
+    "options": [
+      "保持从脚底开始顺时针绘制，因为头顶被遮挡",
+      "改为从头顶开始逆时针绘制，以对应第1帧起点",
+      "改为从头顶开始顺时针绘制，以对应第1帧起点",
+      "保持从脚底开始逆时针绘制，因为行人低头"
+    ],
+    "answer": "改为从头顶开始顺时针绘制，以对应第1帧起点",
+    "explanation": "项目规则要求跨帧多边形轨迹保持起点对应和绘制方向一致。第1帧从头顶开始顺时针，第20帧也应从头顶开始顺时针，即使头顶被遮挡，也需在相应位置设置起点以保持对应关系。",
+    "hint": [
+      "回顾项目对跨帧多边形起点和方向的要求。",
+      "比较第1帧和第20帧的起点位置与绘制方向。",
+      "判断行人低头是否允许改变起点和方向。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "该题针对密集遮挡行人的多边形轨迹标注，要求依据跨帧起点对应和方向一致规则调整绘制，直接训练密集目标技能。",
+    "content_hash": "93e7d3b1a3cf57d46afdd5902cef74cb50d612daa9b826d03243894257e80d43",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:14.537145+00:00",
+    "generation_request_id": "472f3059-0d18-4f7d-a999-ed8d552143d2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "改为从头顶开始顺时针绘制，以对应第1帧起点",
+      "duplicate": false,
+      "reason": "来源KB-A7-003要求跨帧多边形起点对应且绘制方向一致；第1帧从头顶顺时针，第20帧也应从头顶顺时针，即使头顶被遮挡。题干规则清晰，唯一正确，与旧题不重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "a49d4b16-2a4b-4f61-976a-0b7b604c5693",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:14.537145+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-93e7d3b1a3cf57d46afdd590"
+  },
+  {
+    "skill_id": "A7-S3",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段视频中的小目标（远处行人）。第1帧目标轮廓完整，你从目标头部开始顺时针绘制多边形。第15帧目标因距离变远而变小，头部仍可见但轮廓模糊。本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；小目标标注时不得因目标变小而改变起点对应关系。根据项目规则，第15帧的多边形应如何绘制？",
+    "project_rule": "跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；小目标标注时不得因目标变小而改变起点对应关系。",
+    "options": [
+      "从目标头部开始顺时针绘制，保持与第1帧起点对应和方向一致",
+      "从目标脚部开始顺时针绘制，因为头部轮廓模糊",
+      "从目标头部开始逆时针绘制，以区分小目标",
+      "从目标中心开始顺时针绘制，因为目标变小"
+    ],
+    "answer": "从目标头部开始顺时针绘制，保持与第1帧起点对应和方向一致",
+    "explanation": "项目规则要求跨帧多边形轨迹保持起点对应和绘制方向一致，且小目标标注时不得因目标变小而改变起点对应关系。因此第15帧应从目标头部开始顺时针绘制，与第1帧保持一致。",
+    "hint": [
+      "回忆项目规则中关于跨帧多边形起点和方向的要求。",
+      "目标变小是否允许改变起点对应关系？",
+      "保持与第1帧相同的起点和方向。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "此题直接训练小目标跨帧多边形标注时保持起点对应和方向一致的技能，符合A7-S3小目标技能要求。",
+    "content_hash": "280a6a1954d2ed2d104445851399efd4217e2b61a4bedb332a0035415c553d69",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:50.847956+00:00",
+    "generation_request_id": "d153476f-7549-4f9b-a59c-b453de7dfe01",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "从目标头部开始顺时针绘制，保持与第1帧起点对应和方向一致",
+      "duplicate": false,
+      "reason": "题干给出小目标变小但可见的事实，规则明确要求保持起点对应和方向一致，选项唯一正确，来源KB-A7-003直接支持。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bce33b5-1ec6-4c33-b919-294242ac5669",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:50.847956+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-280a6a1954d2ed2d10444585"
+  },
+  {
+    "skill_id": "A7-S3",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频中的小目标（远处车辆）。第1帧车辆完整可见，你用矩形框标注。第10帧车辆被前方卡车完全挡住，无法看到任何部分。第20帧车辆从卡车另一侧重新出现，外观连续且位置衔接合理。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；小目标重新出现后需重新确认可见性。根据项目规则，第10帧和第20帧应如何处理？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；小目标重新出现后需重新确认可见性。",
+    "options": [
+      "第10帧标记为Outside，第20帧重新绘制矩形框并关联为同一轨迹",
+      "第10帧保留矩形框但缩小到最小尺寸，第20帧扩大矩形框",
+      "第10帧删除矩形框，第20帧新建独立轨迹",
+      "第10帧标记为Outside，第20帧新建独立轨迹"
+    ],
+    "answer": "第10帧标记为Outside，第20帧重新绘制矩形框并关联为同一轨迹",
+    "explanation": "根据项目规则，完全不可见时使用Outside状态，因此第10帧应标记为Outside；第20帧车辆重新出现且外观连续、位置衔接合理，应重新绘制矩形框并关联为同一轨迹。",
+    "hint": [
+      "完全不可见时项目规定使用什么状态？",
+      "重新出现且外观连续、位置衔接合理时，是否应视为同一目标？",
+      "第10帧用Outside，第20帧重新绘制并关联。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题训练小目标在完全遮挡后重新出现时的轨迹处理技能，涉及Outside状态和同一目标关联，符合A7-S3小目标技能。",
+    "content_hash": "daa59000d4a8af47d182ce10f3c792b3d88524cab114329ddd01e99818673fd8",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:50.847956+00:00",
+    "generation_request_id": "d153476f-7549-4f9b-a59c-b453de7dfe01",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第10帧标记为Outside，第20帧重新绘制矩形框并关联为同一轨迹",
+      "duplicate": false,
+      "reason": "完全不可见用Outside、外观位置连续视为同一目标，均来自KB-A7-001；选项唯一正确，且与旧题场景不同。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bce33b5-1ec6-4c33-b919-294242ac5669",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:50.847956+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-daa59000d4a8af47d182ce10"
+  },
+  {
+    "skill_id": "A7-S3",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频中的小目标（远处行人）骨架。第5帧行人右手腕被手提包挡住，但人仍在画面内；第15帧行人走出画面右边界，右手腕位于画面外；第25帧行人回到画面内，右手腕再次被手提包挡住。本练习规定：遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记；小目标骨架点需逐一确认状态。根据项目规则，第5帧、第15帧和第25帧的右手腕应分别标记为什么状态？",
+    "project_rule": "遮挡表示点仍在画面内但被其他对象挡住；出界表示点位于画面边界之外；隐藏是临时显示设置，不影响交付标记；小目标骨架点需逐一确认状态。",
+    "options": [
+      "第5帧遮挡，第15帧出界，第25帧遮挡",
+      "第5帧出界，第15帧遮挡，第25帧出界",
+      "第5帧隐藏，第15帧出界，第25帧隐藏",
+      "第5帧遮挡，第15帧隐藏，第25帧遮挡"
+    ],
+    "answer": "第5帧遮挡，第15帧出界，第25帧遮挡",
+    "explanation": "根据项目规则，遮挡表示点仍在画面内但被其他对象挡住，出界表示点位于画面边界之外。第5帧和第25帧右手腕被手提包挡住但人仍在画面内，应标记为遮挡；第15帧右手腕位于画面外，应标记为出界。",
+    "hint": [
+      "区分遮挡和出界的定义：点是否在画面内。",
+      "第5帧和第25帧人是否在画面内？",
+      "第15帧右手腕是否在画面边界之外？"
+    ],
+    "source_id": "KB-A7-002",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+    "skill_rationale": "此题训练小目标骨架点在不同可见性状态下的正确标记技能，符合A7-S3小目标技能。",
+    "content_hash": "f0a326bec0e1be3447d58a4eae9fc7e7322b8bfcddcc651c733ac81c39e8a96a",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:50.847956+00:00",
+    "generation_request_id": "d153476f-7549-4f9b-a59c-b453de7dfe01",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第5帧遮挡，第15帧出界，第25帧遮挡",
+      "duplicate": false,
+      "reason": "遮挡与出界定义来自KB-A7-002，三帧状态可独立判定，选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bce33b5-1ec6-4c33-b919-294242ac5669",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:50.847956+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-f0a326bec0e1be3447d58a4e"
+  },
+  {
+    "skill_id": "A7-S3",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤场景视频中的小目标（远处行人）。画面中有多个行人相互遮挡，其中两个行人外观相似且距离较近。本练习规定：拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形；项目要求交付COCO格式，且需要保留每个行人的独立实例分割表示；小目标不得因拥挤而随意合组。根据项目规则，应如何设置这两个行人的拥挤属性？",
+    "project_rule": "拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形；项目要求交付COCO格式，且需要保留每个行人的独立实例分割表示；小目标不得因拥挤而随意合组。",
+    "options": [
+      "将拥挤属性设为假，以便转换为多边形并保留独立实例",
+      "将拥挤属性设为真，以便合并为游程编码掩码",
+      "将拥挤属性设为真，但分别导出为独立多边形",
+      "将拥挤属性设为假，但合并为一个多边形"
+    ],
+    "answer": "将拥挤属性设为假，以便转换为多边形并保留独立实例",
+    "explanation": "项目要求保留每个行人的独立实例分割表示，且小目标不得因拥挤而随意合组。拥挤属性为真时会合并为游程编码掩码，不利于独立实例；设为假时可转换为多边形，保留独立实例。",
+    "hint": [
+      "项目要求保留独立实例分割表示。",
+      "拥挤属性为真时会发生什么？",
+      "设为假才能转换为多边形并保留独立实例。"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "此题训练小目标在拥挤场景下正确设置拥挤属性以保留独立实例的技能，符合A7-S3小目标技能。",
+    "content_hash": "cebf7c1af3915054da0f03d9eccff7dbb4cb6384f34ceaf5c1d7991dd8622b46",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:51:50.848961+00:00",
+    "generation_request_id": "d153476f-7549-4f9b-a59c-b453de7dfe01",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "将拥挤属性设为假，以便转换为多边形并保留独立实例",
+      "duplicate": false,
+      "reason": "COCO拥挤属性规则来自KB-A7-004，项目要求保留独立实例，因此设为假；选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5bce33b5-1ec6-4c33-b919-294242ac5669",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:51:50.848961+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-cebf7c1af3915054da0f03d9"
+  },
+  {
+    "skill_id": "A7-S3",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段视频中的远处行人（小目标）。第1帧行人轮廓完整，你从行人头部开始顺时针绘制多边形。第20帧行人因距离变远而变小，头部仍可见但轮廓模糊。本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；小目标标注时不得因目标变小而改变起点对应关系。根据项目规则，第20帧的多边形应如何绘制？",
+    "project_rule": "跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；小目标标注时不得因目标变小而改变起点对应关系。",
+    "options": [
+      "从行人头部开始顺时针绘制，保持起点对应和方向一致",
+      "从行人脚部开始顺时针绘制，因为头部模糊不易定位",
+      "从行人头部开始逆时针绘制，以区分不同帧",
+      "从行人身体中心开始顺时针绘制，因为目标变小"
+    ],
+    "answer": "从行人头部开始顺时针绘制，保持起点对应和方向一致",
+    "explanation": "项目规则明确要求跨帧多边形轨迹保持起点对应和绘制方向一致，且小目标不得因目标变小而改变起点对应关系。因此第20帧仍应从头部开始顺时针绘制。",
+    "hint": [
+      "回顾项目规则中关于跨帧多边形起点和方向的要求。",
+      "思考目标变小是否允许改变起点对应关系。",
+      "确认第1帧的起点和方向，并保持一致。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "该题直接训练小目标跨帧多边形标注时保持起点对应和方向一致的技能。",
+    "content_hash": "10741debe9870ad3bcddc7540e64864e7034b33849e468c800f888c669ab5916",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:52:00.665795+00:00",
+    "generation_request_id": "f694be7a-3b86-43dc-aa93-4e41c8fc7b0e",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "从行人头部开始顺时针绘制，保持起点对应和方向一致",
+      "duplicate": false,
+      "reason": "题干给出具体帧、起点与方向事实，项目规则明确；KB-A7-003支持跨帧多边形起点与方向一致，小目标变小不改变对应关系。四个选项唯一正确，解释与规则一致。与旧题相比，旧题涉及头顶被遮挡改从脚底绘制，本题为小目标变小且头部仍可见，判断点不同，不构成同题换名。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "ce0fef74-a9fa-4a7b-83fd-79bf585e4efd",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:52:00.665795+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-10741debe9870ad3bcddc754"
+  },
+  {
+    "skill_id": "A7-S4",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤街道视频，画面中有多辆汽车相互遮挡。其中一辆蓝色轿车从第1帧到第50帧始终可见，但被其他车辆部分遮挡。本练习规定：拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要保留每个实例的独立分割表示。根据项目规则，应如何设置这辆蓝色轿车的拥挤属性？",
+    "project_rule": "拥挤对象组属性为真时，同组形状可合并为游程编码掩码；为假时可转换为多边形。项目要求交付COCO格式，且需要保留每个实例的独立分割表示。",
+    "options": [
+      "将蓝色轿车的拥挤属性设为真，以便与其他车辆合并为游程编码掩码",
+      "将蓝色轿车的拥挤属性设为假，以保留其独立的多边形分割表示",
+      "将蓝色轿车的拥挤属性设为真，但单独导出为多边形",
+      "将蓝色轿车的拥挤属性设为假，但与其他车辆合并为游程编码掩码"
+    ],
+    "answer": "将蓝色轿车的拥挤属性设为假，以保留其独立的多边形分割表示",
+    "explanation": "项目要求保留每个实例的独立分割表示，而拥挤属性为真时同组形状可合并为游程编码掩码，这会破坏实例独立性。因此应设为假，以便转换为多边形，保留独立实例。",
+    "hint": [
+      "注意项目要求交付COCO格式并保留独立实例分割。",
+      "拥挤属性为真会导致同组形状合并，可能丢失实例独立性。",
+      "为了保留独立的多边形分割表示，拥挤属性应设为假。"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "此题直接考查在拥挤场景中根据项目要求正确设置拥挤属性，以保留独立实例分割，精确训练截断目标技能中关于拥挤对象组属性的应用。",
+    "content_hash": "158435ff518c7f1285f9d7525a63b1946bf8f16b188d75960e5977a9aeb025fb",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:52:11.450631+00:00",
+    "generation_request_id": "4386dd05-4af9-44ea-b105-e38726c6cbf6",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "将蓝色轿车的拥挤属性设为假，以保留其独立的多边形分割表示",
+      "duplicate": false,
+      "reason": "来源KB-A7-004明确拥挤属性为真时同组形状可合并为游程编码掩码、为假时可转换为多边形；题干要求保留每个实例独立分割，因此设为假正确。选项唯一可判，解释与规则一致。与旧题虽同属拥挤属性场景，但旧题多为行人/商品且部分问法不同，本题聚焦蓝色轿车且规则组合一致，属同技能换场景，不构成简单换名重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "965327e8-c797-49b2-9167-32eca6f031e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:52:11.450631+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-158435ff518c7f1285f9d752"
+  },
+  {
+    "skill_id": "A7-S4",
+    "type": "choice",
+    "title": "你在CVAT中用轨迹模式标注一段视频中的行人。第1至30帧行人完整可见，第31至50帧行人被公交车完全挡住，第51帧起行人从公交车另一侧重新出现，但外观与之前明显不同（衣服颜色改变）且位置跳跃较大。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。根据项目规则，第31至50帧及第51帧起应如何处理？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。",
+    "options": [
+      "第31至50帧将轨迹标记为Outside状态；第51帧起新建一个轨迹，不合并到原轨迹。",
+      "第31至50帧将轨迹标记为Outside状态；第51帧起继续使用原轨迹，并调整关键帧。",
+      "第31至50帧保留可见矩形并插值；第51帧起继续使用原轨迹。",
+      "第31至50帧删除轨迹；第51帧起新建一个轨迹。"
+    ],
+    "answer": "第31至50帧将轨迹标记为Outside状态；第51帧起新建一个轨迹，不合并到原轨迹。",
+    "explanation": "根据项目规则，完全不可见时使用Outside状态，因此第31至50帧应标记为Outside。第51帧起外观和位置不连续，不符合合并条件，不得合并轨迹，应新建轨迹。",
+    "hint": [
+      "先判断完全不可见时应该用什么状态表示。",
+      "再检查重新出现时外观和位置是否连续。",
+      "最后根据连续性决定是否合并轨迹。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "此题直接训练在轨迹模式中处理目标消失与再次出现时的截断决策，包括Outside状态使用和轨迹合并条件。",
+    "content_hash": "74685dbb2d1cb8d8ee8992631df4a53820284bbee054d0e5d3d6c70177e68349",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:52:23.232167+00:00",
+    "generation_request_id": "25125a10-9d9a-460d-9fac-cecfe5e306a5",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第31至50帧将轨迹标记为Outside状态；第51帧起新建一个轨迹，不合并到原轨迹。",
+      "duplicate": false,
+      "reason": "题干给出完全不可见且重新出现时外观/位置不连续的具体事实，规则明确；Outside状态与不合并轨迹均直接来自KB-A7-001，选项唯一正确，解释与规则一致。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "3f7a1979-d93b-410d-95b7-3ae1f94ce899",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:52:23.232167+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-74685dbb2d1cb8d8ee899263"
+  },
+  {
+    "skill_id": "A7-S4",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段视频中的被遮挡物体。第1帧物体轮廓完整，你从物体顶部开始顺时针绘制多边形。第20帧物体被前景柱子挡住约一半，顶部仍可见但轮廓不完整。本练习规定：跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；完全不可见时使用Outside状态。根据项目规则，第20帧的多边形应如何绘制？",
+    "project_rule": "跨帧多边形轨迹必须保持起点对应和绘制方向一致（例如始终顺时针）；完全不可见时使用Outside状态。",
+    "options": [
+      "从物体顶部开始顺时针绘制，保持起点对应和方向一致。",
+      "从物体底部开始顺时针绘制，因为顶部被遮挡。",
+      "从物体顶部开始逆时针绘制，以区分遮挡部分。",
+      "将多边形标记为Outside状态，因为物体被部分遮挡。"
+    ],
+    "answer": "从物体顶部开始顺时针绘制，保持起点对应和方向一致。",
+    "explanation": "项目规则要求跨帧多边形轨迹保持起点对应和绘制方向一致。第20帧物体仍部分可见，不应使用Outside状态，而应从与第1帧对应的顶部开始顺时针绘制。",
+    "hint": [
+      "确认物体是否完全不可见。",
+      "回忆跨帧多边形轨迹的起点和方向要求。",
+      "部分遮挡时仍需保持对应关系。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "此题训练在多边形轨迹中处理部分遮挡时的截断操作，强调起点对应和方向一致，避免因遮挡改变绘制方式。",
+    "content_hash": "af1bccdc1239e96e387fde07390b970f7d11bada441719d8a4f7a0dcdc914372",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:52:23.232167+00:00",
+    "generation_request_id": "25125a10-9d9a-460d-9fac-cecfe5e306a5",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "从物体顶部开始顺时针绘制，保持起点对应和方向一致。",
+      "duplicate": false,
+      "reason": "部分遮挡仍可见，不应使用Outside；KB-A7-003要求跨帧多边形起点对应、方向一致，从顶部顺时针绘制是唯一符合规则的选项。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "3f7a1979-d93b-410d-95b7-3ae1f94ce899",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:52:23.232167+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-af1bccdc1239e96e387fde07"
+  },
+  {
+    "skill_id": "A7-S5",
+    "type": "choice",
+    "title": "你在CVAT中标注一段视频中的行人轨迹。第1至30帧行人完整可见，第31至45帧被公交车完全挡住，第46帧起行人从公交车另一侧重新出现，但外观与之前明显不同（衣服颜色改变）且位置跳跃较大。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。根据项目规则，第31至45帧及第46帧起应如何处理？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；完全不可见时使用Outside状态；外观或位置不连续时不得合并轨迹。",
+    "options": [
+      "第31至45帧使用Outside状态；第46帧起新建独立轨迹，不合并。",
+      "第31至45帧继续保留可见矩形；第46帧起合并轨迹。",
+      "第31至45帧使用Outside状态；第46帧起合并轨迹。",
+      "第31至45帧使用Outside状态；第46帧起继续沿用原轨迹并插值。"
+    ],
+    "answer": "第31至45帧使用Outside状态；第46帧起新建独立轨迹，不合并。",
+    "explanation": "第31至45帧行人完全不可见，应使用Outside状态；第46帧起外观和位置均不连续，不符合同一目标条件，因此不得合并轨迹，应新建独立轨迹。",
+    "hint": [
+      "先判断完全不可见时工具提供的状态表示。",
+      "再检查重新出现时外观和位置是否连续。",
+      "最后根据连续性决定是否合并轨迹。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "该题要求依据外观和位置连续性判断轨迹合并，并正确处理完全不可见状态，直接训练困难样本中的轨迹连续性决策。",
+    "content_hash": "17a5ebba3450bdddb196199eb08eed31d730ce32625c8eb4431b46d9989f1e64",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:53:05.324030+00:00",
+    "generation_request_id": "2d5408aa-b471-4f7f-8f99-ae708126211e",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "第31至45帧使用Outside状态；第46帧起新建独立轨迹，不合并。",
+      "duplicate": false,
+      "reason": "题干给出完全不可见且重新出现时外观与位置均不连续的具体事实，规则明确；正确选项同时处理Outside状态与不合并轨迹，其他选项均违反规则。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "49d8ffe3-7508-4f75-b11a-1a66e5d0c5cc",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:53:05.324030+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-17a5ebba3450bdddb196199e"
+  },
+  {
+    "skill_id": "A7-S5",
+    "type": "choice",
+    "title": "你在CVAT中标注一段拥挤场景视频。画面中有多辆车相互遮挡，其中两辆车在连续帧中外观和位置都连续，但被其他车辆部分挡住。本练习规定：只有外观连续且位置衔接合理时才视为同一目标；拥挤对象组属性为真时同组形状可合并为游程编码掩码。项目要求交付COCO格式，且需要保留每个实例的独立分割表示。根据项目规则，应如何处理这两辆车的轨迹？",
+    "project_rule": "只有外观连续且位置衔接合理时才视为同一目标；拥挤对象组属性为真时同组形状可合并为游程编码掩码；项目要求交付COCO格式，且需要保留每个实例的独立分割表示。",
+    "options": [
+      "将两辆车分别作为独立轨迹标注，拥挤属性设为假。",
+      "将两辆车合并为同一轨迹，拥挤属性设为真。",
+      "将两辆车分别作为独立轨迹标注，拥挤属性设为真。",
+      "将两辆车合并为同一轨迹，拥挤属性设为假。"
+    ],
+    "answer": "将两辆车分别作为独立轨迹标注，拥挤属性设为假。",
+    "explanation": "两辆车外观和位置连续，但属于不同目标，应分别标注；项目要求保留独立实例分割表示，因此拥挤属性应设为假，避免合并为游程编码掩码。",
+    "hint": [
+      "外观和位置连续是否意味着它们是同一目标？",
+      "项目要求保留独立实例分割表示，这对拥挤属性有何影响？",
+      "拥挤属性为真时，同组形状会如何表示？"
+    ],
+    "source_id": "KB-A7-004",
+    "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+    "skill_rationale": "该题要求根据实例独立性和COCO导出规则决定拥挤属性，训练困难样本中拥挤场景的实例区分能力。",
+    "content_hash": "777d9e78dafdb65ca49eb85bcb54b3e4dc02da5ddb287b056d1fb3e67584e40a",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:53:05.324694+00:00",
+    "generation_request_id": "2d5408aa-b471-4f7f-8f99-ae708126211e",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "将两辆车分别作为独立轨迹标注，拥挤属性设为假。",
+      "duplicate": false,
+      "reason": "两辆车虽外观位置连续但为不同实例，项目要求保留独立实例分割，故应分别标注且拥挤属性为假；其他选项会导致合并或错误合组。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "49d8ffe3-7508-4f75-b11a-1a66e5d0c5cc",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:53:05.324694+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-777d9e78dafdb65ca49eb85b"
+  },
+  {
+    "skill_id": "A7-S5",
+    "type": "choice",
+    "title": "你在使用MVTec D2S数据集进行实例分割标注。训练图像均为均匀背景上的单一类别，但验证集图像中目标出现在杂乱背景、不同旋转角度和变化光照下。本练习规定：类别定义必须在不同成像条件下保持同一含义，且不能只凭训练样例中的固定位置或背景找目标。当你拿到一张验证集图像时，应如何操作？",
+    "project_rule": "本练习规定：类别定义必须在不同成像条件下保持同一含义；不能只凭训练样例中的固定位置或背景找目标；需要重新核对每个实例和轮廓。",
+    "options": [
+      "沿用训练时记住的目标位置和背景特征，直接框选相同位置",
+      "先观察图像中的光照、旋转和背景变化，再根据类别定义重新识别每个实例并核对轮廓",
+      "因为背景杂乱，放弃标注该图像",
+      "只标注与训练图像背景相似的部分，其余部分跳过"
+    ],
+    "answer": "先观察图像中的光照、旋转和背景变化，再根据类别定义重新识别每个实例并核对轮廓",
+    "explanation": "MVTec D2S的验证和测试场景会改变光照、旋转和背景，因此不能依赖固定位置或背景找目标，必须根据类别定义重新核对每个实例和轮廓。",
+    "hint": [
+      "回忆训练图像和验证图像在背景、光照、旋转上的差异。",
+      "项目规则强调类别定义在不同成像条件下保持同一含义。",
+      "需要重新核对每个实例和轮廓，而不是套用固定位置。"
+    ],
+    "source_id": "KB-A7-005",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+    "skill_rationale": "该题直接训练在复杂视觉场景（背景、旋转、光照变化）中重新核对实例和轮廓的困难样本处理能力。",
+    "content_hash": "5bdca5aeb7c4e17295f6adbc80d47ada79d21bae6c0051ab7015dceb7ff64653",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:53:15.596870+00:00",
+    "generation_request_id": "35338c42-a109-4eb6-bcc9-d561bf12beb4",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "先观察图像中的光照、旋转和背景变化，再根据类别定义重新识别每个实例并核对轮廓",
+      "duplicate": false,
+      "reason": "来源KB-A7-005明确说明验证/测试场景改变光照、旋转和背景，不能依赖固定位置或背景，需重新核对实例和轮廓；题干给出具体事实与本练习规则，正确选项唯一，干扰项均为明显错误做法。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c3a44645-0389-46b6-8b37-12f328240db5",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:53:15.596870+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-5bdca5aeb7c4e17295f6adbc"
+  },
+  {
+    "skill_id": "A7-S4",
+    "type": "choice",
+    "title": "你在CVAT中用轨迹模式标注一段视频中的快递员。第1至30帧快递员完整可见；第31至44帧快递员被路边停放的面包车完全挡住，画面中看不到其任何部分；第45帧起快递员从面包车另一侧重新出现，外观连续且位置衔接合理。本练习规定：完全不可见时使用Outside状态，且不得把插值自动延续到不可见区间；只有外观连续且位置衔接合理时才视为同一目标。根据项目规则，第31至44帧应如何处理？",
+    "project_rule": "本练习规定：完全不可见时使用Outside状态，且不得把插值自动延续到不可见区间；只有外观连续且位置衔接合理时才视为同一目标。",
+    "options": [
+      "在第31帧将轨迹设为Outside，使第31至44帧不保留可见矩形；第45帧重新出现且外观连续、位置衔接合理，继续同一轨迹",
+      "在第31至44帧继续保留第30帧的矩形，让工具自动插值，因为第45帧同一目标会重新出现",
+      "在第31至44帧把矩形缩小到画面边缘，表示目标被挡住，第45帧再放大回原尺寸",
+      "在第31帧结束该轨迹，第45帧新建一个不同编号的轨迹，因为中间帧不可见"
+    ],
+    "answer": "在第31帧将轨迹设为Outside，使第31至44帧不保留可见矩形；第45帧重新出现且外观连续、位置衔接合理，继续同一轨迹",
+    "explanation": "依据本练习规定，完全不可见时使用Outside状态，且不得把插值自动延续到不可见区间；第45帧外观连续、位置衔接合理，视为同一目标，继续同一轨迹。",
+    "hint": [
+      "先判断第31至44帧目标是否在画面中可见。",
+      "不可见区间不能靠插值保留可见矩形。",
+      "重新出现且外观连续、位置衔接合理时，应延续同一目标。"
+    ],
+    "source_id": "KB-A7-001",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+    "skill_rationale": "该题直接训练截断目标中“完全不可见区间使用Outside且不延续插值”的判定，符合A7-S4技能。",
+    "content_hash": "63755265097d8209dfe6d7350c6ce5ca743666f8574b78c9d224489e81d23397",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:55:39.638948+00:00",
+    "generation_request_id": "fd9b22fd-c0fb-46af-a1b7-8166b907197d",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "在第31帧将轨迹设为Outside，使第31至44帧不保留可见矩形；第45帧重新出现且外观连续、位置衔接合理，继续同一轨迹",
+      "duplicate": false,
+      "reason": "题干给出完全不可见区间及重新出现时外观连续、位置衔接合理的事实，规则明确要求完全不可见时使用Outside且不得插值延续；正确选项与KB-A7-001的Outside状态和同一轨迹延续一致，其他选项均违反规则。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "3e376204-a31e-4ab6-b41a-05c9b1ef3386",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:55:39.638948+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-63755265097d8209dfe6d735"
+  },
+  {
+    "skill_id": "A7-S5",
+    "type": "choice",
+    "title": "你在使用MVTec D2S数据集做实例分割标注。训练图像都是均匀背景上的单一类别，你已习惯按固定背景和大致位置找目标。现在拿到一张验证集图像：目标出现在杂乱货架背景前，且整体旋转了约90度，光照偏暗。本练习规定：类别定义必须在不同成像条件下保持同一含义，不能只凭训练样例中的固定位置或背景找目标。根据项目规则，你应如何操作？",
+    "project_rule": "本练习规定：类别定义必须在不同成像条件下保持同一含义；不能只凭训练样例中的固定位置或背景找目标；从简单图像转向复杂场景时，要重新核对每个实例和轮廓。",
+    "options": [
+      "因为背景与训练样例不同，直接将该图判为无目标并跳过",
+      "仍按训练样例中的固定位置和背景去找目标，找不到就放弃",
+      "先忽略背景、旋转和光照变化，重新逐实例核对目标轮廓，再按同一类别定义完成分割标注",
+      "把旋转后的目标当作新类别，另建一个标签再标注"
+    ],
+    "answer": "先忽略背景、旋转和光照变化，重新逐实例核对目标轮廓，再按同一类别定义完成分割标注",
+    "explanation": "KB-A7-005指出验证和测试场景会改变光照、旋转和背景，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；类别定义需在不同成像条件下保持同一含义。因此应重新核对轮廓并按同一类别定义标注，而不是跳过、死守固定位置或另建类别。",
+    "hint": [
+      "回忆资料中训练图像与验证/测试场景的差异。",
+      "类别定义是否随背景、旋转、光照改变？",
+      "操作重点应放在重新核对实例和轮廓上。"
+    ],
+    "source_id": "KB-A7-005",
+    "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+    "skill_rationale": "该题直接训练在背景、旋转、光照同时变化的困难样本中重新核对实例与轮廓、保持类别定义一致的能力。",
+    "content_hash": "4665edf3f97c8777cc9e064e6cbfb77ad751a0c8dc1b8e3684d10b70802548d1",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:55:50.602504+00:00",
+    "generation_request_id": "ed90ed1b-f895-4e28-9776-e8f5ace97594",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "先忽略背景、旋转和光照变化，重新逐实例核对目标轮廓，再按同一类别定义完成分割标注",
+      "duplicate": false,
+      "reason": "直接依据KB-A7-005的复杂场景变化与类别定义一致性，正确选项唯一，干扰项均违反规则。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5b5fa72a-c69b-4b86-a3ef-4c56f571c897",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:55:50.602504+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-4665edf3f97c8777cc9e064e"
+  },
+  {
+    "skill_id": "A7-S5",
+    "type": "choice",
+    "title": "你在CVAT中用多边形轨迹标注一段拥挤街道视频中的多个行人。第1帧你从每个行人的头顶开始、沿顺时针方向绘制多边形。第20帧由于行人低头，头顶被遮挡，你打算改从脚底开始绘制。本练习规定：跨帧多边形轨迹必须保持起点与先前起点对应，绘制方向一致（例如始终顺时针）；困难样本中不得因局部遮挡而改变起点对应关系。根据项目规则，第20帧的多边形应如何调整？",
+    "project_rule": "本练习规定：跨帧多边形轨迹必须保持起点与先前起点对应，绘制方向一致（例如始终顺时针）；不得因局部遮挡而改变起点对应关系。",
+    "options": [
+      "改从脚底开始顺时针绘制，只要轮廓看起来合理即可",
+      "改从脚底开始逆时针绘制，以避开被遮挡的头顶",
+      "仍从与第1帧头顶对应的位置开始、保持顺时针方向，再调整轮廓绕开遮挡区域",
+      "因为头顶被遮挡，第20帧直接使用Outside状态，不绘制多边形"
+    ],
+    "answer": "仍从与第1帧头顶对应的位置开始、保持顺时针方向，再调整轮廓绕开遮挡区域",
+    "explanation": "KB-A7-003要求后续多边形的起点与先前起点对应，绘制方向也应一致。第20帧虽然头顶被遮挡，但行人仍在画面内，应保持起点对应和顺时针方向，再调整轮廓；改起点、改方向或直接Outside都不符合规则。",
+    "hint": [
+      "回忆多边形轨迹对起点和绘制方向的要求。",
+      "头顶被遮挡是否等于目标完全不可见？",
+      "保持对应关系后再调整轮廓绕开遮挡。"
+    ],
+    "source_id": "KB-A7-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+    "skill_rationale": "该题训练在困难样本中保持跨帧多边形起点对应与绘制方向一致，而不是因局部遮挡改变对应关系。",
+    "content_hash": "15b70be71eb6ed59b984b2dade40124c4dde700ffeb26ba02944f082adfbfd85",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:55:50.602504+00:00",
+    "generation_request_id": "ed90ed1b-f895-4e28-9776-e8f5ace97594",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "仍从与第1帧头顶对应的位置开始、保持顺时针方向，再调整轮廓绕开遮挡区域",
+      "duplicate": false,
+      "reason": "依据KB-A7-003跨帧多边形起点对应与方向一致规则，局部遮挡不等于Outside，正确选项唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "5b5fa72a-c69b-4b86-a3ef-4c56f571c897",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:55:50.602504+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A7-005",
+        "title": "复杂场景可能同时改变背景、旋转和光照",
+        "content": "MVTec D2S 的训练图像主要是在均匀背景上呈现单一类别，而验证和测试场景更加多样，还改变光照、旋转和背景。数据集为实例分割任务提供精细的对象标签。这表明从简单图像转向复杂场景时，学员要重新核对每个实例和轮廓，不能只凭训练样例中的固定位置或背景找目标；任务的类别定义需要在不同成像条件下保持同一含义。",
+        "source_url": "https://www.mvtec.com/research-teaching/datasets/mvtec-d2s",
+        "source_name": "MVTec · D2S dataset"
+      },
+      {
+        "id": "KB-A7-001",
+        "title": "视频轨迹需要处理消失与再次出现",
+        "content": "CVAT 的轨迹模式可以在关键帧调整目标矩形，并对中间帧进行插值。当对象消失或变得过小时，可使用 Outside 状态表示该处不再延续可见轨迹；对象间隔若干帧后再次出现时，工具提供合并轨迹的能力。标注员需要依据视频中的对象连续性处理这些变化，不能把一次插值自动延续到所有后续帧，也不能在缺少依据时将不同对象的轨迹合并。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/track-mode-basics/",
+        "source_name": "CVAT · Track mode advanced"
+      },
+      {
+        "id": "KB-A7-002",
+        "title": "关键点遮挡、出界和界面隐藏含义不同",
+        "content": "CVAT 骨架由多个关键点组成，每个点可具有自己的可见性和遮挡属性。外部状态表示该点位于画面边界之外；遮挡通常表示点仍在画面内但被其他对象挡住；隐藏则是方便操作者查看界面的临时显示设置。骨架标注时应按点逐一确认状态，不能因为界面上暂时看不见某个点，就把显示隐藏误当成需要交付的出界或遮挡标记。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/skeletons/",
+        "source_name": "CVAT · Annotation with skeletons"
+      },
+      {
+        "id": "KB-A7-003",
+        "title": "跨帧多边形要保持对应点方向一致",
+        "content": "CVAT 的多边形轨迹允许在不同关键帧重画或调整轮廓，并自动生成中间帧。官方指南要求后续多边形的起点与先前起点对应，绘制方向也应一致，例如始终沿顺时针方向。跨帧标注时，不只要检查每张轮廓看起来合理，还要检查点的对应关系；否则同一序号的点可能落在不同部位，影响工具在中间帧推算的形状。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/track-mode-with-polygons/",
+        "source_name": "CVAT · Track mode with polygons"
+      },
+      {
+        "id": "KB-A7-004",
+        "title": "拥挤对象组在COCO导出中有专门表示",
+        "content": "CVAT 的 COCO 导出支持拥挤对象组属性。该属性为真时，同组形状可合并为一个采用游程编码的掩码；为假时可转换为多边形，组中较大形状会影响组的属性。处理拥挤场景前，需要先理解项目规定如何定义对象组以及如何设置拥挤属性。不能仅凭画面里对象很多就随意合组，因为组的设置会直接改变交付文件中的实例与分割表示。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-coco/",
+        "source_name": "CVAT · COCO format"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-15b70be71eb6ed59b984b2da"
+  }
+]

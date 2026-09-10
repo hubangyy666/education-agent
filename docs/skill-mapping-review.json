@@ -1,0 +1,691 @@
+{
+  "reviewer": "/root/requirements_review",
+  "date": "2026-09-10",
+  "catalog_skills": {
+    "A1": [
+      "数据与标签",
+      "标注任务类型",
+      "标准答案",
+      "工作流程",
+      "数据安全"
+    ],
+    "A2": [
+      "标签定义",
+      "边界规则",
+      "歧义处理",
+      "属性规范",
+      "一致性检查"
+    ],
+    "A3": [
+      "类别判断",
+      "多标签分类",
+      "属性识别",
+      "相似类别",
+      "类别平衡"
+    ],
+    "A4": [
+      "目标发现",
+      "单目标框选",
+      "边界控制",
+      "多目标",
+      "小目标"
+    ],
+    "A5": [
+      "多边形描绘",
+      "语义分割",
+      "实例分割",
+      "边界贴合",
+      "遮挡分割"
+    ],
+    "A6": [
+      "缺陷定义",
+      "裂纹识别",
+      "划痕识别",
+      "正常与异常",
+      "相似缺陷判断"
+    ],
+    "A7": [
+      "遮挡目标",
+      "密集目标",
+      "小目标",
+      "截断目标",
+      "困难样本"
+    ],
+    "A8": [
+      "实体识别",
+      "实体边界",
+      "情感分析",
+      "意图分类",
+      "语义歧义"
+    ],
+    "A9": [
+      "预标注审核",
+      "一致性检查",
+      "抽样质检",
+      "错误归因",
+      "返修复核"
+    ],
+    "A10": [
+      "需求澄清",
+      "试标验收",
+      "批量生产",
+      "质量报告",
+      "交付归档"
+    ]
+  },
+  "catalog_skills_sha256": "a6d547f91d303ef5855915e3fa3b3ed91fc69c9f50fe19bbd0f22347def1087d",
+  "count": 55,
+  "decisions": {
+    "unchanged": 22,
+    "remapped": 19,
+    "ability_only": 14
+  },
+  "factual_review_scores_preserved": true,
+  "items": [
+    {
+      "id": "KB-GENERAL-001",
+      "title": "一个标注项目包含哪些基本步骤",
+      "ability_id": null,
+      "old_skill_id": null,
+      "old_skill_name": null,
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "unchanged",
+      "reason": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类"
+    },
+    {
+      "id": "KB-GENERAL-002",
+      "title": "Ground Truth为什么能用于标注质检",
+      "ability_id": null,
+      "old_skill_id": null,
+      "old_skill_name": null,
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "unchanged",
+      "reason": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类"
+    },
+    {
+      "id": "KB-GENERAL-003",
+      "title": "数据工作为什么要记录范围与责任",
+      "ability_id": null,
+      "old_skill_id": null,
+      "old_skill_name": null,
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "unchanged",
+      "reason": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类"
+    },
+    {
+      "id": "KB-GENERAL-004",
+      "title": "公开数据还需要核对哪些使用条件",
+      "ability_id": null,
+      "old_skill_id": null,
+      "old_skill_name": null,
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "unchanged",
+      "reason": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类"
+    },
+    {
+      "id": "KB-GENERAL-005",
+      "title": "当文本没有支持答案时如何处理",
+      "ability_id": "A8",
+      "old_skill_id": null,
+      "old_skill_name": null,
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "unchanged",
+      "reason": "通用知识或超出现有单一技能的语义任务，保留原 scope/ability 分类"
+    },
+    {
+      "id": "KB-A1-001",
+      "title": "不同视觉任务需要不同标注形状",
+      "ability_id": "A1",
+      "old_skill_id": "A1-S1",
+      "old_skill_name": "数据与标签",
+      "new_skill_id": "A1-S2",
+      "new_skill_name": "标注任务类型",
+      "decision": "remapped",
+      "reason": "核心是按任务类型选择标注形状"
+    },
+    {
+      "id": "KB-A1-002",
+      "title": "区分原始任务、区域与标签",
+      "ability_id": "A1",
+      "old_skill_id": "A1-S2",
+      "old_skill_name": "标注任务类型",
+      "new_skill_id": "A1-S1",
+      "new_skill_name": "数据与标签",
+      "decision": "remapped",
+      "reason": "直接解释原始任务、区域与标签的含义"
+    },
+    {
+      "id": "KB-A1-003",
+      "title": "认识手工、半自动与自动标注",
+      "ability_id": "A1",
+      "old_skill_id": "A1-S3",
+      "old_skill_name": "标准答案",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "产生方式不等同于现课程的任务类型或标准答案"
+    },
+    {
+      "id": "KB-A1-004",
+      "title": "作业列表中的阶段与状态各指什么",
+      "ability_id": "A1",
+      "old_skill_id": "A1-S4",
+      "old_skill_name": "工作流程",
+      "new_skill_id": "A1-S4",
+      "new_skill_name": "工作流程",
+      "decision": "unchanged",
+      "reason": "作业阶段与状态属于工作流程"
+    },
+    {
+      "id": "KB-A1-005",
+      "title": "按 UD 约定分别组织训练、开发和测试文件",
+      "ability_id": "A1",
+      "old_skill_id": "A1-S5",
+      "old_skill_name": "数据安全",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "数据集文件划分不对应数据安全技能"
+    },
+    {
+      "id": "KB-A2-001",
+      "title": "开工前在哪里确认标注规范",
+      "ability_id": "A2",
+      "old_skill_id": "A2-S1",
+      "old_skill_name": "标签定义",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "说明查找位置与适用范围，不直接讲标签定义"
+    },
+    {
+      "id": "KB-A2-002",
+      "title": "标签配置发生变化为什么会影响已有结果",
+      "ability_id": "A2",
+      "old_skill_id": "A2-S2",
+      "old_skill_name": "边界规则",
+      "new_skill_id": "A2-S1",
+      "new_skill_name": "标签定义",
+      "decision": "remapped",
+      "reason": "标签集合及配置变更对应标签定义维护"
+    },
+    {
+      "id": "KB-A2-003",
+      "title": "类别和属性为什么要分开定义",
+      "ability_id": "A2",
+      "old_skill_id": "A2-S3",
+      "old_skill_name": "歧义处理",
+      "new_skill_id": "A2-S4",
+      "new_skill_name": "属性规范",
+      "decision": "remapped",
+      "reason": "直接讲类别与属性的配置区别"
+    },
+    {
+      "id": "KB-A2-004",
+      "title": "层级标签要遵守选取深度",
+      "ability_id": "A2",
+      "old_skill_id": "A2-S4",
+      "old_skill_name": "属性规范",
+      "new_skill_id": "A2-S1",
+      "new_skill_name": "标签定义",
+      "decision": "remapped",
+      "reason": "层级标签选取深度属于标签定义与取值范围"
+    },
+    {
+      "id": "KB-A2-005",
+      "title": "交付格式会限制可保留的标注信息",
+      "ability_id": "A2",
+      "old_skill_id": "A2-S5",
+      "old_skill_name": "一致性检查",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "导出格式约束不对应一致性检查的具体能力"
+    },
+    {
+      "id": "KB-A3-001",
+      "title": "整图分类的标签作用于整张图",
+      "ability_id": "A3",
+      "old_skill_id": "A3-S1",
+      "old_skill_name": "类别判断",
+      "new_skill_id": "A3-S1",
+      "new_skill_name": "类别判断",
+      "decision": "unchanged",
+      "reason": "整图分类直接对应类别判断"
+    },
+    {
+      "id": "KB-A3-002",
+      "title": "单选和多选由任务配置决定",
+      "ability_id": "A3",
+      "old_skill_id": "A3-S2",
+      "old_skill_name": "多标签分类",
+      "new_skill_id": "A3-S2",
+      "new_skill_name": "多标签分类",
+      "decision": "unchanged",
+      "reason": "单选和多选配置直接对应多标签分类"
+    },
+    {
+      "id": "KB-A3-003",
+      "title": "属性补全应逐对象逐字段进行",
+      "ability_id": "A3",
+      "old_skill_id": "A3-S3",
+      "old_skill_name": "属性识别",
+      "new_skill_id": "A3-S3",
+      "new_skill_name": "属性识别",
+      "decision": "unchanged",
+      "reason": "逐对象逐字段补全属性"
+    },
+    {
+      "id": "KB-A3-004",
+      "title": "分类树和分类结果的显示名称可能不同",
+      "ability_id": "A3",
+      "old_skill_id": "A3-S4",
+      "old_skill_name": "相似类别",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "显示名称与导出编码映射不等同于相似类别辨别"
+    },
+    {
+      "id": "KB-A3-005",
+      "title": "帧级标签不需要绘制目标框",
+      "ability_id": "A3",
+      "old_skill_id": "A3-S5",
+      "old_skill_name": "类别平衡",
+      "new_skill_id": "A3-S1",
+      "new_skill_name": "类别判断",
+      "decision": "remapped",
+      "reason": "帧级分类属于整帧类别判断，不是类别平衡"
+    },
+    {
+      "id": "KB-A4-001",
+      "title": "目标发现要覆盖任务要求的所有实例",
+      "ability_id": "A4",
+      "old_skill_id": "A4-S1",
+      "old_skill_name": "目标发现",
+      "new_skill_id": "A4-S1",
+      "new_skill_name": "目标发现",
+      "decision": "unchanged",
+      "reason": "逐一找全实例直接对应目标发现"
+    },
+    {
+      "id": "KB-A4-002",
+      "title": "用两个对角点创建单目标框",
+      "ability_id": "A4",
+      "old_skill_id": "A4-S2",
+      "old_skill_name": "单目标框选",
+      "new_skill_id": "A4-S2",
+      "new_skill_name": "单目标框选",
+      "decision": "unchanged",
+      "reason": "通过对角点创建单目标框"
+    },
+    {
+      "id": "KB-A4-003",
+      "title": "用四个极值点理解目标边界",
+      "ability_id": "A4",
+      "old_skill_id": "A4-S3",
+      "old_skill_name": "边界控制",
+      "new_skill_id": "A4-S3",
+      "new_skill_name": "边界控制",
+      "decision": "unchanged",
+      "reason": "极值点方法直接帮助控制边界"
+    },
+    {
+      "id": "KB-A4-004",
+      "title": "用对象列表检查多目标标注",
+      "ability_id": "A4",
+      "old_skill_id": "A4-S4",
+      "old_skill_name": "多目标",
+      "new_skill_id": "A4-S4",
+      "new_skill_name": "多目标",
+      "decision": "unchanged",
+      "reason": "对象列表与原图核对对应多目标完整性"
+    },
+    {
+      "id": "KB-A4-005",
+      "title": "小目标检查需要局部放大与全图核对",
+      "ability_id": "A4",
+      "old_skill_id": "A4-S5",
+      "old_skill_name": "小目标",
+      "new_skill_id": "A4-S5",
+      "new_skill_name": "小目标",
+      "decision": "unchanged",
+      "reason": "局部放大和全图复核直接面向小目标"
+    },
+    {
+      "id": "KB-A5-001",
+      "title": "多边形通过沿轮廓布点形成区域",
+      "ability_id": "A5",
+      "old_skill_id": "A5-S1",
+      "old_skill_name": "多边形描绘",
+      "new_skill_id": "A5-S1",
+      "new_skill_name": "多边形描绘",
+      "decision": "unchanged",
+      "reason": "沿轮廓布点构建多边形"
+    },
+    {
+      "id": "KB-A5-002",
+      "title": "画笔掩码可以表示不连续的可见部分",
+      "ability_id": "A5",
+      "old_skill_id": "A5-S2",
+      "old_skill_name": "语义分割",
+      "new_skill_id": "A5-S5",
+      "new_skill_name": "遮挡分割",
+      "decision": "remapped",
+      "reason": "被遮挡对象的不连续可见区域掩码"
+    },
+    {
+      "id": "KB-A5-003",
+      "title": "相邻区域可通过吸附保持边界对齐",
+      "ability_id": "A5",
+      "old_skill_id": "A5-S3",
+      "old_skill_name": "实例分割",
+      "new_skill_id": "A5-S4",
+      "new_skill_name": "边界贴合",
+      "decision": "remapped",
+      "reason": "吸附和顶点对齐直接面向边界贴合"
+    },
+    {
+      "id": "KB-A5-004",
+      "title": "多边形局部返修可以替换一段轮廓",
+      "ability_id": "A5",
+      "old_skill_id": "A5-S4",
+      "old_skill_name": "边界贴合",
+      "new_skill_id": "A5-S4",
+      "new_skill_name": "边界贴合",
+      "decision": "unchanged",
+      "reason": "局部返修直接修正轮廓边界"
+    },
+    {
+      "id": "KB-A5-005",
+      "title": "全景分割同时表达类别与实例",
+      "ability_id": "A5",
+      "old_skill_id": "A5-S5",
+      "old_skill_name": "遮挡分割",
+      "new_skill_id": "A5-S3",
+      "new_skill_name": "实例分割",
+      "decision": "remapped",
+      "reason": "全景分割的实例编号与同类对象区分直接支撑实例分割"
+    },
+    {
+      "id": "KB-A6-001",
+      "title": "工业异常识别先理解正常参考样本",
+      "ability_id": "A6",
+      "old_skill_id": "A6-S1",
+      "old_skill_name": "缺陷定义",
+      "new_skill_id": "A6-S4",
+      "new_skill_name": "正常与异常",
+      "decision": "remapped",
+      "reason": "利用正常参考样本辨别异常"
+    },
+    {
+      "id": "KB-A6-002",
+      "title": "结构异常和逻辑异常有什么区别",
+      "ability_id": "A6",
+      "old_skill_id": "A6-S2",
+      "old_skill_name": "裂纹识别",
+      "new_skill_id": "A6-S1",
+      "new_skill_name": "缺陷定义",
+      "decision": "remapped",
+      "reason": "明确结构异常与逻辑异常的定义"
+    },
+    {
+      "id": "KB-A6-003",
+      "title": "光照变化会改变工业图像的测试条件",
+      "ability_id": "A6",
+      "old_skill_id": "A6-S3",
+      "old_skill_name": "划痕识别",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "主要讲数据集光照测试条件，未提供划痕识别依据"
+    },
+    {
+      "id": "KB-A6-004",
+      "title": "三维缺陷定位的输入不是普通照片",
+      "ability_id": "A6",
+      "old_skill_id": "A6-S4",
+      "old_skill_name": "正常与异常",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "三维扫描输入与定位要求没有对应现有具体技能"
+    },
+    {
+      "id": "KB-A6-005",
+      "title": "异常存在性判断与异常区域定位要分别核对",
+      "ability_id": "A6",
+      "old_skill_id": "A6-S5",
+      "old_skill_name": "相似缺陷判断",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "存在性与定位是两类输出，不是相似缺陷判断"
+    },
+    {
+      "id": "KB-A7-001",
+      "title": "视频轨迹需要处理消失与再次出现",
+      "ability_id": "A7",
+      "old_skill_id": "A7-S1",
+      "old_skill_name": "遮挡目标",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "视频消失/重现及轨迹合并不能等同于遮挡目标规则"
+    },
+    {
+      "id": "KB-A7-002",
+      "title": "关键点遮挡、出界和界面隐藏含义不同",
+      "ability_id": "A7",
+      "old_skill_id": "A7-S2",
+      "old_skill_name": "密集目标",
+      "new_skill_id": "A7-S1",
+      "new_skill_name": "遮挡目标",
+      "decision": "remapped",
+      "reason": "逐点区分遮挡、出界与界面隐藏直接支撑遮挡理解"
+    },
+    {
+      "id": "KB-A7-003",
+      "title": "跨帧多边形要保持对应点方向一致",
+      "ability_id": "A7",
+      "old_skill_id": "A7-S3",
+      "old_skill_name": "小目标",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "跨帧顶点对应不属于小目标技能"
+    },
+    {
+      "id": "KB-A7-004",
+      "title": "拥挤对象组在COCO导出中有专门表示",
+      "ability_id": "A7",
+      "old_skill_id": "A7-S4",
+      "old_skill_name": "截断目标",
+      "new_skill_id": "A7-S2",
+      "new_skill_name": "密集目标",
+      "decision": "remapped",
+      "reason": "拥挤实例的对象组与交付表示属于密集目标处理"
+    },
+    {
+      "id": "KB-A7-005",
+      "title": "复杂场景可能同时改变背景、旋转和光照",
+      "ability_id": "A7",
+      "old_skill_id": "A7-S5",
+      "old_skill_name": "困难样本",
+      "new_skill_id": "A7-S5",
+      "new_skill_name": "困难样本",
+      "decision": "unchanged",
+      "reason": "多变背景、旋转与光照属于困难样本识别条件"
+    },
+    {
+      "id": "KB-A8-001",
+      "title": "命名实体识别标注的是有类别的文本片段",
+      "ability_id": "A8",
+      "old_skill_id": "A8-S1",
+      "old_skill_name": "实体识别",
+      "new_skill_id": "A8-S1",
+      "new_skill_name": "实体识别",
+      "decision": "unchanged",
+      "reason": "有类别的命名实体片段定义"
+    },
+    {
+      "id": "KB-A8-002",
+      "title": "实体边界一致性会影响训练数据可用性",
+      "ability_id": "A8",
+      "old_skill_id": "A8-S2",
+      "old_skill_name": "实体边界",
+      "new_skill_id": "A8-S2",
+      "new_skill_name": "实体边界",
+      "decision": "unchanged",
+      "reason": "实体起止与词元合法性直接对应边界"
+    },
+    {
+      "id": "KB-A8-003",
+      "title": "关系抽取需要实体、关系类型与方向",
+      "ability_id": "A8",
+      "old_skill_id": "A8-S3",
+      "old_skill_name": "情感分析",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "关系抽取不在现有情感分析技能内"
+    },
+    {
+      "id": "KB-A8-004",
+      "title": "重叠片段任务需要支持重叠的数据结构",
+      "ability_id": "A8",
+      "old_skill_id": "A8-S4",
+      "old_skill_name": "意图分类",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "通用重叠片段分类不等于意图分类或标准NER边界"
+    },
+    {
+      "id": "KB-A8-005",
+      "title": "情感分类和文本实体标注是不同任务",
+      "ability_id": "A8",
+      "old_skill_id": "A8-S5",
+      "old_skill_name": "语义歧义",
+      "new_skill_id": "A8-S3",
+      "new_skill_name": "情感分析",
+      "decision": "remapped",
+      "reason": "整段情感判断直接对应情感分析"
+    },
+    {
+      "id": "KB-A9-001",
+      "title": "模型预标注应保留来源并经过修正",
+      "ability_id": "A9",
+      "old_skill_id": "A9-S1",
+      "old_skill_name": "预标注审核",
+      "new_skill_id": "A9-S1",
+      "new_skill_name": "预标注审核",
+      "decision": "unchanged",
+      "reason": "模型预测来源及人工修正对应预标注审核"
+    },
+    {
+      "id": "KB-A9-002",
+      "title": "共识标注比较多份独立意见",
+      "ability_id": "A9",
+      "old_skill_id": "A9-S2",
+      "old_skill_name": "一致性检查",
+      "new_skill_id": "A9-S2",
+      "new_skill_name": "一致性检查",
+      "decision": "unchanged",
+      "reason": "独立意见共识与分歧对应一致性检查"
+    },
+    {
+      "id": "KB-A9-003",
+      "title": "审核问题需要定位、描述和关闭记录",
+      "ability_id": "A9",
+      "old_skill_id": "A9-S3",
+      "old_skill_name": "抽样质检",
+      "new_skill_id": "A9-S5",
+      "new_skill_name": "返修复核",
+      "decision": "remapped",
+      "reason": "定位问题、修正和关闭记录对应返修复核"
+    },
+    {
+      "id": "KB-A9-004",
+      "title": "交互式分割的正负点有不同作用",
+      "ability_id": "A9",
+      "old_skill_id": "A9-S4",
+      "old_skill_name": "错误归因",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "交互式分割提示点操作不是错误归因"
+    },
+    {
+      "id": "KB-A9-005",
+      "title": "即时质量反馈依赖预先配置的验证集",
+      "ability_id": "A9",
+      "old_skill_id": "A9-S5",
+      "old_skill_name": "返修复核",
+      "new_skill_id": null,
+      "new_skill_name": null,
+      "decision": "ability_only",
+      "reason": "配置验证集后的即时分数不直接说明抽样方法或返修复核操作"
+    },
+    {
+      "id": "KB-A10-001",
+      "title": "导出前确认坐标单位与原始尺寸",
+      "ability_id": "A10",
+      "old_skill_id": "A10-S1",
+      "old_skill_name": "需求澄清",
+      "new_skill_id": "A10-S5",
+      "new_skill_name": "交付归档",
+      "decision": "remapped",
+      "reason": "导出坐标单位及尺寸换算直接对应交付检查"
+    },
+    {
+      "id": "KB-A10-002",
+      "title": "原生标注格式保留对象属性与结构",
+      "ability_id": "A10",
+      "old_skill_id": "A10-S2",
+      "old_skill_name": "试标验收",
+      "new_skill_id": "A10-S5",
+      "new_skill_name": "交付归档",
+      "decision": "remapped",
+      "reason": "原生格式的字段保留与文件关联直接对应交付归档"
+    },
+    {
+      "id": "KB-A10-003",
+      "title": "YOLO归一化坐标要与图像一一对应",
+      "ability_id": "A10",
+      "old_skill_id": "A10-S3",
+      "old_skill_name": "批量生产",
+      "new_skill_id": "A10-S5",
+      "new_skill_name": "交付归档",
+      "decision": "remapped",
+      "reason": "YOLO导出坐标及图文对应直接对应交付检查"
+    },
+    {
+      "id": "KB-A10-004",
+      "title": "数据清单能记录文件顺序和尺寸",
+      "ability_id": "A10",
+      "old_skill_id": "A10-S4",
+      "old_skill_name": "质量报告",
+      "new_skill_id": "A10-S5",
+      "new_skill_name": "交付归档",
+      "decision": "remapped",
+      "reason": "清单用于交付文件组织，不是质量报告指标"
+    },
+    {
+      "id": "KB-A10-005",
+      "title": "项目备份与数据集导出用途不同",
+      "ability_id": "A10",
+      "old_skill_id": "A10-S5",
+      "old_skill_name": "交付归档",
+      "new_skill_id": "A10-S5",
+      "new_skill_name": "交付归档",
+      "decision": "unchanged",
+      "reason": "备份与导出用途直接对应交付归档"
+    }
+  ]
+}

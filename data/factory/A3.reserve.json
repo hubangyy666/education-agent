@@ -1,0 +1,3108 @@
+[
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为单选模式，界面显示三个类别：猫、狗、鸟。一张图片中同时出现一只猫和一只狗，猫占据画面大部分区域。按照本练习规定的项目规则，整图分类的标签作用于整张图，且单选模式只能选择一个类别。你应该如何完成这张图的分类？",
+    "project_rule": "整图分类的标签作用于整张图；本练习规定该任务为单选模式，只能选择一个类别。",
+    "options": [
+      "选择“猫”，因为猫占据画面大部分区域",
+      "同时选择“猫”和“狗”，因为两者都出现在图中",
+      "选择“狗”，因为狗是画面中唯一的动物",
+      "不选择任何类别，因为图片包含多个对象"
+    ],
+    "answer": "选择“猫”，因为猫占据画面大部分区域",
+    "explanation": "整图分类的标签作用于整张图，单选模式只能选择一个类别。当图中同时出现多个对象时，应依据画面主要内容选择最合适的单一类别。猫占据大部分区域，因此选择“猫”符合规则。",
+    "hint": [
+      "先确认任务配置是单选还是多选。",
+      "再判断整张图的主要内容是什么。",
+      "最后在允许的类别中选择一个最符合整体内容的标签。"
+    ],
+    "source_id": "KB-A3-001",
+    "source_url": "https://labelstud.io/templates/image_classification.html",
+    "skill_rationale": "该题直接考查整图分类中单选模式下的类别判断，要求学员依据整图内容和单选规则做出唯一选择。",
+    "content_hash": "1a9cfb90f49ef32db720ae4e3c18a8abea1f879cba46d878a14a385c8e62d952",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "选择“猫”，因为猫占据画面大部分区域",
+      "duplicate": false,
+      "reason": "来源KB-A3-001和KB-A3-002支持整图分类标签作用于整图且单选只能选一个；题干明确猫占大部分区域，按规则应选猫，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-1a9cfb90f49ef32db720ae4e"
+  },
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在CVAT中处理一个视频帧级分类任务，任务配置为每帧只需一个标签，标签面板中有“正常”“异常”“待定”三个类别。当前帧画面清晰，内容明显属于“正常”。按照本练习规定的项目规则，帧级标签不需要绘制目标框，且每帧只需一个标签。你应该如何操作？",
+    "project_rule": "帧级标签不需要绘制目标框；本练习规定每帧只需一个标签。",
+    "options": [
+      "在标签面板中选择“正常”，然后进入下一帧",
+      "先用矩形框标出画面中的主要对象，再选择“正常”",
+      "同时选择“正常”和“待定”，因为不确定是否完全正常",
+      "不添加标签，直接进入下一帧，因为画面清晰无需标注"
+    ],
+    "answer": "在标签面板中选择“正常”，然后进入下一帧",
+    "explanation": "帧级标签用于给整帧添加分类，不需要绘制目标框。当前帧内容明显属于“正常”，且每帧只需一个标签，因此应选择“正常”后进入下一帧。",
+    "hint": [
+      "明确当前任务是帧级分类还是目标检测。",
+      "帧级分类不需要绘制框或轮廓。",
+      "根据当前帧的整体判断选择一个标签。"
+    ],
+    "source_id": "KB-A3-005",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+    "skill_rationale": "该题考查帧级分类中类别判断的操作方式，强调帧级标签不涉及目标框，直接训练类别判断技能。",
+    "content_hash": "9268c5e974067996c18ee7d6a4c41da5bc7f4bc48af8370a4a97f6d605f12f70",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "在标签面板中选择“正常”，然后进入下一帧",
+      "duplicate": false,
+      "reason": "来源KB-A3-005支持帧级标签不需绘制目标框且每帧一个标签；题干明确当前帧明显正常，应选正常并进入下一帧，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-9268c5e974067996c18ee7d6"
+  },
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：室内、室外、白天、夜晚。一张图片显示的是白天的室外场景。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别；本练习规定每个选项必须与图像内容相符。",
+    "options": [
+      "选择“室外”和“白天”",
+      "只选择“室外”",
+      "只选择“白天”",
+      "选择“室内”和“夜晚”"
+    ],
+    "answer": "选择“室外”和“白天”",
+    "explanation": "图片显示白天的室外场景，因此“室外”和“白天”两个类别都与图像内容相符。多选模式允许同时选择多个类别，所以应选择这两个。",
+    "hint": [
+      "先判断图像内容属于哪些类别。",
+      "多选模式下可以同时选择多个相符的类别。",
+      "排除与图像内容明显不符的选项。"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "该题考查多选模式下的类别判断，要求学员根据图像内容选择所有相符的类别，直接训练类别判断技能。",
+    "content_hash": "521a3dfa6e900267b04e9e47dbf5419bd8e6c7b664ccfe005c3e9e733a895836",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "选择“室外”和“白天”",
+      "duplicate": false,
+      "reason": "来源KB-A3-002支持多选模式由任务配置决定；题干明确白天室外场景且多选允许相符类别，应同时选室外和白天，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-521a3dfa6e900267b04e9e47"
+  },
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，当前激活的对象是一辆汽车，需要填写属性“颜色”。属性面板中有“红色”“蓝色”“黑色”三个选项。汽车实际颜色为蓝色。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，当前对象和当前字段必须核对清楚。你应该如何操作？",
+    "project_rule": "属性补全应逐对象逐字段进行；本练习规定当前对象和当前字段必须核对清楚。",
+    "options": [
+      "在“颜色”字段中选择“蓝色”",
+      "在“颜色”字段中选择“红色”，因为红色更常见",
+      "跳过“颜色”字段，直接切换到下一个对象",
+      "同时选择“蓝色”和“黑色”，因为光线影响颜色判断"
+    ],
+    "answer": "在“颜色”字段中选择“蓝色”",
+    "explanation": "属性标注要求逐对象逐字段进行，当前对象是汽车，当前字段是“颜色”，汽车实际颜色为蓝色，因此应在“颜色”字段中选择“蓝色”。",
+    "hint": [
+      "确认当前激活的对象和字段。",
+      "根据对象的实际属性选择对应选项。",
+      "不要跳过字段或选择多个互斥选项。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题考查属性标注中的类别判断，要求学员核对当前对象和字段后选择正确属性值，直接训练类别判断技能。",
+    "content_hash": "6297726c0da56c6f38ac37a8146ab476ab69c9cd86102d1a73921103e656508f",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "在“颜色”字段中选择“蓝色”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003支持属性补全逐对象逐字段核对；题干明确汽车实际颜色为蓝色，应在颜色字段选蓝色，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-6297726c0da56c6f38ac37a8"
+  },
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务使用分类树组织选项，界面显示“动物 > 猫”，但导出结果中保存的是别名“animal_cat”。按照本练习规定的项目规则，界面名称与内部分类编码可能不同，交付检查时依据项目映射表解释编码。你应该如何理解这个结果？",
+    "project_rule": "界面名称与内部分类编码可能不同；本练习规定交付检查时依据项目映射表解释编码。",
+    "options": [
+      "“animal_cat”是“动物 > 猫”的别名，分类结果正确",
+      "“animal_cat”表示分类错误，应重新标注为“动物 > 猫”",
+      "“animal_cat”是另一个类别，与“动物 > 猫”无关",
+      "导出结果出现别名说明分类树配置有误，需要删除别名"
+    ],
+    "answer": "“animal_cat”是“动物 > 猫”的别名，分类结果正确",
+    "explanation": "分类树支持别名，导出结果可能保存别名而不是显示值。依据项目映射表，“animal_cat”对应“动物 > 猫”，因此分类结果正确，不需要重新标注。",
+    "hint": [
+      "理解分类树中显示值与别名的关系。",
+      "导出结果保存别名并不代表分类错误。",
+      "依据项目映射表解释编码含义。"
+    ],
+    "source_id": "KB-A3-004",
+    "source_url": "https://labelstud.io/templates/taxonomy",
+    "skill_rationale": "该题考查分类树中显示名称与内部编码的对应关系，要求学员正确判断分类结果，直接训练类别判断技能。",
+    "content_hash": "9397cdeaf870d5f1ff05c9ad424e4f5844799de24ef5723b74777d133f023b87",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 4,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "“animal_cat”是“动物 > 猫”的别名，分类结果正确",
+      "duplicate": false,
+      "reason": "来源KB-A3-004支持分类树显示值与别名不同且导出可能保存别名；依据映射表animal_cat对应动物>猫，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-9397cdeaf870d5f1ff05c9ad"
+  },
+  {
+    "skill_id": "A3-S1",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为单选模式，界面显示类别：风景、人物、建筑。一张图片中主要是一座建筑物，背景有少量树木。按照本练习规定的项目规则，整图分类的标签作用于整张图，单选模式只能选择一个类别。你应该选择哪个类别？",
+    "project_rule": "整图分类的标签作用于整张图；本练习规定该任务为单选模式，只能选择一个类别。",
+    "options": [
+      "建筑",
+      "风景",
+      "人物",
+      "同时选择“建筑”和“风景”"
+    ],
+    "answer": "建筑",
+    "explanation": "整图分类需要判断整张图的主要内容。图片中主要是一座建筑物，因此应选择“建筑”。单选模式只能选择一个类别，不能同时选择多个。",
+    "hint": [
+      "判断整张图的主要内容。",
+      "单选模式只能选择一个类别。",
+      "选择与画面主体最相符的类别。"
+    ],
+    "source_id": "KB-A3-001",
+    "source_url": "https://labelstud.io/templates/image_classification.html",
+    "skill_rationale": "该题考查整图分类中单选模式下的类别判断，要求学员根据画面主体选择唯一类别，直接训练类别判断技能。",
+    "content_hash": "ac295cebc8d97ae4efc8c20ade6baa501acba3276af5b6d10bdc2ecec167a779",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:42:03.307556+00:00",
+    "generation_request_id": "fffb445d-9416-458f-b14f-43c9bb76fe20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 5,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "建筑",
+      "duplicate": false,
+      "reason": "来源KB-A3-001和KB-A3-002支持整图分类单选；题干明确主要是一座建筑物，应选建筑，答案唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c95b8e54-65cc-49f3-af37-96999bf56c78",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:42:03.307556+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-ac295cebc8d97ae4efc8c20a"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：白天、夜晚、室内、室外、人物、动物。一张图片显示的是白天的室外场景，画面中有一只狗。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "只选择“白天”和“室外”",
+      "选择“白天”“室外”“动物”",
+      "选择“白天”“室外”“人物”",
+      "只选择“白天”"
+    ],
+    "answer": "选择“白天”“室外”“动物”",
+    "explanation": "图片内容为白天的室外场景，并且画面中有一只狗，因此“白天”“室外”“动物”三个类别均与图像内容相符，可以同时选择。其他选项遗漏了“动物”或错误选择了“人物”。",
+    "hint": [
+      "先观察图片的整体场景和包含的对象。",
+      "多选模式下，每个选项都必须有图像内容作为依据。",
+      "画面中有狗，对应哪个类别？"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "此题要求根据多选模式规则，从多个合理选项中选出所有与图像内容相符的类别，精确训练多标签分类技能。",
+    "content_hash": "0cecf9998547ed99170da9aa03c3d25c2b53711356578bfe8ba2d89482e19d41",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:25.887552+00:00",
+    "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "选择“白天”“室外”“动物”",
+      "duplicate": false,
+      "reason": "题干给出白天室外且画面有狗，多选规则明确；正确选项覆盖全部相符类别，其他选项遗漏或误选人物。来源KB-A3-002支持多选模式由配置决定。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "90818a61-252d-415c-afdb-2122a4fc95e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:25.887552+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-0cecf9998547ed99170da9aa"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：猫、狗、鸟、其他。一张图片中同时出现一只猫和一只鸟，猫在画面左侧，鸟在右侧。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "只选择“猫”",
+      "只选择“鸟”",
+      "选择“猫”和“鸟”",
+      "选择“猫”“鸟”“其他”"
+    ],
+    "answer": "选择“猫”和“鸟”",
+    "explanation": "图片中同时有猫和鸟，因此应同时选择“猫”和“鸟”。选择“其他”没有依据，只选一个会遗漏另一个类别。",
+    "hint": [
+      "观察图片中出现了哪些动物。",
+      "多选模式下，每个出现的类别都应选择。",
+      "猫和鸟是否都出现在画面中？"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "此题要求根据多选模式规则，从多个合理选项中选出所有与图像内容相符的类别，精确训练多标签分类技能。",
+    "content_hash": "88d8dcb86dc3d8490c47dcc7d96c8e41995b1350b339b668e162fa3017828226",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:25.887552+00:00",
+    "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.85,
+      "unambiguous": 1,
+      "independent_answer": "选择“猫”和“鸟”",
+      "duplicate": false,
+      "reason": "图片同时有猫和鸟，多选应选两者；选项唯一正确。与第0题同技能但对象和选项不同，不构成简单换名重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "90818a61-252d-415c-afdb-2122a4fc95e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:25.887552+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-88d8dcb86dc3d8490c47dcc7"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：红色、蓝色、绿色、圆形、方形。一张图片中有一个红色的圆形和一个蓝色的方形。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "选择“红色”“蓝色”“圆形”“方形”",
+      "只选择“红色”和“圆形”",
+      "选择“红色”“蓝色”“圆形”",
+      "选择“红色”“蓝色”“方形”"
+    ],
+    "answer": "选择“红色”“蓝色”“圆形”“方形”",
+    "explanation": "图片中有一个红色的圆形和一个蓝色的方形，因此颜色和形状类别中与内容相符的选项都应选择，即“红色”“蓝色”“圆形”“方形”。其他选项均遗漏了部分相符类别。",
+    "hint": [
+      "分别观察图片中的颜色和形状。",
+      "多选模式下，每个与内容相符的选项都应选择。",
+      "红色圆形和蓝色方形分别对应哪些类别？"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "此题要求根据多选模式规则，从多个合理选项中选出所有与图像内容相符的类别，精确训练多标签分类技能。",
+    "content_hash": "cc5dcb027e01c33234a2f4e13607ffe7a40812db4b89bd97be46853e5d18ff2d",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:25.887552+00:00",
+    "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.85,
+      "unambiguous": 1,
+      "independent_answer": "选择“红色”“蓝色”“圆形”“方形”",
+      "duplicate": false,
+      "reason": "红色圆形与蓝色方形对应四个相符类别，多选应全选；其他选项均遗漏。场景与选项组合有区分度。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "90818a61-252d-415c-afdb-2122a4fc95e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:25.887552+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-cc5dcb027e01c33234a2f4e1"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：室内、室外、白天、夜晚、人物。一张图片显示的是夜晚的室内场景，画面中有一个人。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "选择“室内”“夜晚”“人物”",
+      "选择“室内”“白天”“人物”",
+      "选择“室外”“夜晚”“人物”",
+      "只选择“室内”和“夜晚”"
+    ],
+    "answer": "选择“室内”“夜晚”“人物”",
+    "explanation": "图片内容为夜晚的室内场景，并且画面中有一个人，因此“室内”“夜晚”“人物”三个类别均与图像内容相符。其他选项错误选择了“白天”或“室外”，或遗漏了“人物”。",
+    "hint": [
+      "观察图片的整体场景、时间和包含的对象。",
+      "多选模式下，每个选项都必须有图像内容作为依据。",
+      "画面中有一个人，对应哪个类别？"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "此题要求根据多选模式规则，从多个合理选项中选出所有与图像内容相符的类别，精确训练多标签分类技能。",
+    "content_hash": "43565fa9932ecb492ef69ec92ca0fe9b6cedea6695924e7d56f66a744a475841",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:25.887552+00:00",
+    "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.85,
+      "unambiguous": 1,
+      "independent_answer": "选择“室内”“夜晚”“人物”",
+      "duplicate": false,
+      "reason": "夜晚室内且有人，三个类别均相符；错误选项混入白天或室外或遗漏人物。规则与来源一致。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "90818a61-252d-415c-afdb-2122a4fc95e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:25.887552+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-43565fa9932ecb492ef69ec9"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：风景、人物、建筑、动物。一张图片中有一座建筑和一只狗，没有人物。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "选择“建筑”和“动物”",
+      "选择“风景”和“建筑”",
+      "选择“人物”和“动物”",
+      "只选择“建筑”"
+    ],
+    "answer": "选择“建筑”和“动物”",
+    "explanation": "图片中有建筑和狗，因此应选择“建筑”和“动物”。没有人物，不应选择“人物”；“风景”没有明确依据。",
+    "hint": [
+      "观察图片中出现了哪些对象。",
+      "多选模式下，每个出现的类别都应选择。",
+      "建筑和狗分别对应哪些类别？"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "此题要求根据多选模式规则，从多个合理选项中选出所有与图像内容相符的类别，精确训练多标签分类技能。",
+    "content_hash": "e7a27d3f99302dbe28d41150a363d40d6ad6cd565b546776d0ba84e835069354",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:25.887552+00:00",
+    "generation_request_id": "d7a2a9ba-b92c-4ec9-b9e3-b5b3855d0aa9",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 4,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.85,
+      "unambiguous": 1,
+      "independent_answer": "选择“建筑”和“动物”",
+      "duplicate": false,
+      "reason": "图片有建筑和狗且无人物，应选建筑和动物；其他选项含未出现类别或遗漏。题干自足。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "90818a61-252d-415c-afdb-2122a4fc95e7",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:25.887552+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-e7a27d3f99302dbe28d41150"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：猫、狗、鸟、其他。一张图片中只有一只猫，没有其他动物。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "只选择“猫”",
+      "选择“猫”和“其他”",
+      "选择“猫”和“狗”",
+      "选择“猫”“狗”“鸟”"
+    ],
+    "answer": "只选择“猫”",
+    "explanation": "图片中只有一只猫，没有其他动物，因此只有“猫”与图像内容相符，应只选择“猫”。",
+    "hint": [
+      "观察画面中出现了哪些动物。",
+      "确认是否有其他动物出现。",
+      "只选择与图像内容相符的类别。"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "该题要求根据图像中实际出现的对象进行多标签选择，直接训练多标签分类技能。",
+    "content_hash": "80903cb788c3a68d9918e654cb0e0c39842b5884ae439e3b479e895f6f6281aa",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:46:40.901946+00:00",
+    "generation_request_id": "de0223f0-aed1-498d-aa95-a28ad523d59f",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "只选择“猫”",
+      "duplicate": false,
+      "reason": "题干给出多选模式规则和“只有一只猫”的明确事实，唯一符合内容的选项是“猫”；其他选项均包含画面中不存在的类别，答案唯一。与旧题相比，旧题多为多类别同时出现需多选，本题为多选模式下仅一个类别相符，属于边界/反例判断，不构成同题换名。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "87b09baf-7060-4fd2-9bff-4ca706595219",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:46:40.901946+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-80903cb788c3a68d9918e654"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，当前激活对象是一辆汽车，需要填写两个属性字段：“颜色”和“车型”。颜色面板有“红色”“蓝色”“黑色”，车型面板有“轿车”“SUV”“卡车”。汽车实际为蓝色轿车。你刚为颜色选择了“蓝色”，此时界面仍停留在颜色字段。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，必须核对当前对象和当前字段，不能只填一个字段就认为整项已完成。下一步你应该怎么做？",
+    "project_rule": "本练习规定：属性补全必须逐对象逐字段进行；每完成一个字段后，需切换到同一对象的下一字段继续填写，全部字段填完才算该对象属性完成。",
+    "options": [
+      "直接切换到下一辆汽车对象，因为颜色字段已经填完",
+      "确认当前对象仍是这辆汽车，然后切换到“车型”字段并选择“轿车”",
+      "重新为颜色字段选择“蓝色”，因为需要重复确认",
+      "退出属性标注模式，改用画框方式补充车型信息"
+    ],
+    "answer": "确认当前对象仍是这辆汽车，然后切换到“车型”字段并选择“轿车”",
+    "explanation": "规则要求逐对象逐字段补全。颜色字段完成后，同一对象还有车型字段未填，必须核对对象未变并切换到车型字段继续填写，不能只填一个字段就结束。",
+    "hint": [
+      "先看当前激活的是哪个对象、哪个字段。",
+      "颜色字段完成后，这个对象还有没有未填字段？",
+      "逐字段补全要求在同一对象上继续切换字段，而不是跳到下一对象。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题直接考查属性标注中逐对象逐字段补全的操作顺序，属于属性识别的核心步骤。",
+    "content_hash": "0d2945b595f5e6415ab2ab07057b6ee4ff3b4b4ad75d317d828b838ed99aeb6d",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:47:08.688322+00:00",
+    "generation_request_id": "73f61af6-d677-4ec8-b686-91759e223a50",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "确认当前对象仍是这辆汽车，然后切换到“车型”字段并选择“轿车”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003明确属性补全应逐对象逐字段进行，避免只填一个字段就认为整项完成。题干给出蓝色轿车、颜色已选、仍停留在颜色字段，下一步应核对对象并切换到车型字段选“轿车”，与候选答案一致，无歧义。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "0069bb96-6b33-4cf9-bac0-c9f95f2ee92b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:47:08.688322+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-0d2945b595f5e6415ab2ab07"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，当前激活对象是一辆汽车，属性面板中“颜色”字段当前高亮，选项有“红色”“蓝色”“黑色”。你确认这辆汽车实际颜色为蓝色，于是选择了“蓝色”。随后你切换到下一辆汽车对象，但界面仍停留在“颜色”字段且显示“蓝色”。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，切换对象后必须重新核对当前对象和当前字段，避免把上一对象的选项误填到下一对象。此时你应该怎么做？",
+    "project_rule": "本练习规定：切换对象后，即使字段和选项显示与上一对象相同，也必须重新核对当前对象和当前字段，不能默认沿用上一对象的赋值。",
+    "options": [
+      "直接保留“蓝色”，因为界面已经显示该选项",
+      "先确认当前对象是下一辆汽车，再根据该车实际颜色重新选择对应选项",
+      "把颜色字段清空后直接跳到下一帧",
+      "退出属性标注模式，改用整图分类标签"
+    ],
+    "answer": "先确认当前对象是下一辆汽车，再根据该车实际颜色重新选择对应选项",
+    "explanation": "规则强调切换对象后要重新核对对象和字段，避免把上一对象的选项误填到下一对象。界面显示“蓝色”不代表下一辆车就是蓝色，必须重新判断。",
+    "hint": [
+      "切换对象后，界面显示的选项是否一定属于新对象？",
+      "规则要求核对当前对象和当前字段，目的是防止什么错误？",
+      "应依据新对象的实际颜色重新选择，而不是沿用显示值。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题考查属性标注中切换对象后重新核对字段的操作，直接训练避免跨对象误填的属性识别技能。",
+    "content_hash": "07a495f5f1d2893807d27e0c1e62c611f813a23648a3a2915e1a86c7e8efd9bd",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:47:08.688322+00:00",
+    "generation_request_id": "73f61af6-d677-4ec8-b686-91759e223a50",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "先确认当前对象是下一辆汽车，再根据该车实际颜色重新选择对应选项",
+      "duplicate": false,
+      "reason": "来源KB-A3-003强调切换对象后要核对当前对象和当前字段，避免把上一对象选项误填到下一对象。题干中切换到下一辆汽车后界面仍显示“蓝色”，正确做法是重新核对并按新车实际颜色选择，与候选答案一致。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "0069bb96-6b33-4cf9-bac0-c9f95f2ee92b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:47:08.688322+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      }
+    ],
+    "id": "QF-07a495f5f1d2893807d27e0c"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在 CVAT 中处理一个视频帧级分类任务，任务配置为多选模式，标签面板中有“正常”“异常”“模糊”“夜间”四个类别。当前帧画面清晰，内容明显属于“正常”，且拍摄于夜间。按照本练习规定的项目规则，帧级标签不需要绘制目标框，多选模式允许同时选择多个类别，但每个选项必须与当前帧内容相符。你应该如何操作？",
+    "project_rule": "本练习规定：帧级标签不需要绘制目标框；多选模式允许同时选择多个类别，但每个选项必须与当前帧内容相符。",
+    "options": [
+      "选择“正常”和“夜间”",
+      "只选择“正常”",
+      "选择“正常”“异常”“模糊”“夜间”",
+      "选择“正常”和“模糊”"
+    ],
+    "answer": "选择“正常”和“夜间”",
+    "explanation": "当前帧画面清晰且内容正常，拍摄于夜间，因此“正常”和“夜间”与当前帧内容相符；“异常”和“模糊”与当前帧内容不符，不能选择。",
+    "hint": [
+      "先判断当前帧的整体状态是否正常。",
+      "再确认当前帧是否具有夜间特征。",
+      "最后只勾选与当前帧内容相符的类别，排除不符的选项。"
+    ],
+    "source_id": "KB-A3-005",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+    "skill_rationale": "该题要求在帧级多选模式下，根据当前帧内容选择多个相符标签，直接训练多标签分类技能。",
+    "content_hash": "2c51b38833af5104ba92683e86be93b2b3d1a78f944766e4c5b7e973e614a03a",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T04:59:52.687298+00:00",
+    "generation_request_id": "168307a0-f28d-4172-b3f4-881ea1b2ae20",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 0.95,
+      "teaching_quality": 0.9,
+      "unambiguous": 0.95,
+      "independent_answer": "选择“正常”和“夜间”",
+      "duplicate": false,
+      "reason": "帧级多选标签题，规则自足；当前帧清晰正常且夜间，应选正常和夜间，不选异常/模糊。来源KB-A3-005支持帧级标签不需画框，KB-A3-002支持多选由配置决定。与旧题不重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "c49113c6-5a74-47c5-a9d3-e5ff45c38027",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T04:59:52.687298+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-A2-004",
+        "title": "层级标签要遵守选取深度",
+        "content": "Label Studio 的层级分类控件可以记录一个或多个选择及其祖先节点，还能限制只能选择叶子节点。叶子节点是分类树中没有下级的末端选项；父节点与子节点表示不同的分类层次。处理层级标签任务时，应先看规范要求选到哪一层、是否允许多选，再选择对应路径。结果中的完整路径能说明标签所属层级，单看末端名称可能丢失上下文。",
+        "source_url": "https://labelstud.io/tags/taxonomy",
+        "source_name": "Label Studio · Taxonomy tag"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A2-002",
+        "title": "标签配置发生变化为什么会影响已有结果",
+        "content": "Label Studio 的标签配置决定待标数据、可选标签和标注方式，项目可以使用模板或自定义配置。官方文档指出，已有进行中的标注引用某标签时，不能直接删除该标签或更改相应标注类型，除非先处理使用它的已有标注。这说明标签集合是数据结构的一部分；修改规范时要核对现存结果受影响的范围，避免新旧标签含义和结果结构混用。",
+        "source_url": "https://labelstud.io/guide/setup",
+        "source_name": "Label Studio · Configure labeling interface"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-005",
+        "title": "按 UD 约定分别组织训练、开发和测试文件",
+        "content": "Universal Dependencies 的语料仓库约定把训练、开发和测试数据分别保存为命名明确的文件，并要求数据采用统一的 CoNLL-U 格式和通过格式验证；部分小型语料可能只有测试数据。对初学标注员而言，数据划分不仅是界面标签，也会体现在实际交付文件中。整理语料时应保持这些文件及其用途对应，不能把不同集合任意拼成一份后仍沿用原名称。",
+        "source_url": "https://universaldependencies.org/contributing/repository_files.html",
+        "source_name": "Universal Dependencies · Repository and files"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      }
+    ],
+    "id": "QF-2c51b38833af5104ba92683e"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，其属性字段包括“颜色”（选项：红、蓝、黑）和“状态”（选项：行驶、停放）。当前激活对象是一辆黑色轿车，正停在路边。你刚为“颜色”字段选择了“黑色”，界面仍停留在颜色字段。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，必须核对当前对象和当前字段，不能只填一个字段就认为整项已完成。下一步你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；必须核对当前对象和当前字段；不能只填一个字段就认为整项已完成。",
+    "options": [
+      "认为颜色已填完，直接切换到下一辆汽车对象",
+      "继续在当前对象的“状态”字段中选择“停放”",
+      "重新为当前对象选择颜色“黑色”，因为界面仍停留在颜色字段",
+      "跳过状态字段，直接导出结果"
+    ],
+    "answer": "继续在当前对象的“状态”字段中选择“停放”",
+    "explanation": "当前对象是黑色轿车，颜色字段已正确选择“黑色”，但状态字段尚未填写。按照逐对象逐字段补全的规则，应继续填写当前对象的“状态”字段，选择“停放”，而不是只填一个字段就结束或切换对象。",
+    "hint": [
+      "先确认当前激活对象是黑色轿车，颜色已选对。",
+      "再看该对象还有哪个属性字段没有填写。",
+      "不要因为界面停留在颜色字段就重复选择或直接切换对象。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题要求学习者在同一对象内继续补全未填字段，精确训练逐对象逐字段的属性识别与补全顺序。",
+    "content_hash": "cd5f9bccacbe050c017366febdcf8a8afb68d5daa69ff3deabdfeb7b5a9f21cf",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912193+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "继续在当前对象的“状态”字段中选择“停放”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003明确属性补全应逐对象逐字段进行、不能只填一个字段就认为完成；题干自足，当前对象黑色轿车已填颜色，下一步应填状态“停放”，唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912193+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-cd5f9bccacbe050c017366fe"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，属性字段为“颜色”（选项：红、蓝、黑）。当前激活对象是一辆蓝色汽车，你已为它选择“蓝色”。随后你切换到下一辆汽车对象，但界面仍停留在“颜色”字段且显示“蓝色”。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，切换对象后必须重新核对当前对象和当前字段，避免把上一对象的选项误填到下一对象。此时你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；切换对象后必须重新核对当前对象和当前字段；避免把上一对象的选项误填到下一对象。",
+    "options": [
+      "直接保留“蓝色”，因为界面已经显示该选项",
+      "先确认新对象的实际颜色，再根据新对象重新选择颜色",
+      "把新对象的颜色也改成“蓝色”，以保持界面一致",
+      "退出属性标注模式，重新开始整个任务"
+    ],
+    "answer": "先确认新对象的实际颜色，再根据新对象重新选择颜色",
+    "explanation": "切换对象后，界面仍显示上一对象的“蓝色”并不代表新对象也是蓝色。按照规则，必须重新核对当前对象和当前字段，根据新对象的实际颜色重新选择，避免误填。",
+    "hint": [
+      "切换对象后，界面显示的旧选项不一定属于新对象。",
+      "先观察新对象的实际颜色，再决定选项。",
+      "不要为了界面一致而沿用上一对象的属性值。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题针对切换对象后属性值残留的典型错误，训练重新核对当前对象并重新识别属性的能力。",
+    "content_hash": "e21a1cb8706c14b722071ff2ed9f9a6d35efe481f6bb71804c2f5ff9f5de91f0",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912193+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "先确认新对象的实际颜色，再根据新对象重新选择颜色",
+      "duplicate": false,
+      "reason": "来源KB-A3-003明确切换对象后要核对当前对象和字段、避免误填上一对象选项；题干给出界面仍显示蓝色的事实，正确做法是重新核对新对象颜色，唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912193+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-e21a1cb8706c14b722071ff2"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，属性字段包括“颜色”（选项：红、蓝、黑）和“车型”（选项：轿车、SUV、卡车）。当前激活对象是一辆红色SUV。你为“颜色”选择了“红色”，为“车型”选择了“SUV”。随后你切换到下一辆汽车对象，该对象是一辆黑色轿车。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，切换对象后必须重新核对当前对象和当前字段，避免把上一对象的选项误填到下一对象。此时你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；切换对象后必须重新核对当前对象和当前字段；避免把上一对象的选项误填到下一对象。",
+    "options": [
+      "保留“红色”和“SUV”，因为上一对象已填好",
+      "将新对象的颜色改为“红色”，车型改为“SUV”",
+      "先确认新对象是黑色轿车，再分别将颜色改为“黑色”、车型改为“轿车”",
+      "只修改颜色为“黑色”，车型保留“SUV”"
+    ],
+    "answer": "先确认新对象是黑色轿车，再分别将颜色改为“黑色”、车型改为“轿车”",
+    "explanation": "新对象是黑色轿车，与上一对象的红色SUV不同。按照逐对象逐字段补全规则，切换对象后必须重新核对并填写所有属性字段，因此颜色应改为“黑色”，车型应改为“轿车”。",
+    "hint": [
+      "新对象与上一对象的颜色和车型都不同。",
+      "不要只改一个字段而保留另一个旧字段。",
+      "先确认新对象的实际颜色和车型，再逐字段修改。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题要求学习者在多字段属性任务中，切换对象后完整重填所有字段，训练属性识别的完整性与准确性。",
+    "content_hash": "ffe247e4021d767b4adc646faeed4aff587593b51d990c44950beaed3f4b2ca6",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912193+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "先确认新对象是黑色轿车，再分别将颜色改为“黑色”、车型改为“轿车”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003支持逐对象逐字段补全并避免沿用旧对象选项；新对象为黑色轿车，两个字段都需重填，选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912193+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-ffe247e4021d767b4adc646f"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，属性字段为“颜色”（选项：红、蓝、黑）。当前激活对象是一辆红色汽车，你已为它选择“红色”。此时你发现该对象实际颜色应为蓝色，但界面仍停留在“颜色”字段并显示“红色”。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，必须核对当前对象和当前字段，属性值应来自当前标签允许的选项。此时你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；必须核对当前对象和当前字段；属性值应来自当前标签允许的选项。",
+    "options": [
+      "保留“红色”，因为已经选择过",
+      "将当前对象的颜色改为“蓝色”",
+      "删除该对象，重新创建一个新对象",
+      "在备注中写“实际为蓝色”，保留“红色”选项"
+    ],
+    "answer": "将当前对象的颜色改为“蓝色”",
+    "explanation": "当前对象实际颜色为蓝色，而属性字段允许选择“蓝色”。按照逐对象逐字段补全规则，应直接在当前对象的颜色字段中改为“蓝色”，而不是保留错误值或用备注代替。",
+    "hint": [
+      "当前对象实际颜色与已选值不一致。",
+      "属性字段中有“蓝色”这个允许选项。",
+      "应直接修改当前对象的属性值，而不是保留错误或另建对象。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题训练发现属性值错误后，在当前对象当前字段内进行纠正，而不是保留错误或绕过字段。",
+    "content_hash": "b37bb48c40e473e2ee534a96cf0be78220b8c52694345cef5ec4cef4a5469718",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912193+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "将当前对象的颜色改为“蓝色”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003要求核对当前对象和当前字段；实际颜色为蓝色且选项允许，应直接改当前对象颜色，不能用备注或保留错误值，唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912193+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-b37bb48c40e473e2ee534a96"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，属性字段为“颜色”（选项：红、蓝、黑）。当前激活对象是一辆黑色汽车。你为它选择了“黑色”，然后切换到下一辆汽车对象。新对象是一辆白色汽车，但“颜色”字段的选项只有红、蓝、黑，没有“白色”。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，属性值应来自当前标签允许的选项，不能把临时说明随意当成新的类别。此时你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；属性值应来自当前标签允许的选项；不能把临时说明随意当成新的类别。",
+    "options": [
+      "在颜色字段中手动输入“白色”作为新选项",
+      "选择最接近的“黑色”，因为白色不在选项中",
+      "暂停该对象，向任务负责人确认白色汽车应如何处理",
+      "跳过该对象，不填写任何属性"
+    ],
+    "answer": "暂停该对象，向任务负责人确认白色汽车应如何处理",
+    "explanation": "当前标签的颜色选项只有红、蓝、黑，白色不在允许范围内。按照规则，属性值必须来自当前标签允许的选项，不能随意新增类别。遇到选项未覆盖的情况，应暂停并向任务负责人确认，而不是强行选一个近似值或跳过。",
+    "hint": [
+      "白色不在当前颜色字段的允许选项中。",
+      "不能把临时说明或新值随意当成正式选项。",
+      "遇到选项未覆盖的情况，应暂停并向上确认。"
+    ],
+    "source_id": "KB-A2-003",
+    "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+    "skill_rationale": "该题训练属性值必须来自允许选项，遇到未覆盖情况时正确暂停确认，而不是强行归类或跳过。",
+    "content_hash": "ac8c01290f53ffc0041ac387a6bc253898df9a0c8d34239ddaa19905e46aeaa7",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912193+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 4,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "暂停该对象，向任务负责人确认白色汽车应如何处理",
+      "duplicate": false,
+      "reason": "来源KB-A2-003明确属性值应来自当前标签允许的选项，不能随意新增类别；白色不在选项中，应暂停并确认，选项唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912193+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-ac8c01290f53ffc0041ac387"
+  },
+  {
+    "skill_id": "A3-S3",
+    "type": "choice",
+    "title": "你在CVAT中处理一个属性标注任务，任务标签为“车辆”，属性字段为“颜色”（选项：红、蓝、黑）。当前激活对象是一辆蓝色汽车，你已为它选择“蓝色”。此时你发现同一张图中还有另一辆红色汽车尚未标注属性。按照本练习规定的项目规则，属性补全应逐对象逐字段进行，必须核对当前对象和当前字段，不能只填一个字段就认为整项已完成。此时你应该怎么做？",
+    "project_rule": "本练习规定：属性补全应逐对象逐字段进行；必须核对当前对象和当前字段；不能只填一个字段就认为整项已完成。",
+    "options": [
+      "认为当前对象已完成，直接导出结果",
+      "先切换到红色汽车对象，再为它选择“红色”",
+      "把当前对象的颜色改为“红色”，因为红色汽车更重要",
+      "在当前对象上同时添加“蓝色”和“红色”两个值"
+    ],
+    "answer": "先切换到红色汽车对象，再为它选择“红色”",
+    "explanation": "当前蓝色汽车已填好颜色，但同一张图中还有红色汽车未标注属性。按照逐对象逐字段补全规则，应切换到红色汽车对象，再为它选择“红色”，而不是只完成一个对象就导出或把两个值混在同一对象上。",
+    "hint": [
+      "当前对象已完成，但图中还有其他对象未处理。",
+      "属性应分别属于各自的对象，不能混填。",
+      "先切换到红色汽车对象，再填写它的颜色。"
+    ],
+    "source_id": "KB-A3-003",
+    "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+    "skill_rationale": "该题训练在多个对象存在时，逐对象完成属性补全，避免只处理一个对象就结束或把属性混填。",
+    "content_hash": "f31e883fb8537378c7e49c085d9afeed95978d3d0fcea449c5fceaed6d146274",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:00:21.912749+00:00",
+    "generation_request_id": "c2e46d35-4a35-43b8-83a0-a96d00234475",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 5,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "先切换到红色汽车对象，再为它选择“红色”",
+      "duplicate": false,
+      "reason": "来源KB-A3-003支持逐对象逐字段补全、不能只填一个字段就认为整项完成；图中另一红色汽车未标注，应切换对象后填其颜色，唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "bc02072f-01bc-4e1f-9585-4d055ad43078",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:00:21.912749+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      }
+    ],
+    "id": "QF-f31e883fb8537378c7e49c08"
+  },
+  {
+    "skill_id": "A3-S4",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务使用层级分类控件，规范要求只能选择叶子节点，且为单选。分类树为“动物 > 猫”“动物 > 狗”“植物 > 树”。一张图片中只有一只猫。按照本练习规定的项目规则，层级标签要遵守选取深度，只能选择叶子节点，且单选模式只能选择一个类别。你应该如何选择？",
+    "project_rule": "本练习规定：层级标签要遵守选取深度，只能选择叶子节点；单选模式只能选择一个类别；选择必须与图像内容相符。",
+    "options": [
+      "选择“动物 > 猫”",
+      "选择“动物”",
+      "选择“动物 > 猫”和“动物 > 狗”",
+      "选择“植物 > 树”"
+    ],
+    "answer": "选择“动物 > 猫”",
+    "explanation": "规范要求只能选择叶子节点，且为单选。图中只有一只猫，因此选择叶子节点“动物 > 猫”。选择父节点“动物”不符合选取深度；同时选猫和狗违反单选且狗不存在；选树与内容不符。",
+    "hint": [
+      "先确认规范要求的选取深度。",
+      "再确认任务是否允许多选。",
+      "最后选择与图像内容相符的叶子节点。"
+    ],
+    "source_id": "KB-A2-004",
+    "source_url": "https://labelstud.io/tags/taxonomy",
+    "skill_rationale": "该题训练在层级分类中遵守选取深度并选择正确叶子类别，对应相似类别判断技能。",
+    "content_hash": "2beee00151a364bce2634e4293cd1e74ba7737736bd1831f5ebeb8fda217156f",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T05:01:37.923457+00:00",
+    "generation_request_id": "ce6cef03-0e18-4f32-94b3-ca5c5a4adea4",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "选择“动物 > 猫”",
+      "duplicate": false,
+      "reason": "题干自足给出层级分类、只能选叶子节点、单选和图像内容；来源KB-A2-004支持层级标签选取深度与叶子节点规则。图中只有猫，唯一正确为“动物 > 猫”，其余选项分别违反叶子深度、单选或内容匹配。与旧题不重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "1e8e65e1-687e-4801-8d24-007bbb757bc6",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T05:01:37.923457+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A2-001",
+        "title": "开工前在哪里确认标注规范",
+        "content": "CVAT 的 Guide 功能允许把标注说明绑定到项目或具体任务，说明支持格式化文字、图片和清单。标注员第一次打开新分配范围内的作业时可看到说明，也能在标注界面主动打开。执行岗位任务时，先确认说明对应的是当前项目还是当前任务，再依据其中的类别和操作要求开始；接手新任务不能仅凭上一个项目的操作习惯判断。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/specification/",
+        "source_name": "CVAT · Specification for annotators"
+      },
+      {
+        "id": "KB-A2-004",
+        "title": "层级标签要遵守选取深度",
+        "content": "Label Studio 的层级分类控件可以记录一个或多个选择及其祖先节点，还能限制只能选择叶子节点。叶子节点是分类树中没有下级的末端选项；父节点与子节点表示不同的分类层次。处理层级标签任务时，应先看规范要求选到哪一层、是否允许多选，再选择对应路径。结果中的完整路径能说明标签所属层级，单看末端名称可能丢失上下文。",
+        "source_url": "https://labelstud.io/tags/taxonomy",
+        "source_name": "Label Studio · Taxonomy tag"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-2beee00151a364bce2634e42"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在 Label Studio 中处理一个图像分类任务，任务使用层级分类控件，规范要求只能选择叶子节点，且为多选模式。分类树为“动物 > 猫”“动物 > 狗”“植物 > 树”“植物 > 花”。一张图片中同时出现一只猫和一棵树。按照本练习规定的项目规则，层级标签要遵守选取深度，只能选择叶子节点，且多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。你应该如何选择？",
+    "project_rule": "本练习规定：层级标签只能选择叶子节点，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符。",
+    "options": [
+      "选择“动物 > 猫”和“植物 > 树”",
+      "选择“动物”和“植物”",
+      "选择“动物 > 猫”和“动物 > 狗”",
+      "只选择“动物 > 猫”"
+    ],
+    "answer": "选择“动物 > 猫”和“植物 > 树”",
+    "explanation": "图片中有猫和树，对应叶子节点“动物 > 猫”和“植物 > 树”。规范要求只能选择叶子节点，不能选择父节点“动物”或“植物”；画面中没有狗，不能选择“动物 > 狗”。",
+    "hint": [
+      "先确认哪些叶子节点在图像中有对应内容。",
+      "父节点不符合只能选择叶子节点的要求。",
+      "画面中没有狗，不能选狗。"
+    ],
+    "source_id": "KB-A2-004",
+    "source_url": "https://labelstud.io/tags/taxonomy",
+    "skill_rationale": "该题结合层级分类的叶子节点约束和多选模式，要求从分类树中选出与图像内容相符的多个叶子节点，精确训练多标签分类在层级结构下的应用。",
+    "content_hash": "55f953347c00c5bc11d8d2d0e0c9585794c5c59269a59f779d6dbd8464730f92",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T09:08:18.418587+00:00",
+    "generation_request_id": "eef601fb-ae2d-4fd2-8deb-3673bb45ee15",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 0.95,
+      "teaching_quality": 0.9,
+      "unambiguous": 0.95,
+      "independent_answer": "选择“动物 > 猫”和“植物 > 树”",
+      "duplicate": false,
+      "reason": "题干自足，规则明确：只能选叶子节点且多选；图中猫和树分别对应两个叶子节点，父节点与狗均不符。来源KB-A2-004支持层级选取深度，KB-A3-002支持多选由配置决定。选项唯一正确，解释正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "10f1878d-426a-4162-a411-513bd1f4d576",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T09:08:18.418587+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-A2-004",
+        "title": "层级标签要遵守选取深度",
+        "content": "Label Studio 的层级分类控件可以记录一个或多个选择及其祖先节点，还能限制只能选择叶子节点。叶子节点是分类树中没有下级的末端选项；父节点与子节点表示不同的分类层次。处理层级标签任务时，应先看规范要求选到哪一层、是否允许多选，再选择对应路径。结果中的完整路径能说明标签所属层级，单看末端名称可能丢失上下文。",
+        "source_url": "https://labelstud.io/tags/taxonomy",
+        "source_name": "Label Studio · Taxonomy tag"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A2-002",
+        "title": "标签配置发生变化为什么会影响已有结果",
+        "content": "Label Studio 的标签配置决定待标数据、可选标签和标注方式，项目可以使用模板或自定义配置。官方文档指出，已有进行中的标注引用某标签时，不能直接删除该标签或更改相应标注类型，除非先处理使用它的已有标注。这说明标签集合是数据结构的一部分；修改规范时要核对现存结果受影响的范围，避免新旧标签含义和结果结构混用。",
+        "source_url": "https://labelstud.io/guide/setup",
+        "source_name": "Label Studio · Configure labeling interface"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-005",
+        "title": "按 UD 约定分别组织训练、开发和测试文件",
+        "content": "Universal Dependencies 的语料仓库约定把训练、开发和测试数据分别保存为命名明确的文件，并要求数据采用统一的 CoNLL-U 格式和通过格式验证；部分小型语料可能只有测试数据。对初学标注员而言，数据划分不仅是界面标签，也会体现在实际交付文件中。整理语料时应保持这些文件及其用途对应，不能把不同集合任意拼成一份后仍沿用原名称。",
+        "source_url": "https://universaldependencies.org/contributing/repository_files.html",
+        "source_name": "Universal Dependencies · Repository and files"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      }
+    ],
+    "id": "QF-55f953347c00c5bc11d8d2d0"
+  },
+  {
+    "skill_id": "A3-S2",
+    "type": "choice",
+    "title": "你在Label Studio中处理一个图像分类任务，任务配置为多选模式，界面显示类别：室内、室外、白天、夜晚、人物、动物。一张图片显示的是白天的室外场景，画面中有一只狗，没有人物。按照本练习规定的项目规则，多选模式允许同时选择多个类别，但每个选项必须与图像内容相符，不能选择画面中不存在的类别。你应该如何选择？",
+    "project_rule": "本练习规定：多选模式允许同时选择多个类别，但每个选项必须与图像内容相符，不能选择画面中不存在的类别。",
+    "options": [
+      "选择“室外”“白天”“动物”",
+      "选择“室外”“白天”“动物”“人物”",
+      "只选择“室外”",
+      "选择“室内”“夜晚”“动物”"
+    ],
+    "answer": "选择“室外”“白天”“动物”",
+    "explanation": "图片内容为白天的室外场景且有一只狗，因此“室外”“白天”“动物”均与图像内容相符；画面中没有人物，不能选择“人物”；只选“室外”会遗漏同样成立的类别；选择“室内”“夜晚”与画面内容不符。",
+    "hint": [
+      "先逐项核对每个类别是否在画面中真实出现。",
+      "画面中不存在的类别不能因为“可能相关”而勾选。",
+      "把所有与画面相符的类别都选上，同时排除不符的类别。"
+    ],
+    "source_id": "KB-A3-002",
+    "source_url": "https://labelstud.io/tags/choices.html",
+    "skill_rationale": "该题要求学习者在多选模式下同时判断多个类别是否与整图内容相符，直接训练多标签分类的逐项核对与取舍能力。",
+    "content_hash": "7a9a95b97316c262900f1d60a8f12abc109bbd0048093fdf3b4ea828161fa46e",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-10T09:08:25.608815+00:00",
+    "generation_request_id": "3f2e80a1-d0ba-4faf-b4f0-c0f7a1b8ca07",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 0.95,
+      "teaching_quality": 0.9,
+      "unambiguous": 0.95,
+      "independent_answer": "选择“室外”“白天”“动物”",
+      "duplicate": false,
+      "reason": "题干给出多选模式与逐项相符规则，画面事实明确为白天、室外、有狗、无人物；正确选项完整覆盖相符类别并排除不符类别，来源KB-A3-002支持多选由配置决定且选项须与内容相符。与旧题相比，虽同为多选场景，但类别集合与排除项不同，且明确加入“不能选择画面中不存在的类别”约束，不构成简单换名重复。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "7ff974bc-d758-4855-a207-b826c7f8e642",
+      "independent_call": true,
+      "reviewed_at": "2026-09-10T09:08:25.608815+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-A3-001",
+        "title": "整图分类的标签作用于整张图",
+        "content": "图像分类要求为整张图像选择类别。Label Studio 的图像分类模板用图像对象展示输入，再用选择控件呈现可选类别；这些选择关联的是图像对象，而不是框选出的局部区域。操作前先确认题目需要判断整体内容还是定位某个具体对象。整图分类可以用于描述图像内容类型，但仅选择类别不会同时产生目标位置或像素轮廓。",
+        "source_url": "https://labelstud.io/templates/image_classification.html",
+        "source_name": "Label Studio · Image Classification template"
+      },
+      {
+        "id": "KB-A3-004",
+        "title": "分类树和分类结果的显示名称可能不同",
+        "content": "Label Studio 支持通过层级结构组织分类选项，也支持从外部 JSON 或接口加载分类树。配置中的显示值通常用于界面展示；设置别名时，导出结果可能保存别名而不是显示值。处理这类项目时，应理解界面名称与内部分类编码的对应关系，沿既定分类树选择，交付检查时依据项目映射表解释编码，不能仅因名称不同就认定标签发生了变化。",
+        "source_url": "https://labelstud.io/templates/taxonomy",
+        "source_name": "Label Studio · Taxonomy template"
+      },
+      {
+        "id": "KB-A3-005",
+        "title": "帧级标签不需要绘制目标框",
+        "content": "CVAT 的标签标注模式用于给整帧添加标签。切换到该模式后，标注员从标签面板选择类别并添加，也可以使用为标签设置的快捷键；对于每帧只需一个标签的任务，可配置添加后自动进入下一帧。这里的标签表达整帧判断，不包含对象的框或轮廓。实际操作时应明确当前帧的分类要求，再添加相应标签，不能用画框数量替代帧级分类结果。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/annotation-with-tags/",
+        "source_name": "CVAT · Annotation with tags"
+      },
+      {
+        "id": "KB-A2-004",
+        "title": "层级标签要遵守选取深度",
+        "content": "Label Studio 的层级分类控件可以记录一个或多个选择及其祖先节点，还能限制只能选择叶子节点。叶子节点是分类树中没有下级的末端选项；父节点与子节点表示不同的分类层次。处理层级标签任务时，应先看规范要求选到哪一层、是否允许多选，再选择对应路径。结果中的完整路径能说明标签所属层级，单看末端名称可能丢失上下文。",
+        "source_url": "https://labelstud.io/tags/taxonomy",
+        "source_name": "Label Studio · Taxonomy tag"
+      },
+      {
+        "id": "KB-A3-002",
+        "title": "单选和多选由任务配置决定",
+        "content": "Label Studio 的 Choices 控件支持单选、单选按钮和多选模式，模式由配置决定。同一条数据是否能同时拥有多个类别，取决于该任务的标签设计，而不是学员觉得几个选项都有关联。处理分类题时，应先看清允许的选择数量和每个选项的含义；若任务采用单选，就需要在规定的类别体系内完成一次明确选择，不能把多选结果当成等价答案。",
+        "source_url": "https://labelstud.io/tags/choices.html",
+        "source_name": "Label Studio · Choices tag"
+      },
+      {
+        "id": "KB-A1-002",
+        "title": "区分原始任务、区域与标签",
+        "content": "在 Label Studio 的术语中，一条待处理数据是一个任务，可能是一张图、一段文本或一段视频；区域是从该数据中选出来的部分，例如图像边界框或文本片段；标签是附加给区域的类别信息。任务完成后产生标注结果。因此，看到了图片、画出了区域、选好了标签是不同步骤，交付时需要让区域和标签正确关联到原始任务。",
+        "source_url": "https://labelstud.io/guide/glossary",
+        "source_name": "Label Studio · Terminology"
+      },
+      {
+        "id": "KB-A2-002",
+        "title": "标签配置发生变化为什么会影响已有结果",
+        "content": "Label Studio 的标签配置决定待标数据、可选标签和标注方式，项目可以使用模板或自定义配置。官方文档指出，已有进行中的标注引用某标签时，不能直接删除该标签或更改相应标注类型，除非先处理使用它的已有标注。这说明标签集合是数据结构的一部分；修改规范时要核对现存结果受影响的范围，避免新旧标签含义和结果结构混用。",
+        "source_url": "https://labelstud.io/guide/setup",
+        "source_name": "Label Studio · Configure labeling interface"
+      },
+      {
+        "id": "KB-A2-005",
+        "title": "交付格式会限制可保留的标注信息",
+        "content": "CVAT 的 Pascal VOC 导出支持目标框、分类标签以及部分分割结果，采用相关的 XML 和掩码结构，但不支持轨迹。遮挡、截断和困难样本属性也有对应的字段约定，其中部分属性需要在标签中定义为复选框。开始工作前应确认交付格式所支持的对象和属性，再执行任务；工具里能创建的结果不一定都能完整保存在指定导出格式中。",
+        "source_url": "https://docs.cvat.ai/docs/dataset_management/formats/format-voc/",
+        "source_name": "CVAT · Pascal VOC"
+      },
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      },
+      {
+        "id": "KB-A1-003",
+        "title": "认识手工、半自动与自动标注",
+        "content": "CVAT 将标注按产生方式区分为手工、半自动和自动：手工由人创建；半自动主要由工具生成，但需要人提供部分信息，插值就是一种例子；自动标注由程序自动产生，不需要人在生成环节中参与。理解这些方式能帮助学员说清作业中哪些结果来自人工操作，哪些来自工具计算。这里的分类讨论的是产生方式，不是把所有使用了工具的操作都称为全自动。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/vocabulary/",
+        "source_name": "CVAT · Vocabulary"
+      },
+      {
+        "id": "KB-A1-005",
+        "title": "按 UD 约定分别组织训练、开发和测试文件",
+        "content": "Universal Dependencies 的语料仓库约定把训练、开发和测试数据分别保存为命名明确的文件，并要求数据采用统一的 CoNLL-U 格式和通过格式验证；部分小型语料可能只有测试数据。对初学标注员而言，数据划分不仅是界面标签，也会体现在实际交付文件中。整理语料时应保持这些文件及其用途对应，不能把不同集合任意拼成一份后仍沿用原名称。",
+        "source_url": "https://universaldependencies.org/contributing/repository_files.html",
+        "source_name": "Universal Dependencies · Repository and files"
+      },
+      {
+        "id": "KB-A2-003",
+        "title": "类别和属性为什么要分开定义",
+        "content": "CVAT 创建任务时，标签用于定义对象类别，属性用于描述对象的其他性质，例如颜色、型号或质量。属性还可以设置输入方式、默认值以及是否随视频帧变化。执行标注时应把类别判断和属性填写分开核对：选对对象类别不代表所有属性都已完成；属性值也应来自当前标签允许的选项，而不能把临时说明随意当成新的类别。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/tasks-page/",
+        "source_name": "CVAT · Tasks"
+      },
+      {
+        "id": "KB-A3-003",
+        "title": "属性补全应逐对象逐字段进行",
+        "content": "CVAT 的属性标注模式支持在已有对象间快速切换，并依次编辑各个属性，还可以筛选同一类别后集中处理。界面会指出当前激活的属性，学员可以通过选项或快捷键赋值。这样的工作方式把对象定位与属性填写分成两个步骤：补充属性时要核对当前对象和当前字段，避免把上一对象的选项误填到下一对象，或只填一个字段就认为整项已完成。",
+        "source_url": "https://docs.cvat.ai/docs/annotation/manual-annotation/modes/attribute-annotation-mode-basics/",
+        "source_name": "CVAT · Attribute annotation mode"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      }
+    ],
+    "id": "QF-7a9a95b97316c262900f1d60"
+  }
+]
