@@ -68,7 +68,8 @@ def test_local_tutor_fallback_never_calls_model(monkeypatch):
     output=asyncio.run(tutor.answer('请给我标注提示','QUESTION_TUTOR',{},[],q,1))
     assert output['provider']=='knowledge' and output['text']=='查看特征'
     output=asyncio.run(tutor.answer('天气怎么样','GENERAL_TUTOR',{},[]))
-    assert output['provider']=='scope_guard' and output['sources']==[]
+    assert output['provider']=='platform' and output['sources']==[]
+    assert '模型尚未配置' in output['text']
 
 def test_start_blocked_by_refresh_lock_without_changing_shared_redis(account, monkeypatch):
     from backend import main

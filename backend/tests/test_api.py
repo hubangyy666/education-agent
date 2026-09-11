@@ -133,13 +133,13 @@ def test_job_partial_finish_and_repair(account, seeded_run):
         p=db.get(Progress,f'{account["username"]}:A1-JOB')
         assert p.attempts==2 and p.score==100
 
-def test_scope_guard_sse_and_mode_validation_without_external_calls(account):
+def test_homepage_tutor_sse_has_no_fixed_scope_guard(account):
     c=account['client']
     assert c.post('/api/ai/chat',json={'message':'今天天气','mode':'UNKNOWN'}).status_code==422
     assert c.post('/api/ai/chat',json={'message':'今天天气','mode':'QUESTION_TUTOR'}).status_code==422
     response=c.post('/api/ai/chat',json={'message':'今天天气怎么样？'})
     assert response.status_code==200 and response.headers['content-type'].startswith('text/event-stream')
-    assert '"provider": "scope_guard"' in response.text
+    assert 'scope_guard' not in response.text
     assert 'event: done' in response.text and '"sources": []' in response.text
 
 def test_task_list_owner_filter(account, account_factory):
@@ -171,11 +171,35 @@ def test_race_unlock_after_all_six_prior_levels_done(account):
     run=response.json()
     assert run['mode']=='competition' and len(run['questions'])==10 and run['deadline']
 
-def test_offscope_question_does_not_reveal_job_answers(account, seeded_run):
+def test_question_page_does_not_pre_reject_short_or_offtopic_wording(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account,'A4-JOB','job')
     response=c.post('/api/ai/chat',json={'message':'今天天气怎么样','mode':'QUESTION_TUTOR','run_id':rid,'question_id':qs[0]['id']})
-    assert response.status_code==200 and 'scope_guard' in response.text
+    assert response.status_code==200 and 'scope_guard' not in response.text
     assert 'standard_answer' not in response.text and '"box"' not in response.text
+
+def test_only_explicit_hint_requests_advance_dialogue_hint_level(account, seeded_run):
+    c=account['client'];rid,qs=seeded_run(account,'A4-L1','course');qid=qs[0]['id']
+    response=c.post('/api/ai/chat',json={'message':'怎么判断目标大小','mode':'QUESTION_TUTOR','run_id':rid,'question_id':qid})
+    assert response.status_code==200
+    with Session(engine) as db: assert (db.get(Run,rid).hints or {}).get(qid,0)==0
+    response=c.post('/api/ai/chat',json={'message':'给我一点提示','mode':'QUESTION_TUTOR','run_id':rid,'question_id':qid,'hint_request':True})
+    assert response.status_code==200
+    with Session(engine) as db: assert db.get(Run,rid).hints[qid]==1
+
+def test_post_submit_wrong_instance_dialogue_uses_candidate_evidence(account, seeded_run):
+    from backend.tutor import candidate_targets
+    c=account['client'];rid,qs=seeded_run(account,'A4-L1','course')
+    q=next(item for item in qs if str(item.get('sample_id'))=='86956')
+    left=next(item for item in candidate_targets(q) if item.get('annotation_id')==508729)
+    graded=post_answer(c,rid,q,{'boxes':[{'label':left['label'],'box':left['box']}]}).json()['result']
+    assert graded['error_type']=='MISSED_TARGET'  # the dialogue layer must not mutate scoring
+    response=c.post('/api/ai/chat',json={'message':'为什么错了','mode':'QUESTION_TUTOR','run_id':rid,'question_id':q['id']})
+    assert response.status_code==200 and 'WRONG_TARGET_INSTANCE' in response.text
+    token_text=''.join(json.loads(line[6:])['text'] for line in response.text.splitlines()
+                       if line.startswith('data: ') and '"text"' in line)
+    assert '右侧' in token_text and ('左侧' in token_text or '另一' in token_text)
+    assert all(text not in token_text for text in (
+        '边界没有贴合','边界没贴合','漏标了其他','漏选了其他'))
 
 def test_onboarding_requires_independent_annotation_and_persists(account):
     c=account['client']

@@ -232,6 +232,7 @@ class ChatBody(BaseModel):
     mode:str='GENERAL_TUTOR'
     run_id:str|None=None
     question_id:str|None=None
+    hint_request:bool=False
     history:list[dict]=Field(default_factory=list,max_length=10)
 @app.post('/api/ai/chat')
 async def chat(body:ChatBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
@@ -247,13 +248,62 @@ async def chat(body:ChatBody,user:User=Depends(current_user),db:Session=Depends(
         submitted=question['id'] in run.answers and (run.mode in ('course','onboarding') or run.status=='completed')
         if run.mode=='competition' and run.status=='active': raise HTTPException(403,'比赛进行中暂停导师提示，提交后可以复盘。')
         if submitted: result=grade(question,run.answers[question['id']])
-        run.hints={**(run.hints or {}),question['id']:hint_count+1};db.commit()
-    states=ability_state(db,user);rec=recommendation(states,user.goal);aid=aid or rec['ability_id']
-    learner=learner_context(user,states,aid,skill)
-    sources=tutor.retrieve(db,body.message,aid,skill,project_id=question.get('project_id') if question else None,context=learner,question=question,history=body.history) if tutor.in_scope(body.message,question is not None,body.history) else []
+        # The UI action, rather than a phrase classifier, decides whether the
+        # learner consumed the next progressive hint.
+        if not submitted and body.hint_request:
+            run.hints={**(run.hints or {}),question['id']:hint_count+1};db.commit()
+    platform_context=tutor.homepage_platform_context()
+    learning_context_loader=None;resource_loader=None
+    if question:
+        states=ability_state(db,user);rec=recommendation(states,user.goal);aid=aid or rec['ability_id']
+        learner=learner_context(user,states,aid,skill)
+        # Question-page RAG is a model tool, so retrieval happens only when the
+        # tutor says the current answer lacks general knowledge.
+        sources=[]
+        def knowledge_loader(query):
+            return tutor.retrieve(db,query,aid,skill,
+                                  project_id=question.get('project_id'),
+                                  context=learner,question=question,
+                                  history=body.history)
+    else:
+        # Homepage context starts with public platform facts only. The model
+        # decides whether it needs knowledge, learner data, or platform links.
+        learner={};sources=[]
+        def knowledge_loader(query):
+            return tutor.retrieve(db,query,history=body.history)
+        loaded_learning={}
+        def learning_context_loader():
+            if loaded_learning:
+                return loaded_learning
+            states=ability_state(db,user);rec=recommendation(states,user.goal)
+            context=learner_context(user,states,rec['ability_id'])
+            loaded_learning.update({
+                'goal': user.goal,
+                'daily_goal_minutes': user.daily_goal,
+                'recommended_ability_id': rec['ability_id'],
+                'recommended_ability_name': rec['ability_name'],
+                'recommended_level_id': rec['level']['id'],
+                'recommended_level_name': rec['level']['name'],
+                'recommended_mastery': rec['mastery'],
+                'recommendation_reason': rec['reason'],
+                'learning_path': rec['path'],
+                'weak_skills': context['weak_skills'],
+                'recent_errors': context['recent_errors'],
+            })
+            return loaded_learning
+        resource_loader=tutor.search_learning_resources
     async def stream():
-        yield 'event: status\ndata: '+json.dumps({'text':'正在结合你的学习情况查找资料…'},ensure_ascii=False)+'\n\n'
-        task=asyncio.create_task(tutor.answer(body.message,body.mode,learner,sources,question,hint_count,submitted,result,body.history,run.answers.get(question['id']) if run and submitted else None))
+        status=('正在结合当前题目、作答和对话理解你的问题…' if question
+                else '正在结合你的学习情况查找资料…')
+        yield 'event: status\ndata: '+json.dumps({'text':status},ensure_ascii=False)+'\n\n'
+        task=asyncio.create_task(tutor.answer(
+            body.message,body.mode,learner,sources,question,hint_count,
+            submitted,result,body.history,
+            run.answers.get(question['id']) if run and submitted else None,
+            knowledge_loader=knowledge_loader,
+            learning_context_loader=learning_context_loader,
+            resource_loader=resource_loader,
+            platform_context=platform_context))
         while not task.done():
             done,_=await asyncio.wait({task},timeout=5)
             if not done: yield ': keepalive\n\n'
