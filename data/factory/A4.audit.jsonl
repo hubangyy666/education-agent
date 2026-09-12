@@ -89,3 +89,5 @@
 {"at": "2026-09-10T04:51:29.527715+00:00", "stage": "candidate_rejected", "skill_id": "A4-S5", "reason": "schema_gt_or_duplicate"}
 {"at": "2026-09-10T05:03:10.360222+00:00", "stage": "offline_validated_publish", "status": "published", "version": 2, "count": 55, "skills": {"A4-S1": 11, "A4-S2": 11, "A4-S3": 11, "A4-S4": 11, "A4-S5": 11}, "unique_content": 55, "types": {"choice": 10, "box": 45}}
 {"at": "2026-09-10T05:07:05.844433+00:00", "stage": "published", "version": 3, "count": 55, "skill_counts": {"A4-S1": 11, "A4-S2": 11, "A4-S3": 11, "A4-S4": 11, "A4-S5": 11}}
+{"at": "2026-09-11T13:40:03.278124+00:00", "stage": "published", "version": 2, "count": 55, "skill_counts": {"A4-S1": 11, "A4-S2": 11, "A4-S3": 11, "A4-S4": 11, "A4-S5": 11}}
+{"at": "2026-09-11T13:40:33.151375+00:00", "stage": "published", "version": 3, "count": 55, "skill_counts": {"A4-S1": 11, "A4-S2": 11, "A4-S3": 11, "A4-S4": 11, "A4-S5": 11}}

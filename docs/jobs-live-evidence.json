@@ -1,0 +1,74 @@
+{
+  "task": "jobs-live-generation",
+  "target": "http://127.0.0.1:8000",
+  "seconds": 14.08,
+  "provider": "deepseek",
+  "ai_generated": true,
+  "notice": "AI 已依据下列岗位资料和你的学情组织教学文字；知识技能映射与考核由平台规则确定。",
+  "task_name": "文本实体与名称边界标注",
+  "sources": [
+    "MOE-AI-2025",
+    "DATATANG-DOMAINS",
+    "LS-NER",
+    "LS-SENTIMENT",
+    "LS-INTENT",
+    "SPACY-ENTITIES"
+  ],
+  "used_source_ids": [
+    "LS-NER",
+    "MOE-AI-2025",
+    "SPACY-ENTITIES",
+    "LS-SENTIMENT",
+    "LS-INTENT"
+  ],
+  "fixed_instructions_preserved": true,
+  "database_roundtrip": true,
+  "steps": [
+    {
+      "id": "understand",
+      "has_teaching_guidance": true
+    },
+    {
+      "id": "prepare",
+      "has_teaching_guidance": true
+    },
+    {
+      "id": "practice",
+      "has_teaching_guidance": true
+    },
+    {
+      "id": "review",
+      "has_teaching_guidance": true
+    }
+  ],
+  "api_schema_fields": [
+    "ai_generated",
+    "analysis",
+    "assessment",
+    "deliverables",
+    "description",
+    "difficulty",
+    "duration_minutes",
+    "industry",
+    "knowledge",
+    "majors",
+    "mandatory_objectives",
+    "name",
+    "norms",
+    "notice",
+    "objectives",
+    "provider",
+    "quality",
+    "resources",
+    "role_title",
+    "scenario",
+    "skills",
+    "source_ids",
+    "steps",
+    "task_description",
+    "used_source_ids",
+    "work_scenario"
+  ],
+  "passed": true,
+  "disposable_identity_removed": true
+}

@@ -4765,5 +4765,763 @@
       }
     ],
     "id": "QF-24225a92f78c6278dd81ad21"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注项目使用一批公开可访问的新闻文本及其人工标注。项目规则（本练习规定）：原始文本与标注数据的使用条件必须分别核对；若原始文本的许可仅允许非商业研究使用，则标注数据不得用于商业产品训练，也不得将原始文本或标注数据上传至未经批准的公开平台。项目经理计划将标注数据用于公司商业产品训练，并上传到公开代码托管平台。以下哪种做法符合项目规则？",
+    "project_rule": "原始文本与标注数据的使用条件必须分别核对；若原始文本的许可仅允许非商业研究使用，则标注数据不得用于商业产品训练，也不得将原始文本或标注数据上传至未经批准的公开平台。",
+    "options": [
+      "先核对原始文本的许可，确认其仅允许非商业研究使用，因此不将标注数据用于商业产品训练，也不上传到公开平台。",
+      "因为标注数据是团队自己生产的，所以可以不受原始文本许可限制，直接用于商业产品训练并上传到公开平台。",
+      "只要在公开平台上标注数据来源，就可以用于商业产品训练并上传。",
+      "将原始文本和标注数据分开处理：原始文本不上传，但标注数据可以用于商业产品训练并上传到公开平台。"
+    ],
+    "answer": "先核对原始文本的许可，确认其仅允许非商业研究使用，因此不将标注数据用于商业产品训练，也不上传到公开平台。",
+    "explanation": "项目规则明确要求分别核对原始文本与标注数据的使用条件，且原始文本许可仅允许非商业研究使用时，标注数据也不得用于商业产品训练或上传至未经批准的公开平台。选项A遵循了该规则；其他选项均忽略了原始文本许可对标注数据使用的限制。",
+    "hint": [
+      "项目规则要求分别核对原始文本和标注数据的使用条件。",
+      "原始文本的许可类型会直接影响标注数据的使用范围。",
+      "非商业研究许可意味着不能用于商业产品训练，也不能随意上传。"
+    ],
+    "source_id": "KB-GENERAL-004",
+    "source_url": "https://universaldependencies.org/contributing/licensing.html",
+    "skill_rationale": "本题直接训练公开数据许可与原始数据/标注不同使用条件的判断，符合数据安全技能中关于公开数据许可与原始数据/标注不同使用条件的要求。",
+    "content_hash": "fe94dcd2e474b36fb2a558d700daab8c67480420e47f439e9a50256c5bfb9900",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T13:58:25.216338+00:00",
+    "generation_request_id": "14342042-c71e-4d53-bb72-fdf67f1f67a6",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "先核对原始文本的许可，确认其仅允许非商业研究使用，因此不将标注数据用于商业产品训练，也不上传到公开平台。",
+      "duplicate": false,
+      "reason": "来源KB-GENERAL-004明确要求分别核对原始文本与标注的许可，并提示标注许可可能受限；题干自足给出项目规则，选项A唯一符合规则，其余选项均违反分别核对与限制使用的要求。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "03605eee-eff8-426e-b2bc-636b459f9b04",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T13:58:25.216338+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-fe94dcd2e474b36fb2a558d7"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队使用一批公开可访问的图片数据集，每张图片附带标注。项目规则（本练习规定）：公开可访问不等于可以自由分发；必须分别核对原始图片和标注的许可；若原始图片许可允许复制和分发，但标注许可仅允许研究使用，则标注数据不得用于商业目的，也不得公开分发。团队计划将标注数据用于商业产品训练并公开分发。以下哪种做法符合项目规则？",
+    "project_rule": "公开可访问不等于可以自由分发；必须分别核对原始图片和标注的许可；若原始图片许可允许复制和分发，但标注许可仅允许研究使用，则标注数据不得用于商业目的，也不得公开分发。",
+    "options": [
+      "核对原始图片和标注的许可，确认标注许可仅允许研究使用，因此不将标注数据用于商业产品训练，也不公开分发。",
+      "因为原始图片许可允许复制和分发，所以标注数据也可以用于商业产品训练并公开分发。",
+      "只要在公开分发时注明标注许可，就可以用于商业产品训练。",
+      "将标注数据用于商业产品训练，但公开分发时只分发原始图片，不分发标注。"
+    ],
+    "answer": "核对原始图片和标注的许可，确认标注许可仅允许研究使用，因此不将标注数据用于商业产品训练，也不公开分发。",
+    "explanation": "项目规则要求分别核对原始图片和标注的许可，且标注许可仅允许研究使用时，标注数据不得用于商业目的或公开分发。选项A符合规则；选项B、C、D均错误地忽略了标注许可的限制。",
+    "hint": [
+      "公开可访问不等于可以自由分发。",
+      "必须分别核对原始图片和标注的许可。",
+      "标注许可仅允许研究使用时，不能用于商业目的或公开分发。"
+    ],
+    "source_id": "KB-GENERAL-004",
+    "source_url": "https://universaldependencies.org/contributing/licensing.html",
+    "skill_rationale": "本题训练公开数据许可与原始数据/标注不同使用条件的判断，符合数据安全技能中关于公开数据许可的要求。",
+    "content_hash": "ae6394c7723e275baa261e5a0a4066909546020400f2537841252921ffee2eb2",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T13:58:25.220833+00:00",
+    "generation_request_id": "14342042-c71e-4d53-bb72-fdf67f1f67a6",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "核对原始图片和标注的许可，确认标注许可仅允许研究使用，因此不将标注数据用于商业产品训练，也不公开分发。",
+      "duplicate": false,
+      "reason": "来源KB-GENERAL-004明确公开可访问不等于可自由分发，且需分别核对原始数据与标注许可；题干自足规定标注许可仅研究使用时不得商业使用或公开分发，选项A唯一正确。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "03605eee-eff8-426e-b2bc-636b459f9b04",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T13:58:25.220833+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-ae6394c7723e275baa261e5a"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队处理一批公开可访问的社交媒体文本及其标注。项目规则（本练习规定）：原始文本和标注数据的使用条件必须分别核对；若原始文本许可允许商业使用，但标注数据许可仅允许非商业研究使用，则标注数据不得用于商业产品训练，也不得公开分发；原始文本可以按许可使用。团队计划将原始文本用于商业产品训练，同时将标注数据用于内部研究。以下哪种做法符合项目规则？",
+    "project_rule": "原始文本和标注数据的使用条件必须分别核对；若原始文本许可允许商业使用，但标注数据许可仅允许非商业研究使用，则标注数据不得用于商业产品训练，也不得公开分发；原始文本可以按许可使用。",
+    "options": [
+      "将原始文本用于商业产品训练，将标注数据仅用于内部研究，不公开分发。",
+      "将原始文本和标注数据都用于商业产品训练，因为原始文本许可允许商业使用。",
+      "将标注数据用于商业产品训练，但公开分发时只分发原始文本。",
+      "将原始文本和标注数据都公开分发，因为原始文本许可允许商业使用。"
+    ],
+    "answer": "将原始文本用于商业产品训练，将标注数据仅用于内部研究，不公开分发。",
+    "explanation": "项目规则要求分别核对使用条件，原始文本许可允许商业使用，因此可用于商业产品训练；标注数据许可仅允许非商业研究使用，因此只能用于内部研究且不得公开分发。选项A符合规则；其他选项均错误地将标注数据用于商业或公开分发。",
+    "hint": [
+      "原始文本和标注数据的使用条件必须分别核对。",
+      "原始文本许可允许商业使用，但标注数据许可仅允许非商业研究使用。",
+      "标注数据不得用于商业产品训练，也不得公开分发。"
+    ],
+    "source_id": "KB-GENERAL-004",
+    "source_url": "https://universaldependencies.org/contributing/licensing.html",
+    "skill_rationale": "本题训练公开数据许可与原始数据/标注不同使用条件的判断，符合数据安全技能中关于公开数据许可与原始数据/标注不同使用条件的要求。",
+    "content_hash": "18fea224f5deebde237e03506bb2d8f792d79e9be7affc0a3306bb2459675008",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T13:58:25.221547+00:00",
+    "generation_request_id": "14342042-c71e-4d53-bb72-fdf67f1f67a6",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 5,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "将原始文本用于商业产品训练，将标注数据仅用于内部研究，不公开分发。",
+      "duplicate": false,
+      "reason": "来源KB-GENERAL-004要求分别核对原始文本与标注的许可；题干自足规定原始文本可商业使用而标注仅非商业研究使用，选项A唯一正确执行分别核对与限制。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "03605eee-eff8-426e-b2bc-636b459f9b04",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T13:58:25.221547+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-18fea224f5deebde237e0350"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队新增一批公开可下载的网页文本，但无法找到该批次的来源许可记录。项目规则（本练习规定）：任何新增批次必须具有明确的来源许可记录；如果许可记录缺失，不得仅因为数据公开可下载就推断可以使用，必须暂停处理该批次，并向数据保护负责人报告，等待补充许可记录或获得明确授权。以下哪种做法符合项目规则？",
+    "project_rule": "本练习规定：任何新增批次必须具有明确的来源许可记录；如果许可记录缺失，不得仅因为数据公开可下载就推断可以使用，必须暂停处理该批次，并向数据保护负责人报告，等待补充许可记录或获得明确授权。",
+    "options": [
+      "因为数据是公开可下载的，可以直接开始标注，无需许可记录。",
+      "暂停处理该批次，向数据保护负责人报告，等待补充许可记录或获得明确授权。",
+      "先开始标注，同时让团队成员在网上搜索可能的许可信息。",
+      "仅使用该批次中看起来不敏感的部分，其余部分丢弃。"
+    ],
+    "answer": "暂停处理该批次，向数据保护负责人报告，等待补充许可记录或获得明确授权。",
+    "explanation": "项目规则明确许可记录缺失时不得推断可以使用，必须暂停处理并报告。选项A、C、D均未暂停或未报告，违反规则。",
+    "hint": [
+      "公开可下载是否等于可以使用？",
+      "项目规则对许可记录缺失的新增批次要求什么行动？",
+      "在补充许可记录或获得授权前，能否开始标注？"
+    ],
+    "source_id": "KB-GENERAL-004",
+    "source_url": "https://universaldependencies.org/contributing/licensing.html",
+    "skill_rationale": "此题训练数据安全技能中处理来源许可记录缺失批次的能力，符合技能范围。",
+    "content_hash": "5688b721d1879a9efb3de4649f0bd18c8e6d7c148ad51c46a10de3c068ce5918",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:00:47.540696+00:00",
+    "generation_request_id": "2a93f696-f103-415b-84a5-f3c5e3c07090",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 5,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 0.9,
+      "unambiguous": 1,
+      "independent_answer": "暂停处理该批次，向数据保护负责人报告，等待补充许可记录或获得明确授权。",
+      "duplicate": false,
+      "reason": "题干自足规定新增批次须有来源许可记录，缺失时不得因公开可下载推断可用，须暂停并报告；正确选项完整执行，唯一正确。来源支持公开可访问不等于无限制使用、应记录许可，规则为练习自设。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "d174a653-0c8a-42c3-b0ad-e237f0c1ac5b",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:00:47.540696+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-5688b721d1879a9efb3de464"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注项目使用第三方工具处理数据，项目规则（本练习规定）：授权仅覆盖已明确批准的数据用途和范围；如果第三方工具变更处理范围，例如新增将数据用于模型训练，原授权不自动覆盖新增用途，必须重新获得批准。项目经理发现第三方工具更新了服务条款，新增了将用户数据用于模型训练的用途。项目经理应该怎么做？",
+    "project_rule": "授权仅覆盖已明确批准的数据用途和范围；如果第三方工具变更处理范围，例如新增将数据用于模型训练，原授权不自动覆盖新增用途，必须重新获得批准。",
+    "options": [
+      "继续使用该工具，因为已经获得了初始授权。",
+      "停止使用该工具，并重新评估和获得批准后再继续。",
+      "继续使用，但记录变更即可。",
+      "仅通知团队成员，无需其他操作。"
+    ],
+    "answer": "停止使用该工具，并重新评估和获得批准后再继续。",
+    "explanation": "项目规则规定原授权不自动覆盖新增用途，必须重新获得批准。第三方工具新增数据用于模型训练属于处理范围变更，因此需要重新评估和批准。",
+    "hint": [
+      "原授权是否覆盖第三方工具的新增用途？",
+      "项目规则对处理范围变更有什么要求？",
+      "项目经理在重新获得批准前应该怎么做？"
+    ],
+    "source_id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "skill_rationale": "此题考查授权范围变更时的处理，属于数据安全中的授权访问与处理环境控制。",
+    "content_hash": "83a628c371623d60a7dbc12b395cb43a610f3fbf20f61347c2d1003eaad4c34a",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:05:43.781634+00:00",
+    "generation_request_id": "927cb511-4d21-42ba-9ac2-a080f1094ca7",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 0.9,
+      "skill_match": 0.9,
+      "ground_truth": 0.95,
+      "teaching_quality": 0.9,
+      "unambiguous": 0.95,
+      "independent_answer": "停止使用该工具，并重新评估和获得批准后再继续。",
+      "duplicate": false,
+      "reason": "题干给出授权范围变更需重新批准的项目规则，正确选项符合规则；考察处理范围变更与授权覆盖，来源支持授权不自动覆盖同类或新增用途。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "e58fd18e-c49a-4ff7-a208-32ca7cb7594e",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:05:43.781634+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+        "title": "按用户、数据和操作核对授权",
+        "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+        "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "source_name": "OWASP Cheat Sheet Series · Authorization"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-GENERAL-004",
+        "title": "公开数据还需要核对哪些使用条件",
+        "content": "公开可访问不表示所有数据都能不受限制地复制和分发。Universal Dependencies 的许可指南要求发布者确认有权提供数据，并在仓库的许可文件和说明文档中记录许可；指南还提示，某些语料的许可只涉及标注，底层文本可能有另外的权利条件。用于训练素材时，应分别核对原始文本或图像与其标注的许可范围，并保留相应来源记录。",
+        "source_url": "https://universaldependencies.org/contributing/licensing.html",
+        "source_name": "Universal Dependencies · Licensing UD data"
+      }
+    ],
+    "id": "QF-83a628c371623d60a7dbc12b"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队使用内部标注平台。项目规则（本练习规定）：授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。查看权限和修改权限是两种独立的操作权限，一份授权不自动覆盖另一种操作。标注员小张被授予了查看项目A标注数据的权限，但没有被授予修改权限。小张在查看数据时发现一处明显的标注错误，他想直接修改该条数据。按照项目规则，小张应该怎么做？",
+    "project_rule": "授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。查看权限和修改权限是两种独立的操作权限，一份授权不自动覆盖另一种操作。",
+    "options": [
+      "直接修改该条数据，因为修改错误是标注工作的一部分",
+      "保持只读，不修改数据，并通过规定渠道报告该错误，等待获得修改授权或由有权限的人员处理",
+      "先修改数据，再向管理员说明情况",
+      "将数据复制到个人设备上修改后再传回平台"
+    ],
+    "answer": "保持只读，不修改数据，并通过规定渠道报告该错误，等待获得修改授权或由有权限的人员处理",
+    "explanation": "根据项目规则，查看权限和修改权限是独立的操作权限，小张只有查看权限，没有修改权限。默认拒绝未明确授予的操作，因此他不能直接修改数据，而应保持只读并报告错误，等待授权或由有权限的人员处理。",
+    "hint": [
+      "回顾项目规则中关于授权针对特定操作的要求。",
+      "查看权限是否自动包含修改权限？",
+      "没有明确授予修改权限时，默认应该怎么做？"
+    ],
+    "source_id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "skill_rationale": "本题直接训练授权应针对特定操作核验、默认拒绝的原则，符合数据安全技能中关于授权访问的要求。",
+    "content_hash": "f9ddd7b22ad05fade0477012bcfc005990400fdceffbdd1f88e5d9bc590937bf",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:06.982536+00:00",
+    "generation_request_id": "1f4ae169-1d3c-476e-bcea-b4205e187ce2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "保持只读，不修改数据，并通过规定渠道报告该错误，等待获得修改授权或由有权限的人员处理",
+      "duplicate": false,
+      "reason": "题干自足标明查看与修改为独立权限、默认拒绝；正确选项严格按规则保持只读并报告，其他选项均越权或违规外传。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "09ef9d5e-df72-4215-b3d5-4af6251c0c33",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:06.982536+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+        "title": "按用户、数据和操作核对授权",
+        "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+        "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "source_name": "OWASP Cheat Sheet Series · Authorization"
+      }
+    ],
+    "id": "QF-f9ddd7b22ad05fade0477012"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队使用内部图片标注平台。项目规则（本练习规定）：授权应针对特定用户、资源和操作核验；同类数据的一份授权不自动覆盖所有同类数据。标注员小李被授予了查看项目甲图片数据的权限，但没有被授予查看项目乙图片数据的权限。小李在完成项目甲的任务后，想顺便查看项目乙的图片数据以帮助自己理解标注规范。按照项目规则，小李应该怎么做？",
+    "project_rule": "授权应针对特定用户、资源和操作核验；同类数据的一份授权不自动覆盖所有同类数据。",
+    "options": [
+      "直接查看项目乙的图片数据，因为都是图片数据，权限应该通用",
+      "不查看项目乙的图片数据，除非获得针对项目乙的明确授权",
+      "先查看项目乙的图片数据，再向管理员申请授权",
+      "将项目乙的图片数据下载到本地后查看"
+    ],
+    "answer": "不查看项目乙的图片数据，除非获得针对项目乙的明确授权",
+    "explanation": "根据项目规则，同类数据的一份授权不自动覆盖所有同类数据。小李只有项目甲的查看权限，没有项目乙的查看权限，因此不能查看项目乙的数据，除非获得针对项目乙的明确授权。",
+    "hint": [
+      "项目规则是否允许一份授权覆盖所有同类数据？",
+      "小李的授权是针对哪个项目的？",
+      "没有明确授权时，应该默认允许还是拒绝？"
+    ],
+    "source_id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "skill_rationale": "本题训练授权应针对特定资源核验、同类数据授权不自动覆盖的原则，符合数据安全技能中关于授权访问的要求。",
+    "content_hash": "6a392c6149ac17033d7f10f0b2428cda6435a01c845d49a74e3b79449603225b",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:06.982536+00:00",
+    "generation_request_id": "1f4ae169-1d3c-476e-bcea-b4205e187ce2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "不查看项目乙的图片数据，除非获得针对项目乙的明确授权",
+      "duplicate": false,
+      "reason": "规则明确同类数据授权不自动覆盖；正确选项要求针对项目乙的明确授权，直接查看、先查看后申请或下载均违反规则。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "09ef9d5e-df72-4215-b3d5-4af6251c0c33",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:06.982536+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+        "title": "按用户、数据和操作核对授权",
+        "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+        "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "source_name": "OWASP Cheat Sheet Series · Authorization"
+      }
+    ],
+    "id": "QF-6a392c6149ac17033d7f10f0"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队使用内部标注平台。项目规则（本练习规定）：授权可结合项目、时间、设备等条件；访问请求必须同时满足所有已设定的条件，缺少任一条件即默认拒绝。标注员小王被授权在项目A中，于工作日9:00至18:00，使用团队配发的办公电脑访问标注数据。以下哪个访问请求符合项目规则？",
+    "project_rule": "授权可结合项目、时间、设备等条件；访问请求必须同时满足所有已设定的条件，缺少任一条件即默认拒绝。",
+    "options": [
+      "小王在周三10:00使用团队配发的办公电脑访问项目A的标注数据",
+      "小王在周三20:00使用团队配发的办公电脑访问项目A的标注数据",
+      "小王在周三10:00使用个人手机访问项目A的标注数据",
+      "小王在周三10:00使用团队配发的办公电脑访问项目B的标注数据"
+    ],
+    "answer": "小王在周三10:00使用团队配发的办公电脑访问项目A的标注数据",
+    "explanation": "根据项目规则，访问请求必须同时满足项目、时间、设备三个条件。只有选项A同时满足：项目A、工作日10:00（在9:00-18:00内）、团队配发的办公电脑。其他选项均缺少至少一个条件。",
+    "hint": [
+      "列出项目规则中设定的所有访问条件。",
+      "逐一检查每个选项是否满足全部条件。",
+      "缺少任一条件时，默认允许还是拒绝？"
+    ],
+    "source_id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "skill_rationale": "本题训练授权可结合多条件核验、必须同时满足所有条件的原则，符合数据安全技能中关于授权访问的要求。",
+    "content_hash": "8b52b8e7ec828b223708354a42ad482695dcad17bf341870139bbcd4526431be",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:06.982536+00:00",
+    "generation_request_id": "1f4ae169-1d3c-476e-bcea-b4205e187ce2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 2,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "小王在周三10:00使用团队配发的办公电脑访问项目A的标注数据",
+      "duplicate": false,
+      "reason": "规则要求同时满足项目、时间、设备条件；仅该选项同时满足项目A、工作日9:00-18:00和团队配发电脑，其余各缺至少一项。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "09ef9d5e-df72-4215-b3d5-4af6251c0c33",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:06.982536+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+        "title": "按用户、数据和操作核对授权",
+        "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+        "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "source_name": "OWASP Cheat Sheet Series · Authorization"
+      }
+    ],
+    "id": "QF-8b52b8e7ec828b223708354a"
+  },
+  {
+    "skill_id": "A1-S5",
+    "type": "choice",
+    "title": "某标注团队使用内部图片标注平台。项目规则（本练习规定）：图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权；应用界面受限不能据此假定静态原始文件的公开链接也安全。标注员小赵在平台上只能查看经过审核的缩略图，但他发现原始图片的静态下载链接没有权限校验，直接访问链接就能下载原图。小赵想下载原图用于标注。按照项目规则，小赵应该怎么做？",
+    "project_rule": "图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权；应用界面受限不能据此假定静态原始文件的公开链接也安全。",
+    "options": [
+      "直接通过静态链接下载原图，因为链接可以访问就说明有权限",
+      "不通过静态链接下载原图，因为应用界面受限不代表原始文件公开，应通过批准的渠道访问或报告该链接问题",
+      "将静态链接分享给同事，让同事帮忙下载",
+      "先下载原图，再向管理员说明链接可访问"
+    ],
+    "answer": "不通过静态链接下载原图，因为应用界面受限不代表原始文件公开，应通过批准的渠道访问或报告该链接问题",
+    "explanation": "根据项目规则，应用界面受限不能据此假定静态原始文件的公开链接也安全。小赵应遵守访问策略，不通过未授权的静态链接下载原图，而应通过批准的渠道访问或报告该链接问题。",
+    "hint": [
+      "项目规则如何看待应用界面受限与静态链接安全的关系？",
+      "链接可以直接访问是否等于获得了授权？",
+      "发现未受保护的链接时，应该直接使用还是报告？"
+    ],
+    "source_id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "skill_rationale": "本题训练图片和云端文件纳入访问策略、应用界面受限不推断静态链接安全的原则，符合数据安全技能中关于授权访问的要求。",
+    "content_hash": "18fb912643d50ab7f00aae59f2a282df031e67a9c4bffae393fa17081f7b4d13",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:06.983532+00:00",
+    "generation_request_id": "1f4ae169-1d3c-476e-bcea-b4205e187ce2",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 3,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "不通过静态链接下载原图，因为应用界面受限不代表原始文件公开，应通过批准的渠道访问或报告该链接问题",
+      "duplicate": false,
+      "reason": "规则明确应用界面受限不能推定静态原始文件公开；正确选项拒绝未授权下载并报告，直接下载、分享链接或先下载后说明均违规。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "09ef9d5e-df72-4215-b3d5-4af6251c0c33",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:06.983532+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+        "title": "按用户、数据和操作核对授权",
+        "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+        "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "source_name": "OWASP Cheat Sheet Series · Authorization"
+      }
+    ],
+    "id": "QF-18fb912643d50ab7f00aae59"
+  },
+  {
+    "skill_id": "A1-S4",
+    "type": "choice",
+    "title": "某标注团队使用CVAT管理一批图片标注作业。项目规则（本练习规定）：作业列表中的“阶段”描述作业所处的工作环节，“状态”描述当前进展，两者是不同字段；学员进入任务前，应先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。标注员小周打开作业列表，看到自己负责的作业显示“阶段：验收”“状态：已驳回”，同时该作业的负责人一栏写的是小周自己。按照项目规则，小周应如何理解并处理这条作业？",
+    "project_rule": "本练习规定：作业列表中的“阶段”描述作业所处的工作环节，“状态”描述当前进展，两者是不同字段；学员进入任务前，应先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。",
+    "options": [
+      "该作业已进入验收环节且当前进展为被驳回，小周应打开该作业查看驳回原因并按返修要求处理",
+      "该作业仍处于标注环节且状态为进行中，小周应继续画框",
+      "该作业的“阶段”和“状态”含义相同，都表示作业已完成，小周无需处理",
+      "该作业的负责人不是小周，小周应忽略该作业"
+    ],
+    "answer": "该作业已进入验收环节且当前进展为被驳回，小周应打开该作业查看驳回原因并按返修要求处理",
+    "explanation": "项目规则明确“阶段”描述工作环节、“状态”描述当前进展，两者是不同字段。“阶段：验收”说明作业已进入验收环节，“状态：已驳回”说明当前进展是被驳回；负责人一栏为小周，说明该作业仍由小周负责，因此应打开查看驳回原因并按返修要求处理。其余选项混淆了阶段与状态、误判负责人或错误认为无需处理。",
+    "hint": [
+      "先区分“阶段”和“状态”各自描述什么。",
+      "再看负责人一栏写的是谁，判断该作业是否仍由小周负责。",
+      "被驳回的作业通常需要回到负责人处按返修要求处理。"
+    ],
+    "source_id": "KB-A1-004",
+    "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+    "skill_rationale": "该题直接考查作业列表中阶段与状态两个字段的区分，以及据此判断岗位交接与返修关系，属于工作流程技能的核心判断。",
+    "content_hash": "9bc2e8ce9614708b36c620ab744bf4561919759abf5fce0b4639b27dee7879ec",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:16.738012+00:00",
+    "generation_request_id": "eb3e91a6-2f3f-49d7-a8ee-1bf5af5e0577",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 0,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "该作业已进入验收环节且当前进展为被驳回，小周应打开该作业查看驳回原因并按返修要求处理",
+      "duplicate": false,
+      "reason": "题干自足，明确阶段/状态为不同字段且负责人为小周；正确选项与规则一致，其余选项分别混淆字段、误判负责人或错误忽略，唯一可判。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "255d265a-786e-417a-8eb3-8740d756f0a0",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:16.738012+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      }
+    ],
+    "id": "QF-9bc2e8ce9614708b36c620ab"
+  },
+  {
+    "skill_id": "A1-S4",
+    "type": "choice",
+    "title": "某标注团队按项目流程处理一批图片。项目规则（本练习规定）：项目设置、界面配置、导入、标注和导出是独立步骤；只有完成导出，才算覆盖整个项目流程。标注员小郑已经完成了项目设置、界面配置、导入和标注，并把结果导出为文件。此时团队负责人要求判断小郑的工作是否覆盖了整个项目流程。按照项目规则，下列判断正确的是哪一项？",
+    "project_rule": "本练习规定：项目设置、界面配置、导入、标注和导出是独立步骤；只有完成导出，才算覆盖整个项目流程。",
+    "options": [
+      "小郑已完成项目设置、界面配置、导入、标注和导出，覆盖了整个项目流程",
+      "小郑只完成了标注，尚未覆盖整个项目流程",
+      "小郑只完成了导入，尚未覆盖整个项目流程",
+      "小郑只完成了项目设置，尚未覆盖整个项目流程"
+    ],
+    "answer": "小郑已完成项目设置、界面配置、导入、标注和导出，覆盖了整个项目流程",
+    "explanation": "项目规则把项目设置、界面配置、导入、标注和导出列为独立步骤，并规定只有完成导出才算覆盖整个项目流程。小郑已完成全部五个步骤并导出结果，因此覆盖了整个项目流程。其余选项都错误地声称小郑只完成其中某一步或未覆盖整个流程。",
+    "hint": [
+      "逐项核对题干列出的五个独立步骤。",
+      "注意项目规则中“只有完成导出才算覆盖整个项目流程”的限定。",
+      "判断是否所有步骤都已完成，而不是只看其中一步。"
+    ],
+    "source_id": "KB-GENERAL-001",
+    "source_url": "https://labelstud.io/guide/get_started",
+    "skill_rationale": "该题考查对项目流程各独立步骤及“完成导出才算覆盖整个流程”这一流程衔接规则的判断，直接训练工作流程技能。",
+    "content_hash": "9063c40ea12e523fa90678c13463951b2ead624285d8cec42f4260c69c2c7eec",
+    "status": "approved",
+    "ai_generated": true,
+    "model": "deepseek-v4-flash-vision-exp",
+    "source": "智基 AI 生成教学情境 · 基于已审核知识",
+    "generated_at": "2026-09-11T14:07:16.738012+00:00",
+    "generation_request_id": "eb3e91a6-2f3f-49d7-a8ee-1bf5af5e0577",
+    "gt_origin": "evidence_grounded_scenario_independently_reviewed",
+    "ai_review": {
+      "index": 1,
+      "decision": "approved",
+      "source_support": 1,
+      "skill_match": 1,
+      "ground_truth": 1,
+      "teaching_quality": 1,
+      "unambiguous": 1,
+      "independent_answer": "小郑已完成项目设置、界面配置、导入、标注和导出，覆盖了整个项目流程",
+      "duplicate": false,
+      "reason": "题干列出五个独立步骤且小郑均已完成并导出，符合“只有完成导出才算覆盖整个流程”的规则；正确选项唯一。",
+      "model": "deepseek-v4-flash-vision-exp",
+      "request_id": "255d265a-786e-417a-8eb3-8740d756f0a0",
+      "independent_call": true,
+      "reviewed_at": "2026-09-11T14:07:16.738012+00:00"
+    },
+    "grader_validation": {
+      "golden_pass": true,
+      "negative_controls_pass": true
+    },
+    "evidence": [
+      {
+        "id": "KB-GENERAL-001",
+        "title": "一个标注项目包含哪些基本步骤",
+        "content": "数据标注项目通常先确定要处理的数据类型，再配置标签和标注界面，把数据导入为可执行的任务，完成标注后导出结果。Label Studio 的官方工作流把项目设置、界面配置、导入、标注和导出分为独立步骤。岗位训练也应先让学员看懂输入材料与输出要求，再开始操作；只完成画框或选标签，还没有覆盖整个项目流程。",
+        "source_url": "https://labelstud.io/guide/get_started",
+        "source_name": "Label Studio · Overview"
+      },
+      {
+        "id": "KB-GENERAL-003",
+        "title": "数据工作为什么要记录范围与责任",
+        "content": "NIST 人工智能风险管理框架强调记录系统用途、适用范围、人工监督过程，以及第三方数据和软件相关风险。用于标注培训时，可据此建议团队写清任务场景、职责和数据使用条件，并保留处理记录，方便后续复核。框架还强调在部署前和运行期间开展评估。这些是风险管理指导；记录齐全有助于追溯，但不能单独证明标注结果正确，也不代替项目的质量检查。",
+        "source_url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+        "source_name": "NIST · AI RMF Core"
+      },
+      {
+        "id": "KB-A1-004",
+        "title": "作业列表中的阶段与状态各指什么",
+        "content": "CVAT 的作业列表会显示作业编号、二维或三维的数据维度、预览、阶段和状态，也提供负责人和作业大小等信息。阶段描述作业所处的工作环节，状态描述当前进展，两者是不同字段。学员进入任务前，可以先确认自己负责的作业及数据维度，再查看当前所处阶段和进展，打开对应作业处理。二维作业也可能是视频，不能只凭维度把它当作一张静态图片。",
+        "source_url": "https://docs.cvat.ai/docs/workspace/jobs-page/",
+        "source_name": "CVAT · Jobs"
+      },
+      {
+        "id": "KB-GENERAL-002",
+        "title": "Ground Truth为什么能用于标注质检",
+        "content": "Ground Truth 指用于比较和评价的参考标注。在 CVAT 的自动质量评估中，团队先建立带参考答案的验证图像子集，再把普通作业中的标注与 Ground Truth 作业进行比较，计算质量结果。参考答案本身需要足够可靠；该机制是在已有验证子集上估计质量，并不等于每张未抽检图片都已经被逐一审核。",
+        "source_url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+        "source_name": "CVAT · Automated QA, Review & Honeypots"
+      },
+      {
+        "id": "KB-A1-001",
+        "title": "不同视觉任务需要不同标注形状",
+        "content": "视觉标注工具用不同几何形状表示不同的输出目标。CVAT 支持矩形、多边形、折线、椭圆、立方体、骨架与画笔等工具：矩形表示目标所在区域，多边形描述复杂轮廓，折线用于道路或路径等线状对象，画笔用于精细像素区域。选择工具时先识别任务要求的结果类型，并理解整图标签、几何区域和跨帧轨迹属于不同层面的标注。",
+        "source_url": "https://docs.cvat.ai/docs/getting_started/overview/",
+        "source_name": "CVAT · Overview"
+      }
+    ],
+    "id": "QF-9063c40ea12e523fa90678c1"
   }
 ]

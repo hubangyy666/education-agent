@@ -1,0 +1,29 @@
+[
+  {
+    "id": "QFE-A1-S5-OWASP-AUTHORIZATION",
+    "title": "按用户、数据和操作核对授权",
+    "content": "身份认证只确认身份，不等于获准读取所有数据。授权应针对特定用户、资源和操作核验，只授予完成工作所需最少权限；没有明确授予时默认拒绝。权限可结合项目、时间、设备等条件；同类数据的一份授权不自动覆盖所有同类数据。图片和云端文件也应纳入访问策略，是否公开取决于数据性质与项目授权。日志有助于发现及追溯越权，但避免记录不必要的敏感信息。",
+    "scope": "ABILITY",
+    "ability_id": "A1",
+    "skill_id": "A1-S5",
+    "source_url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+    "source_name": "OWASP Cheat Sheet Series · Authorization",
+    "source_type": "security_foundation_official_guidance",
+    "authority_level": "A",
+    "access_date": "2026-09-11",
+    "usage": "Factory evidence only; not imported into RAG. Original Chinese summary, no copied article text.",
+    "ai_review": {
+      "decision": "approved",
+      "reviewer": "Codex independent reviewer /root",
+      "independent_review": true,
+      "source_reliability": 0.96,
+      "factual_consistency": 0.96,
+      "scope_relevance": 0.91,
+      "clarity": 0.94,
+      "duplication_risk": 0.04,
+      "conflict_detected": false,
+      "final_score": 0.946,
+      "reason": "Independently verified introduction, least privileges, deny by default, ABAC, per-object permissions, static resources and appropriate logging. Clarified that static resources may be public depending on project policy; no blanket authentication requirement."
+    }
+  }
+]

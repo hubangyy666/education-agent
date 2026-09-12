@@ -20,6 +20,7 @@ import sys
 import threading
 import unicodedata
 import uuid
+from functools import lru_cache
 
 from openai import OpenAI
 from sqlalchemy import select, text
@@ -31,6 +32,28 @@ from backend.grading import grade, valid_box, polygon_metrics
 MODEL = 'deepseek-v4-flash-vision-exp'
 QUALITY_MIN = {'source_support': .9, 'skill_match': .9, 'ground_truth': .95,
                'teaching_quality': .85, 'unambiguous': .95}
+
+# Operational scope supplements short catalog labels when a skill has few
+# directly relevant sources. Local project conditions must be explicit in the
+# question; these are teaching design directions, never new industry rules.
+SKILL_SCOPE = {
+    'A1-S5': '只考数据使用范围、授权访问、批准的接收方/处理环境、公开数据许可与原始数据/标注的不同使用条件、敏感信息保护、按项目规则处理意外外发。不得出文件格式、训练测试集划分、标签关联、作业阶段、普通质检流程题。所有访问/传输/保留条件均须在题干标明本练习规则，不能编造法律或通用强制规定。',
+    'A1-S4': '只考标注项目设置、界面配置、导入、标注、自检/审核、导出的流程衔接，以及阶段和状态、岗位交接与返修的关系；不是选择标注形状或数据许可题。',
+}
+SECURITY_SCENARIOS = [
+    '区分登录成功与具体数据授权：只提供登录事实，没有目标任务的访问许可，不可推断可以读取所有数据。',
+    '按最小权限选择工作账号权限组合：只需要看图和提交自己标注时，不增加删除全项目或导出原始库权限。',
+    '按默认拒绝处理未匹配任何授权规则的新数据：不能把没有写明禁止当成已经获准。',
+    '按逐对象权限处理别人转发的任务链接：知道图片或任务ID不代表获准访问该对象。',
+    '根据题干明确的时间和设备条件判断一次请求：用户身份符合但设备条件不符，不能只看登录身份。',
+    '区分公开宣传样图与受限原始图的访问策略：同为图片文件，不代表两者必须采用相同可见范围。',
+    '选择有助于追溯但不保存多余敏感原文的日志：区分必要操作者/动作记录与复制完整敏感文本。',
+    '按资源和操作分别授权：有查看权限但没有修改权限的人员，应保持只读，不能推断两种动作相互包含。',
+    '区分同类数据的一份授权与所有同类数据：甲项目图片权限不自动覆盖乙项目图片，保持项目边界。',
+    '判断多条件访问规则：题干列出用户、项目和时段三个同时满足的条件，找出真正全部符合的请求。',
+    '判断对图片下载地址也需要检查权限：应用界面受限不能据此假定静态原始文件的公开链接也安全。',
+    '按岗位所需最少权限调整角色：审核员只负责指定批次，不因同级同事权限更广就申请完整数据库权限。',
+]
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -48,6 +71,12 @@ def normalize(value):
         return {k: normalize(v) for k, v in value.items()}
     return value
 
+
+@lru_cache(maxsize=2000)
+def _local_sample_hash(filename):
+    path=ROOT/'data/samples'/filename
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else None
+
 def content_hash(q):
     """No IDs, version, skill labels, option order, hints or explanation.
 
@@ -56,8 +85,13 @@ def content_hash(q):
     create a new task: pixels, requested geometry, rule and interaction define it.
     """
     if q['type'] in ('box', 'polygon'):
-        payload = {k: q.get(k) for k in ('type', 'project_rule')}
-        payload['sample'] = q.get('sample_sha256') or q.get('sample_id') or q.get('image')
+        payload = {'type':q['type']}
+        # V1 used sample_id, while the reserve also stores sample_sha256. Resolve
+        # both to the same source pixels; adding provenance or rewording a rule
+        # must not masquerade as a new geometry task.
+        media=q.get('image','');filename=media[7:] if media.startswith('/media/') else ''
+        actual=_local_sample_hash(filename) if filename and Path(filename).name==filename else None
+        payload['sample'] = actual or q.get('sample_sha256') or q.get('sample_id') or media
         if q['type'] == 'box':
             gt = q['answer'] if isinstance(q['answer'], list) else [q['answer']]
             payload['answer'] = sorted([{'label': t['label'], 'box': t['box']} for t in gt], key=digest)
@@ -190,6 +224,10 @@ def evidence(aid, sid):
                          ability_id=r.ability_id, skill_id=r.skill_id, scope=r.scope, **r.meta)
                     for r in db.scalars(select(Knowledge).where(
                         (Knowledge.ability_id == aid) | (Knowledge.scope == 'GENERAL')))]
+    supplement=ROOT/'data/factory/supplemental-evidence.json'
+    if supplement.exists():
+        rows += [r for r in json.loads(supplement.read_text(encoding='utf-8'))
+                 if r.get('skill_id')==sid and r.get('ai_review',{}).get('independent_review') is True]
     allowed = {aid}
     def ancestors(current):
         for prerequisite in ability(current)['prerequisites']:
@@ -217,7 +255,8 @@ def evidence(aid, sid):
     def rank(r):
         title, body = r['title'].casefold(), r['content'].casefold()
         lexical = sum(3 if term.casefold() in title else 1 if term.casefold() in body else 0 for term in terms)
-        pinned = 100 if sid == 'A1-S4' and r['id'] == 'KB-GENERAL-001' else 0
+        pinned = 100 if ((sid == 'A1-S4' and r['id'] == 'KB-GENERAL-001') or
+                         (r.get('skill_id')==sid and r['id'].startswith('QFE-'))) else 0
         return pinned + lexical*3 + 2*(r.get('skill_id') == sid) + (r.get('ability_id') == aid)
     rows.sort(key=rank, reverse=True)
     result = [{k: r.get(k) for k in ('id', 'title', 'content', 'source_url', 'source_name')}
@@ -274,13 +313,25 @@ def approve_review(q, review):
 
 def generate_candidates(aid, sid, count, previous, store, model=None):
     model = model or Model()
-    sources = evidence(aid, sid)
+    # Keep the input focused on this skill. Feeding every ability's old titles
+    # repeatedly anchored generation to irrelevant old scenarios and exhausted
+    # the refresh budget without producing usable questions.
+    sources = evidence(aid, sid)[:5]
+    if sid == 'A1-S5':
+        direct=[s for s in sources if s['id']=='QFE-A1-S5-OWASP-AUTHORIZATION']
+        sources=direct or [s for s in sources if s['id'] in ('KB-GENERAL-003', 'KB-GENERAL-004')]
     skill_name = ability(aid)['skills'][int(sid.rsplit('S', 1)[1])-1]
+    relevant_previous = [q for q in previous if q.get('skill_id') == sid]
     context = {'batch_id': uuid.uuid4().hex, 'ability': ability(aid)['name'], 'skill_id': sid, 'skill': skill_name,
+               'skill_scope': SKILL_SCOPE.get(sid, f'每题的直接判断操作必须是{skill_name}，不能仅在背景中提及该技能。'),
                'sources': sources, 'count': count,
                'design_note': '本批必须恰好生成count题。围绕指定技能选择互不相同的判断操作：规则应用、排除相似情况、缺少证据、边界例外、结果纠错、顺序决策、反例比较。不要只换人名/数字。每题题干给出具体事实和本练习规则。',
-               'previous_questions': [q.get('title', '') for q in previous][-150:],
+               'previous_questions': [q.get('title', '') for q in relevant_previous][-40:],
                'final_instruction': f'最新批次只生成恰好{count}道全新题。旧题列表仅用于禁止重复，绝不能复制其题干作答或再次输出旧题。先规划新的决策动作与情境约束，再输出questions。'}
+    if sid == 'A1-S5':
+        offset=len(relevant_previous)%len(SECURITY_SCENARIOS)
+        context['scenario_blueprints']=[SECURITY_SCENARIOS[(offset+i)%len(SECURITY_SCENARIOS)] for i in range(count)]
+        context['final_instruction']+='逐题采用不同的scenario_blueprints决策操作，直接考来源已说明的授权原则。新增的项目对象和角色条件写明本练习规定，不添加来源未谈到的保留天数、事故时限或保密协议要求。不要把所有题都写成许可是否允许商业使用。'
     payload, generation_id = model.json(GENERATE, context)
     candidates = payload.get('questions', [])
     if not isinstance(candidates, list) or not 1 <= len(candidates) <= max(12, count+2):
@@ -301,10 +352,15 @@ def generate_candidates(aid, sid, count, previous, store, model=None):
             reason = str(exc) if isinstance(exc, ValueError) and re.fullmatch(r'[a-z_]+', str(exc)) else type(exc).__name__
             store.audit(aid, 'candidate_rejected', {'skill_id': sid, 'reason': reason})
     if not valid:
+        store.audit(aid, 'generation_review', {'skill_id': sid, 'requested': count,
+                    'generated': len(candidates), 'accepted': 0,
+                    'generation_request_id': generation_id, 'review_request_id': None})
         return []
     # Fresh request. Never feed the generation chain-of-thought or self-rating.
-    review_payload = {**context, 'questions': [dict((k, v) for k, v in q.items()
-                                                 if k != 'skill_rationale') for q in valid]}
+    # In particular, do not forward the generation-only final_instruction
+    # ("output new questions") to the independent reviewer.
+    review_payload = {k: context[k] for k in ('batch_id', 'ability', 'skill_id', 'skill', 'skill_scope', 'sources', 'previous_questions')}
+    review_payload['questions'] = [{k: v for k, v in q.items() if k != 'skill_rationale'} for q in valid]
     reviewed, review_id = model.json(REVIEW, review_payload)
     rows = reviewed.get('reviews', [])
     if len(rows) != len(valid) or sorted(r.get('index', -1) for r in rows) != list(range(len(valid))):
@@ -434,19 +490,25 @@ def question_statistics(runs):
         s['suspect'] = s['sample_count'] >= 10 and s['error_rate'] >= .85
     return stats
 
-def monitor_quality(aid, store, model=None):
+def monitor_quality(aid, store, model=None, max_reviews=3, heartbeat=None):
+    heartbeat=heartbeat or (lambda:None)
     with Session(engine) as db:
         runs = list(db.scalars(select(Run).where(Run.ability_id == aid, Run.status == 'completed')
                                .order_by(Run.finished_at.asc())))
     stats = question_statistics(runs)
+    heartbeat()
     store.write(f'{aid}.statistics.json', {'at': now(), 'definition': 'completed saved-answer outcomes', 'questions': stats})
     rows = store.questions(aid)
+    reviewed_count=0
     for q in rows:
         s = stats.get(q['content_hash'], {})
         if not s.get('suspect') or q.get('status') == 'retired':
             continue
         if q.get('quality_review_sample_count', 0) >= s['sample_count']:
             continue
+        if reviewed_count>=max_reviews:break
+        reviewed_count+=1
+        heartbeat()
         q['status'] = 'suspect'
         q['quality_signal'] = s
         store.merge(aid, [q])
@@ -459,6 +521,7 @@ def monitor_quality(aid, store, model=None):
             payload, request_id = model.json(REVIEW, {'skill_id': q['skill_id'],
                 'skill': ability(aid)['skills'][int(q['skill_id'].split('S')[1])-1],
                 'sources': source, 'questions': [candidate], 'previous_questions': []})
+            heartbeat()
             reviews = payload.get('reviews', [])
             if len(reviews) != 1 or reviews[0].get('index') != 0:
                 raise ValueError('review_coverage_invalid')
@@ -473,6 +536,9 @@ def monitor_quality(aid, store, model=None):
             q['quality_review_sample_count'] = s['sample_count']
             store.merge(aid, [q])
         except Exception as exc:
+            # If the lease was lost, stop before touching another worker's
+            # reserve or audit. A normal provider failure retains the signal.
+            heartbeat()
             store.audit(aid, 'quality_review_unavailable', {'content_hash': q['content_hash'], 'error_type': type(exc).__name__})
     return stats
 

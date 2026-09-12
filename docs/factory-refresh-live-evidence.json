@@ -1,0 +1,98 @@
+{
+  "ability_id": "A1",
+  "isolation": "qa_factory_44d27f7a283f415a",
+  "model_policy": "production bounded generation and independent review",
+  "refresh_status": {
+    "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+    "progress": 100,
+    "stage": "新题集已就绪，新增 55 道内容",
+    "status": "completed",
+    "version": 2,
+    "question_count": 55,
+    "new_question_count": 55,
+    "reused_question_count": 0,
+    "changed_levels": [
+      "A1-L1",
+      "A1-L2",
+      "A1-L3",
+      "A1-L4",
+      "A1-L5",
+      "A1-JOB",
+      "A1-RACE"
+    ]
+  },
+  "progress": [
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 0,
+      "stage": "准备更新",
+      "status": "running"
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 5,
+      "stage": "统计题目质量，复核有疑问的候选",
+      "status": "running"
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 10,
+      "stage": "按五项技能均衡规划课程、岗位与比赛",
+      "status": "running"
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 25,
+      "stage": "补充并独立审核 A1-S5 的训练情境（第 1 批）",
+      "status": "running",
+      "generation_batches": 1
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 30,
+      "stage": "补充并独立审核 A1-S4 的训练情境（第 2 批）",
+      "status": "running",
+      "generation_batches": 2
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 75,
+      "stage": "验证标准答案、技能覆盖和内容重复",
+      "status": "running"
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 90,
+      "stage": "原子发布新题集，保留历史训练快照",
+      "status": "running"
+    },
+    {
+      "id": "5a22d5d4-e417-4b91-b67a-34050d202ec7",
+      "progress": 100,
+      "stage": "新题集已就绪，新增 55 道内容",
+      "status": "completed",
+      "version": 2,
+      "question_count": 55,
+      "new_question_count": 55,
+      "reused_question_count": 0,
+      "changed_levels": [
+        "A1-L1",
+        "A1-L2",
+        "A1-L3",
+        "A1-L4",
+        "A1-L5",
+        "A1-JOB",
+        "A1-RACE"
+      ]
+    }
+  ],
+  "old_version": 1,
+  "new_version": 2,
+  "fresh_content_count": 55,
+  "old_run_snapshot_preserved": true,
+  "new_run_uses_published_content": true,
+  "exactly_one_active_version": true,
+  "shared_question_set_unchanged": true,
+  "isolated_schema_removed": true,
+  "isolated_redis_removed": true
+}

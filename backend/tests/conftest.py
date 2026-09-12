@@ -15,7 +15,7 @@ import httpx
 import pytest
 from sqlalchemy import delete, select, func
 from sqlalchemy.orm import Session
-from backend.db import engine, cache, User, Run, Progress, TaskCard, QuestionSet, password_hash, now
+from backend.db import engine, cache, User, Run, Progress, TaskCard, JobLearning, QuestionSet, password_hash, now
 
 BASE_URL = os.environ.get('ZHIJI_TEST_URL', 'http://127.0.0.1:8000')
 SECRET = 'Qa-only-password-9'
@@ -56,7 +56,7 @@ def account_factory():
             if cache.get(key) == username: cache.delete(key)
         for key in cache.scan_iter(match='login_attempt:*:' + username): cache.delete(key)
         with Session(engine) as db:
-            for model in (TaskCard, Progress, Run, User):
+            for model in (JobLearning, TaskCard, Progress, Run, User):
                 db.execute(delete(model).where(model.username == username))
             db.commit()
             assert db.scalar(select(func.count()).select_from(User).where(User.username == username)) == 0

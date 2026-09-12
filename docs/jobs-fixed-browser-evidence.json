@@ -1,0 +1,31 @@
+{
+  "version": "fixed-v2",
+  "browser_saved_understand": true,
+  "browser_saved_prepare": true,
+  "provider": "fixed",
+  "practice_run_created": true,
+  "practice_question_count": 5,
+  "practice_status": "active",
+  "practice_answers": 0,
+  "completion_claimed": false,
+  "temporary_account_removed": true,
+  "original_account_answer_count": 80,
+  "task_return_url": "/jobs/text/tasks/text-entities",
+  "resumed_step": "practice",
+  "restored_percent": 50,
+  "mobile_viewport": 390,
+  "document_client_width": 375,
+  "document_scroll_width": 375,
+  "module_colors": [
+    "#4165db",
+    "#b57413",
+    "#8750d4",
+    "#318366"
+  ],
+  "original_session_restored": true,
+  "skills_converter_link_removed": true,
+  "header_converter_link_removed": true,
+  "search_empty_state_and_reset": true,
+  "skill_target": "skill-A4-S4",
+  "skill_return": "/jobs/vision/tasks/vision-detection"
+}

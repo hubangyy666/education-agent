@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onBeforeUnmount } from 'vue'
 import Icon from './Icon.vue'
-import { speak } from '../store'
 const props=withDefaults(defineProps<{floating?:boolean;runId?:string;questionId?:string;disabled?:boolean}>(),{floating:false,disabled:false})
 const open=ref(false),input=ref(''),busy=ref(false),error=ref('');const messages=ref<any[]>([]);const list=ref<HTMLElement>();let controller:AbortController|undefined
 function cleanText(text:string){return (text||'').replaceAll('**','').replaceAll('`','').replace(/\n{3,}/g,'\n\n')}
@@ -21,7 +20,6 @@ async function send(text?:string,hintRequest=false){
     if(!response.ok){const e=await response.json();throw new Error(e.detail||'暂时无法回复，请再试一次。')}
     const reader=response.body!.getReader();const decoder=new TextDecoder();let buffer=''
     while(true){const {done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const frames=buffer.split('\n\n');buffer=frames.pop()||'';for(const frame of frames){const event=frame.match(/event: (\w+)/)?.[1];const raw=frame.match(/data: (.+)/)?.[1];if(!raw)continue;const data=JSON.parse(raw);if(event==='token')reply.text+=data.text;if(event==='done')Object.assign(reply,data)}messages.value=[...messages.value];await scroll()}
-    if(controller===activeController)speak(reply.text)
   }catch(e){if(controller===activeController&&(e as Error).name!=='AbortError')error.value=(e as Error).message}finally{if(controller===activeController)busy.value=false}
 }
 defineExpose({send})

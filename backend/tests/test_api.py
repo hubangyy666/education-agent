@@ -47,13 +47,15 @@ def test_run_owner_isolation(account, account_factory, seeded_run):
     response = other.post('/api/ai/chat', json={'mode':'QUESTION_TUTOR','message':'今天天气','run_id':rid,'question_id':qs[0]['id']})
     assert response.status_code == 404
 
-def test_level_locks_and_resuming(account):
+def test_all_levels_open_and_resuming(account):
     c=account['client']
     states=c.get('/api/abilities').json()
     a1=next(a for a in states if a['id']=='A1')
-    assert a1['levels'][0]['unlocked'] and not a1['levels'][1]['unlocked']
+    assert all(level['unlocked'] for ability in states for level in ability['levels'])
     for level in ('A1-L2','A1-JOB','A1-RACE'):
-        assert c.post('/api/runs/start',json={'level_id':level}).status_code==403
+        response=c.post('/api/runs/start',json={'level_id':level})
+        assert response.status_code==200
+        assert_redacted(response.json())
     assert c.post('/api/runs/start',json={'level_id':'A99-L1'}).status_code==404
     first=c.post('/api/runs/start',json={'level_id':'A1-L1'}).json()
     assert_redacted(first)
@@ -66,8 +68,19 @@ def test_course_latest_answer_persistence_finish_idempotent(account, seeded_run)
     assert c.post(f'/api/runs/{rid}/finish').status_code==400
     assert post_answer(c,rid,dict(qs[0],id='foreign-question'),{}).status_code==404
     assert post_answer(c,rid,qs[0],{'value':'错误'}).json()['result']['correct'] is False
+    initial=c.get('/api/abilities/A1').json()
+    assert (initial['answer_count'],initial['correct_count'],initial['skill_score'])==(1,0,0)
+    assert initial['completed']==0
     for q in qs:
         assert post_answer(c,rid,q,correct_answer(q)).json()['result']['correct']
+    active=c.get('/api/abilities/A1').json()
+    assert (active['answer_count'],active['correct_count'],active['skill_score'])==(len(qs),len(qs),10)
+    assert active['completed']==0
+    assert active['levels'][0]['skill_score']==10
+    with Session(engine) as db:
+        stored=db.get(Run,rid)
+        assert stored.status=='active' and len(stored.answers)==len(qs)
+        assert stored.answers[qs[0]['id']]==correct_answer(qs[0])
     resumed=c.get(f'/api/runs/{rid}').json()
     assert resumed['answers'][qs[0]['id']]==correct_answer(qs[0])
     assert_redacted(resumed)
@@ -92,12 +105,30 @@ def test_package_answers_hidden_until_finished(account, seeded_run, level, mode)
         response=post_answer(c,rid,q,correct_answer(q))
         assert response.status_code==200
         assert set(response.json())=={'saved','answered','count'}
+        assert c.get('/api/abilities/A4').json()['answer_count']==0
     read=c.get(f'/api/runs/{rid}').json()
     assert_redacted(read)
     assert read['report'] is None
     done=c.post(f'/api/runs/{rid}/finish').json()
     assert done['report']['score']==100
     assert all('standard_answer' in r for r in done['report']['results'])
+    scored=c.get('/api/abilities/A4').json()
+    assert (scored['answer_count'],scored['correct_count'],scored['skill_score'])==(len(qs),len(qs),10)
+
+def test_skill_score_updates_after_each_saved_answer_without_finishing(account, seeded_run):
+    c=account['client'];rid,qs=seeded_run(account)
+    for q,value in zip(qs[:3],[correct_answer(qs[0]),{'value':'错误'},{'value':'错误'}]):
+        assert post_answer(c,rid,q,value).status_code==200
+    state=c.get('/api/abilities/A1').json()
+    assert (state['answer_count'],state['correct_count'],state['skill_score'])==(3,1,3.33)
+    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
+    refreshed=c.get('/api/abilities').json()[0]
+    assert (refreshed['answer_count'],refreshed['correct_count'],refreshed['skill_score'])==(3,2,6.67)
+    with Session(engine) as db:
+        stored=db.get(Run,rid)
+        assert stored.answers[qs[1]['id']]==correct_answer(qs[1])
+        assert stored.status=='active'
+    assert c.get('/api/dashboard').json()['abilities'][0]['skill_score']==6.67
 
 def test_deadline_server_enforced_and_report_persisted(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account,'A1-RACE','competition',deadline=now()-timedelta(seconds=2))
@@ -157,13 +188,13 @@ def test_answer_payload_limits(account, seeded_run):
     assert c.post(f'/api/runs/{rid}/answer',json={'question_id':qs[0]['id'],'answer':None}).status_code==422
     assert post_answer(c,rid,qs[0],{'value':'a'*50001}).status_code==422
 
-def test_race_unlock_after_all_six_prior_levels_done(account):
+def test_race_available_with_incomplete_or_failed_prior_levels(account):
     c=account['client'];name=account['username']
     with Session(engine) as db:
-        for level in ['A1-L1','A1-L2','A1-L3','A1-L4','A1-L5','A1-JOB']:
+        for level in ['A1-L1','A1-L3']:
             db.add(Progress(id=f'{name}:{level}',username=name,ability_id='A1',level_id=level,score=0))
         db.commit()
-    # Spec unlocks after DONE; passing is not a prerequisite.
+    # Learning history never restricts access, including failed/missing courses.
     module=c.get('/api/abilities/A1').json()
     assert module['levels'][-1]['unlocked']
     response=c.post('/api/runs/start',json={'level_id':'A1-RACE'})
@@ -186,10 +217,19 @@ def test_only_explicit_hint_requests_advance_dialogue_hint_level(account, seeded
     assert response.status_code==200
     with Session(engine) as db: assert db.get(Run,rid).hints[qid]==1
 
-def test_post_submit_wrong_instance_dialogue_uses_candidate_evidence(account, seeded_run):
+def test_post_submit_wrong_instance_dialogue_uses_candidate_evidence(account):
+    from backend.factory import load_initial_sets
     from backend.tutor import candidate_targets
-    c=account['client'];rid,qs=seeded_run(account,'A4-L1','course')
-    q=next(item for item in qs if str(item.get('sample_id'))=='86956')
+    # This regression targets a specific pair of COCO instances. Published pools
+    # intentionally rotate, so use the committed V1 snapshot in a QA-only Run.
+    frozen=load_initial_sets()['A4']['questions']['A4-L1']
+    q=copy.deepcopy(next(item for item in frozen if str(item.get('sample_id'))=='86956'))
+    c=account['client'];rid=str(uuid.uuid4())
+    assert account['username'].startswith('qa_agent_')
+    with Session(engine) as db:
+        db.add(Run(id=rid,username=account['username'],ability_id='A4',level_id='A4-L1',
+                   mode='course',questions=[q],answers={}))
+        db.commit()
     left=next(item for item in candidate_targets(q) if item.get('annotation_id')==508729)
     graded=post_answer(c,rid,q,{'boxes':[{'label':left['label'],'box':left['box']}]}).json()['result']
     assert graded['error_type']=='MISSED_TARGET'  # the dialogue layer must not mutate scoring

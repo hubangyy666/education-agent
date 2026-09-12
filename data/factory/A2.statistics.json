@@ -1,0 +1,51 @@
+{
+  "at": "2026-09-12T02:49:59.304918+00:00",
+  "definition": "completed saved-answer outcomes",
+  "questions": {
+    "c1f26ea810805bce9e68aa9f9b16f48123193e4ee37743681679a1559c6ef3b1": {
+      "sample_count": 1,
+      "error_count": 0,
+      "modes": {
+        "course": 1
+      },
+      "error_rate": 0.0,
+      "suspect": false
+    },
+    "55eed4c35c35c9612dcc4bd63d901a4eaf40f71be5cffa741b81e99ea2641e03": {
+      "sample_count": 1,
+      "error_count": 0,
+      "modes": {
+        "course": 1
+      },
+      "error_rate": 0.0,
+      "suspect": false
+    },
+    "624fa8108baef1203be14c9cfdc37b8c0eea1b5aabf20facb848ca2b7a50d8bf": {
+      "sample_count": 1,
+      "error_count": 0,
+      "modes": {
+        "course": 1
+      },
+      "error_rate": 0.0,
+      "suspect": false
+    },
+    "545c477e3abc821788b32d3cc6e4898ba358ad7d05f9e02f6ce257a3f70f0ace": {
+      "sample_count": 1,
+      "error_count": 1,
+      "modes": {
+        "course": 1
+      },
+      "error_rate": 1.0,
+      "suspect": false
+    },
+    "9604fffcde4e7b17056d5ebe494cc415bbde2848ea87a7eaf598c4f89c7a56c3": {
+      "sample_count": 1,
+      "error_count": 1,
+      "modes": {
+        "course": 1
+      },
+      "error_rate": 1.0,
+      "suspect": false
+    }
+  }
+}

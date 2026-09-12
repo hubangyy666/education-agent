@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-09-11T11:47:58.391025+00:00",
+  "removed_qa_records": {
+    "job_learning": 1,
+    "task_cards": 0,
+    "progress": 1,
+    "runs": 1,
+    "users": 1
+  },
+  "remaining_qa_records": {
+    "job_learning": 0,
+    "task_cards": 0,
+    "progress": 0,
+    "runs": 0,
+    "users": 0
+  },
+  "test_A6_statistics_removed": true,
+  "A4_statistics": "保留后台根据真实用户既有训练刷新后的统计；没有修改真实训练记录。",
+  "original_expiration_test_artifact_restored": true,
+  "live_model_test_identity_removed": true
+}

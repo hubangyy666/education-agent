@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-10T09:12:03.726827+00:00",
+  "updated_at": "2026-09-11T14:19:07.672412+00:00",
   "abilities": {
     "A1": {
       "A1-S1": {
@@ -12,10 +12,10 @@
         "approved": 11
       },
       "A1-S4": {
-        "approved": 8
+        "approved": 10
       },
       "A1-S5": {
-        "approved": 1
+        "approved": 10
       }
     },
     "A2": {

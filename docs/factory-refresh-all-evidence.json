@@ -1,0 +1,435 @@
+{
+  "abilities": [
+    {
+      "ability_id": "A1",
+      "isolation": "qa_factory_dc2a63e6726d4802",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "6eb8e1f7-6e5c-499d-a7b2-2255c9f8782d",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 53 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 53,
+        "reused_question_count": 2,
+        "changed_levels": [
+          "A1-L1",
+          "A1-L2",
+          "A1-L3",
+          "A1-L4",
+          "A1-L5",
+          "A1-JOB",
+          "A1-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "6eb8e1f7-6e5c-499d-a7b2-2255c9f8782d",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 53,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A2",
+      "isolation": "qa_factory_738d3b450759470f",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "684e325b-a34d-475c-8e84-453638aa148f",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 44 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 44,
+        "reused_question_count": 11,
+        "changed_levels": [
+          "A2-L1",
+          "A2-L2",
+          "A2-L3",
+          "A2-L4",
+          "A2-L5",
+          "A2-JOB",
+          "A2-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "684e325b-a34d-475c-8e84-453638aa148f",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 44,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A3",
+      "isolation": "qa_factory_e50440524a4f4a77",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "4fe60797-cde0-4d04-8aa0-bb6b0592c412",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 29 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 29,
+        "reused_question_count": 26,
+        "changed_levels": [
+          "A3-L1",
+          "A3-L2",
+          "A3-L3",
+          "A3-L4",
+          "A3-JOB",
+          "A3-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "4fe60797-cde0-4d04-8aa0-bb6b0592c412",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 29,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A4",
+      "isolation": "qa_factory_a522e274b1e8463b",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "70bbcfc2-8e19-4224-bee7-dd42ec127f1f",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 55 道内容",
+        "status": "completed",
+        "version": 4,
+        "question_count": 55,
+        "new_question_count": 55,
+        "reused_question_count": 0,
+        "changed_levels": [
+          "A4-L1",
+          "A4-L2",
+          "A4-L3",
+          "A4-L4",
+          "A4-L5",
+          "A4-JOB",
+          "A4-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "70bbcfc2-8e19-4224-bee7-dd42ec127f1f",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 3,
+      "new_version": 4,
+      "fresh_content_count": 55,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A5",
+      "isolation": "qa_factory_c9994504abf346d1",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "ba75d962-0957-4318-b467-b9bb73910d23",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 47 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 47,
+        "reused_question_count": 8,
+        "changed_levels": [
+          "A5-L1",
+          "A5-L2",
+          "A5-L3",
+          "A5-L4",
+          "A5-L5",
+          "A5-JOB",
+          "A5-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "ba75d962-0957-4318-b467-b9bb73910d23",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 47,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A6",
+      "isolation": "qa_factory_668eba790b2346c6",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "d640aaca-601e-45cd-818f-b1cb52fb9491",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 42 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 42,
+        "reused_question_count": 13,
+        "changed_levels": [
+          "A6-L1",
+          "A6-L2",
+          "A6-L3",
+          "A6-L4",
+          "A6-L5",
+          "A6-JOB",
+          "A6-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "d640aaca-601e-45cd-818f-b1cb52fb9491",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 42,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A7",
+      "isolation": "qa_factory_71ac699cec724b39",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "479c2650-378f-459b-ac2b-e6abafae152e",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 55 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 55,
+        "reused_question_count": 0,
+        "changed_levels": [
+          "A7-L1",
+          "A7-L2",
+          "A7-L3",
+          "A7-L4",
+          "A7-L5",
+          "A7-JOB",
+          "A7-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "479c2650-378f-459b-ac2b-e6abafae152e",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 55,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A8",
+      "isolation": "qa_factory_42cc877da0544872",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "26f1aafd-72c8-435c-9d34-ecb8a0c7c100",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 55 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 55,
+        "reused_question_count": 0,
+        "changed_levels": [
+          "A8-L1",
+          "A8-L2",
+          "A8-L3",
+          "A8-L4",
+          "A8-L5",
+          "A8-JOB",
+          "A8-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "26f1aafd-72c8-435c-9d34-ecb8a0c7c100",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 55,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A9",
+      "isolation": "qa_factory_e576023f35114879",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "83a1b09b-7d34-4bca-9915-6021822a044d",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 55 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 55,
+        "reused_question_count": 0,
+        "changed_levels": [
+          "A9-L1",
+          "A9-L2",
+          "A9-L3",
+          "A9-L4",
+          "A9-L5",
+          "A9-JOB",
+          "A9-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "83a1b09b-7d34-4bca-9915-6021822a044d",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 55,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    },
+    {
+      "ability_id": "A10",
+      "isolation": "qa_factory_32f05a57b8a34c44",
+      "model_policy": "production bounded generation and independent review",
+      "shared_media_collection_disabled": true,
+      "refresh_status": {
+        "id": "66f2dcfa-18de-4784-a9e5-4d60e46dd082",
+        "progress": 100,
+        "stage": "新题集已就绪，新增 55 道内容",
+        "status": "completed",
+        "version": 2,
+        "question_count": 55,
+        "new_question_count": 55,
+        "reused_question_count": 0,
+        "changed_levels": [
+          "A10-L1",
+          "A10-L2",
+          "A10-L3",
+          "A10-L4",
+          "A10-L5",
+          "A10-JOB",
+          "A10-RACE"
+        ]
+      },
+      "progress": [
+        {
+          "id": "66f2dcfa-18de-4784-a9e5-4d60e46dd082",
+          "progress": 0,
+          "stage": "准备更新",
+          "status": "running"
+        }
+      ],
+      "old_version": 1,
+      "new_version": 2,
+      "fresh_content_count": 55,
+      "old_run_snapshot_preserved": true,
+      "new_run_uses_published_content": true,
+      "exactly_one_active_version": true,
+      "shared_question_set_unchanged": true,
+      "isolated_schema_removed": true,
+      "isolated_redis_removed": true,
+      "external_model_calls": 0
+    }
+  ],
+  "all_passed": true,
+  "external_model_calls": 0
+}

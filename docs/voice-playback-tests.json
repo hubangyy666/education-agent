@@ -1,0 +1,79 @@
+{
+  "checked_at": "2026-09-11T14:07:06.945Z",
+  "audio_module_sha256": "a74935cd891e46e4f5043dc4c0db99059183dd3297e6e9a22988a547daf0e5a8",
+  "component_sha256": {
+    "Training": "af97ff630dd2d2c2d5d8e8eb78ae74afee5afd614ea7841ceeaa26390f2a0861",
+    "Onboarding": "35b5bac768c1448fb6940e19efe7217916d2856f2c5f418318ed488f3091fbdf"
+  },
+  "scope": "Node VM playback state machine with fake Web Audio/fetch and compiled real Vue component lifecycle with deferred API responses; real bundled WAV bytes/manifest. Actual decoding additionally verified by build script via soundfile. This is not browser or speaker acceptance.",
+  "results": [
+    {
+      "name": "six bundled WAV files match manifest and have PCM headers and audible samples",
+      "passed": true
+    },
+    {
+      "name": "no playback before user unlock; unlock does not speak",
+      "passed": true
+    },
+    {
+      "name": "six phrases rotate and wrap; only one sound is active; clips are cached",
+      "passed": true
+    },
+    {
+      "name": "muting stops current audio and blocks both unlock and future rewards",
+      "passed": true
+    },
+    {
+      "name": "leaving a question cancels audio waiting for download/decode",
+      "passed": true
+    },
+    {
+      "name": "muting while loading prevents delayed sound",
+      "passed": true
+    },
+    {
+      "name": "a second reward supersedes the first pending reward",
+      "passed": true
+    },
+    {
+      "name": "fetchFails returns unavailable without speaking or throwing",
+      "passed": true
+    },
+    {
+      "name": "decodeFails returns unavailable without speaking or throwing",
+      "passed": true
+    },
+    {
+      "name": "resumeFails returns unavailable without speaking or throwing",
+      "passed": true
+    },
+    {
+      "name": "noAudio returns unavailable without speaking or throwing",
+      "passed": true
+    },
+    {
+      "name": "training response after unmount cannot play; submitted answer is snapshotted; busy blocks switching",
+      "passed": true
+    },
+    {
+      "name": "changing training route rejects old grading response",
+      "passed": true
+    },
+    {
+      "name": "late playback status cannot be written onto the next question",
+      "passed": true
+    },
+    {
+      "name": "batch completion awaiting dashboard cannot reward after exit",
+      "passed": true
+    },
+    {
+      "name": "onboarding response after exit cannot advance steps or play",
+      "passed": true
+    },
+    {
+      "name": "correct onboarding response rewards after step transition; next step stops it",
+      "passed": true
+    }
+  ]
+}

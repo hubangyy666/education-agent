@@ -79,6 +79,25 @@ class TaskCard(Base):
     content = mapped_column(JSON)
     created_at = mapped_column(DateTime(timezone=True), default=now)
 
+class JobLearning(Base):
+    """One persisted teaching conversion per learner and catalog task.
+
+    The deterministic UUID id also makes concurrent generate requests idempotent.
+    Training runs use a separate JT level namespace, preserving skill-map gates.
+    """
+    __tablename__ = 'job_learning'
+    id = mapped_column(String(40), primary_key=True)
+    username = mapped_column(ForeignKey('users.username'), index=True)
+    role_id = mapped_column(String(40), index=True)
+    task_id = mapped_column(String(80))
+    goal = mapped_column(String(30), default='岗位入门')
+    status = mapped_column(String(20), default='active')
+    card = mapped_column(JSON)
+    progress = mapped_column(JSON, default=dict)
+    sources = mapped_column(JSON, default=list)
+    created_at = mapped_column(DateTime(timezone=True), default=now)
+    completed_at = mapped_column(DateTime(timezone=True), nullable=True)
+
 def password_hash(password, salt=None):
     salt = salt or secrets.token_hex(16)
     return salt + ':' + hashlib.scrypt(password.encode(),salt=salt.encode(),n=16384,r=8,p=1).hex()

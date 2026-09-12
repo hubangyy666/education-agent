@@ -3,6 +3,7 @@ from collections import Counter, defaultdict
 from sqlalchemy import select
 from .catalog import ABILITIES, levels
 from .db import Progress, Run
+from .grading import grade
 
 
 def _recent_average(values):
@@ -24,25 +25,42 @@ def ability_state(db, user):
     progress = list(db.scalars(select(Progress).where(Progress.username == user.username)))
     done = {p.level_id: p.score for p in progress}
     runs = list(db.scalars(select(Run).where(
-        Run.username == user.username, Run.status == 'completed', Run.mode != 'onboarding'
-    ).order_by(Run.finished_at.desc()).limit(120)))
-    skill_scores, level_scores = defaultdict(list), defaultdict(list)
+        Run.username == user.username, Run.mode != 'onboarding'
+    ).order_by(Run.started_at.desc())))
+    by_run_id = {run.id: run for run in runs}
+    skill_counts = defaultdict(Counter)
+    level_scores = defaultdict(list)
     skill_errors = defaultdict(Counter)
+    error_runs = Counter()
     for run in runs:
-        if not run.report:
+        # Package/competition answers stay private until final submission. Updating
+        # their public skill score earlier would disclose per-question correctness.
+        if run.status != 'completed' and run.mode != 'course':
             continue
-        level_scores[run.level_id].append(float(run.report.get('score', 0)))
-        question_skills = {q['id']: q.get('skill_id') for q in (run.questions or [])}
-        run_scores = defaultdict(list)
-        for answer in run.report.get('results', []):
-            sid = question_skills.get(answer.get('question_id'))
-            if not sid:
+        results = {r['question_id']: r for r in (run.report or {}).get('results', [])}
+        if run.status == 'completed' and run.report:
+            level_scores[run.level_id].append(float(run.report.get('score', 0)))
+        parent = by_run_id.get(run.revision_of)
+        parent_results = {r['question_id']: r for r in (parent.report or {}).get('results', [])} if parent else {}
+        observed_skills = set()
+        for question in run.questions or []:
+            qid, sid = question['id'], question.get('skill_id')
+            if not sid or qid not in (run.answers or {}):
                 continue
-            run_scores[sid].append(float(answer.get('score', 0)))
-            if answer.get('error_type') and len(skill_scores[sid]) < 3:
-                skill_errors[sid][answer['error_type']] += 1
-        for sid, scores in run_scores.items():
-            skill_scores[sid].append(sum(scores) / len(scores))
+            # A repair inherits previously correct answers without submitting them
+            # again. Those copies must not inflate the answer count or skill score.
+            if (parent and parent_results.get(qid, {}).get('correct')
+                    and qid in (parent.answers or {}) and run.answers[qid] == parent.answers[qid]):
+                continue
+            result = results.get(qid) if run.status == 'completed' else None
+            if result is None or not isinstance(result.get('correct'), bool):
+                result = grade(question, run.answers[qid])
+            skill_counts[sid]['answer_count'] += 1
+            skill_counts[sid]['correct_count'] += int(result['correct'])
+            observed_skills.add(sid)
+            if result.get('error_type') and error_runs[sid] < 3:
+                skill_errors[sid][result['error_type']] += 1
+        error_runs.update(observed_skills)
 
     diagnosis = _diagnosis(user)
     states = []
@@ -51,32 +69,32 @@ def ability_state(db, user):
         metrics = []
         for index, name in enumerate(a['skills'], 1):
             sid = f'{a["id"]}-S{index}'
-            observed = skill_scores[sid]
-            entry = next((e for e in diagnosis[a['id']] if e.get('skill_id') == sid), None)
-            # Old onboarding records only supplied ability_id; assign their evidence
-            # to S1 instead of pretending that one question assessed every skill.
-            if entry is None and index == 1:
-                entry = next((e for e in diagnosis[a['id']] if not e.get('skill_id')), None)
-            if observed:
-                value, source = _recent_average(observed), 'training'
-            elif entry:
-                value, source = (60 if entry['correct'] else 20), 'diagnostic'
-            else:
-                matching = [done[l['id']] for l in lv if l['mode'] == 'course' and l['skill_id'] == sid and l['id'] in done]
-                value, source = (max(matching), 'record') if matching else (0, 'unassessed')
-            metrics.append({'skill_id': sid, 'name': name, 'score': round(value),
-                            'source': source, 'assessed': source != 'unassessed',
+            counts = skill_counts[sid]
+            answers, correct = counts['answer_count'], counts['correct_count']
+            accuracy = correct / answers if answers else 0
+            metrics.append({'skill_id': sid, 'name': name, 'score': round(accuracy * 100, 2),
+                            'skill_score': round(accuracy * 10, 2),
+                            'answer_count': answers, 'correct_count': correct,
+                            'source': 'training' if answers else 'unassessed', 'assessed': bool(answers),
                             'recent_errors': [key for key, _ in skill_errors[sid].most_common(3)]})
         level_states = []
-        for index, level in enumerate(lv):
+        for level in lv:
             measured = level_scores[level['id']]
-            level_states.append(dict(level,
-                unlocked=index == 0 or all(p['id'] in done for p in lv[:index]),
+            state = dict(level,
+                unlocked=True,
                 completed=level['id'] in done,
                 score=round(_recent_average(measured)) if measured else done.get(level['id'], 0),
-                best_score=done.get(level['id'], 0)))
+                best_score=done.get(level['id'], 0))
+            if level['mode'] == 'course':
+                metric = next(s for s in metrics if s['skill_id'] == level['skill_id'])
+                state.update({key: metric[key] for key in ('skill_score', 'answer_count', 'correct_count')})
+            level_states.append(state)
         diag = diagnosis[a['id']]
-        states.append(dict(a, mastery=round(sum(s['score'] for s in metrics) / max(1, len(metrics))),
+        answers = sum(s['answer_count'] for s in metrics)
+        correct = sum(s['correct_count'] for s in metrics)
+        accuracy = correct / answers if answers else 0
+        states.append(dict(a, mastery=round(accuracy * 100, 2), skill_score=round(accuracy * 10, 2),
+            answer_count=answers, correct_count=correct,
             completed=sum(l['completed'] for l in level_states), total=len(lv), levels=level_states,
             skill_mastery=metrics, diagnostic_score=round(sum(e['correct'] for e in diag) / len(diag) * 100) if diag else None,
             recent_errors=list(dict.fromkeys(error for s in metrics for error in s['recent_errors']))))
@@ -100,6 +118,11 @@ def _next_level(ability, goal):
     if weak:
         return weak[0]
     pending = [l for l in unlocked if not l['completed']]
+    # Opening every entry point does not remove the recommended teaching order.
+    # Finish the foundational lessons before suggesting a package or competition.
+    pending_course = next((l for l in pending if l['mode'] == 'course'), None)
+    if pending_course:
+        return pending_course
     preferred = 'competition' if goal == '竞赛备战' else 'job' if goal == '岗位入门' else 'course'
     return next((l for l in pending if l['mode'] == preferred), pending[0] if pending else min(unlocked, key=lambda l: l['score']))
 
@@ -114,8 +137,8 @@ def recommendation(states, goal):
     def weight(a):
         upstream = 1 / (1 + _depth(a['id'], byid))
         deficit = (100 - a['mastery']) / 100
-        # A brief diagnostic changes the starting recommendation, but never unlocks
-        # a level or asserts mastery of skills that have not been assessed.
+        # Diagnostics guide recommendations independently from the score calculated
+        # from real saved training answers. All levels remain freely available.
         blocked = sum(byid[p]['mastery'] < 40 and (byid[p].get('diagnostic_score') or 0) < 70
                       for p in a.get('prerequisites', []) if p in byid)
         diagnosed_weak = .28 if a.get('diagnostic_score') is not None and a['diagnostic_score'] < 60 and not a['completed'] else 0
@@ -126,13 +149,14 @@ def recommendation(states, goal):
     a = max(candidates, key=weight)
     level = selected_levels[a['id']]
     if level['completed'] and level['score'] < 60:
-        reason = f'最近训练显示「{level["name"]}」得分为 {level["score"]}%，建议先复习这个薄弱环节。'
+        reason = f'最近训练显示「{level["name"]}」得分为 {level["score"]} 分，建议先复习这个薄弱环节。'
     elif a.get('diagnostic_score') is not None and a['diagnostic_score'] < 60 and not a['completed']:
         reason = f'入门诊断发现你在{a["name"]}上需要补强，先完成「{level["name"]}」。'
     else:
-        reason = f'结合「{goal}」目标与技能前置关系，建议学习「{level["name"]}」。当前掌握度 {a["mastery"]}%。'
+        reason = f'结合「{goal}」目标与技能前置关系，建议学习「{level["name"]}」。当前技能分 {a["skill_score"]:.2f} / 10。'
     path = [level] + [l for l in a['levels'] if l['id'] != level['id'] and not l['completed']]
     return {'ability_id': a['id'], 'ability_name': a['name'], 'level': level, 'mastery': a['mastery'],
+            'skill_score': a['skill_score'], 'answer_count': a['answer_count'], 'correct_count': a['correct_count'],
             'reason': reason, 'path': [{'id': l['id'], 'name': l['name'], 'mode': l['mode'], 'unlocked': l['unlocked']} for l in path[:4]]}
 
 
@@ -144,6 +168,9 @@ def learner_context(user, states, aid=None, skill=None):
     return {'goal': user.goal, 'ability_id': state['id'], 'ability_name': state['name'],
             'skill_id': current_skill, 'skill_name': metric['name'] if metric else None,
             'mastery': metric['score'] if metric else state['mastery'],
+            'skill_score': metric['skill_score'] if metric else state['skill_score'],
+            'answer_count': metric['answer_count'] if metric else state['answer_count'],
+            'correct_count': metric['correct_count'] if metric else state['correct_count'],
             'recent_errors': state.get('recent_errors', []),
             'weak_skills': [s for s in state.get('skill_mastery', []) if s['assessed'] and s['score'] < 65],
             'completed_levels': [l['name'] for l in state['levels'] if l['completed']],

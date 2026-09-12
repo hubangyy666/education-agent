@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-09-11T13:59:56.175852+00:00",
+  "kind": "AI-generated speech, not a human recording",
+  "model": "hexgrad/Kokoro-82M-v1.1-zh",
+  "revision": "01e7505bd6a7a2ac4975463114c3a7650a9f7218",
+  "model_sha256": "b1d8410fa44dfb5c15471fd6c4225ea6b4e9ac7fa03c98e8bea47a9928476e2b",
+  "config_sha256": "bc333efa5ce4ceff433c8c8e5d027a1eca0166001e4e4a62bea2d26ff7a46890",
+  "voice": "zf_001",
+  "voice_sha256": "9bdc9a87e13e9bb1ea3e7803259c2ecbfebaeeb2ff80b5d0c76df1a464c1c962",
+  "model_license": "Apache-2.0",
+  "source_url": "https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh/tree/01e7505bd6a7a2ac4975463114c3a7650a9f7218",
+  "model_card_url": "https://huggingface.co/hexgrad/Kokoro-82M-v1.1-zh",
+  "language": "zh-CN",
+  "sample_rate": 24000,
+  "format": "WAV PCM signed 16-bit mono",
+  "speed": 1.05,
+  "seed": 42,
+  "device": "cpu",
+  "processing": "80ms edge padding retained; peak normalized to -3dB; no pitch modification",
+  "dependencies": {
+    "torch": "2.6.0+cpu",
+    "kokoro": "0.9.4",
+    "misaki": "0.9.4",
+    "soundfile": "0.13.1",
+    "transformers": "4.51.3"
+  },
+  "clips": [
+    {
+      "file": "correct-01.wav",
+      "text": "答对啦，做得很好！",
+      "duration_seconds": 1.592,
+      "bytes": 76438,
+      "sha256": "ead209b90b9ace7ba3b6381997eed220a88435d12b11b312139096a846263403",
+      "decoded_sample_rate": 24000,
+      "rms": 0.1213,
+      "peak": 0.70795
+    },
+    {
+      "file": "correct-02.wav",
+      "text": "很棒，继续保持！",
+      "duration_seconds": 1.519,
+      "bytes": 72970,
+      "sha256": "0ff5f7423affbb0778958c17472086e3f745799b1be2ce96de75c65412c7e254",
+      "decoded_sample_rate": 24000,
+      "rms": 0.13148,
+      "peak": 0.70795
+    },
+    {
+      "file": "correct-03.wav",
+      "text": "漂亮，这一题完成得很棒！",
+      "duration_seconds": 2.226,
+      "bytes": 106878,
+      "sha256": "b900873700ab4181865b30ab61c77de64a4a84942cf19950afc94da5b048fe12",
+      "decoded_sample_rate": 24000,
+      "rms": 0.11621,
+      "peak": 0.70795
+    },
+    {
+      "file": "correct-04.wav",
+      "text": "答对了，给自己点个赞！",
+      "duration_seconds": 2.018,
+      "bytes": 96908,
+      "sha256": "c217f7fff43f6424e9f576d992fb08f767dc7f4f3c979eeb6bbc45a5b9bc07e2",
+      "decoded_sample_rate": 24000,
+      "rms": 0.14081,
+      "peak": 0.70795
+    },
+    {
+      "file": "correct-05.wav",
+      "text": "做得不错，继续加油！",
+      "duration_seconds": 1.981,
+      "bytes": 95116,
+      "sha256": "ddc81a51525bf5bd6ab9a2f9e5c158a8d00a34d4424283cf959b4a6997b0c211",
+      "decoded_sample_rate": 24000,
+      "rms": 0.10833,
+      "peak": 0.70795
+    },
+    {
+      "file": "correct-06.wav",
+      "text": "太棒了，下一题继续！",
+      "duration_seconds": 1.922,
+      "bytes": 92286,
+      "sha256": "84c0078d693e553c2ce69e56d825430c905f5692c822a53edb61d1580e5052d0",
+      "decoded_sample_rate": 24000,
+      "rms": 0.12086,
+      "peak": 0.70795
+    }
+  ]
+}

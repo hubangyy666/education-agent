@@ -1,0 +1,6 @@
+Label Studio interface screenshots
+Copyright 2019 Heartex, Inc; HumanSignal / Label Studio contributors.
+Source repository: https://github.com/HumanSignal/label-studio
+License: Apache License, Version 2.0. See label-studio-LICENSE.txt.
+All three PNG screenshots are unmodified upstream assets.
+Chinese explanatory text is authored for the Zhiji training platform.

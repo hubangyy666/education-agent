@@ -2,6 +2,7 @@
 import copy
 import hashlib
 import json
+from collections import Counter
 from functools import lru_cache
 from .db import ROOT
 from .grading import grade, iou
@@ -95,26 +96,49 @@ def visual_questions(aid):
                 result.append({'id':f'NER-S{skill}-{i}','type':'entity','skill_id':f'A8-S{skill}','title':f'选择句子中完整的{label}实体，并指定类型。','text':sentence,'labels':['地点','人名','机构'],'answer':{'start':sentence.index(value),'end':sentence.index(value)+len(value),'label':label},'project_rule':'实体包含名称本身，不包含动作、助词与标点；所有人名与机构均为虚构教学文本。','explanation':'结合语境选择完整名称，避免把介词、动词或标点包含在实体内。','hint':['先找到句子中有独立含义的名称。','结合语境判断名称表示人物、地点还是机构。','从名称第一个字到最后一个字选中，检查两端不要多选。'],'source':'智基原创虚构教学语料','source_url':'https://spacy.io/usage/linguistic-features#named-entities','ai_generated':False,'gt_origin':'authored_entity_span'})
     return result
 
-def combined_pool(aid,version,store):
+def combined_pool(aid,version,store,previous=(),visual=None,published=None):
     from .factory_agent import content_hash,balanced_plan,approve_review,validate_question
-    visual=visual_questions(aid)
-    scenarios=[q for q in store.questions(aid) if q.get('status')=='approved']
-    rank=lambda q:hashlib.sha256(f'{version}:'.encode()+content_hash(q).encode()).hexdigest()
+    visual=list(visual_questions(aid) if visual is None else visual)
+    rows=store.questions(aid)
+    retired={content_hash(q) for q in rows if q.get('status')=='retired'}
+    visual=[q for q in visual if content_hash(q) not in retired]
+    scenarios=[q for q in rows if q.get('status')=='approved']
+    published=published or {}
+    old_questions=[q for qs in published.values() for q in qs if content_hash(q) not in retired]
+    old_limits=Counter(content_hash(q) for q in old_questions)
+    previous=set(previous)
+    rank=lambda q:(content_hash(q) in previous,hashlib.sha256(f'{version}:'.encode()+content_hash(q).encode()).hexdigest())
     visual.sort(key=rank);scenarios.sort(key=rank)
-    pool={};used=set()
+    pool={};used=set();usage=Counter();old_ids=set()
     for lid,skills in balanced_plan(aid).items():
         course='-L' in lid;pool[lid]=[]
         for index,sid in enumerate(skills):
             # A short concept check precedes direct manipulation where supported.
             options=(scenarios+visual) if course and index<2 else (visual+scenarios)
-            candidate=next((q for q in options if q['skill_id']==sid and content_hash(q) not in used),None)
+            eligible=[q for q in options if q['skill_id']==sid and content_hash(q) not in used]
+            # New content wins across both kinds of reserve. If this skill has
+            # no fresh content, keep using its validated reserve; never relabel
+            # another skill or alter IDs alone to claim a changed question.
+            candidate=next((q for q in eligible if content_hash(q) not in previous),eligible[0] if eligible else None)
+            retained=False
+            if candidate is None:
+                # A published question is an already validated fallback, not a
+                # generated candidate. Preserve its original ID and content.
+                # Existing V1 duplicates may be retained, never multiplied.
+                backups=published.get(lid,[])+old_questions
+                candidate=next((q for q in backups if q['skill_id']==sid and q['id'] not in old_ids
+                    and content_hash(q) not in retired and usage[content_hash(q)]<old_limits[content_hash(q)]),None)
+                retained=candidate is not None
             if not candidate:raise ValueError(f'技能储备不足：{sid}')
             q=copy.deepcopy(candidate)
             if q.get('ai_generated'):
                 validate_question(q,sid,q['evidence'])
                 if not approve_review(q,q['ai_review']):raise ValueError('候选审核不通过')
-            q['content_hash']=content_hash(q);used.add(q['content_hash']);q['id']=f'{lid}-V{version}-Q{index+1}';pool[lid].append(q)
+            fingerprint=content_hash(q);used.add(fingerprint);usage[fingerprint]+=1
+            if retained:old_ids.add(q['id'])
+            else:q['content_hash']=fingerprint;q['id']=f'{lid}-V{version}-Q{index+1}'
+            pool[lid].append(q)
     from .factory import validate
     validate(pool,aid)
-    if len(used)!=55:raise ValueError('整套题目内容重复')
+    if any(count>max(1,old_limits[fingerprint]) for fingerprint,count in usage.items()):raise ValueError('整套题目内容重复')
     return pool

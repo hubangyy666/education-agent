@@ -1,0 +1,58 @@
+{
+  "task": "fixed-job-lessons-v2",
+  "lessons": [
+    {
+      "id": "vision-detection",
+      "seconds": 0.187,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "vision-segmentation",
+      "seconds": 0.063,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "industrial-localization",
+      "seconds": 0.047,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "industrial-screening",
+      "seconds": 0.062,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "text-entities",
+      "seconds": 0.016,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "text-intent",
+      "seconds": 0.031,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "quality-rework",
+      "seconds": 0.078,
+      "image_loaded": true,
+      "fixed_steps": 4
+    },
+    {
+      "id": "quality-delivery",
+      "seconds": 0.016,
+      "image_loaded": true,
+      "fixed_steps": 4
+    }
+  ],
+  "passed": true,
+  "reading_creates_no_progress": true,
+  "database_roundtrip": true,
+  "enrollment_idempotent": true,
+  "temporary_account_removed": true
+}

@@ -650,3 +650,55 @@
 {"at": "2026-09-10T09:11:00.928787+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
 {"at": "2026-09-10T09:11:00.934255+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
 {"at": "2026-09-10T09:11:00.938446+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.209484+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.223059+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.227553+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.230859+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.235873+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:02.238383+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.805451+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.814659+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.819652+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.835660+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.848783+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:14.864411+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.192107+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.199084+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.203450+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.215901+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.225890+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:27.231412+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.112838+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.123016+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.126586+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.142342+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.155684+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.172468+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:11:40.219383+00:00", "stage": "failed", "error_type": "ValueError"}
+{"at": "2026-09-11T13:18:23.032555+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:23.042607+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:23.049894+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:23.056370+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:23.065791+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:23.068988+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.227983+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.234432+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.237826+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.255254+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.269440+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:36.281466+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.362629+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.371577+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.376436+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.389475+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.395606+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:48.410580+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.460270+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.470206+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.474075+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.478855+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.491244+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.494746+00:00", "stage": "candidate_rejected", "skill_id": "A1-S5", "reason": "duplicate_content"}
+{"at": "2026-09-11T13:18:59.542704+00:00", "stage": "failed", "error_type": "ValueError"}
+{"at": "2026-09-11T14:12:08.243879+00:00", "stage": "verified_reserve_import", "count": 11, "candidate_ids": ["QF-fe94dcd2e474b36fb2a558d7", "QF-ae6394c7723e275baa261e5a", "QF-18fea224f5deebde237e0350", "QF-5688b721d1879a9efb3de464", "QF-83a628c371623d60a7dbc12b", "QF-f9ddd7b22ad05fade0477012", "QF-6a392c6149ac17033d7f10f0", "QF-8b52b8e7ec828b223708354a", "QF-18fb912643d50ab7f00aae59", "QF-9bc2e8ce9614708b36c620ab", "QF-9063c40ea12e523fa90678c1"], "state_source": ".runtime/factory-refresh-acceptance", "generation_request_ids": ["14342042-c71e-4d53-bb72-fdf67f1f67a6", "1f4ae169-1d3c-476e-bcea-b4205e187ce2", "2a93f696-f103-415b-84a5-f3c5e3c07090", "927cb511-4d21-42ba-9ac2-a080f1094ca7", "eb3e91a6-2f3f-49d7-a8ee-1bf5af5e0577"], "review_request_ids": ["03605eee-eff8-426e-b2bc-636b459f9b04", "09ef9d5e-df72-4215-b3d5-4af6251c0c33", "255d265a-786e-417a-8eb3-8740d756f0a0", "d174a653-0c8a-42c3-b0ad-e237f0c1ac5b", "e58fd18e-c49a-4ff7-a208-32ca7cb7594e"], "human_readback_excluded": {"QF-8d5d3882f25d2fdb466282f4": "账户使用人指代有歧义", "QF-c450fda2ea56adf46512d398": "与原工作流程题同构，仅改人物及表述", "QF-659bfcb5c0346c7b844feca4": "直接考查质量评估证据范围，工作流程技能不够直接"}, "note": "Retains actual independent model review; no active QuestionSet publication."}
+{"at": "2026-09-11T14:19:07.671888+00:00", "stage": "published", "version": 2, "question_count": 55, "new_question_count": 53, "reused_question_count": 2, "changed_levels": ["A1-L1", "A1-L2", "A1-L3", "A1-L4", "A1-L5", "A1-JOB", "A1-RACE"], "count": 55, "skill_counts": {"A1-S1": 11, "A1-S2": 11, "A1-S3": 11, "A1-S4": 11, "A1-S5": 11}}

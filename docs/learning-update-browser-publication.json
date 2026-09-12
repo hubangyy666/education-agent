@@ -1,0 +1,30 @@
+{
+  "source": "actual browser clicks on http://127.0.0.1:8000",
+  "old_version": 1,
+  "new_version": 2,
+  "new_question_count": 53,
+  "question_count": 55,
+  "old_question_set_preserved": true,
+  "old_run_snapshot_preserved": true,
+  "new_run_uses_published_questions": true,
+  "refresh_status": {
+    "id": "9bc8c84f-41c3-4c38-a02f-af6a35d8a37d",
+    "progress": 100,
+    "stage": "新题集已就绪，新增 53 道内容",
+    "status": "completed",
+    "version": 2,
+    "question_count": 55,
+    "new_question_count": 53,
+    "reused_question_count": 2,
+    "changed_levels": [
+      "A1-L1",
+      "A1-L2",
+      "A1-L3",
+      "A1-L4",
+      "A1-L5",
+      "A1-JOB",
+      "A1-RACE"
+    ]
+  },
+  "exactly_one_active_set": true
+}

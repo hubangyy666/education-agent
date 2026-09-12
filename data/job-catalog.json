@@ -1,0 +1,1738 @@
+{
+  "version": "2026-09-11-fixed-v2",
+  "sources": [
+    {
+      "id": "MOE-AI-2025",
+      "title": "人工智能技术应用专业教学标准（高等职业教育专科，2025）",
+      "url": "https://hudong.moe.gov.cn/s78/A07/zcs_ztzl/2017_zt06/17zt06_bznr/bznr_zyjyzyjxbz/gdzyjy_zk/zk_dzyxxdl/dzxxdl_jsjl/202502/P020250207532415004946.pdf",
+      "publisher": "中华人民共和国教育部",
+      "kind": "专业教学标准",
+      "summary": "专业代码 510209；职业面向包含人工智能训练师。人工智能数据服务涉及多模态标注、分类统计与审核；强调依托真实项目和典型任务开展情境式教学。用于专业及课程映射。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "DATATANG-SERVICE",
+      "title": "全栈式数据服务与行业高质量数据集案例",
+      "url": "https://datatang.com/news/1182",
+      "publisher": "数据堂",
+      "kind": "企业公开服务案例",
+      "summary": "企业公开说明数据清洗、人工与自动标注、版本管理、质量评测、交付及行业专家协作流程；公开电力行业案例。仅用于确认企业任务形态，未引用其营销质量数字。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "DATATANG-DOMAINS",
+      "title": "数据堂行业数据解决方案",
+      "url": "https://www.datatang.net/",
+      "publisher": "数据堂",
+      "kind": "企业公开业务目录",
+      "summary": "公开提供智能驾驶、智能客服、新零售等应用的数据服务，包含图像、文本及人机协同质检。用于产业场景映射，不代表具体招聘公告。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "KEYMAKR-MANUFACTURING",
+      "title": "Image & Video Annotation for Manufacturing",
+      "url": "https://www.keymakr.com/manufacturing.html",
+      "publisher": "Keymakr",
+      "kind": "企业公开服务",
+      "summary": "制造业视觉数据标注用于缺陷检测、生产物项识别与质量控制。用于工业标注岗位场景；课程未使用企业专有图像或内规。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "KSDD",
+      "title": "Kolektor Surface-Defect Dataset",
+      "url": "https://www.vicos.si/resources/kolektorsdd/",
+      "publisher": "ViCoS Lab / Kolektor Group",
+      "kind": "真实工业数据集",
+      "summary": "Kolektor 提供并标注的真实工业表面图像，包含有缺陷及无缺陷样本。当前仓库使用官方二元掩码和派生区域，只称表面缺陷。许可 CC BY-NC-SA 4.0。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "COCO",
+      "title": "COCO — Common Objects in Context",
+      "url": "https://cocodataset.org/#home",
+      "publisher": "COCO Consortium",
+      "kind": "公开真实图像数据集",
+      "summary": "真实日常场景中的目标检测与分割数据。页面样图采用仓库已有 COCO 2017 原图，照片独立许可以单图清单为准；非合作企业生产数据。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-BOX",
+      "title": "CVAT 矩形标注官方文档",
+      "url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-rectangles/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "矩形对象创建、标签选择及边界编辑的操作依据。课程中的目标范围与边界策略由当前题目明确，不从工具功能推导行业统一规则。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-POLYGON",
+      "title": "CVAT 多边形标注官方文档",
+      "url": "https://docs.cvat.ai/docs/annotation/manual-annotation/shapes/annotation-with-polygons/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "多边形轮廓绘制与编辑的操作依据。智基本次关联训练为单连续区域多边形，不声称完整像素掩码生产工具。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "LS-NER",
+      "title": "Label Studio 命名实体识别模板",
+      "url": "https://labelstud.io/templates/named_entity.html",
+      "publisher": "HumanSignal / Label Studio",
+      "kind": "标注工具官方模板",
+      "summary": "在文本中选择实体片段并赋人名、机构、地点等类型。用于实体类型与边界训练；是否允许嵌套由具体任务定义。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "LS-SENTIMENT",
+      "title": "Label Studio 情感分类模板",
+      "url": "https://labelstud.io/templates/sentiment_analysis.html",
+      "publisher": "HumanSignal / Label Studio",
+      "kind": "标注工具官方模板",
+      "summary": "展示文本与单选正向、负向、中性标签，也可组合其他属性。用于区分整句分类与实体片段标注。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "LS-INTENT",
+      "title": "Label Studio 槽位填充与意图分类模板",
+      "url": "https://labelstud.io/templates/slot_filling.html",
+      "publisher": "HumanSignal / Label Studio",
+      "kind": "标注工具官方模板",
+      "summary": "组合句子意图分类和文本片段槽位标注的任务形态。课程客服例句由智基编写，未接入真实客户对话。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "APPEN-QA",
+      "title": "Appen Task Types and review-data",
+      "url": "https://success.appen.com/appen-success-center/create-design-jobs/job-design-universals/guide-to-task-types-and-review-data",
+      "publisher": "Appen",
+      "kind": "企业平台官方工作流",
+      "summary": "标注项目可包含标注、质量审核和仲裁；QA 可载入已有标注供审核与修正。用于解释标注员与质检员协作。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-QA",
+      "title": "CVAT Manual QA and Review",
+      "url": "https://docs.cvat.ai/docs/qa-analytics/manual-qa/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "说明审核分工、创建问题、修正反馈与解决问题的工作流。教学据此设计可定位的问题记录和返修复核。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "LS-EXPORT",
+      "title": "Label Studio 标注导出与坐标单位",
+      "url": "https://labelstud.io/guide/export",
+      "publisher": "HumanSignal / Label Studio",
+      "kind": "标注工具官方文档",
+      "summary": "JSON矩形字段使用图像尺寸的百分比，需要结合原图尺寸转换成像素；导出格式与是否包含原始媒体要分别核对。用于交付格式检查。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-YOLO",
+      "title": "CVAT Ultralytics YOLO 格式",
+      "url": "https://docs.cvat.ai/docs/dataset_management/formats/format-yolo-ultralytics/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "说明YOLO标注结构及归一化坐标。交付前需要核对图像对应关系、坐标定义、类别映射与接收要求，不能只看文件后缀。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-MANIFEST",
+      "title": "CVAT 数据清单格式",
+      "url": "https://docs.cvat.ai/docs/dataset_management/dataset_manifest/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "图像清单记录文件名、扩展名、宽高；meta和checksum为可选字段。项目额外要求校验值时需单独确认，不能把工具可选项称为通用强制标准。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-PROJECT-EXPORT",
+      "title": "CVAT 项目备份与数据集导出",
+      "url": "https://docs.cvat.ai/docs/api_sdk/sdk/examples/projects/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "项目备份用于保留任务、作业、标注与设置；数据集导出按指定格式产出，是否携带图像取决于参数，include_images=False仅导标注。用于按接收目的选择交付产物。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "LS-CHOICES",
+      "title": "Label Studio 单选与多选标签",
+      "url": "https://labelstud.io/tags/choices.html",
+      "publisher": "HumanSignal / Label Studio",
+      "kind": "标注工具官方文档",
+      "summary": "Choices可配置单选或多选。沟通意图练习采用项目规定的咨询、投诉、建议单选标签；这组三类是教学项目字典，非官方统一意图分类标准。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "SPACY-ENTITIES",
+      "title": "spaCy 命名实体与文本片段",
+      "url": "https://spacy.io/usage/linguistic-features#named-entities",
+      "publisher": "Explosion / spaCy",
+      "kind": "语言处理工具官方文档",
+      "summary": "实体识别为连续文本片段分配类型，实体可以是人、地点或机构。用于现有原创实体练习的概念来源，不作为虚构句子内容的事实来源。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-AUTO-QA",
+      "title": "CVAT 基于验证集的自动质量评估",
+      "url": "https://docs.cvat.ai/docs/qa-analytics/auto-qa/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "使用带参考标注的验证图像子集估计作业质量；验证子集结果不能证明未抽检图片已经逐张人工审核。用于交付检查中的证据范围。",
+      "accessed_at": "2026-09-11"
+    },
+    {
+      "id": "CVAT-IMMEDIATE-QA",
+      "title": "CVAT 作业即时质量反馈",
+      "url": "https://docs.cvat.ai/docs/qa-analytics/immediate-feedback/",
+      "publisher": "CVAT",
+      "kind": "标注工具官方文档",
+      "summary": "说明验证集配置、完成作业后的质量分数及最低要求；需要分别看计算依据、能否返修和最终接受状态，不把即时分数当成无限次的答案查询。",
+      "accessed_at": "2026-09-11"
+    }
+  ],
+  "roles": [
+    {
+      "id": "vision",
+      "title": "计算机视觉标注员",
+      "subtitle": "让机器看懂每一个目标",
+      "industry": "智能驾驶 · 新零售 · 视觉数据服务",
+      "icon": "ScanLine",
+      "color": "blue",
+      "summary": "把照片中的对象转化成位置、类别和轮廓数据。练习从读规范到逐个标注，再到自检交付的完整工作方法。",
+      "scenario": "视觉算法团队需要一批可用于训练和测试的图像标签。你在数据服务项目中接收图像批次、标签字典和有效规范，先进行小批量试标，再标出任务范围内的对象。道路环境常出现遮挡、截断和小目标，零售与日常物体图像常有相邻实例；遇到不清晰的边界，要记录并交给项目负责人澄清。这里用公开真实图像训练通用能力，企业场景依据公开业务资料整理。",
+      "goals": [
+        "正确说明目标是什么、在哪里以及包含哪一块区域。",
+        "保持同一批次标签、边界与实例规则一致，减少漏标和重复标注。",
+        "提交可追溯的标注结果与疑难说明，为后续审核提供依据。"
+      ],
+      "responsibilities": [
+        "接收任务，核对图片清单、标签字典、目标范围和规范版本。",
+        "完成试标，使用矩形或多边形逐个处理符合范围的对象。",
+        "检查小目标、遮挡、截断与密集区域，记录无法独立判断的样本。",
+        "完成自检和返修，与质检员确认遗留问题。"
+      ],
+      "collaboration": [
+        "项目负责人：澄清对象范围、标签与边界规则。",
+        "算法工程师：说明数据用途及输出格式。",
+        "质检员：定位错误、反馈返修并复核结果。"
+      ],
+      "deliverables": [
+        "图像与标注的一一对应清单",
+        "类别、对象位置或轮廓数据",
+        "自检记录及疑难样本清单"
+      ],
+      "majors": [
+        {
+          "name": "人工智能技术应用",
+          "code": "510209",
+          "source_ids": [
+            "MOE-AI-2025"
+          ]
+        }
+      ],
+      "source_ids": [
+        "DATATANG-DOMAINS",
+        "MOE-AI-2025",
+        "CVAT-BOX",
+        "CVAT-POLYGON",
+        "COCO"
+      ],
+      "image": {
+        "url": "/media/000000011149.jpg",
+        "caption": "真实街景中同时出现相邻对象和画面边缘截断，可用于理解为什么要逐个确认实例。",
+        "credit": "摄影：Umberto Brayj（Flickr：ubrayj02）；COCO 2017 图像 11149，原图未改动。",
+        "source_url": "https://www.flickr.com/photos/ubrayj02/3323418866/",
+        "license": "CC BY 2.0"
+      },
+      "tasks": [
+        {
+          "id": "vision-detection",
+          "title": "多目标检测试标",
+          "summary": "从整幅观察到逐个画框，建立可靠的目标标注习惯。",
+          "work_scenario": "视觉数据服务项目准备建立日常场景中的目标检测数据。项目负责人给出目标类别和边界规则，你需要完成一组公开图像试标，练习逐个确认对象、标注并自检的工作方法。",
+          "description": "先把工作需求拆成目标类别、应标范围、边界策略和疑难处理四项。再使用 COCO 公开日常场景图像，按每道题指定的范围逐个完成矩形标注并提交。本组练习主要包括人物目标；运动、休闲等场景用于训练可迁移的检测能力，不把这些图像称为企业道路采集批次。",
+          "objectives": [
+            "能从任务描述中找出应标对象与不应标对象。",
+            "能对每个独立实例创建合适的矩形和类别。",
+            "能用真实反馈区分选错实例、遗漏对象与定位偏差。"
+          ],
+          "deliverables": [
+            "已提交的矩形标注训练记录",
+            "目标范围与边界规则学习笔记",
+            "一次基于反馈的错误复盘"
+          ],
+          "duration_minutes": 25,
+          "difficulty": "入门进阶",
+          "source_ids": [
+            "DATATANG-DOMAINS",
+            "CVAT-BOX",
+            "COCO",
+            "MOE-AI-2025"
+          ],
+          "norms": [
+            "以每道题明确指定的类别、实例和边界要求为准；不要看到同类对象就自动全部标注。",
+            "先整体扫描再分区检查；一个框对应一个应标实例，避免把相邻对象合并。",
+            "先确认对象选对，再校准四条边；不擅自推测看不见的部分。",
+            "图像仅用于授权的学习范围，保留来源，不修改原图掩盖错误。"
+          ],
+          "quality": [
+            "类别与任务标签字典一致，标注对象属于当前范围。",
+            "区域尽量贴合当前题目的边界定义；不通过盲目扩大框追求覆盖。",
+            "提交后分别阅读标签、定位、漏标和误标反馈；IoU 为零时先确认是否选错实例。"
+          ],
+          "assessment": [
+            "实操依据实际提交的框和类别，由现有确定性判分器评价。",
+            "学习完成需要真实训练记录；阅读讲解不计为实操完成。",
+            "复盘说明一项观察证据和对应修正方式，课程成绩不等同于某家企业录用或验收结论。"
+          ],
+          "knowledge": [
+            {
+              "title": "目标范围与实例",
+              "description": "同类不等于同一个对象。开始前明确本题要求标哪个实例或全部哪些实例。",
+              "ability_id": "A4",
+              "skill_id": "A4-S1",
+              "source_ids": [
+                "CVAT-BOX",
+                "COCO"
+              ]
+            },
+            {
+              "title": "矩形边界",
+              "description": "矩形表示对象位置；可见范围与完整范围是不同项目策略，应先查本题要求。",
+              "ability_id": "A2",
+              "skill_id": "A2-S2",
+              "source_ids": [
+                "CVAT-BOX"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A1",
+              "skill_id": "A1-S4",
+              "reason": "理解接单、试标、审核与返修顺序"
+            },
+            {
+              "ability_id": "A2",
+              "skill_id": "A2-S1",
+              "reason": "确认允许使用的标签"
+            },
+            {
+              "ability_id": "A4",
+              "skill_id": "A4-S4",
+              "reason": "逐个创建多目标标注"
+            },
+            {
+              "ability_id": "A7",
+              "skill_id": "A7-S4",
+              "reason": "复查画面边缘被截断的对象"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "读懂试标要求",
+              "instruction": "先读工作情境、操作规范和考核方式。用自己的话说明本任务的交付物，并区分项目场景与本题实际指定的目标。",
+              "output": "一段任务理解：标什么、交什么、遇到疑难怎么办。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先确认标注对象，而不是看到什么都框",
+                  "text": "检测任务要交付每个目标的位置和类别。打开一张图片后，先读题目指定的类别与数量范围；样图中的路人、自行车或摩托车是否需要标注，要由本项目标签表决定。"
+                },
+                {
+                  "title": "把目标当成独立实例来数",
+                  "text": "同一种物体出现多次，每个物体都是独立实例。挨得近、被遮挡或只露出一部分时，也不能把多个实例直接合成一个大框；是否纳入仍按题目规则判断。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "列出观察清单",
+              "instruction": "把检查顺序写成全图扫描→确认目标实例→核对类别→逐边检查。重点提醒自己不要漏掉边缘和相邻对象。",
+              "output": "个人四项自检清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "建立不会漏看的扫描顺序",
+                  "text": "先缩小观察全图，再从左到右、从上到下逐区检查。完成一轮后专门看画面四边：小目标、被遮挡的目标和边缘截断目标容易被忽略。"
+                },
+                {
+                  "title": "先选对目标，再讨论框的边界",
+                  "text": "确认要标的是哪个实例，再检查其四个方向的边界。框选可见部分还是推断完整形体，必须看题目规定；遇到规则没有说明的情况，先记录疑问，不凭习惯补画。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成目标检测训练",
+              "instruction": "在公开日常场景图像上按题意逐个画框、选择类别并提交。先核对本题对象范围，再检查相邻人物和画面边缘，依据真实反馈完成本次实操。",
+              "output": "保存到账号的答题与标注记录。",
+              "kind": "practice",
+              "level_id": "A4-L4",
+              "question_source": "visual_reserve",
+              "skill_id": "A4-S4",
+              "target_labels": [
+                "汽车",
+                "行人",
+                "自行车"
+              ],
+              "explanation": [
+                {
+                  "title": "选择标签并为每个实例建立矩形",
+                  "text": "进入互动训练，按本题要求逐个画框和选择标签。拖动时观察四边，必要时放大、移动或缩放矩形；一次只解决一个实例，避免重复标注。"
+                },
+                {
+                  "title": "提交前做一次数量与位置核对",
+                  "text": "把图中应标实例数与已建框数对照，再逐个检查标签和边界。提交后的报告会分别反映选错目标、漏标与定位偏差，不能只看一个总分就认定所有框都准确。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "依据结果复盘",
+              "instruction": "返回任务页面，选一项实际反馈，写清问题发生在哪个对象、依据是什么、下次如何检查；没有错误也需说明采用的自检方法。",
+              "output": "有具体观察依据的学习复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "找到具体对象上的问题",
+                  "text": "根据实际报告定位到具体题目和对象，写清是漏掉一个实例、选错类别，还是选对对象后边界不贴合。框与参考区域完全不重叠时，先排查是否选错实例。"
+                },
+                {
+                  "title": "把反馈变成下一次的检查动作",
+                  "text": "例如，若漏掉边缘目标，就把“重新扫一遍四个边缘”加入清单。复盘中引用本次真实反馈；没有出错时，也说明自己如何核对实例数量与标签。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "ScanLine",
+          "image": {
+            "url": "/media/000000011149.jpg",
+            "caption": "真实街景中同时出现相邻对象和画面边缘截断，可用于理解为什么要逐个确认实例。",
+            "credit": "摄影：Umberto Brayj（Flickr：ubrayj02）；COCO 2017 图像 11149，原图未改动。",
+            "source_url": "https://www.flickr.com/photos/ubrayj02/3323418866/",
+            "license": "CC BY 2.0"
+          }
+        },
+        {
+          "id": "vision-segmentation",
+          "title": "单个物体的精细轮廓标注",
+          "summary": "把对象与背景分开，练习可解释、可复核的多边形边界。",
+          "work_scenario": "视觉项目需要对象的精细区域，用于商品或物体识别。你需要根据当前项目的可见区域规则勾勒单个连续轮廓，并交给质检员检查边界。",
+          "description": "将生产中的精细分割任务缩减为一个可独立完成的连续区域：先确认目标实例，再找到轮廓转折点，绘制闭合多边形，最后检查是否切入目标或包含过多背景。本任务调用现有多边形课关；复杂孔洞和多区域掩码属于后续拓展。",
+          "objectives": [
+            "能说清检测框与分割轮廓的用途差异。",
+            "能按目标轮廓绘制闭合且不自相交的多边形。",
+            "能结合真实区域反馈解释边界修正。"
+          ],
+          "deliverables": [
+            "闭合多边形及类别训练记录",
+            "轮廓自检说明",
+            "边界修正复盘"
+          ],
+          "duration_minutes": 30,
+          "difficulty": "进阶",
+          "source_ids": [
+            "DATATANG-DOMAINS",
+            "CVAT-POLYGON",
+            "COCO",
+            "MOE-AI-2025"
+          ],
+          "norms": [
+            "只处理题目指定的目标实例，先确认可见区域规则。",
+            "转折明显处加点，平滑区域保持必要点数；不以顶点越多作为质量越好。",
+            "提交前检查闭合、交叉、细长凸起和误含背景。",
+            "涉及孔洞或不连续区域时记录限制，不能假称当前单多边形操作完成了全部生产需求。"
+          ],
+          "quality": [
+            "区域和类别对应正确，轮廓闭合且没有自相交。",
+            "轮廓变化与可见证据吻合，减少漏掉的目标区域和多余背景。",
+            "评价同时关注区域指标与边界表现，不只看轮廓是否好看。"
+          ],
+          "assessment": [
+            "实际多边形坐标由现有区域判分器评价，提交前不展示标准区域。",
+            "完成关联训练后，根据真实反馈记录一项边界调整或自检依据。",
+            "页面完成状态仅表明此教学任务完成，不表示掌握完整生产级掩码工具。"
+          ],
+          "knowledge": [
+            {
+              "title": "检测与分割的区别",
+              "description": "矩形强调位置，多边形描述区域；区域任务要同时检查语义对象和几何边界。",
+              "ability_id": "A1",
+              "skill_id": "A1-S2",
+              "source_ids": [
+                "CVAT-BOX",
+                "CVAT-POLYGON"
+              ]
+            },
+            {
+              "title": "轮廓与顶点",
+              "description": "顶点用来表达轮廓转折，合理点序和闭合关系比堆叠点数更重要。",
+              "ability_id": "A5",
+              "skill_id": "A5-S1",
+              "source_ids": [
+                "CVAT-POLYGON"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A5",
+              "skill_id": "A5-S1",
+              "reason": "按轮廓转折绘制多边形"
+            },
+            {
+              "ability_id": "A5",
+              "skill_id": "A5-S4",
+              "reason": "检查边界是否切入目标或纳入背景"
+            },
+            {
+              "ability_id": "A2",
+              "skill_id": "A2-S2",
+              "reason": "执行题目指定的边界定义"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "明确区域交付物",
+              "instruction": "说明为什么本任务需要轮廓而不是一个大框。确认本次只处理题目指定的单个连续区域。",
+              "output": "区域任务与矩形任务的区别笔记。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "理解轮廓交付与矩形交付的差别",
+                  "text": "矩形描述目标的大致位置，多边形用一系列顶点描述实际边缘。分割任务更关注前景与背景的分界，而不是用一个外接矩形把背景一起包住。"
+                },
+                {
+                  "title": "确定这次只描哪一个物体",
+                  "text": "本任务练习单个连续区域。先按题意确认目标实例；本平台当前不训练多区域合并、带孔洞的掩码或完整语义分割，不能用单个多边形跨过背景连接不相邻物体。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "观察轮廓再落点",
+              "instruction": "先找轮廓拐角、细长部分与容易混入背景的位置，再规划绘制顺序。遇到遮挡先确认本题规则。",
+              "output": "三个重点边界检查位置。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先看清转角，再规划顶点",
+                  "text": "绕目标观察一周，找出直线段、弯曲段和轮廓变化明显的位置。直线段不需要堆很多点，转角处则需要顶点保留形状；点多并不自动代表准确。"
+                },
+                {
+                  "title": "明确遮挡处的边界口径",
+                  "text": "目标与背景颜色接近时可以放大比较纹理；目标被其他物体挡住时，先核对本题的可见区域要求。无法观察到的边缘不要凭空延长。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成多边形训练",
+              "instruction": "在真实图像上按题意逐点绘制、闭合、检查后提交。参考反馈修正有证据的问题，完成实际多边形训练。",
+              "output": "已保存的多边形答题记录。",
+              "kind": "practice",
+              "level_id": "A5-L1",
+              "question_source": "visual_reserve",
+              "skill_id": "A5-S1",
+              "explanation": [
+                {
+                  "title": "按同一方向逐点描绘并闭合",
+                  "text": "从容易识别的转角开始，沿顺时针或逆时针方向逐点绘制，避免来回跨越轮廓造成边交叉。闭合后检查目标内部是否被正常填充。"
+                },
+                {
+                  "title": "先看区域，再检查边界",
+                  "text": "缩小看有没有把背景包进来，放大看尖角和细长部位。提交后结合区域与边界反馈调整；不要仅为提高分数反复增加没有作用的顶点。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "说明一处边界选择",
+              "instruction": "结合本次反馈，说明一处边界为什么放在那里、是否需要增加或调整顶点。",
+              "output": "具体到区域的边界复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "用图像证据解释一个顶点",
+                  "text": "选择一次真实反馈，说明你把顶点放在何处、依据什么可见边界。如果只是猜测物体完整形状，应回到当前题目的标注策略核对。"
+                },
+                {
+                  "title": "保留可复现的修正方法",
+                  "text": "记录需要移动、删除还是补充顶点，以及这样调整要解决的具体问题。交付前确认多边形闭合、无自交、标签正确。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "Shapes",
+          "image": {
+            "url": "/media/000000011149.jpg",
+            "caption": "真实街景中同时出现相邻对象和画面边缘截断，可用于理解为什么要逐个确认实例。",
+            "credit": "摄影：Umberto Brayj（Flickr：ubrayj02）；COCO 2017 图像 11149，原图未改动。",
+            "source_url": "https://www.flickr.com/photos/ubrayj02/3323418866/",
+            "license": "CC BY 2.0"
+          }
+        }
+      ]
+    },
+    {
+      "id": "industrial",
+      "title": "工业缺陷标注员",
+      "subtitle": "在真实表面中找到质量线索",
+      "industry": "智能制造 · 机器视觉质检",
+      "icon": "Focus",
+      "color": "orange",
+      "summary": "围绕零件表面，学习正常与异常判别、缺陷区域定位和疑难复核。让每个标签都有图像与规范依据。",
+      "scenario": "制造企业为视觉质检模型准备训练数据。你在离线图像标注岗位上接收来自产线的零件表面图像，与工艺人员确认缺陷定义，和质检员统一判定样例。表面纹理、反光和微小异常容易混淆，需要看完整图像并结合项目标准。本页采用 Kolektor 真实工业表面公开样本，教学标签限定为“表面缺陷”与“无缺陷”，不据此推断产品是否应报废。",
+      "goals": [
+        "依据当前产品规范区分正常表面与可见缺陷，保留无法判断的问题。",
+        "准确定位缺陷区域，使标注可用于后续数据分析和模型训练。",
+        "保证原图、标注、来源和审核结论可以对应追溯。"
+      ],
+      "responsibilities": [
+        "核对材料、拍摄条件、标签定义和参考样例，避免跨工艺套用规则。",
+        "检查完整表面图像，记录异常存在性并对指定缺陷定位。",
+        "区分真实异常与正常纹理，按疑难流程请求工艺复核。",
+        "按批次自检、返修和提交，保留正负样本及判断记录。"
+      ],
+      "collaboration": [
+        "工艺或质量工程师：提供产品范围、缺陷定义与疑难判定。",
+        "算法工程师：说明分类、检测或分割的实际数据需求。",
+        "标注质检员：复查遗漏、误判和边界问题。"
+      ],
+      "deliverables": [
+        "正常/异常标签或缺陷区域",
+        "源图与标签对应清单",
+        "疑难样本及复核说明"
+      ],
+      "majors": [
+        {
+          "name": "人工智能技术应用",
+          "code": "510209",
+          "source_ids": [
+            "MOE-AI-2025"
+          ]
+        }
+      ],
+      "source_ids": [
+        "KEYMAKR-MANUFACTURING",
+        "KSDD",
+        "MOE-AI-2025"
+      ],
+      "image": {
+        "url": "/media/ksdd_kos01_Part5.jpg",
+        "caption": "Kolektor 真实工业表面图像。整体纹理与局部异常需要分开观察；示例不是裂纹或划痕子类别的判定证据。",
+        "credit": "Kolektor Group d.o.o. 提供图像与标注，ViCoS Lab 发布；原图未改动。",
+        "source_url": "https://www.vicos.si/resources/kolektorsdd/",
+        "license": "CC BY-NC-SA 4.0（非商业教学）"
+      },
+      "tasks": [
+        {
+          "id": "industrial-localization",
+          "title": "零件表面缺陷定位",
+          "summary": "在真实产线图像中定位已定义的表面缺陷。",
+          "work_scenario": "制造业视觉质检项目准备构建缺陷检测数据。你需要在零件表面图像中定位可见缺陷，向审核员交付准确区域，供后续检测模型使用。",
+          "description": "阅读缺陷标签定义，观察表面正常纹理和疑似异常，再对本题指定的表面缺陷建立紧致矩形。训练基于 KolektorSDD 真实图像及官方掩码派生的参考框，保留“表面缺陷”这一原始语义范围，不生成裂纹、划痕等未经证实的细分类。",
+          "objectives": [
+            "能解释为什么标签必须来自当前产品规范。",
+            "能区分正常纹理背景与本题指定的异常区域。",
+            "能完成缺陷框选并用实际反馈修正边界。"
+          ],
+          "deliverables": [
+            "真实工业图像上的矩形标注记录",
+            "缺陷定义与定位依据笔记",
+            "一次基于判分结果的复盘"
+          ],
+          "duration_minutes": 25,
+          "difficulty": "进阶",
+          "source_ids": [
+            "KEYMAKR-MANUFACTURING",
+            "KSDD",
+            "CVAT-BOX",
+            "MOE-AI-2025"
+          ],
+          "norms": [
+            "当前实操只使用“表面缺陷”类别；不能凭细线外观擅自改称裂纹或划痕。",
+            "先看完整原图，再定位局部异常，不用文件名推测答案。",
+            "区域范围按题目要求执行，避免把正常表面大片纳入缺陷框。",
+            "本任务是图像标注实训，不能代替生产现场工艺判定或安全操作资格。"
+          ],
+          "quality": [
+            "标签与公开数据集所支持的语义一致。",
+            "缺陷位置对应正确且区域范围有可见证据。",
+            "保留原图、来源与训练记录，返修有具体问题描述。"
+          ],
+          "assessment": [
+            "由实际提交框与官方掩码派生参考区域计算定位成绩。",
+            "标准区域在提交之后用于反馈，不以AI口头判断给分。",
+            "完成实际训练并写出定位复盘，才形成完整学习证据。"
+          ],
+          "knowledge": [
+            {
+              "title": "缺陷定义的适用范围",
+              "description": "不同产品和工艺的缺陷类别不能直接互换。本任务公开样本只支持表面异常，不支持自行细分。",
+              "ability_id": "A6",
+              "skill_id": "A6-S1",
+              "source_ids": [
+                "KSDD",
+                "KEYMAKR-MANUFACTURING"
+              ]
+            },
+            {
+              "title": "正常纹理与异常区域",
+              "description": "先建立正常表面的观察参照，再检查局部变化；图像亮暗变化本身不等于某种缺陷类型。",
+              "ability_id": "A6",
+              "skill_id": "A6-S4",
+              "source_ids": [
+                "KSDD"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A6",
+              "skill_id": "A6-S1",
+              "reason": "按数据支持的范围使用缺陷标签"
+            },
+            {
+              "ability_id": "A4",
+              "skill_id": "A4-S3",
+              "reason": "控制缺陷矩形的四条边界"
+            },
+            {
+              "ability_id": "A2",
+              "skill_id": "A2-S3",
+              "reason": "对不确定样本保留疑问"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "确认缺陷定义",
+              "instruction": "阅读工作情境与样图署名。写清本任务允许的标签，以及为什么不能自行增加裂纹、划痕子类别。",
+              "output": "本任务标签边界说明。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "理解工业图像中的正常背景",
+                  "text": "生产中的同一类零件可能具有稳定纹理、亮度变化和成像边缘。先认识这些正常背景，才能判断某个局部结构是否偏离周围表面。"
+                },
+                {
+                  "title": "守住标签定义",
+                  "text": "这里使用 KolektorSDD 真实表面图像及其二元缺陷标注。任务可以要求定位“表面缺陷”，但不能据此自行推断裂纹、划痕、污染或缺陷等级。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "先整体再局部观察",
+              "instruction": "观察零件完整表面，比较正常纹理与局部异常的形态。列出容易误当缺陷的线索及复核办法。",
+              "output": "表面观察与疑难处理清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "从整件表面扫到可疑局部",
+                  "text": "先观察全图，确认零件表面的延伸方向和成像边界；再放大可疑位置，比较其形态与周围纹理。不要只盯着对比最强的一处而漏掉其他区域。"
+                },
+                {
+                  "title": "区分观察事实和成因猜测",
+                  "text": "可以记录“局部出现不连续结构”这样的可见现象。是否由某道工序造成、是否达到企业报废程度，需要另外的生产规范，不能从本教学样图直接下结论。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成工业缺陷框选",
+              "instruction": "在真实 Kolektor 图像上按本题要求选择并框出表面缺陷。核对类别与边界，提交后查看真实定位反馈。",
+              "output": "保存的缺陷框选及判分记录。",
+              "kind": "practice",
+              "level_id": "A6-L1",
+              "skill_id": "A6-S1",
+              "question_source": "visual_reserve",
+              "explanation": [
+                {
+                  "title": "以可见异常为依据定位",
+                  "text": "按题目要求找到目标并建立缺陷框，调整四边使其覆盖规定区域。不要把整张零件图都框进去，也不要因异常较细而只圈住最明显的一小段。"
+                },
+                {
+                  "title": "提交后核对位置与类别",
+                  "text": "读取实际反馈，先确认是不是选对异常，再看边界覆盖情况。每张图独立判断，不能把上一张的缺陷位置复制到下一张。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "解释定位依据",
+              "instruction": "结合反馈，说明是否找对异常区域、哪条边界需调整，以及你如何避免将正常纹理误标。",
+              "output": "缺陷定位的证据与改进记录。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "解释定位偏差发生在哪里",
+                  "text": "结合实际图像和报告，说清边界包含了过多背景、漏掉异常延伸部分，还是选到了另一处纹理。用可观察证据描述问题。"
+                },
+                {
+                  "title": "建立自己的工业图像检查清单",
+                  "text": "将全图扫描、局部放大、标签核对和边界自检各写成一个动作。真实项目交付还需遵守该项目的图像采集与质量规范。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "Focus",
+          "image": {
+            "url": "/media/ksdd_kos01_Part5.jpg",
+            "caption": "Kolektor 真实工业表面图像。整体纹理与局部异常需要分开观察；示例不是裂纹或划痕子类别的判定证据。",
+            "credit": "Kolektor Group d.o.o. 提供图像与标注，ViCoS Lab 发布；原图未改动。",
+            "source_url": "https://www.vicos.si/resources/kolektorsdd/",
+            "license": "CC BY-NC-SA 4.0（非商业教学）"
+          }
+        },
+        {
+          "id": "industrial-screening",
+          "title": "正常与异常样本复核",
+          "summary": "保留正常样本，避免把所有表面纹理都标成缺陷。",
+          "work_scenario": "工业图像批次中同时包含有缺陷和无缺陷零件表面。你需要在进入区域标注之前完成样本筛查，避免让正常样本被错误标为异常。",
+          "description": "依据当前样本集的二元标签定义，对真实工业图像判断是否存在可见表面缺陷。训练保留正常与异常两类样本，并在提交后比较判定证据。无法明确的生产样本应进入复核流程，不能为了快速清空任务而强行贴标签。",
+          "objectives": [
+            "能解释无缺陷样本在质检数据中的作用。",
+            "能对比整体表面与局部纹理作出存在性判断。",
+            "能把异常存在性判断与缺陷类别、严重度判断区分开。"
+          ],
+          "deliverables": [
+            "正负样本分类训练记录",
+            "正常/异常判定依据",
+            "一条避免误判的自检策略"
+          ],
+          "duration_minutes": 20,
+          "difficulty": "基础",
+          "source_ids": [
+            "KSDD",
+            "KEYMAKR-MANUFACTURING",
+            "MOE-AI-2025"
+          ],
+          "norms": [
+            "本任务仅判断是否存在当前定义的表面缺陷，不评价严重程度或产品合格率。",
+            "真实正常样本也需要检查与保留；不能因没有框就认定任务未完成。",
+            "不凭文件名、样本顺序或上一题答案判断本题。",
+            "不清楚的工业生产样本需说明疑点并升级复核，课程题以已审核参考结果反馈。"
+          ],
+          "quality": [
+            "正常样本与异常样本均有实际检查记录。",
+            "判断依据来自表面图像和任务定义，避免把纹理、反光泛化成缺陷。",
+            "反馈能指出误报与漏检的区别，而不混同为“画框不准确”。"
+          ],
+          "assessment": [
+            "实际分类答案与样本官方缺陷存在性标签比较。",
+            "学习完成依据真实分类训练结果与复盘记录，不由阅读时长推断。",
+            "记录一次正确或错误判断的图像依据，明确本训练不承担产品放行决定。"
+          ],
+          "knowledge": [
+            {
+              "title": "负样本的作用",
+              "description": "无缺陷图像为正常外观提供参照；保留负样本有助于发现把正常纹理当异常的倾向。",
+              "ability_id": "A6",
+              "skill_id": "A6-S4",
+              "source_ids": [
+                "KSDD"
+              ]
+            },
+            {
+              "title": "分类与定位",
+              "description": "是否有缺陷是图像级判断，缺陷在哪里是区域判断，两种交付物不能互相替代。",
+              "ability_id": "A1",
+              "skill_id": "A1-S2",
+              "source_ids": [
+                "KSDD",
+                "CVAT-BOX"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A6",
+              "skill_id": "A6-S4",
+              "reason": "区分正常表面和异常样本"
+            },
+            {
+              "ability_id": "A3",
+              "skill_id": "A3-S1",
+              "reason": "执行单标签分类规则"
+            },
+            {
+              "ability_id": "A6",
+              "skill_id": "A6-S5",
+              "reason": "对相似外观保持证据意识"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "明确二元标签",
+              "instruction": "读清正常与表面缺陷的含义，说明存在性判断与具体缺陷类别、严重程度的区别。",
+              "output": "分类任务范围笔记。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "这一项先判断有没有异常",
+                  "text": "本任务的交付单位是整张图的类别：存在表面缺陷，或无可见缺陷。它与缺陷位置框选是两种任务，当前分类练习不要求画框。"
+                },
+                {
+                  "title": "不要从一个类别推断更多结论",
+                  "text": "二元标签只说明样本中是否存在指定缺陷。它不能证明零件的所有性能合格，也不能说明缺陷的具体子类、严重程度或成因。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "建立检查顺序",
+              "instruction": "计划从全图到局部的检查顺序，提醒自己完整检查无缺陷样本。不要把示例图片的结论套到下一张。",
+              "output": "避免误报与漏检的检查清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先覆盖全图，再复查局部",
+                  "text": "按固定方向完整扫描表面，重点回看细小、不连续或与周围纹理不同的区域。仅仅快速扫一眼没有看到，不足以支持“无可见缺陷”。"
+                },
+                {
+                  "title": "每张图都重新判断",
+                  "text": "训练包含正常与异常样本。不要因为上一张图有缺陷就预设下一张也有，也不要把亮度变化一律当作缺陷；先与周围表面特征比较。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "进行真实正负样本判断",
+              "instruction": "逐张观察工业表面图像，选择题目提供的类别并提交。结合真实反馈检查自己是否漏看区域或误读纹理。",
+              "output": "已保存的工业图像分类记录。",
+              "kind": "practice",
+              "level_id": "A6-L4",
+              "skill_id": "A6-S4",
+              "question_source": "visual_reserve",
+              "explanation": [
+                {
+                  "title": "观察后选择本题提供的类别",
+                  "text": "先看完整图像，再点击类别并提交；图像过窄时可放大查看。这里考查存在性判断，不需要标注具体轮廓。"
+                },
+                {
+                  "title": "用报告检查漏检和误判",
+                  "text": "漏检是把存在缺陷的图判断为无缺陷；误判则相反。提交后再核对反馈，在复盘中分别说明是哪一类错误，而不是笼统写“边界不准”。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "比较一次判断证据",
+              "instruction": "选取本次训练的一项反馈，说明为什么判断为正常或异常，以及再次遇到类似纹理时的复核方式。",
+              "output": "正常/异常判断复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "记录判断所依据的现象",
+                  "text": "结合自己做过的题，描述如何从整体纹理找到可疑区域，以及有没有先入为主。复盘应对应本次真实结果。"
+                },
+                {
+                  "title": "把正常样本也纳入检查",
+                  "text": "正常图不是可以跳过的空白任务。说明自己如何覆盖全图并排除疑似异常，保持正常和异常样本同样的检查顺序。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "ScanEye",
+          "image": {
+            "url": "/media/ksdd_kos01_Part5.jpg",
+            "caption": "Kolektor 真实工业表面图像。整体纹理与局部异常需要分开观察；示例不是裂纹或划痕子类别的判定证据。",
+            "credit": "Kolektor Group d.o.o. 提供图像与标注，ViCoS Lab 发布；原图未改动。",
+            "source_url": "https://www.vicos.si/resources/kolektorsdd/",
+            "license": "CC BY-NC-SA 4.0（非商业教学）"
+          }
+        }
+      ]
+    },
+    {
+      "id": "text",
+      "title": "文本语义标注员",
+      "subtitle": "把语言变成机器可学的线索",
+      "industry": "智能客服 · 自然语言处理 · 数据服务",
+      "icon": "TextCursorInput",
+      "color": "purple",
+      "summary": "标出人名、地点和机构，分清用户想做什么、表达什么态度。用规范减少语言歧义。",
+      "scenario": "智能客服或文本处理团队需要把自然语言转化为结构化标签。你接收经过授权和脱敏的文本、意图分类表与实体标注规范，先完成试标，再逐条标注、检查分歧。典型难点包括同一句含多种诉求、实体名称边界不清和缺少上下文。课程任务取自公开的真实业务形态，练习句子由智基编写，为虚构教学语料，不含真实客户对话。",
+      "goals": [
+        "准确区分整句意图、情感类别与局部实体。",
+        "按规范标注完整实体边界，避免多选标点或漏选名称。",
+        "对有歧义的文本记录理由，保持标签体系一致。"
+      ],
+      "responsibilities": [
+        "理解文本用途、授权范围、脱敏要求与标签定义。",
+        "完成实体片段、意图或情感标注，保留原文本对应关系。",
+        "根据上下文处理指代与歧义，不能靠个别词直接猜标签。",
+        "复核边界和类别，整理分歧样例并提交澄清。"
+      ],
+      "collaboration": [
+        "业务人员：解释客服场景和意图定义。",
+        "自然语言算法工程师：明确标签字段及实体格式。",
+        "质检员：对歧义和边界分歧组织复核。"
+      ],
+      "deliverables": [
+        "文本与分类标签",
+        "实体片段及类型",
+        "歧义样本与规则说明"
+      ],
+      "majors": [
+        {
+          "name": "人工智能技术应用",
+          "code": "510209",
+          "source_ids": [
+            "MOE-AI-2025"
+          ]
+        }
+      ],
+      "source_ids": [
+        "DATATANG-DOMAINS",
+        "LS-NER",
+        "LS-INTENT",
+        "LS-SENTIMENT",
+        "MOE-AI-2025"
+      ],
+      "image": {
+        "url": "/jobs/named-entity-recognition.png",
+        "type": "真实标注工具界面",
+        "caption": "实际实体标注界面：选中原文片段后赋予实体类别。截图使用英文示例，本平台使用中文虚构教学语料。",
+        "credit": "HumanSignal / Label Studio 官方文档截图，原图未修改",
+        "source_url": "https://labelstud.io/templates/named_entity",
+        "license": "Apache-2.0",
+        "license_url": "/jobs/label-studio-LICENSE.txt"
+      },
+      "tasks": [
+        {
+          "id": "text-entities",
+          "title": "文本实体与名称边界标注",
+          "summary": "找出人名、地点和机构，并把名称选完整。",
+          "work_scenario": "自然语言项目需要从文本中提取结构化信息。你要按规定的实体类型识别名称，保留它在原文中的准确起止位置，供后续信息抽取使用。",
+          "description": "先阅读实体类型和边界规范，再在虚构教学句子中选择完整实体片段并赋予类型。重点训练名字、机构全称和地点边界，不把标点、动词或整个句子一并选入。任务形态参考官方标注模板，句子不是企业原始数据。",
+          "objectives": [
+            "能区分实体类型与整句分类。",
+            "能选取完整且无冗余的文本片段。",
+            "能根据实际字符边界反馈修正漏字、多字或类型混淆。"
+          ],
+          "deliverables": [
+            "实体片段与类型的实际提交记录",
+            "实体边界学习笔记",
+            "一条边界或标签复盘"
+          ],
+          "duration_minutes": 20,
+          "difficulty": "基础",
+          "source_ids": [
+            "LS-NER",
+            "MOE-AI-2025",
+            "SPACY-ENTITIES"
+          ],
+          "norms": [
+            "以当前题目提供的实体类型为准，不自行新增类型。",
+            "实体名称保持原文内容，不改写、补字或把称谓一律并入。",
+            "边界是否包含简称、修饰语或嵌套实体必须按具体任务规则判断。",
+            "真实业务文本需遵守授权和脱敏范围，练习中不填入真实个人资料。"
+          ],
+          "quality": [
+            "实体类型与语义匹配，片段边界覆盖完整名称。",
+            "各标注与原文位置一一对应，避免选入相邻标点或动作词。",
+            "遗漏实体与边界不完整应分别检查。"
+          ],
+          "assessment": [
+            "程序对比实际提交的实体起止位置与类型，形成可复核的训练成绩。",
+            "完成真实实体选择练习并记录一个边界检查依据。",
+            "课程文本为原创虚构内容，不把公开任务范式误称为真实客户数据。"
+          ],
+          "knowledge": [
+            {
+              "title": "实体与分类",
+              "description": "实体标注输出局部文字片段及类型，整句分类输出该句的类别，两者粒度不同。",
+              "ability_id": "A8",
+              "skill_id": "A8-S1",
+              "source_ids": [
+                "LS-NER",
+                "LS-SENTIMENT",
+                "SPACY-ENTITIES"
+              ]
+            },
+            {
+              "title": "实体边界",
+              "description": "完整名称与相邻上下文需要分开；正确类型不能弥补边界多字或漏字。",
+              "ability_id": "A8",
+              "skill_id": "A8-S2",
+              "source_ids": [
+                "LS-NER"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A8",
+              "skill_id": "A8-S1",
+              "reason": "识别人名、机构和地点"
+            },
+            {
+              "ability_id": "A8",
+              "skill_id": "A8-S2",
+              "reason": "选择准确字符边界"
+            },
+            {
+              "ability_id": "A1",
+              "skill_id": "A1-S5",
+              "reason": "理解授权与脱敏范围"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "先读类型与边界",
+              "instruction": "了解本任务输出的是文本片段与类型。写出实体标注和整句意图分类的差别。",
+              "output": "实体任务的交付物说明。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "交付的是文字片段和类型",
+                  "text": "实体标注需要指出原文中的起止位置，并为这段文字选择类别，例如人名、地名或机构名。它不是给整句话贴情绪标签。"
+                },
+                {
+                  "title": "只依据原文，不补充背景",
+                  "text": "本任务使用明确标示的虚构教学语料。标注依据是原文和题目规则，不查询或猜测人物真实身份，也不补出句子没有出现的信息。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "列出边界检查点",
+              "instruction": "思考名称是否完整、是否带入标点、是否漏掉同句另一实体。以题目规则为准，保留不确定情况。",
+              "output": "三项实体边界检查清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先读整句，判断词语指代",
+                  "text": "同一个词在不同语境中可能表示不同对象。先把整句读完，再按题目给出的实体类型确认要选哪一段文字。"
+                },
+                {
+                  "title": "核对名称是否完整",
+                  "text": "起点与终点都要检查：是否多带一个标点、漏掉名称结尾，或把相邻的两个实体连在一起。简称、嵌套名称等特殊情况以项目规则为准。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成实体选择训练",
+              "instruction": "在练习句子里选择实体起止位置并赋类型，提交后查看程序反馈。根据具体多字、漏字或类型问题调整。",
+              "output": "保存的实体片段与类型记录。",
+              "kind": "practice",
+              "level_id": "A8-L2",
+              "skill_id": "A8-S2",
+              "question_source": "visual_reserve",
+              "explanation": [
+                {
+                  "title": "精确选中范围，再赋予类型",
+                  "text": "在互动界面按题目指定实体选择起止字符并选择标签。先确认范围，再确认类型；不要把“已经选中了文字”等同于“标注完成”。"
+                },
+                {
+                  "title": "逐字检查反馈对应的差异",
+                  "text": "提交后观察多选、少选和类型错误分别发生在哪里。修改前回到原句核对，避免为了匹配一个名称而改动原始文本。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "解释一次边界决定",
+              "instruction": "结合实际练习说明一处名称的起止位置为什么这样选择，以及如何检查漏选或多选。",
+              "output": "实体标注学习复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "用原文解释边界",
+                  "text": "从真实作答里选择一处实体，说明为什么从这个字开始、到那个字结束。不能只写“系统显示正确”，而应说明规则与原文证据。"
+                },
+                {
+                  "title": "形成适合复核的记录",
+                  "text": "记录原句、实体片段、类别和边界疑问。企业项目中字符偏移还需统一计数口径，不能把截图中的高亮效果当作完整机器可读交付。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "TextCursorInput",
+          "image": {
+            "url": "/jobs/named-entity-recognition.png",
+            "type": "真实标注工具界面",
+            "caption": "实际实体标注界面：选中原文片段后赋予实体类别。截图使用英文示例，本平台使用中文虚构教学语料。",
+            "credit": "HumanSignal / Label Studio 官方文档截图，原图未修改",
+            "source_url": "https://labelstud.io/templates/named_entity",
+            "license": "Apache-2.0",
+            "license_url": "/jobs/label-studio-LICENSE.txt"
+          }
+        },
+        {
+          "id": "text-intent",
+          "title": "客服沟通意图标签判断",
+          "summary": "按咨询、投诉、建议三类规则，判断整句话的主要沟通意图。",
+          "work_scenario": "客服文本分类项目希望把客户表达按咨询、投诉、建议归类，以便整理沟通需求。标注员需要依据整段文字和当前项目字典作出单选判断，并记录多重表达或信息不足带来的分歧。本组练习处理沟通意图，不细分退款申请、物流查询等业务动作。",
+          "description": "本组已审核情境题采用咨询、投诉、建议三类沟通意图，要求针对整段文本选择一个最匹配的类别。先确认标签体系的粒度，再读完整表达并判断主要沟通目的；情感倾向和具体业务动作可作为理解线索，但不能替换本组标签。练习使用虚构教学文本，属于客服标注规范与判断训练。",
+          "objectives": [
+            "能说清本组咨询、投诉、建议三类沟通意图的标签范围。",
+            "能结合完整表达，按本组单选规则判断主要沟通意图。",
+            "能区分沟通意图、情感倾向与具体业务动作，并说明疑难文本需要澄清的内容。"
+          ],
+          "deliverables": [
+            "已审核沟通意图情境题的作答记录",
+            "沟通意图、情感与业务动作的区别笔记",
+            "一次依据当前标签字典的复盘"
+          ],
+          "duration_minutes": 20,
+          "difficulty": "基础",
+          "source_ids": [
+            "DATATANG-DOMAINS",
+            "LS-INTENT",
+            "LS-SENTIMENT",
+            "MOE-AI-2025",
+            "LS-CHOICES"
+          ],
+          "norms": [
+            "本组只选择咨询、投诉、建议中的一个标签；不要把退款申请、物流查询等其他粒度的标签自行加进本题。",
+            "结合完整句子与已给上下文判断，不见到某个关键词就贴标签。",
+            "正向、负向是情感倾向；退款、换货是业务动作。本组交付的是沟通意图，需要按题目给定的三类定义判断。",
+            "多诉求及无法判断的处理方式需在本项目规则中明确，不能编造行业统一优先级。"
+          ],
+          "quality": [
+            "最终标签来自本组三类字典，能够解释整段表达的主要沟通目的。",
+            "判断说明区分沟通目的、情感倾向和业务动作，避免混用不同粒度的标签。",
+            "歧义样本说明缺少什么信息，而不是凭空补全上下文。"
+          ],
+          "assessment": [
+            "通过咨询、投诉、建议三类情境题检验本组规则理解，实际选项由普通程序判定。",
+            "保存实际作答并完成一次意图判断复盘。",
+            "结果表示本次教学判断训练表现，不等同于生产对话数据验收。"
+          ],
+          "knowledge": [
+            {
+              "title": "意图标签的粒度",
+              "description": "意图标签由项目字典定义。本组按咨询、投诉、建议划分沟通目的；业务动作还可细分退款、查询等，但属于另一套标签粒度。",
+              "ability_id": "A8",
+              "skill_id": "A8-S4",
+              "source_ids": [
+                "LS-INTENT",
+                "LS-CHOICES"
+              ]
+            },
+            {
+              "title": "沟通意图与情感",
+              "description": "情感标签说明表达的态度，沟通意图说明当前表达主要是在咨询、投诉还是建议；不要用一个维度直接替代另一维度。",
+              "ability_id": "A8",
+              "skill_id": "A8-S3",
+              "source_ids": [
+                "LS-SENTIMENT",
+                "LS-INTENT"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A8",
+              "skill_id": "A8-S4",
+              "reason": "按本组字典识别整段文本的沟通意图"
+            },
+            {
+              "ability_id": "A8",
+              "skill_id": "A8-S3",
+              "reason": "区分情感倾向和沟通意图"
+            },
+            {
+              "ability_id": "A8",
+              "skill_id": "A8-S5",
+              "reason": "处理多意图或上下文不足"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "读懂标签用途",
+              "instruction": "确认本组标签为咨询、投诉、建议，说明它们的分类粒度，与退款、物流查询等业务动作标签有什么不同。",
+              "output": "本组标签范围及分类粒度说明。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先区分沟通目的和业务动作",
+                  "text": "本任务按“咨询、投诉、建议”区分主要沟通目的；退款、物流查询等是另一层业务分类。标签表决定当前要标哪一层，不能混用。"
+                },
+                {
+                  "title": "明确标注单位",
+                  "text": "当前训练对一段客服话语做单选判断。官方工具图片展示的是意图标注的另一种工作界面；本任务使用文本练习，不要求音频切段。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "准备判定顺序",
+              "instruction": "列出完整表达→项目三类标签→主要沟通目的→疑难澄清的判断顺序。提醒自己不要用情感标签或业务动作标签替代本组标签。",
+              "output": "意图判断与疑难处理清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "通读话语，找到主要诉求",
+                  "text": "先了解完整表达，再判断说话者主要在询问信息、表达不满还是提出改进。单个否定词、感叹号或礼貌用语不能单独决定标签。"
+                },
+                {
+                  "title": "遇到多个诉求先核对规则",
+                  "text": "一句话可能既问问题又抱怨。真实项目需要优先级、多标签或提交疑难的规则；本训练按题目的单选要求判断，不自行发明新标签。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成意图情境训练",
+              "instruction": "逐题阅读完整客服表达，按照本组咨询、投诉、建议的单选规则作答。核对主要沟通目的，提交并阅读实际反馈。",
+              "output": "实际情境题作答记录。",
+              "kind": "practice",
+              "level_id": "A8-L4",
+              "skill_id": "A8-S4",
+              "question_source": "reviewed_reserve",
+              "explanation": [
+                {
+                  "title": "按当前标签表完成判断",
+                  "text": "逐题阅读虚构客服语料，在给定标签中选择最符合主要沟通目的的一项。不要用情绪积极或消极替代意图分类。"
+                },
+                {
+                  "title": "提交后比较判断依据",
+                  "text": "阅读反馈时关注它引用的语义线索，并与自己的依据比较。不要机械记住一句话的选项顺序，下一题仍需重新理解。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "复盘一次标签选择",
+              "instruction": "结合实际练习，解释某个标签为什么适合；若存在歧义，写明需要补充的信息。",
+              "output": "基于完整语义的复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "解释为什么选这个标签",
+                  "text": "结合实际训练中的一句话，指出主要诉求，说明它与相邻类别的差别。用原话中的证据支持选择。"
+                },
+                {
+                  "title": "把分歧变成规则问题",
+                  "text": "若判断依赖缺失的上下文，在复盘中写清缺什么、需要向谁确认。真实语料必须按项目隐私与权限要求处理。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "MessageCircle",
+          "image": {
+            "url": "/jobs/intent-classification.png",
+            "type": "真实标注工具界面",
+            "caption": "实际意图标注界面：对选中语音片段赋予沟通意图。用于理解标签表与标注单位；本任务练习中文文本单选，采用咨询、投诉、建议标签。",
+            "credit": "HumanSignal / Label Studio 官方文档截图，原图未修改",
+            "source_url": "https://labelstud.io/templates/intent_classification",
+            "license": "Apache-2.0",
+            "license_url": "/jobs/label-studio-LICENSE.txt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "quality",
+      "title": "数据标注质检员",
+      "subtitle": "把每次检查变成质量改进",
+      "industry": "AI 数据生产 · 质量审核 · 项目交付",
+      "icon": "ShieldCheck",
+      "color": "green",
+      "summary": "复查标签与边界，写清问题、推动返修，并用有依据的记录支持交付判断。",
+      "scenario": "项目中的人工标注或 AI 预标注已经形成待审核批次。你从质检视角依据同一版项目规范检查对象、标签、边界和完整性，把问题定位到具体样本，交给标注员返修后再次核验。项目负责人需要真实质量指标与未解决问题清单，不能用漂亮的总结替代事实。此岗位是数据标注工作流中的质量方向，课程不冒充特定企业职位认证。",
+      "goals": [
+        "用可复核的证据识别标签、位置、漏标与误标问题。",
+        "把问题描述转成可执行的返修动作，并再次确认修改结果。",
+        "理解质量报告的统计口径、证据来源和交付边界。"
+      ],
+      "responsibilities": [
+        "确认有效规范、抽样或全检范围以及项目验收规则。",
+        "检查人工或 AI 建议标签，独立判断是否符合任务要求。",
+        "记录样本位置、错误类型与修正要求，跟踪返修复核。",
+        "汇总真实结果、版本和遗留问题，向负责人说明交付风险。"
+      ],
+      "collaboration": [
+        "标注员：接收问题说明并完成返修。",
+        "项目负责人：确定抽检范围、验收口径和交付决策。",
+        "算法或工艺专家：澄清模型建议与疑难规则。"
+      ],
+      "deliverables": [
+        "定位到样本的问题单",
+        "返修与复核记录",
+        "有统计口径的质量说明及归档清单"
+      ],
+      "majors": [
+        {
+          "name": "人工智能技术应用",
+          "code": "510209",
+          "source_ids": [
+            "MOE-AI-2025"
+          ]
+        }
+      ],
+      "source_ids": [
+        "APPEN-QA",
+        "CVAT-QA",
+        "DATATANG-SERVICE",
+        "MOE-AI-2025"
+      ],
+      "image": {
+        "url": "/jobs/export-workspace.png",
+        "type": "真实标注工具界面",
+        "caption": "Label Studio 官方快照导出界面：导出前要明确任务范围、是否包含标注、草稿与预测。此图用于解释交付选项，并非本平台的导出界面。",
+        "credit": "HumanSignal / Label Studio 官方文档截图，原图未修改",
+        "source_url": "https://labelstud.io/guide/export",
+        "license": "Apache-2.0",
+        "license_url": "/jobs/label-studio-LICENSE.txt"
+      },
+      "tasks": [
+        {
+          "id": "quality-rework",
+          "title": "目标标注返修与复核",
+          "summary": "将“这里不对”变成具体、有证据的修正动作。",
+          "work_scenario": "目标检测批次进入质量复查。你要按项目规范确认对象与边界，记录问题，再通过实际标注和反馈检查修正是否有效。",
+          "description": "学习企业质检中的问题定位、返修与复核方法，并通过实际目标框选检验自己的判断。先看对象是否属于任务范围，再看标签和四条边界；提交后按真实结果写出修正要求。此教学环节使用重新标注与结果复核，不是完整的预标注编辑器。",
+          "objectives": [
+            "能区分对象错误、漏标、误标与定位偏差。",
+            "能把问题写成“对象位置＋证据＋修正动作”。",
+            "能根据实际提交结果检查原问题是否解决。"
+          ],
+          "deliverables": [
+            "实际目标框选与判分记录",
+            "具体到对象的问题说明",
+            "返修思路及复核依据"
+          ],
+          "duration_minutes": 25,
+          "difficulty": "进阶",
+          "source_ids": [
+            "APPEN-QA",
+            "CVAT-QA",
+            "CVAT-BOX",
+            "COCO",
+            "MOE-AI-2025"
+          ],
+          "norms": [
+            "AI 预标注和他人标注都是待核验结果，不能因模型置信度高就直接通过。",
+            "先核对任务范围和实例，再评价类别与边界；避免把选错对象解释为单纯边界偏差。",
+            "问题描述包含样本或对象位置、依据和明确修正动作，不只写“重做”。",
+            "返修之后需要重新核验，原问题不能只因点击提交而自动视为解决。"
+          ],
+          "quality": [
+            "判断使用同一版规范，问题能够在图像或结果中定位。",
+            "错误类型和修正动作对应，例如选错实例应重选对象，而不是只扩大原框。",
+            "复核依据为实际结果，保留尚未解释清楚的问题。"
+          ],
+          "assessment": [
+            "通过真实目标框选及确定性指标检验定位判断。",
+            "复盘记录本次实际问题、修正方式和复核依据；正确样本也要写出通过依据。",
+            "本次完成只证明重新标注与复核教学完成，不表示已审核外部企业批次。"
+          ],
+          "knowledge": [
+            {
+              "title": "审核与返修分工",
+              "description": "审核应把问题交代清楚，返修应回应问题，复核应确认实际修改是否满足规范。",
+              "ability_id": "A9",
+              "skill_id": "A9-S5",
+              "source_ids": [
+                "APPEN-QA",
+                "CVAT-QA"
+              ]
+            },
+            {
+              "title": "错误归因",
+              "description": "对象错误、类别错误、位置偏差和遗漏对应不同修正动作，质检记录应把它们分开。",
+              "ability_id": "A9",
+              "skill_id": "A9-S4",
+              "source_ids": [
+                "CVAT-QA"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A9",
+              "skill_id": "A9-S1",
+              "reason": "独立核验 AI 或他人的标注建议"
+            },
+            {
+              "ability_id": "A9",
+              "skill_id": "A9-S4",
+              "reason": "用具体证据定位错误原因"
+            },
+            {
+              "ability_id": "A9",
+              "skill_id": "A9-S5",
+              "reason": "检查返修结果"
+            },
+            {
+              "ability_id": "A4",
+              "skill_id": "A4-S3",
+              "reason": "通过实际画框验证边界判断"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "明确质检职责",
+              "instruction": "阅读质检工作情境。说明为什么预标注仍要核验，以及质检员、标注员和项目负责人分别做什么。",
+              "output": "质检与返修职责笔记。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "质检要回答结果是否符合规范",
+                  "text": "标注员负责产出标注，质检员需要对照规则发现具体问题，并给出可复核的证据。自动预标注只能作为候选结果，不能代替审核。"
+                },
+                {
+                  "title": "了解本次练习的形式",
+                  "text": "这里通过重新标注真实图像和阅读报告练习复核。它不提供完整的企业预标注审查系统；需要你练会的是发现问题、准确说明和再次核对。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "编写问题描述模板",
+              "instruction": "准备“对象位置、问题证据、修正动作、复核方式”四项模板。先确认实例，再检查边界，避免错误归因。",
+              "output": "可执行的问题单模板。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "先确认实例和标签",
+                  "text": "先看结果有没有选中正确对象，再看类别和数量。实例都不对应时，仅调整矩形边界不能解决问题。"
+                },
+                {
+                  "title": "用四个要素记录问题",
+                  "text": "问题单要包含具体位置、观察证据、建议处理方式和再次复核的方法。“标得不准”无法指导返修；应说明是哪一张、哪一个对象、哪种偏差。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成标注与结果复核",
+              "instruction": "在实际图像上独立完成目标框选并提交。阅读真实反馈，对发现的问题重新检查对象和边界；本环节为重新标注练习。",
+              "output": "已保存的框选与判分记录。",
+              "kind": "practice",
+              "level_id": "A9-L5",
+              "skill_id": "A9-S5",
+              "question_source": "visual_reserve",
+              "explanation": [
+                {
+                  "title": "独立标注并核对报告",
+                  "text": "在真实图片上完成框选，提交后再比较反馈。先记录自己的判断依据，避免在看见参考答案后把原来的错误判断抹掉。"
+                },
+                {
+                  "title": "把误差转成可执行修改",
+                  "text": "例如，漏标需要补充目标，类别错误需要改标签，边界偏差需要重新定位四边。不同问题对应不同操作，不用统一的“重新画一遍”代替诊断。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "记录返修闭环",
+              "instruction": "用本次实际反馈写一份简短问题说明，补充拟修正动作和复核依据。若无错误，说明为什么判定该结果满足任务要求。",
+              "output": "基于实际样本的质检复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "复核必须检查修正后的结果",
+                  "text": "提出修改建议不等于问题已关闭。记录修改内容后，再按同一规范检查结果；如果当前只提出建议，应如实标明待处理。"
+                },
+                {
+                  "title": "说明问题关闭的依据",
+                  "text": "使用本次真实报告说明通过了哪项检查，还存在哪些限制。教学训练通过表示达到本练习门槛，不等同于整批企业数据已验收。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "ShieldCheck",
+          "image": {
+            "url": "/media/000000011149.jpg",
+            "caption": "真实街景中同时出现相邻对象和画面边缘截断，可用于理解为什么要逐个确认实例。",
+            "credit": "摄影：Umberto Brayj（Flickr：ubrayj02）；COCO 2017 图像 11149，原图未改动。",
+            "source_url": "https://www.flickr.com/photos/ubrayj02/3323418866/",
+            "license": "CC BY 2.0"
+          }
+        },
+        {
+          "id": "quality-delivery",
+          "title": "标注数据交付检查",
+          "summary": "检查交付格式与质量证据，分清分数、问题记录和最终接受状态。",
+          "work_scenario": "数据标注项目准备将结果交给模型开发团队。你需要检查坐标单位和交付形式是否符合接收用途，并确认质量分数来自什么范围、审核问题如何定位、返修与接受状态是否记录清楚。",
+          "description": "本组把交付前检查拆为五类情境判断：坐标单位、交付产物选择、验证子集分数的适用范围、审核问题的定位与处理记录、分数及返修和最终接受状态。使用已审核题目练习判断，留下学习清单与作答记录，不会实际操作外部企业数据包或完成客户验收。",
+          "objectives": [
+            "能按接收用途核对坐标单位，并区分项目备份与指定格式导出。",
+            "能说明验证子集上的质量分数与全量逐张审核的区别。",
+            "能分别记录问题位置、修改人员报告的状态、是否允许返修和最终接受结论。"
+          ],
+          "deliverables": [
+            "五类交付检查情境题的实际作答记录",
+            "格式、质量证据与状态检查学习清单",
+            "一次具体交付问题的复盘"
+          ],
+          "duration_minutes": 20,
+          "difficulty": "综合",
+          "source_ids": [
+            "DATATANG-SERVICE",
+            "LS-EXPORT",
+            "CVAT-YOLO",
+            "CVAT-MANIFEST",
+            "CVAT-PROJECT-EXPORT",
+            "MOE-AI-2025",
+            "CVAT-QA",
+            "CVAT-AUTO-QA",
+            "CVAT-IMMEDIATE-QA"
+          ],
+          "norms": [
+            "先核对接收方要求的格式和坐标单位，不通过更改文件后缀假装完成转换。",
+            "项目备份与数据集导出用途不同；是否包含原图需要核对导出参数，不能默认所有导出包都携带图像。",
+            "基于验证子集计算的分数不能证明所有未抽检图片都已逐张审核；必须记录证据适用范围。",
+            "修正人员把问题标记为已解决、审核人员复检通过、作业最终被接受是不同状态，应按实际记录分别说明。",
+            "扩展核对文件清单时，注意CVAT的checksum为可选字段；是否必须提供、空目标图是否需要标签文件，都需依据当前项目明确要求。"
+          ],
+          "quality": [
+            "格式与坐标检查对应到本题事实和接收条件；单个字段正确不代表全部交付要求满足。",
+            "质量结果保留计算依据和适用范围，不把抽检估计写成全量无误。",
+            "问题描述能定位到对象或字段，修正、返修权限与最终接受状态不混写。"
+          ],
+          "assessment": [
+            "通过五类已审核情境题，检验格式选择、质量证据范围和问题状态记录的判断。",
+            "完成真实作答并提交学习清单与复盘记录。",
+            "本任务考核交付检查判断，不表示完成真实企业数据包导出、整体质量报告编制或客户验收。"
+          ],
+          "knowledge": [
+            {
+              "title": "坐标单位与交付形式",
+              "description": "像素、百分比和归一化坐标使用不同尺度。备份与导出也有不同用途，应结合接收要求检查，不能只凭文件后缀或数值范围认定整包合格。",
+              "ability_id": "A10",
+              "skill_id": "A10-S5",
+              "source_ids": [
+                "LS-EXPORT",
+                "CVAT-YOLO",
+                "CVAT-PROJECT-EXPORT"
+              ]
+            },
+            {
+              "title": "质量证据与状态边界",
+              "description": "验证子集的分数描述特定范围的质量证据。问题已被修改人员标记解决、是否允许返修、最终是否接受都需分别记录，不互相代替。",
+              "ability_id": "A10",
+              "skill_id": "A10-S4",
+              "source_ids": [
+                "CVAT-AUTO-QA",
+                "CVAT-IMMEDIATE-QA",
+                "CVAT-QA"
+              ]
+            }
+          ],
+          "skills": [
+            {
+              "ability_id": "A9",
+              "skill_id": "A9-S3",
+              "reason": "区分验证子集的质量估计与全量审核"
+            },
+            {
+              "ability_id": "A10",
+              "skill_id": "A10-S4",
+              "reason": "记录质量检查依据和问题状态"
+            },
+            {
+              "ability_id": "A10",
+              "skill_id": "A10-S5",
+              "reason": "按接收用途区分备份与指定格式导出"
+            },
+            {
+              "ability_id": "A10",
+              "skill_id": "A10-S1",
+              "reason": "澄清交付要求、返修权限与接受条件"
+            }
+          ],
+          "steps": [
+            {
+              "id": "understand",
+              "title": "确认交付检查范围",
+              "instruction": "读清接收用途和五类检查内容。说明为什么格式正确、质量分数达标和最终接受是不同问题。",
+              "output": "本次交付检查的信息需求笔记。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "交付要同时看内容、格式和状态",
+                  "text": "接收方可能需要训练用标注、可继续编辑的项目备份或审核报告。三者用途不同；先明确需要哪种产物，再决定导出选项。"
+                },
+                {
+                  "title": "理解界面选项带来的差异",
+                  "text": "右侧是真实工具的快照导出界面，可以选择全部、已标注或已审核任务，以及是否包含草稿、预测等信息。选择导出范围本身就是交付检查的一部分。"
+                }
+              ]
+            },
+            {
+              "id": "prepare",
+              "title": "列出五项检查",
+              "instruction": "列出坐标单位、交付产物、质量证据范围、问题定位与处理、返修及接受状态五项。为每项写明需要核对什么事实。",
+              "output": "五项交付检查学习清单。",
+              "kind": "read",
+              "explanation": [
+                {
+                  "title": "用五项清单核对交付要求",
+                  "text": "依次确认坐标单位、导出产物、证据覆盖范围、问题定位与处理状态、返修及验收状态。每项都写明检查对象和依据，避免只写“已检查”。"
+                },
+                {
+                  "title": "特别检查单位与文件对应关系",
+                  "text": "像素坐标、百分比坐标和归一化坐标不能直接混用。检查图像尺寸、文件名与标签文件是否对应；空标注是否允许应按项目规则判断。"
+                }
+              ]
+            },
+            {
+              "id": "practice",
+              "title": "完成交付检查情境题",
+              "instruction": "逐题核对接收要求、质量证据或问题状态，再提交判断并查看真实反馈。遇到验证子集分数，不将它解释为全量逐张审核；遇到已解决记录，不擅自补写最终接受。",
+              "output": "已保存的五类交付检查情境题记录。",
+              "kind": "practice",
+              "level_id": "A10-L4",
+              "skill_id": "A10-S4",
+              "question_source": "reviewed_reserve",
+              "explanation": [
+                {
+                  "title": "先找证据，再作交付判断",
+                  "text": "在情境题中逐项阅读已知格式、审核范围和处理状态。只有验证子集通过时，不能把结论扩大为全量人工复核通过。"
+                },
+                {
+                  "title": "把当前状态写准确",
+                  "text": "区分发现问题、已分派、已返修、已复核和最终接受。题目只提供其中一项证据时，不替后面的步骤作完成承诺。"
+                }
+              ]
+            },
+            {
+              "id": "review",
+              "title": "复盘一个交付问题",
+              "instruction": "结合实际作答，选一个格式、质量证据或状态记录问题，写明已知事实、结论范围、待处理事项和下一步核对方式。",
+              "output": "具体到格式、证据或状态的检查复盘。",
+              "kind": "review",
+              "explanation": [
+                {
+                  "title": "说清检查结论适用范围",
+                  "text": "复盘包含已知事实、检查范围、当前结论和仍需确认的内容。这样接收方可以判断数据是否适合其用途。"
+                },
+                {
+                  "title": "交付清单要让别人能够复查",
+                  "text": "记录版本、文件集合、格式说明、质量报告和未关闭问题的位置。本平台此任务训练交付判断，不会实际导出企业数据包。"
+                }
+              ]
+            }
+          ],
+          "tile_icon": "FolderOpen",
+          "image": {
+            "url": "/jobs/export-workspace.png",
+            "type": "真实标注工具界面",
+            "caption": "Label Studio 官方快照导出界面：导出前要明确任务范围、是否包含标注、草稿与预测。此图用于解释交付选项，并非本平台的导出界面。",
+            "credit": "HumanSignal / Label Studio 官方文档截图，原图未修改",
+            "source_url": "https://labelstud.io/guide/export",
+            "license": "Apache-2.0",
+            "license_url": "/jobs/label-studio-LICENSE.txt"
+          }
+        }
+      ]
+    }
+  ]
+}

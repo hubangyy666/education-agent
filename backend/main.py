@@ -15,7 +15,7 @@ from .catalog import ABILITIES, ability, levels
 from .factory import initialize_sets, public_question, samples, image_question, choice
 from .grading import grade, report
 from . import tutor
-from .factory_workflow import refresh_questions,monitor_pending
+from .factory_workflow import refresh_questions,refresh_status as factory_refresh_status,monitor_pending
 
 @asynccontextmanager
 async def lifespan(app):
@@ -88,7 +88,8 @@ async def expiration_loop():
             logging.getLogger('zhiji').exception('到期任务结算失败，将重试')
         await asyncio.sleep(1)
 def run_dict(run):
-    return {'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
+    from .jobs import training_context
+    return {'job_learning':training_context(run),'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
 
 class LoginBody(BaseModel):
     username:str=Field(min_length=1,max_length=40)
@@ -125,7 +126,7 @@ def module(aid:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
     item=next((a for a in ability_state(db,user) if a['id']==aid),None)
     if not item: raise HTTPException(404,'没有找到这个能力模块。')
     qs=db.scalar(select(QuestionSet).where(QuestionSet.ability_id==aid,QuestionSet.active==True));item['version']=qs.version if qs else 0
-    item['update']=json.loads(cache.get(f'factory:{aid}') or 'null')
+    item['update']=factory_refresh_status(aid)
     return item
 @app.get('/api/dashboard')
 def dashboard(user:User=Depends(current_user),db:Session=Depends(get_db)):
@@ -150,6 +151,12 @@ class SettingsBody(BaseModel):
 def profile(body:SettingsBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
     if body.goal not in ('岗位入门','课程补强','竞赛备战'): raise HTTPException(422,'请选择有效的学习目标。')
     for k,v in body.model_dump().items(): setattr(user,k,v)
+    db.commit();return user_dict(user)
+
+class VoiceBody(BaseModel): voice:bool
+@app.post('/api/profile/voice')
+def voice_setting(body:VoiceBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    user.voice=body.voice
     db.commit();return user_dict(user)
 
 @app.post('/api/onboarding/start')
@@ -180,13 +187,16 @@ def start(body:StartBody,user:User=Depends(current_user),db:Session=Depends(get_
     aid=body.level_id.split('-')[0];a=next((a for a in ability_state(db,user) if a['id']==aid),None)
     if not a: raise HTTPException(404,'没有找到这个模块。')
     lv=next((l for l in a['levels'] if l['id']==body.level_id),None)
-    if not lv or not lv['unlocked']: raise HTTPException(403,'先完成前面的关卡，再来开启这一关。')
+    if not lv: raise HTTPException(404,'没有找到这个关卡。')
     if cache.exists(f'factory-lock:{aid}'): raise HTTPException(409,'题目正在更新，请等待新题集发布。')
+    qs=db.scalar(select(QuestionSet).where(QuestionSet.ability_id==aid,QuestionSet.active==True))
+    if not qs or body.level_id not in qs.questions: raise HTTPException(503,'当前关卡题集尚未就绪，请稍后重试。')
     existing=db.scalar(select(Run).where(Run.username==user.username,Run.level_id==body.level_id,Run.status=='active').order_by(Run.started_at.desc()))
     if existing:
         existing=get_run(existing.id,user,db)
-        if existing.status=='active': return run_dict(existing)
-    qs=db.scalar(select(QuestionSet).where(QuestionSet.ability_id==aid,QuestionSet.active==True))
+        # A module opens the published version; an old run remains accessible by
+        # its own URL with its original question/answer snapshot.
+        if existing.status=='active' and existing.questions==qs.questions[body.level_id]: return run_dict(existing)
     run=Run(id=str(uuid.uuid4()),username=user.username,ability_id=aid,level_id=body.level_id,mode=lv['mode'],questions=qs.questions[body.level_id],deadline=now()+timedelta(minutes=lv['minutes']) if lv['mode']=='competition' else None)
     db.add(run);db.commit();return run_dict(run)
 @app.get('/api/runs/{run_id}')
@@ -221,11 +231,14 @@ def repair_run(run_id:str,user:User=Depends(current_user),db:Session=Depends(get
 @app.post('/api/abilities/{aid}/refresh')
 def refresh(aid:str,background:BackgroundTasks,user:User=Depends(current_user)):
     if not ability(aid): raise HTTPException(404,'没有找到这个模块。')
-    if not cache.set(f'factory-lock:{aid}',user.username,nx=True,ex=1800): raise HTTPException(409,'当前模块正在更新题目。')
-    jid=str(uuid.uuid4());cache.set(f'factory:{aid}',json.dumps({'id':jid,'progress':0,'stage':'准备更新','status':'running'}),ex=3600)
+    jid=str(uuid.uuid4())
+    if not cache.set(f'factory-lock:{aid}',jid,nx=True,ex=1800): raise HTTPException(409,'当前模块正在更新题目。')
+    cache.set(f'factory:{aid}',json.dumps({'id':jid,'progress':0,'stage':'准备更新','status':'running'}),ex=3600)
     background.add_task(refresh_questions,aid,jid);return {'id':jid,'progress':0,'stage':'准备更新','status':'running'}
 @app.get('/api/abilities/{aid}/refresh')
-def refresh_status(aid:str,user:User=Depends(current_user)): return json.loads(cache.get(f'factory:{aid}') or '{"status":"idle","progress":0}')
+def refresh_status(aid:str,user:User=Depends(current_user)):
+    if not ability(aid): raise HTTPException(404,'没有找到这个模块。')
+    return factory_refresh_status(aid)
 
 class ChatBody(BaseModel):
     message:str=Field(min_length=1,max_length=1500)
@@ -352,6 +365,9 @@ def media(filename:str):
             yield from obj.stream(1024*64)
         finally: obj.close();obj.release_conn()
     return StreamingResponse(chunks(),media_type='image/jpeg',headers={'Cache-Control':'public, max-age=86400'})
+
+from .jobs import register_jobs
+register_jobs(app, current_user)
 
 # Built production frontend can be served by the same FastAPI origin.
 if (ROOT/'dist').exists():

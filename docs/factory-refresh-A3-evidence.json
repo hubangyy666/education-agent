@@ -1,0 +1,41 @@
+{
+  "ability_id": "A3",
+  "isolation": "qa_factory_e50440524a4f4a77",
+  "model_policy": "production bounded generation and independent review",
+  "shared_media_collection_disabled": true,
+  "refresh_status": {
+    "id": "4fe60797-cde0-4d04-8aa0-bb6b0592c412",
+    "progress": 100,
+    "stage": "新题集已就绪，新增 29 道内容",
+    "status": "completed",
+    "version": 2,
+    "question_count": 55,
+    "new_question_count": 29,
+    "reused_question_count": 26,
+    "changed_levels": [
+      "A3-L1",
+      "A3-L2",
+      "A3-L3",
+      "A3-L4",
+      "A3-JOB",
+      "A3-RACE"
+    ]
+  },
+  "progress": [
+    {
+      "id": "4fe60797-cde0-4d04-8aa0-bb6b0592c412",
+      "progress": 0,
+      "stage": "准备更新",
+      "status": "running"
+    }
+  ],
+  "old_version": 1,
+  "new_version": 2,
+  "fresh_content_count": 29,
+  "old_run_snapshot_preserved": true,
+  "new_run_uses_published_content": true,
+  "exactly_one_active_version": true,
+  "shared_question_set_unchanged": true,
+  "isolated_schema_removed": true,
+  "isolated_redis_removed": true
+}

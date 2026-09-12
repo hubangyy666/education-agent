@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-09-11T11:44:50.843653+00:00",
+  "role": "industrial",
+  "task": "industrial-screening",
+  "browser_workflow": "真实页面点击生成、按步骤提交、5题图像分类、查看报告、返回任务、提交实操与复盘",
+  "learning_id": "87928556-5632-5690-bc8d-34a0bddb8e30",
+  "status": "completed",
+  "completed_steps": [
+    "understand",
+    "prepare",
+    "practice",
+    "review"
+  ],
+  "run_id": "55b219a0-5d90-41dd-890c-8938d8c236ef",
+  "answered": 5,
+  "report_score": 100.0,
+  "passed": true,
+  "provider": "deepseek",
+  "ai_generated": true,
+  "refresh_restored": true,
+  "skill_link": "/skills/A6?skill=A6-S4",
+  "skill_dom_target": "skill-A6-S4",
+  "mobile_viewport": {
+    "requested_width": 390,
+    "layout_width": 375,
+    "scroll_width": 375
+  },
+  "export_file": "jobs-export-example.md",
+  "export_required_sections": 12
+}
