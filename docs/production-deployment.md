@@ -36,7 +36,7 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
-首次构建和拉取镜像需要几分钟。完成后检查：
+首次构建和拉取镜像需要几分钟。生产配置通过 DaoCloud 国内镜像代理拉取 Docker Hub 与 Quay 镜像，以降低中国内地 ECS 直接访问海外仓库超时的概率。完成后检查：
 
 ```bash
 docker compose --env-file .env.production -f compose.production.yaml ps

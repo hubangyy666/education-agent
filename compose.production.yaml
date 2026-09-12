@@ -2,7 +2,7 @@ name: zhiji-production
 
 services:
   postgres:
-    image: pgvector/pgvector:pg16
+    image: m.daocloud.io/docker.io/pgvector/pgvector:pg16
     restart: unless-stopped
     environment:
       POSTGRES_DB: zhiji
@@ -18,7 +18,7 @@ services:
     networks: [backend]
 
   redis:
-    image: redis:6-alpine
+    image: m.daocloud.io/docker.io/library/redis:6-alpine
     restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
@@ -31,7 +31,7 @@ services:
     networks: [backend]
 
   minio:
-    image: quay.io/minio/minio@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
+    image: m.daocloud.io/quay.io/minio/minio@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
     restart: unless-stopped
     environment:
       MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:?请在 .env.production 中设置 MINIO_ACCESS_KEY}
@@ -84,7 +84,7 @@ services:
     networks: [frontend, backend]
 
   caddy:
-    image: caddy:2.10-alpine
+    image: m.daocloud.io/docker.io/library/caddy:2.10-alpine
     restart: unless-stopped
     environment:
       SITE_ADDRESS: ${SITE_ADDRESS:?请在 .env.production 中设置 SITE_ADDRESS}
