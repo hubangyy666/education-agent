@@ -122,11 +122,16 @@ def init_db():
     with engine.begin() as conn:
         conn.execute(text("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) NOT NULL DEFAULT 'student'"))
     with Session(engine) as db:
-        for username,name in [('xuyihao','徐一豪'),('zhangxiang','张翔'),('songsang','宋桑'),('mengfei','孟飞')]:
-            if not db.get(User,username): db.add(User(username=username,name=name,password=password_hash('123456')))
+        demo_accounts_enabled = os.getenv('DEMO_ACCOUNTS_ENABLED', 'true').lower() in {'1', 'true', 'yes', 'on'}
+        student_password = os.getenv('BOOTSTRAP_STUDENT_PASSWORD', '123456')
+        admin_password = os.getenv('BOOTSTRAP_ADMIN_PASSWORD', '123456')
+        if demo_accounts_enabled:
+            for username,name in [('xuyihao','徐一豪'),('zhangxiang','张翔'),('songsang','宋桑'),('mengfei','孟飞')]:
+                if not db.get(User,username):
+                    db.add(User(username=username,name=name,password=password_hash(student_password)))
         administrator=db.get(User,'user1')
         if not administrator:
-            db.add(User(username='user1',name='系统管理员',password=password_hash('123456'),role='admin',onboarding=True))
+            db.add(User(username='user1',name='系统管理员',password=password_hash(admin_password),role='admin',onboarding=True))
         else:
             administrator.role='admin'
         db.commit()

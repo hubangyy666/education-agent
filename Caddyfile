@@ -1,0 +1,11 @@
+{$SITE_ADDRESS} {
+    encode zstd gzip
+
+    header {
+        X-Frame-Options "SAMEORIGIN"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        -Server
+    }
+
+    reverse_proxy app:8000
+}

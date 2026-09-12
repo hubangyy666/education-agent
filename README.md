@@ -70,6 +70,8 @@
 
 学习者首次登录后进入新手教学，各账号的训练和进度相互隔离；管理者登录后直接进入 `/admin`。这些是本地演示凭据，不应直接用于公网部署。
 
+Linux ECS 公网部署请参阅 [`docs/production-deployment.md`](docs/production-deployment.md)。生产配置会通过服务器本地的 `.env.production` 为体验账号和管理员设置不同的初始密码，该文件不会提交到 Git。
+
 ### 启动状态与日志
 
 ```powershell
