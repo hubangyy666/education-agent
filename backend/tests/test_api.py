@@ -117,11 +117,13 @@ def test_package_answers_hidden_until_finished(account, seeded_run, level, mode)
 
 def test_skill_score_updates_after_each_saved_answer_without_finishing(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account)
-    for q,value in zip(qs[:3],[correct_answer(qs[0]),{'value':'错误'},{'value':'错误'}]):
-        assert post_answer(c,rid,q,value).status_code==200
+    assert post_answer(c,rid,qs[0],correct_answer(qs[0])).status_code==200
+    assert post_answer(c,rid,qs[1],{'value':'错误'}).status_code==200
     state=c.get('/api/abilities/A1').json()
-    assert (state['answer_count'],state['correct_count'],state['skill_score'])==(3,1,3.33)
+    assert (state['answer_count'],state['correct_count'],state['skill_score'])==(2,1,5)
+    assert post_answer(c,rid,qs[2],{'value':'错误'}).status_code==409
     assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
+    assert post_answer(c,rid,qs[2],{'value':'错误'}).status_code==200
     refreshed=c.get('/api/abilities').json()[0]
     assert (refreshed['answer_count'],refreshed['correct_count'],refreshed['skill_score'])==(3,2,6.67)
     with Session(engine) as db:
@@ -129,6 +131,27 @@ def test_skill_score_updates_after_each_saved_answer_without_finishing(account, 
         assert stored.answers[qs[1]['id']]==correct_answer(qs[1])
         assert stored.status=='active'
     assert c.get('/api/dashboard').json()['abilities'][0]['skill_score']==6.67
+
+def test_course_requires_correct_answers_and_persists_two_wrong_attempt_coaching(account, seeded_run):
+    c=account['client'];rid,qs=seeded_run(account);wrong={'value':'错误'}
+    first=post_answer(c,rid,qs[0],wrong).json()
+    assert first['wrong_attempts']==1 and first['coach_encouragement']==''
+    second=post_answer(c,rid,qs[0],wrong).json()
+    assert second['wrong_attempts']==2 and '再试一次' in second['coach_encouragement']
+    third=post_answer(c,rid,qs[0],wrong).json()
+    assert third['wrong_attempts']==3 and third['coach_encouragement']==''
+    fourth=post_answer(c,rid,qs[0],wrong).json()
+    assert fourth['wrong_attempts']==4 and fourth['coach_encouragement']
+    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==409
+    resumed=c.get(f'/api/runs/{rid}').json()
+    assert resumed['question_status'][qs[0]['id']]=='incorrect'
+    assert resumed['hints'][f'course-wrong-attempts:{qs[0]["id"]}']==4
+    assert c.post(f'/api/runs/{rid}/finish').status_code==400
+    corrected=post_answer(c,rid,qs[0],correct_answer(qs[0])).json()
+    assert corrected['result']['correct'] and corrected['wrong_attempts']==0
+    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
+    for q in qs[2:]: assert post_answer(c,rid,q,correct_answer(q)).status_code==200
+    assert c.post(f'/api/runs/{rid}/finish').json()['report']['score']==100
 
 def test_deadline_server_enforced_and_report_persisted(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account,'A1-RACE','competition',deadline=now()-timedelta(seconds=2))

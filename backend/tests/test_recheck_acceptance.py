@@ -65,18 +65,24 @@ def test_knowledge_matches_reviewed_records(account):
     with Session(engine) as db:
         rows = list(db.scalars(select(Knowledge)))
         reviewed = json.loads((ROOT / 'data/knowledge/knowledge.reviewed.json').read_text(encoding='utf-8'))
-        assert len(rows) == len(reviewed) >= 50
-        assert len({row.id for row in rows}) == len(reviewed)
+        reviewed_ids = {row['id'] for row in reviewed}
+        reviewed_rows = [row for row in rows if row.id in reviewed_ids]
+        custom_rows = [row for row in rows if row.id not in reviewed_ids]
+        assert len(reviewed_rows) == len(reviewed) >= 50
+        assert len({row.id for row in rows}) == len(rows)
+        assert all(row.meta.get('source_type') == '管理者维护知识库' for row in custom_rows)
         scopes = Counter('GENERAL' if row.scope == 'GENERAL' else row.ability_id for row in rows)
         # Independent review deliberately moved the SQuAD item from GENERAL to A8.
         # Validate against that reviewed source instead of the draft 5-per-scope plan.
         reviewed = json.loads((ROOT / 'data/knowledge/knowledge.reviewed.json').read_text(encoding='utf-8'))
         reviewed_scopes = Counter('GENERAL' if row['scope']=='GENERAL' else row.get('ability_id') for row in reviewed)
-        assert scopes == reviewed_scopes
+        reviewed_actual_scopes = Counter('GENERAL' if row.scope == 'GENERAL' else row.ability_id for row in reviewed_rows)
+        assert reviewed_actual_scopes == reviewed_scopes
         assert scopes['GENERAL'] >= 1 and all(scopes[f'A{i}'] >= 5 for i in range(1,11))
         assert all(row.title.strip() and row.content.strip() for row in rows)
         assert all(len(row.embedding) == 1024 for row in rows)
-        assert all(row.meta.get('ai_review',{}).get('decision')=='approved' for row in rows)
+        assert all(row.meta.get('ai_review',{}).get('decision')=='approved' for row in reviewed_rows)
+        assert all(row.meta.get('managed_by_admin') is True for row in custom_rows)
         evidence = {
             'knowledge_count':len(rows),
             'scope_counts':dict(scopes),
@@ -84,8 +90,8 @@ def test_knowledge_matches_reviewed_records(account):
             'review_metadata_count':sum(bool(row.meta.get('ai_review')) for row in rows),
         }
     response = account['client'].get('/api/knowledge')
-    assert response.status_code == 200 and len(response.json()) == len(reviewed)
-    assert all(row['source_url'].startswith('https://') for row in response.json())
+    assert response.status_code == 200 and len(response.json()) == len(rows)
+    assert all(row['source_url'].startswith('https://') for row in response.json() if row['id'] in reviewed_ids)
     Path(__file__).with_name('knowledge-acceptance-evidence.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
 
 

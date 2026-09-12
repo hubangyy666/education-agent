@@ -2,6 +2,7 @@
 from copy import deepcopy
 
 import pytest
+from fastapi import HTTPException
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
@@ -63,16 +64,20 @@ def test_course_submissions_update_immediately_and_retry_uses_latest_saved_answe
     db, user = score_db
     qs = [question(str(i)) for i in range(4)]
     run = save_run(db, user, 'active-course', qs, {})
-    for q, value in zip(qs[:3], ['正确', '错误', '错误']):
-        main.submit_answer(run.id, main.AnswerBody(question_id=q['id'], answer={'value': value}), user, db)
+    main.submit_answer(run.id, main.AnswerBody(question_id=qs[0]['id'], answer={'value': '正确'}), user, db)
+    main.submit_answer(run.id, main.AnswerBody(question_id=qs[1]['id'], answer={'value': '错误'}), user, db)
+    with pytest.raises(HTTPException) as blocked:
+        main.submit_answer(run.id, main.AnswerBody(question_id=qs[2]['id'], answer={'value': '错误'}), user, db)
+    assert blocked.value.status_code == 409
     db.expire_all()
     state = a1(db, user)
-    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (1, 3, 3.33)
-    assert state['mastery'] == 33.33 and state['completed'] == 0
-    assert state['skill_mastery'][0]['skill_score'] == 3.33
-    assert state['levels'][0]['skill_score'] == 3.33
-    assert state['levels'][0]['answer_count'] == 3
+    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (1, 2, 5)
+    assert state['mastery'] == 50 and state['completed'] == 0
+    assert state['skill_mastery'][0]['skill_score'] == 5
+    assert state['levels'][0]['skill_score'] == 5
+    assert state['levels'][0]['answer_count'] == 2
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[1]['id'], answer={'value': '正确'}), user, db)
+    main.submit_answer(run.id, main.AnswerBody(question_id=qs[2]['id'], answer={'value': '错误'}), user, db)
     db.expire_all()
     state = a1(db, user)
     assert (state['correct_count'], state['answer_count'], state['skill_score']) == (2, 3, 6.67)

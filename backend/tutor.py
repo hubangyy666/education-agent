@@ -125,7 +125,7 @@ def retrieve(db, query, aid=None, skill=None, *, project_id=None, context=None, 
     def eligible(r):
         meta = r.meta or {}
         review = meta.get('ai_review') or {}
-        if review.get('decision') != 'approved':
+        if review.get('decision') != 'approved' and meta.get('managed_by_admin') is not True:
             return False
         bound_project = meta.get('project_id')
         if r.scope == 'PROJECT' and (not bound_project or bound_project != project_id):

@@ -17,6 +17,12 @@ from .grading import grade, report
 from . import tutor
 from .factory_workflow import refresh_questions,refresh_status as factory_refresh_status,monitor_pending
 
+COURSE_COACH_ENCOURAGEMENTS = (
+    '不是很对，先别急。换一个观察角度，再试一次。',
+    '已经很接近了。回到题目要求，看看有没有更合适的答案。',
+    '这一步值得再检查一下。抓住最关键的特征，再试一次。',
+)
+
 @asynccontextmanager
 async def lifespan(app):
     init_db();initialize_sets()
@@ -46,7 +52,7 @@ def current_user(request:Request,db:Session=Depends(get_db)):
     user=db.get(User,username) if username else None
     if not user: raise HTTPException(401,'请先登录你的学习账号。')
     return user
-def user_dict(user): return {k:getattr(user,k) for k in ('username','name','onboarding','goal','daily_goal','voice')}
+def user_dict(user): return {k:getattr(user,k) for k in ('username','name','role','onboarding','goal','daily_goal','voice')}
 def user_progress(db,username): return list(db.scalars(select(Progress).where(Progress.username==username)))
 from .adaptive import ability_state, recommendation, learner_context
 
@@ -89,7 +95,12 @@ async def expiration_loop():
         await asyncio.sleep(1)
 def run_dict(run):
     from .jobs import training_context
-    return {'job_learning':training_context(run),'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
+    may_show_status=run.mode in ('course','onboarding') or run.status=='completed'
+    question_status={
+        q['id']:('correct' if grade(q,run.answers[q['id']])['correct'] else 'incorrect')
+        for q in run.questions if may_show_status and q['id'] in run.answers
+    }
+    return {'job_learning':training_context(run),'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'question_status':question_status,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
 
 class LoginBody(BaseModel):
     username:str=Field(min_length=1,max_length=40)
@@ -144,13 +155,14 @@ def dashboard(user:User=Depends(current_user),db:Session=Depends(get_db)):
     return {'user':user_dict(user),'abilities':states,'recommendation':recommendation(states,user.goal),'today_count':today_count,'today_rate':round(sum(r.report['score']*r.report['count'] for r in today_runs)/today_count,1) if today_count else 0,'total_count':count,'completed_levels':completed,'streak':streak,'activities':activities,'badges':badges,'diagnostic':user.diagnostic,'active_run':{'id':active.id,'ability_id':active.ability_id,'answered':len(active.answers),'count':len(active.questions)} if active else None,'recent_runs':[{'id':r.id,'ability_id':r.ability_id,'level_id':r.level_id,'mode':r.mode,'score':r.report['score'],'date':r.finished_at,'passed':r.report['passed']} for r in runs[:8]]}
 class SettingsBody(BaseModel):
     name:str=Field(min_length=1,max_length=20)
-    goal:str
-    daily_goal:int=Field(ge=5,le=60)
+    goal:str|None=None
+    daily_goal:int|None=Field(default=None,ge=5,le=60)
     voice:bool
 @app.post('/api/profile')
 def profile(body:SettingsBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    if body.goal not in ('岗位入门','课程补强','竞赛备战'): raise HTTPException(422,'请选择有效的学习目标。')
-    for k,v in body.model_dump().items(): setattr(user,k,v)
+    if body.goal is not None and body.goal not in ('岗位入门','课程补强','竞赛备战'): raise HTTPException(422,'请选择有效的学习目标。')
+    for k,v in body.model_dump().items():
+        if v is not None: setattr(user,k,v)
     db.commit();return user_dict(user)
 
 class VoiceBody(BaseModel): voice:bool
@@ -206,18 +218,36 @@ class AnswerBody(BaseModel): question_id:str;answer:dict
 def submit_answer(run_id:str,body:AnswerBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
     run=get_run(run_id,user,db,True)
     if run.status!='active': raise HTTPException(409,'本次训练已结束，请查看结果。')
-    q=next((q for q in run.questions if q['id']==body.question_id),None)
+    question_index=next((i for i,q in enumerate(run.questions) if q['id']==body.question_id),None)
+    q=run.questions[question_index] if question_index is not None else None
     if not q: raise HTTPException(404,'题目不属于本次训练。')
     if len(json.dumps(body.answer))>50000: raise HTTPException(422,'标注数据过大。')
+    guided_course=run.mode=='course' and not run.level_id.startswith('JT-')
+    if guided_course:
+        blocked=next((prior for prior in run.questions[:question_index]
+                      if prior['id'] not in run.answers or not grade(prior,run.answers[prior['id']])['correct']),None)
+        if blocked: raise HTTPException(409,'请先答对当前题目，再进入下一题。')
     result=grade(q,body.answer);run.answers={**run.answers,body.question_id:body.answer}
+    wrong_attempts=0;coach_encouragement=''
+    if guided_course:
+        attempt_key=f'course-wrong-attempts:{body.question_id}'
+        wrong_attempts=0 if result['correct'] else int((run.hints or {}).get(attempt_key,0))+1
+        run.hints={**(run.hints or {}),attempt_key:wrong_attempts}
+        if wrong_attempts and wrong_attempts%2==0:
+            coach_index=(wrong_attempts//2-1)%len(COURSE_COACH_ENCOURAGEMENTS)
+            coach_encouragement=COURSE_COACH_ENCOURAGEMENTS[coach_index]
     # Retrying is allowed; only the latest committed answer is scored.
     db.commit()
-    if run.mode in ('course','onboarding'): return {'saved':True,'result':result}
+    if run.mode in ('course','onboarding'):
+        return {'saved':True,'result':result,'wrong_attempts':wrong_attempts,
+                'coach_encouragement':coach_encouragement}
     return {'saved':True,'answered':len(run.answers),'count':len(run.questions)}
 @app.post('/api/runs/{run_id}/finish')
 def finish_run(run_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
     run=get_run(run_id,user,db,True)
     if run.mode=='course' and len(run.answers)<len(run.questions): raise HTTPException(400,'请先完成本关的全部题目。')
+    if run.mode=='course' and not run.level_id.startswith('JT-') and any(not grade(q,run.answers.get(q['id'],{}))['correct'] for q in run.questions):
+        raise HTTPException(400,'请先答对本关的全部题目。')
     if run.mode=='job' and len(run.answers)<len(run.questions): raise HTTPException(400,'任务包还有未处理的样本，请全部处理后提交。')
     finish(run,db);return run_dict(run)
 @app.post('/api/runs/{run_id}/repair')
@@ -368,6 +398,8 @@ def media(filename:str):
 
 from .jobs import register_jobs
 register_jobs(app, current_user)
+from .admin import register_admin
+register_admin(app, current_user)
 
 # Built production frontend can be served by the same FastAPI origin.
 if (ROOT/'dist').exists():

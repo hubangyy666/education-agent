@@ -1,0 +1,205 @@
+/* Brilliant-inspired interaction structure with an original Zhiji visual system. */
+.tutor-floating {
+  right: auto;
+  left: 20px;
+  bottom: 96px;
+  width: 92px;
+}
+
+.tutor-floating .mentor-launch {
+  width: 92px;
+  height: 92px;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+  overflow: visible;
+  border-radius: 28px;
+  filter: drop-shadow(0 10px 18px rgb(33 70 145 / 14%));
+}
+
+.tutor-floating .mentor-launch:focus-visible {
+  outline: 3px solid #6b8cff;
+  outline-offset: 3px;
+}
+
+.tutor-floating .mentor-launch > img,
+.tutor-floating.is-open .mentor-launch > img {
+  width: 88px;
+  height: 88px;
+  animation: mentor-greet 5.4s ease-in-out infinite;
+}
+
+.mentor-nudge {
+  position: absolute;
+  left: 80px;
+  bottom: 28px;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 132px));
+  margin: 0 !important;
+  padding: 11px 14px !important;
+  border: 1px solid #dce4f6 !important;
+  border-radius: 15px 15px 15px 4px !important;
+  background: #fff !important;
+  color: #34415f;
+  box-shadow: 0 9px 28px rgb(31 55 107 / 12%) !important;
+  font-size: 14px !important;
+  line-height: 1.65;
+  text-align: left;
+  pointer-events: none;
+  animation: mentor-nudge-in 0.24s ease-out both;
+}
+
+.mentor-nudge.periodic {
+  opacity: 0;
+  animation: mentor-invite-cycle 32s 10s infinite both;
+}
+
+.tutor-floating.is-open {
+  top: 81px;
+  bottom: 0;
+  left: 0;
+  z-index: 80;
+  display: flex;
+  width: clamp(340px, 30vw, 430px);
+  padding: 18px 18px 15px;
+  flex-direction: column;
+  background: #fbfcff;
+  border-right: 1px solid #e3e8f1;
+  box-shadow: 14px 0 36px rgb(28 44 80 / 7%);
+  pointer-events: auto;
+}
+
+.tutor-floating.is-open .mentor-launch {
+  display: none;
+}
+
+.tutor-floating.is-open .tutor-chat {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  border-color: #e1e7f2;
+  border-radius: 20px 20px 0 0;
+  box-shadow: none;
+}
+
+.tutor-floating.is-open .tutor-chat > header {
+  padding: 17px 18px;
+  background: #fff;
+}
+
+.tutor-floating.is-open .tutor-avatar {
+  width: 46px;
+  height: 46px;
+}
+
+.tutor-floating.is-open .chat-messages {
+  min-height: 0;
+  max-height: none;
+  flex: 1;
+  background: #fbfcff;
+}
+
+.tutor-floating.is-open .tutor-composer {
+  padding: 13px;
+  flex: none;
+  border-color: #e1e7f2;
+  background: #fff;
+}
+
+.tutor-floating.is-open .tutor-input-row > button {
+  background: #315fe9;
+  color: #fff;
+}
+
+.tutor-panel-open .exercise-layout {
+  max-width: none;
+  margin-left: clamp(340px, 30vw, 430px);
+  transition: margin-left 0.24s ease;
+}
+
+.tutor-panel-open .learning-footer > div {
+  max-width: none;
+  margin-left: clamp(340px, 30vw, 430px);
+  padding-right: max(32px, calc((100vw - clamp(340px, 30vw, 430px) - 1010px) / 2 + 32px));
+  padding-left: max(32px, calc((100vw - clamp(340px, 30vw, 430px) - 1010px) / 2 + 32px));
+}
+
+.retry-note {
+  display: block;
+  margin: 4px 0 8px;
+  color: #826b49;
+  font-size: 13px;
+}
+
+.retry-action {
+  min-width: 155px;
+}
+
+@keyframes mentor-greet {
+  0%, 72%, 100% { transform: translateY(0) rotate(0); }
+  78% { transform: translateY(-3px) rotate(-3deg); }
+  84% { transform: translateY(0) rotate(3deg); }
+  90% { transform: translateY(-2px) rotate(-2deg); }
+}
+
+@keyframes mentor-nudge-in {
+  from { opacity: 0; transform: translateX(-6px) translateY(4px); }
+  to { opacity: 1; transform: translateX(0) translateY(0); }
+}
+
+@keyframes mentor-invite-cycle {
+  0% { opacity: 0; transform: translateX(-6px) translateY(4px); }
+  4%, 21% { opacity: 1; transform: translateX(0) translateY(0); }
+  25%, 100% { opacity: 0; transform: translateX(-4px) translateY(2px); }
+}
+
+@media (max-width: 900px) {
+  .tutor-panel-open .exercise-layout,
+  .tutor-panel-open .learning-footer > div {
+    margin-left: auto;
+  }
+
+  .tutor-floating.is-open {
+    top: 75px;
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: auto;
+    max-width: 430px;
+    padding: 10px;
+    border: 1px solid #e1e7f2;
+    border-radius: 22px;
+    box-shadow: 0 18px 56px rgb(20 38 79 / 18%);
+  }
+}
+
+@media (max-width: 760px) {
+  .tutor-floating {
+    right: auto;
+    left: 10px;
+    bottom: 86px;
+    width: 76px;
+  }
+
+  .tutor-floating .mentor-launch,
+  .tutor-floating .mentor-launch > img {
+    width: 74px;
+    height: 74px;
+  }
+
+  .mentor-nudge {
+    left: 69px;
+    bottom: 23px;
+    max-width: calc(100vw - 100px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tutor-floating .mentor-launch > img,
+  .mentor-nudge {
+    animation: none;
+  }
+
+  .mentor-nudge.periodic { opacity: 1; }
+}

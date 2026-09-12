@@ -1,19 +1,24 @@
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import Icon from './Icon.vue'
-const props=withDefaults(defineProps<{floating?:boolean;runId?:string;questionId?:string;disabled?:boolean}>(),{floating:false,disabled:false})
+const props=withDefaults(defineProps<{floating?:boolean;stage?:boolean;runId?:string;questionId?:string;disabled?:boolean;nudge?:string}>(),{floating:false,stage:false,disabled:false,nudge:''})
+const emit=defineEmits<{openChange:[value:boolean]}>()
 const open=ref(false),input=ref(''),busy=ref(false),error=ref('');const messages=ref<any[]>([]);const list=ref<HTMLElement>();let controller:AbortController|undefined
+const launchNudge=computed(()=>props.nudge||'需要一点提示吗？')
+function setOpen(value:boolean){open.value=value;emit('openChange',value)}
+function handleEscape(event:KeyboardEvent){if(event.key==='Escape'&&props.stage&&open.value)setOpen(false)}
 function cleanText(text:string){return (text||'').replaceAll('**','').replaceAll('`','').replace(/\n{3,}/g,'\n\n')}
 const announcement=computed(()=>busy.value?'小基正在整理回答':cleanText([...messages.value].reverse().find(m=>m.role==='assistant')?.text||''))
 function uniqueSources(sources:any[]=[]){const seen=new Set<string>();return sources.filter(s=>{const key=`${s.id||''}|${s.source_url||''}`;if(!s.source_url||seen.has(key))return false;seen.add(key);return true})}
 function uniqueResources(resources:any[]=[]){const seen=new Set<string>();return resources.filter(r=>{if(!r.url||seen.has(r.id))return false;seen.add(r.id);return true})}
 function providerLabel(provider:string){return provider==='deepseek'?'AI 生成说明':props.runId?'课程与题目事实提示':'平台提示'}
 watch(()=>props.questionId,()=>{controller?.abort();busy.value=false;messages.value=[];error.value=''})
-onBeforeUnmount(()=>controller?.abort())
+onMounted(()=>window.addEventListener('keydown',handleEscape))
+onBeforeUnmount(()=>{controller?.abort();window.removeEventListener('keydown',handleEscape)})
 async function scroll(){await nextTick();list.value?.scrollTo({top:list.value.scrollHeight,behavior:'smooth'})}
 async function send(text?:string,hintRequest=false){
   const message=(text||input.value).trim();if(!message||busy.value||props.disabled)return
-  open.value=true;input.value='';error.value='';messages.value.push({role:'user',text:message});busy.value=true
+  setOpen(true);input.value='';error.value='';messages.value.push({role:'user',text:message});busy.value=true
   const reply:any={role:'assistant',text:'',sources:[],resources:[],provider:''};messages.value.push(reply);controller=new AbortController();const activeController=controller;await scroll()
   try{
     const response=await fetch('/api/ai/chat',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify({message,mode:props.runId?'QUESTION_TUTOR':'GENERAL_TUTOR',run_id:props.runId,question_id:props.questionId,hint_request:hintRequest,history:messages.value.slice(0,-2).map(m=>({role:m.role,text:m.text}))})})
@@ -25,10 +30,21 @@ async function send(text?:string,hintRequest=false){
 defineExpose({send})
 </script>
 <template>
-<div :class="['tutor',{'tutor-floating':floating,'is-open':open}]">
-  <button v-if="floating" class="mentor-launch" :disabled="disabled" @click="open=!open" aria-label="向小基提问"><span v-if="!open">需要一点提示？</span><img src="/mentor.png" alt="小基，AI 学习导师"/><span class="mentor-launch-close" v-if="open"><Icon name="X" :size="16"/></span></button>
-  <section v-if="open" class="tutor-chat" aria-label="AI 学习导师">
-    <header><div class="tutor-avatar"><img src="/mentor.png" alt=""/></div><div><b>小基 · 你的学习导师</b><small>{{runId?'一起观察，自己找到答案':'数据标注岗位知识答疑'}}</small></div><button class="icon-button" aria-label="收起对话" @click="open=false"><Icon name="X" :size="18"/></button></header>
+<div :class="['tutor',{'tutor-floating':floating,'tutor-stage':stage,'is-open':open,'has-messages':messages.length}]">
+  <button v-if="floating" class="mentor-launch" :class="{'has-nudge':launchNudge&&!open}" :disabled="disabled" @click="setOpen(!open)" aria-label="向小基提问" :aria-expanded="open"><span v-if="!open" class="mentor-nudge" :class="{periodic:!nudge}" :role="nudge?'status':undefined" :aria-live="nudge?'polite':undefined" :aria-hidden="!nudge">{{launchNudge}}</span><img src="/mentor-v2.png" alt="小基，AI 学习导师"/></button>
+  <button v-if="stage&&open" class="tutor-stage-close" type="button" aria-label="关闭 AI 学习导师" @click="setOpen(false)"><Icon name="X" :size="20"/></button>
+  <section v-if="stage&&open&&!messages.length" class="tutor-stage-intro" aria-labelledby="tutor-stage-title">
+    <h2 id="tutor-stage-title">今天想一起解决什么？</h2>
+    <div class="tutor-stage-orbit">
+      <img src="/mentor-v2.png" alt="小基，AI 学习导师"/>
+      <button type="button" @click="send('什么是 IoU？')"><Icon name="ScanLine" :size="17"/>理解 IoU</button>
+      <button type="button" @click="send('工业缺陷标注需要注意什么？')"><Icon name="SearchCheck" :size="17"/>工业缺陷标注</button>
+      <button type="button" @click="send('我下一步应该学什么？')"><Icon name="Waypoints" :size="17"/>规划下一步</button>
+      <button type="button" @click="send('怎样检查标注是否符合规范？')"><Icon name="ClipboardCheck" :size="17"/>检查标注规范</button>
+    </div>
+  </section>
+  <section v-if="open&&(!stage||messages.length)" class="tutor-chat" aria-label="AI 学习导师">
+    <header><div class="tutor-avatar"><img src="/mentor-v2.png" alt=""/></div><div><b>小基 · 你的学习导师</b><small>{{runId?'一起观察，自己找到答案':'数据标注岗位知识答疑'}}</small></div><button v-if="!stage" class="icon-button" aria-label="收起对话" @click="setOpen(false)"><Icon name="X" :size="18"/></button></header>
     <span class="sr-only" role="status" aria-live="polite">{{announcement}}</span>
     <div class="chat-messages" ref="list">
       <div v-if="!messages.length" class="chat-welcome"><p>你好！我会陪你一起学会数据标注。</p><p>{{runId?'告诉我你卡在哪里，我们一步一步来看。':'可以问我标注规范，也可以一起规划接下来的学习。'}}</p></div>
@@ -44,7 +60,7 @@ defineExpose({send})
     </div>
     <div class="chat-disclaimer">AI 负责讲解，题目事实与判定以系统记录为准。</div>
   </section>
-  <form v-if="!floating||open" class="tutor-composer" @submit.prevent="send()"><div class="tutor-input-row"><input v-model="input" :disabled="disabled" aria-label="向小基提问" :placeholder="runId?'这道题，有哪里不明白？':'想学点什么，或者哪里需要帮助？'" maxlength="1500" @focus="open=true"><button :disabled="busy||disabled||!input.trim()" aria-label="发送问题"><Icon :name="busy?'LoaderCircle':'ArrowRight'" :class="{spin:busy}"/></button></div><div v-if="!messages.length" class="question-chips"><button type="button" @click="send(runId?'给我一点提示':'什么是 IoU？',!!runId)">{{runId?'给我一点提示':'什么是 IoU？'}}</button><button type="button" @click="send(runId?'这道题应该注意哪里？':'我下一步应该学什么？')">{{runId?'应该注意哪里？':'下一步学什么？'}}</button><button v-if="!floating" type="button" @click="send('工业缺陷标注需要注意什么？')">工业缺陷标注</button></div></form>
+  <form v-if="!floating||open" class="tutor-composer" @submit.prevent="send()"><div class="tutor-input-row"><input v-model="input" :disabled="disabled" aria-label="向小基提问" :placeholder="runId?'这道题，有哪里不明白？':stage&&open?'输入其他问题…':'有什么需要帮助的？'" maxlength="1500" @focus="setOpen(true)"><button :disabled="busy||disabled||!input.trim()" aria-label="发送问题"><Icon :name="busy?'LoaderCircle':'ArrowRight'" :class="{spin:busy}"/></button></div><div v-if="!messages.length&&(!stage||!open)" class="question-chips"><button type="button" @click="send(runId?'给我一点提示':'什么是 IoU？',!!runId)">{{runId?'给我一点提示':'什么是 IoU？'}}</button><button type="button" @click="send(runId?'这道题应该注意哪里？':'我下一步应该学什么？')">{{runId?'应该注意哪里？':'下一步学什么？'}}</button><button v-if="!floating" type="button" @click="send('工业缺陷标注需要注意什么？')">工业缺陷标注</button></div></form>
 </div>
 </template>
 

@@ -1,7 +1,7 @@
 import { reactive, watch } from 'vue'
 import { api, post } from './api'
 import { setEncouragementEnabled, unlockEncouragementAudio, playEncouragement, stopEncouragementAudio } from './audio'
-export interface User { username: string; name: string; onboarding: boolean; goal: string; daily_goal: number; voice: boolean }
+export interface User { username: string; name: string; role: 'student' | 'admin'; onboarding: boolean; goal: string; daily_goal: number; voice: boolean }
 export const state = reactive({ user: null as User | null, ready: false, dashboard: null as any, toast: '', toastKind: 'success', voiceSaving: false })
 watch(() => state.user?.voice, enabled => setEncouragementEnabled(Boolean(enabled)), { immediate: true, flush: 'sync' })
 let toastTimer: ReturnType<typeof setTimeout>

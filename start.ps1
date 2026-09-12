@@ -37,4 +37,5 @@ if (-not $taskHealth) {
 if (-not $taskHealth -or $taskHealth.database -ne 'PostgreSQL + pgvector') { throw '智基服务尚未就绪。请查看 .runtime/server-error.log，并检查 8000 端口。' }
 Write-Host '智基已启动：http://127.0.0.1:8000'
 Write-Host '账号：xuyihao / zhangxiang / songsang / mengfei；初始密码：123456'
+Write-Host '后台管理：user1；初始密码：123456'
 

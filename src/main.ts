@@ -5,6 +5,9 @@ import './styles.css'
 import './product.css'
 import './learning.css'
 import './jobs.css'
+import './training-tutor.css'
+import './home-tutor-stage.css'
+import './admin.css'
 import { registerLearningTools } from './webmcp'
 createApp(App).use(router).mount('#app')
 registerLearningTools()

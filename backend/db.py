@@ -23,6 +23,7 @@ class User(Base):
     username = mapped_column(String(40), primary_key=True)
     password = mapped_column(Text)
     name = mapped_column(String(40))
+    role = mapped_column(String(20), default='student')
     onboarding = mapped_column(Boolean, default=False)
     goal = mapped_column(String(30), default='岗位入门')
     daily_goal = mapped_column(Integer, default=10)
@@ -72,6 +73,17 @@ class Knowledge(Base):
     skill_id = mapped_column(String(30), nullable=True)
     meta = mapped_column(JSON)
     embedding = mapped_column(Vector(1024))
+class KnowledgeBase(Base):
+    __tablename__ = 'knowledge_bases'
+    id = mapped_column(String(40), primary_key=True)
+    name = mapped_column(String(80))
+    purpose = mapped_column(Text)
+    scope = mapped_column(String(30), default='GENERAL')
+    ability_id = mapped_column(String(10), nullable=True)
+    content = mapped_column(Text)
+    knowledge_ids = mapped_column(JSON, default=list)
+    created_by = mapped_column(String(40))
+    created_at = mapped_column(DateTime(timezone=True), default=now)
 class TaskCard(Base):
     __tablename__ = 'task_cards'
     id = mapped_column(String(40), primary_key=True)
@@ -106,9 +118,17 @@ def password_valid(password, encoded):
 def init_db():
     with engine.begin() as conn: conn.execute(text('CREATE EXTENSION IF NOT EXISTS vector'))
     Base.metadata.create_all(engine)
+    # create_all does not add columns to an existing installation.
+    with engine.begin() as conn:
+        conn.execute(text("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) NOT NULL DEFAULT 'student'"))
     with Session(engine) as db:
         for username,name in [('xuyihao','徐一豪'),('zhangxiang','张翔'),('songsang','宋桑'),('mengfei','孟飞')]:
             if not db.get(User,username): db.add(User(username=username,name=name,password=password_hash('123456')))
+        administrator=db.get(User,'user1')
+        if not administrator:
+            db.add(User(username='user1',name='系统管理员',password=password_hash('123456'),role='admin',onboarding=True))
+        else:
+            administrator.role='admin'
         db.commit()
     cache.ping()
     if not storage.bucket_exists('zhiji-training'): storage.make_bucket('zhiji-training')
