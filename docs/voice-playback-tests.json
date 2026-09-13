@@ -1,9 +1,9 @@
 {
-  "checked_at": "2026-09-11T14:07:06.945Z",
-  "audio_module_sha256": "a74935cd891e46e4f5043dc4c0db99059183dd3297e6e9a22988a547daf0e5a8",
+  "checked_at": "2026-09-13T08:24:06.349Z",
+  "audio_module_sha256": "b5e0b8311edad95a4a6fee65b08280fd63b7970d362a1771c228a30c329557e3",
   "component_sha256": {
-    "Training": "af97ff630dd2d2c2d5d8e8eb78ae74afee5afd614ea7841ceeaa26390f2a0861",
-    "Onboarding": "35b5bac768c1448fb6940e19efe7217916d2856f2c5f418318ed488f3091fbdf"
+    "Training": "76e1b37f09f6f320c391ee5addeccd8fd25b0632905bd1dcd294ecd664ab0184",
+    "Onboarding": "1575e8b8b30359d8f9802a4e7e5d59aafdb1978e31e25bd79a05c9e7726693ae"
   },
   "scope": "Node VM playback state machine with fake Web Audio/fetch and compiled real Vue component lifecycle with deferred API responses; real bundled WAV bytes/manifest. Actual decoding additionally verified by build script via soundfile. This is not browser or speaker acceptance.",
   "results": [
@@ -12,11 +12,23 @@
       "passed": true
     },
     {
+      "name": "precision reward is a downloaded CC0 human voice distinct from ordinary encouragement",
+      "passed": true
+    },
+    {
+      "name": "precision animation is valid local Lottie JSON with source license",
+      "passed": true
+    },
+    {
       "name": "no playback before user unlock; unlock does not speak",
       "passed": true
     },
     {
       "name": "six phrases rotate and wrap; only one sound is active; clips are cached",
+      "passed": true
+    },
+    {
+      "name": "precision reward uses its dedicated clip without rotating ordinary phrases",
       "passed": true
     },
     {
@@ -61,6 +73,10 @@
     },
     {
       "name": "late playback status cannot be written onto the next question",
+      "passed": true
+    },
+    {
+      "name": "annotation reward threshold is strict: 90% is ordinary, above 90% is precision",
       "passed": true
     },
     {

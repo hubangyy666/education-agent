@@ -45,7 +45,7 @@ class Database:
     def commit(self):self.committed=True
 
 
-def reserve(tmp_path,per_skill=12):
+def reserve(tmp_path,per_skill=14):
     store=agent.Store(tmp_path);rows=[]
     for skill in range(1,6):
         for index in range(per_skill):
@@ -130,8 +130,8 @@ def test_real_pool_atomic_publication_reports_actual_new_count(tmp_path,monkeypa
     workflow.refresh_questions('A1','job',state_path=store.path)
     status=json.loads(cache.get('factory:A1'))
     assert status['status']=='completed' and status['version']==2
-    assert status['new_question_count']==5 and status['reused_question_count']==50
-    assert status['question_count']==55
+    assert status['new_question_count']==5 and status['reused_question_count']==60
+    assert status['question_count']==65
     assert db.committed and len(db.added)==1 and not db.current.active
     assert db.current.questions==old
     assert not cache.exists('factory-lock:A1') and not cache.exists('factory-worker:A1')
@@ -169,7 +169,7 @@ def test_old_worker_cannot_overwrite_a_new_job(tmp_path,monkeypatch):
 
 
 def test_published_questions_fill_shortages_without_fake_new_content(tmp_path,monkeypatch):
-    store=reserve(tmp_path,per_skill=12)
+    store=reserve(tmp_path,per_skill=14)
     old=visual_reserve.combined_pool('A1',1,store,visual=[])
     previous={agent.content_hash(q) for qs in old.values() for q in qs}
     candidates=[q for q in store.questions('A1') if agent.content_hash(q) not in previous]
@@ -179,7 +179,7 @@ def test_published_questions_fill_shortages_without_fake_new_content(tmp_path,mo
     new=workflow.prepare_pool('A1',2,store,lambda *a,**k:None,previous=previous,published=old)
     fresh=[q for qs in new.values() for q in qs if agent.content_hash(q) not in previous]
     retained=[q for qs in new.values() for q in qs if agent.content_hash(q) in previous]
-    assert len(fresh)==1 and len(retained)==54
+    assert len(fresh)==1 and len(retained)==64
     original={q['id']:q for qs in old.values() for q in qs}
     assert all(q==original[q['id']] for q in retained)
 

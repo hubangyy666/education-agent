@@ -2,19 +2,19 @@
 from copy import deepcopy
 
 import pytest
-from fastapi import HTTPException
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 
 from backend.adaptive import ability_state, learner_context, recommendation
-from backend.db import Progress, Run, User, now
+from backend.db import Mistake, Progress, Run, User, now
 from backend.grading import grade, report
+from backend.mistakes import backfill_mistakes
 
 
 @pytest.fixture
 def score_db(tmp_path):
     engine = create_engine(f'sqlite:///{tmp_path / "skill-scores.db"}')
-    for table in (User.__table__, Run.__table__, Progress.__table__):
+    for table in (User.__table__, Run.__table__, Progress.__table__, Mistake.__table__):
         table.create(engine)
     with Session(engine) as db:
         user = User(username='qa_skill_score', name='QA', password='unused', goal='课程补强')
@@ -59,32 +59,54 @@ def test_all_seventy_levels_open_without_progress_or_diagnostic_inflation(score_
     assert states[0]['skill_mastery'][0]['assessed'] is False
 
 
-def test_course_submissions_update_immediately_and_retry_uses_latest_saved_answer(score_db):
+def test_course_submissions_update_immediately_and_every_wrong_attempt_stays_scored(score_db):
     from backend import main
     db, user = score_db
     qs = [question(str(i)) for i in range(4)]
     run = save_run(db, user, 'active-course', qs, {})
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[0]['id'], answer={'value': '正确'}), user, db)
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[1]['id'], answer={'value': '错误'}), user, db)
-    with pytest.raises(HTTPException) as blocked:
-        main.submit_answer(run.id, main.AnswerBody(question_id=qs[2]['id'], answer={'value': '错误'}), user, db)
-    assert blocked.value.status_code == 409
+    main.submit_answer(run.id, main.AnswerBody(question_id=qs[2]['id'], answer={'value': '错误'}), user, db)
     db.expire_all()
     state = a1(db, user)
-    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (1, 2, 5)
-    assert state['mastery'] == 50 and state['completed'] == 0
-    assert state['skill_mastery'][0]['skill_score'] == 5
-    assert state['levels'][0]['skill_score'] == 5
-    assert state['levels'][0]['answer_count'] == 2
+    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (1, 3, 3.33)
+    assert state['mastery'] == 33.33 and state['completed'] == 0
+    assert state['skill_mastery'][0]['skill_score'] == 3.33
+    assert state['levels'][0]['skill_score'] == 3.33
+    assert state['levels'][0]['answer_count'] == 3
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[1]['id'], answer={'value': '正确'}), user, db)
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[2]['id'], answer={'value': '错误'}), user, db)
     db.expire_all()
     state = a1(db, user)
-    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (2, 3, 6.67)
+    assert (state['correct_count'], state['answer_count'], state['skill_score']) == (2, 3, 4)
+    assert (state['weighted_correct_count'], state['weighted_answer_count']) == (2, 5)
     assert db.get(Run, run.id).answers[qs[1]['id']] == {'value': '正确'}
-    # A later regression is visible; best Progress.score cannot override it.
+    # A later regression adds another scored attempt; best Progress cannot override it.
     main.submit_answer(run.id, main.AnswerBody(question_id=qs[0]['id'], answer={'value': '错误'}), user, db)
     assert a1(db, user)['skill_score'] == 3.33
+
+
+def test_job_and_competition_have_more_weight_than_course(score_db):
+    db, user = score_db
+    q = question('weighted-mode')
+    save_run(db, user, 'course-weight', [q], {q['id']: {'value': '错误'}}, completed=True)
+    save_run(db, user, 'job-weight', [q], {q['id']: {'value': '正确'}}, mode='job', completed=True)
+    save_run(db, user, 'race-weight', [q], {q['id']: {'value': '正确'}}, mode='competition', completed=True)
+    state = a1(db, user)
+    assert (state['answer_count'], state['correct_count']) == (3, 2)
+    assert (state['weighted_answer_count'], state['weighted_correct_count']) == (6, 5)
+    assert state['skill_score'] == 8.33
+
+
+def test_historical_wrong_answers_are_backfilled_only_once(score_db):
+    db, user = score_db
+    q = question('historical-mistake')
+    save_run(db, user, 'old-job', [q], {q['id']: {'value': '错误'}}, mode='job', completed=True)
+    assert backfill_mistakes(db) == 1
+    db.commit()
+    item = db.scalar(select(Mistake).where(Mistake.username == user.username))
+    assert item.question_id == q['id'] and item.wrong_count == 1
+    assert backfill_mistakes(db) == 0
 
 
 def test_ability_score_weights_real_answers_instead_of_unassessed_skills_or_runs(score_db):

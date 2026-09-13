@@ -50,7 +50,7 @@ def test_refresh_failed_generation_preserves_previous_release(monkeypatch):
 @pytest.mark.parametrize('aid', [f'A{i}' for i in range(1,11)])
 def test_generated_pool_shape_and_sanitization(aid):
     pool=generate_set(aid,41)
-    assert len(pool)==7 and sum(len(qs) for qs in pool.values())==55
+    assert len(pool)==7 and sum(len(qs) for qs in pool.values())==65
     for qs in pool.values():
         for q in qs:
             assert not {'answer','hint','explanation','threshold'}.intersection(public_question(q))

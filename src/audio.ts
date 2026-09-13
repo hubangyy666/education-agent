@@ -7,6 +7,7 @@ const clips = [
   '/audio/encouragement/correct-05.wav',
   '/audio/encouragement/correct-06.wav',
 ] as const
+const precisionClip = '/audio/precision/congratulations.wav'
 
 export type EncouragementPlayback = 'played' | 'muted' | 'unavailable' | 'cancelled'
 
@@ -61,6 +62,7 @@ export async function unlockEncouragementAudio(): Promise<boolean> {
     if (audio.state !== 'running') return false
     // Cache a real local clip without playing any greeting or instruction.
     void loadClip(audio, clips[nextClip % clips.length]).catch(() => undefined)
+    void loadClip(audio, precisionClip).catch(() => undefined)
     return true
   } catch { return false }
 }
@@ -77,12 +79,20 @@ export function stopEncouragementAudio(): void {
 
 /** Only call after the deterministic grader confirms a correct answer. */
 export async function playEncouragement(_kind: 'correct' = 'correct'): Promise<EncouragementPlayback> {
+  return playClip(clips[nextClip % clips.length], true)
+}
+
+/** A downloaded CC0 human voice recording, distinct from ordinary neural encouragement. */
+export async function playPrecisionReward(): Promise<EncouragementPlayback> {
+  return playClip(precisionClip, false)
+}
+
+async function playClip(path: string, rotate: boolean): Promise<EncouragementPlayback> {
   if (!enabled) return 'muted'
   stopEncouragementAudio()
   const currentRevision = revision
   const audio = audioContext()
   if (!audio || audio.state !== 'running') return 'unavailable'
-  const path = clips[nextClip % clips.length]
   try {
     const buffer = await loadClip(audio, path)
     if (!enabled) return 'muted'
@@ -97,7 +107,7 @@ export async function playEncouragement(_kind: 'correct' = 'correct'): Promise<E
     }
     source = nextSource
     nextSource.start()
-    nextClip = (nextClip + 1) % clips.length
+    if (rotate) nextClip = (nextClip + 1) % clips.length
     return 'played'
   } catch {
     // Existing result text remains visible. A missing asset never affects grading.

@@ -95,13 +95,13 @@ def test_knowledge_matches_reviewed_records(account):
     Path(__file__).with_name('knowledge-acceptance-evidence.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
 
 
-def test_active_question_sets_cover_550_unique_questions():
+def test_active_question_sets_cover_650_unique_questions():
     assert len(SNAPSHOTS) == 10
     assert {s['ability_id'] for s in SNAPSHOTS} == {f'A{i}' for i in range(1,11)}
-    assert len(QUESTIONS) == 550 and len({q['id'] for q in QUESTIONS}) == 550
+    assert len(QUESTIONS) == 650 and len({q['id'] for q in QUESTIONS}) == 650
     for snapshot in SNAPSHOTS:
         assert len(snapshot['questions']) == 7
-        assert sorted(len(questions) for questions in snapshot['questions'].values()) == [5,5,5,5,5,10,20]
+        assert sorted(len(questions) for questions in snapshot['questions'].values()) == [7,7,7,7,7,10,20]
     evidence = {
         'active_set_count':len(SNAPSHOTS),
         'question_count':len(QUESTIONS),

@@ -1,25 +1,25 @@
 {
   "active_set_count": 10,
-  "question_count": 550,
-  "unique_question_id_count": 550,
+  "question_count": 650,
+  "unique_question_id_count": 650,
   "versions": {
-    "A2": 1,
-    "A3": 1,
-    "A5": 1,
-    "A6": 1,
-    "A7": 1,
-    "A8": 1,
-    "A9": 1,
-    "A10": 1,
-    "A4": 3,
-    "A1": 2
+    "A10": 3,
+    "A2": 4,
+    "A1": 4,
+    "A3": 3,
+    "A4": 6,
+    "A5": 3,
+    "A6": 3,
+    "A7": 3,
+    "A8": 3,
+    "A9": 3
   },
   "question_type_counts": {
-    "choice": 325,
-    "box": 150,
-    "polygon": 45,
-    "entity": 30
+    "box": 330,
+    "choice": 249,
+    "polygon": 51,
+    "entity": 20
   },
-  "golden_correct_count": 550,
-  "golden_full_score_count": 550
+  "golden_correct_count": 650,
+  "golden_full_score_count": 650
 }

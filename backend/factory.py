@@ -2,6 +2,7 @@ import json
 import hashlib
 import random
 import uuid
+import copy
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from .catalog import ABILITIES, FACTS, ability, levels
@@ -26,6 +27,24 @@ def entity_question(aid,skill,i,version):
     cases=[('小王在北京工作。','北京','地点'),('张华加入了星河科技。','星河科技','机构'),('李明正在学习数据标注。','李明','人名'),('这家企业位于上海。','上海','地点'),('陈晨负责项目的质量审核。','陈晨','人名')]
     sentence,value,label=cases[i%len(cases)];start=sentence.index(value)
     return {'id':f'{aid}-{skill}-V{version}-E{i}','type':'entity','title':f'选中这句话中的{label}实体，并指定类型。','text':sentence,'labels':['人名','地点','机构'],'answer':{'start':start,'end':start+len(value),'label':label},'skill_id':f'{aid}-S{skill}','explanation':'实体范围应完整覆盖名称本身，不包含无关动词、助词或标点。','hint':['先找句子中有独立含义的专有名称。','实体可以是人物、地理位置或机构，请结合语境。','选择完整的名称，检查两端是否多选了助词或标点。'],'source':'智基原创脱敏教学文本','source_url':'https://spacy.io/usage/linguistic-features#named-entities'}
+
+def is_image_annotation(question):
+    return bool(question.get('image')) and question.get('type') in {'box','polygon'}
+
+def required_image_annotations(mode):
+    return 10 if mode in {'job','competition'} else 2
+
+def validate_visual_layout(pool,aid):
+    """Require source-grounded image annotation first in every level."""
+    for lv in levels(aid):
+        questions=pool.get(lv['id'],[])
+        required=required_image_annotations(lv['mode'])
+        flags=[is_image_annotation(question) for question in questions]
+        if sum(flags)<required:
+            raise ValueError(f'{lv["id"]} 图片标注题不足 {required} 道')
+        if flags!=sorted(flags,reverse=True):
+            raise ValueError(f'{lv["id"]} 图片标注题必须排在其他题型之前')
+
 def generate_initial_set(aid,version=1):
     """Build the authored V1 curriculum without network or model calls.
 
@@ -33,20 +52,68 @@ def generate_initial_set(aid,version=1):
     Runtime initialization loads the frozen artifact instead of regenerating it.
     """
     rng=random.Random(f'{aid}:{version}');reserve=samples();rng.shuffle(reserve);pool={}
+    # Start from the authored curriculum and replace only as many non-visual
+    # questions as the new coverage rule requires. Existing visual exercises
+    # are preserved, then moved ahead of choices/entities in the same level.
+    from .visual_reserve import visual_questions
+    visuals=visual_questions(aid)
+    authored_by_skill={f'{aid}-S{i}':[] for i in range(1,6)}
+    for visual in visuals:
+        if not visual.get('curriculum_fallback'):authored_by_skill[visual['skill_id']].append(visual)
+    authored_cursor={sid:0 for sid in authored_by_skill}
+    def take_authored(sid):
+        choices=authored_by_skill.get(sid,[])
+        if not choices:return None
+        index=authored_cursor[sid];authored_cursor[sid]+=1
+        return copy.deepcopy(choices[index%len(choices)])
     for lv in levels(aid):
         si=int(lv['skill_id'].split('S')[1]);questions=[]
         for i in range(lv['count']):
             question_skill=si if lv['mode']=='course' else i%5+1
-            # Course scaffolding introduces concepts then meaningful manipulation.
-            if reserve and aid in ('A4','A5','A7') and (lv['mode']!='course' or i>=2):
+            sid=f'{aid}-S{question_skill}'
+            visual=take_authored(sid) if authored_by_skill.get(sid) and (lv['mode']!='course' or i>=2) else None
+            if reserve and aid in ('A4','A5','A7') and (lv['mode']!='course' or 2<=i<5):
                 q=image_question(aid,question_skill,i,version,reserve[(i+question_skill*3)%len(reserve)],'polygon' if aid=='A5' else 'box')
-            elif aid=='A8' and (i%2==0): q=entity_question(aid,question_skill,i,version)
+            elif visual:q=visual
+            elif aid=='A8' and (i%2==0):q=entity_question(aid,question_skill,i,version)
             elif reserve and aid in ('A1','A2','A3','A9') and lv['mode']=='job':
                 q=image_question(aid,question_skill,i,version,reserve[(i+question_skill)%len(reserve)])
-            else: q=choice(aid,question_skill,(question_skill-1)*2+i+version-1,version,rng)
+            else:q=choice(aid,question_skill,(question_skill-1)*2+i+version-1,version,rng)
             q['id']=f'{lv["id"]}-V{version}-Q{i+1}';q['instruction']='先观察，再判断。需要帮助时可以向小基要一点提示。';questions.append(q)
         pool[lv['id']]=questions
+
+    fallback_by_skill={f'{aid}-S{i}':[] for i in range(1,6)}
+    for visual in visuals:
+        if is_image_annotation(visual):fallback_by_skill[visual['skill_id']].append(visual)
+    fallback_cursor={sid:0 for sid in fallback_by_skill}
+    def take_fallback(sid,used_samples):
+        choices=fallback_by_skill.get(sid,[])
+        if not choices:return None
+        for _ in range(len(choices)):
+            index=fallback_cursor[sid];fallback_cursor[sid]+=1
+            candidate=choices[index%len(choices)]
+            sample=candidate.get('sample_sha256') or candidate.get('sample_id') or candidate.get('image')
+            if sample in used_samples:continue
+            used_samples.add(sample)
+            return copy.deepcopy(candidate)
+        return None
+    for lv in levels(aid):
+        existing=pool[lv['id']]
+        annotations=[q for q in existing if is_image_annotation(q)]
+        others=[q for q in existing if not is_image_annotation(q)]
+        used_samples={q.get('sample_sha256') or q.get('sample_id') or q.get('image') for q in annotations}
+        missing=max(0,required_image_annotations(lv['mode'])-len(annotations))
+        replacements=[]
+        for replaced in others[:missing]:
+            q=take_fallback(replaced['skill_id'],used_samples)
+            if not q:raise ValueError(f'{lv["id"]} 缺少可用图片标注题：{replaced["skill_id"]}')
+            replacements.append(q)
+        questions=annotations+replacements+others[missing:]
+        for index,q in enumerate(questions,1):
+            q['id']=f'{lv["id"]}-V{version}-Q{index}';q['instruction']='先观察，再判断。需要帮助时可以向小基要一点提示。'
+        pool[lv['id']]=questions
     validate(pool,aid)
+    validate_visual_layout(pool,aid)
     return pool
 
 def generate_set(aid,version):
@@ -73,13 +140,14 @@ def load_initial_sets():
         item=payload['abilities'][a['id']]
         if item.get('version')!=1: raise RuntimeError(f'{a["id"]} 初始题库版本必须为 1')
         validate(item.get('questions',{}),a['id'])
+        validate_visual_layout(item['questions'],a['id'])
         result[a['id']]=item
     return result
 def validate(pool,aid):
     identifiers=set()
     for lv in levels(aid):
         qs=pool.get(lv['id'],[])
-        if len(qs)!=lv['count'] or not 5<=len(qs)<=20: raise ValueError('关卡题量不符合要求')
+        if len(qs)!=lv['count'] or (lv['mode']=='course' and not 6<=len(qs)<=8): raise ValueError('关卡题量不符合要求')
         for q in qs:
             if q['id'] in identifiers: raise ValueError('题目ID重复')
             identifiers.add(q['id'])
@@ -94,15 +162,91 @@ def validate(pool,aid):
                 if q['answer'] not in q['options'] or len(set(q['options']))!=len(q['options']): raise ValueError('选项或答案无效')
                 golden={'value':q['answer']}
             if not grade(q,golden)['correct']: raise ValueError('标准答案无法被判分器正确执行')
+def normalize_course_pool(current,initial,aid,version):
+    """Upgrade published five-question course levels without touching job/race content."""
+    from .factory_agent import content_hash
+    pool=copy.deepcopy(current)
+    for lv in levels(aid):
+        if lv['mode']!='course':continue
+        existing=pool.get(lv['id'],[])[:lv['count']]
+        fingerprints={content_hash(q) for q in existing}
+        for candidate in initial.get(lv['id'],[]):
+            if len(existing)>=lv['count']:break
+            fingerprint=content_hash(candidate)
+            if fingerprint in fingerprints:continue
+            existing.append(copy.deepcopy(candidate));fingerprints.add(fingerprint)
+        if len(existing)!=lv['count']:raise ValueError(f'{lv["id"]} 无法补足到 {lv["count"]} 道题')
+        for index,question in enumerate(existing,1):question['id']=f'{lv["id"]}-V{version}-Q{index}'
+        pool[lv['id']]=existing
+    validate(pool,aid)
+    return pool
+
+def normalize_visual_pool(current,initial,aid,version):
+    """Publish a minimally changed pool that satisfies image count and order."""
+    from .factory_agent import content_hash
+    from .visual_reserve import visual_questions
+    fallback_annotations=[question for questions in initial.values() for question in questions
+                          if is_image_annotation(question)]
+    fallback_annotations.extend(question for question in visual_questions(aid) if is_image_annotation(question))
+    pool={}
+    for lv in levels(aid):
+        existing=copy.deepcopy(current.get(lv['id'],[])[:lv['count']])
+        annotations=[q for q in existing if is_image_annotation(q)]
+        others=[q for q in existing if not is_image_annotation(q)]
+        fingerprints={content_hash(q) for q in annotations}
+        required=required_image_annotations(lv['mode'])
+        missing=max(0,required-len(annotations))
+        replacement_skills=[question['skill_id'] for question in others[-missing:]] if missing else []
+        local=initial.get(lv['id'],[])
+        planned_skills=[question['skill_id'] for question in local if is_image_annotation(question)]
+        while len(replacement_skills)<missing and planned_skills:
+            replacement_skills.append(planned_skills[len(replacement_skills)%len(planned_skills)])
+        for sid in replacement_skills:
+            candidate=next((question for question in [*local,*fallback_annotations]
+                            if is_image_annotation(question) and question['skill_id']==sid
+                            and content_hash(question) not in fingerprints),None)
+            if candidate:
+                fingerprint=content_hash(candidate)
+                annotations.append(copy.deepcopy(candidate));fingerprints.add(fingerprint)
+        if len(annotations)<required:
+            raise ValueError(f'{lv["id"]} 无法补足到 {required} 道图片标注题')
+        questions=(annotations+others)[:lv['count']]
+        used={content_hash(q) for q in questions}
+        for candidate in initial.get(lv['id'],[]):
+            if len(questions)>=lv['count']:break
+            fingerprint=content_hash(candidate)
+            if fingerprint in used:continue
+            questions.append(copy.deepcopy(candidate));used.add(fingerprint)
+        if len(questions)!=lv['count']:
+            raise ValueError(f'{lv["id"]} 无法补足到 {lv["count"]} 道题')
+        questions.sort(key=is_image_annotation,reverse=True)
+        for index,question in enumerate(questions,1):question['id']=f'{lv["id"]}-V{version}-Q{index}'
+        pool[lv['id']]=questions
+    validate(pool,aid)
+    validate_visual_layout(pool,aid)
+    return pool
+
 def initialize_sets():
     initial=load_initial_sets()
     with Session(engine) as db:
         for a in ABILITIES:
-            if not db.scalar(select(QuestionSet).where(QuestionSet.ability_id==a['id'],QuestionSet.active==True)):
+            current=db.scalar(select(QuestionSet).where(QuestionSet.ability_id==a['id'],QuestionSet.active==True))
+            if not current:
                 item=initial[a['id']]
                 db.add(QuestionSet(id=str(uuid.uuid4()),ability_id=a['id'],version=item['version'],questions=item['questions']))
+            elif any(len(current.questions.get(lv['id'],[]))!=lv['count'] for lv in levels(a['id'])) or any(
+                not _level_visual_layout_valid(current.questions.get(lv['id'],[]),lv['mode']) for lv in levels(a['id'])
+            ):
+                version=current.version+1
+                questions=normalize_visual_pool(current.questions,initial[a['id']]['questions'],a['id'],version)
+                current.active=False
+                db.add(QuestionSet(id=str(uuid.uuid4()),ability_id=a['id'],version=version,questions=questions))
         db.commit()
     upload_media()
+
+def _level_visual_layout_valid(questions,mode):
+    flags=[is_image_annotation(question) for question in questions]
+    return sum(flags)>=required_image_annotations(mode) and flags==sorted(flags,reverse=True)
 
 def upload_media():
     for s in samples(True):

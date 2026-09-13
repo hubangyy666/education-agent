@@ -1,0 +1,26 @@
+{
+  "prepared_at": "2026-09-13T04:01:03.002573+00:00",
+  "trigger": "annotation IoU > 0.90 after deterministic grading",
+  "file": "congratulations.wav",
+  "spoken_text": "Congratulations!",
+  "duration_seconds": 1.53415,
+  "format": "WAV PCM signed 16-bit mono",
+  "sample_rate": 44100,
+  "sha256": "771124fcda6a07591c13cef175eeb5e1aee777ea9e5045e3783e2e1b27644057",
+  "rms": 0.101128,
+  "peak": 0.707947,
+  "speech": {
+    "kind": "downloaded human voice recording",
+    "creator": "Kenney",
+    "voice_actor": "Jeffrey M. Smith",
+    "voice": "male",
+    "page": "https://kenney.nl/assets/voiceover-pack",
+    "source_url": "https://kenney.nl/media/pages/assets/voiceover-pack/3f7f168698-1677589897/kenney_voiceover-pack.zip",
+    "source_sha256": "a5194df2f05f7ec439a8d4c1a7c20ba12ffe700d363a0733ae6fa826846af458",
+    "archive_member": "Male/congratulations.ogg",
+    "recording_sha256": "9e8421f498ec6434a7c3d5101e29960e13301154076b927180a25fb6d6578e26",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "processing": "Original complete mono recording; original sample rate and pitch; peak normalized to -3dB; OGG decoded to PCM 16-bit WAV; no synthesis or mixing"
+}

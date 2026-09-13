@@ -1,6 +1,6 @@
 import { reactive, watch } from 'vue'
 import { api, post } from './api'
-import { setEncouragementEnabled, unlockEncouragementAudio, playEncouragement, stopEncouragementAudio } from './audio'
+import { setEncouragementEnabled, unlockEncouragementAudio, playEncouragement, playPrecisionReward, stopEncouragementAudio } from './audio'
 export interface User { username: string; name: string; role: 'student' | 'admin'; onboarding: boolean; goal: string; daily_goal: number; voice: boolean }
 export const state = reactive({ user: null as User | null, ready: false, dashboard: null as any, toast: '', toastKind: 'success', voiceSaving: false })
 watch(() => state.user?.voice, enabled => setEncouragementEnabled(Boolean(enabled)), { immediate: true, flush: 'sync' })
@@ -11,6 +11,7 @@ export async function refreshDashboard() { state.dashboard = await api('/dashboa
 export async function logout() { await post('/auth/logout'); state.user = null; state.dashboard = null }
 export function prepareEncouragement() { if (state.user?.voice) void unlockEncouragementAudio() }
 export function encourage() { return state.user?.voice ? playEncouragement('correct') : Promise.resolve('muted' as const) }
+export function encouragePrecision() { return state.user?.voice ? playPrecisionReward() : Promise.resolve('muted' as const) }
 export async function toggleVoice() {
   if (!state.user || state.voiceSaving) return
   const user = state.user, previous = user.voice

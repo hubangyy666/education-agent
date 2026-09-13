@@ -1,0 +1,11 @@
+{
+  "file": "success-checkmark.json",
+  "sha256": "69ccf80ac0a33d281750bb34e3fe01d1039ae361846c31a4a834a506dd5a4f0c",
+  "source_file": "success-confetti.json",
+  "source_sha256": "051f6a3b9bd184ce10e88d9e71584f19b7311b639a00626c73981acfe74a9927",
+  "source_page": "https://lottiefiles.com/free-animation/success-confetti-mX0p5zY7XU",
+  "creator": "Ismail Tofey (AUX)",
+  "license": "Lottie Simple License (FL 9.13.21)",
+  "license_url": "https://lottiefiles.com/page/license",
+  "modifications": "Retain only original check path (48522), check transform (95549) and root transform (87393); remove every background, circle and confetti layer; recolor check green (#38a169), recenter/crop to 110x110, play frames 19-110. Transparent JSON; component supplies only a white circle with no border or shadow."
+}

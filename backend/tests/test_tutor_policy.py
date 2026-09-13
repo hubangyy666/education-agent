@@ -2,6 +2,9 @@ import asyncio
 import json
 from types import SimpleNamespace
 
+import pytest
+
+from backend.catalog import ABILITIES, levels
 from backend.grading import grade
 from backend import tutor
 from backend.tutor_policy import (additional_question_context, build_facts,
@@ -332,3 +335,137 @@ def test_homepage_resource_advice_does_not_require_personal_profile():
         payload, build_homepage_facts(tutor.homepage_platform_context()), [],
         ['ability:A4'])
     assert errors == []
+
+
+@pytest.mark.parametrize(('query', 'expected'), [
+    ('什么是 IoU？', 'A4-L3'),
+    ('交并比怎么算', 'A4-L3'),
+    ('实体边界怎么确定', 'A8-L2'),
+    ('多边形的顶点怎么放', 'A5-L1'),
+    ('polygon', 'A5-L1'),
+    ('A4 岗位实战', 'A4-JOB'),
+    ('A8 限时竞赛', 'A8-RACE'),
+    ('a8-s2', 'A8-L2'),
+])
+def test_homepage_search_finds_specific_catalog_level(query, expected):
+    resource = tutor.search_learning_resources(query)[0]
+    assert resource['resource_type'] == 'level'
+    assert resource['id'] == f'level:{expected}'
+    assert resource['level_id'] == expected
+
+
+@pytest.mark.parametrize('query', [
+    '', '的', '这是什么', '随便推荐一下', '今天天气怎么样', '我想学习游泳',
+    '世界上最好的披萨餐厅', 'quantum entanglement', 'A11-L1',
+])
+def test_homepage_search_does_not_fill_unmatched_queries_with_modules(query):
+    assert tutor.search_learning_resources(query) == []
+
+
+def test_homepage_resource_ids_and_routes_come_from_all_real_catalog_levels():
+    for item in ABILITIES:
+        for level in levels(item['id']):
+            rows = tutor.search_learning_resources(level['id'])
+            resource = rows[0]
+            assert resource['level_id'] == level['id']
+            assert resource['title'] == level['name']
+            assert resource['ability_name'] == item['name']
+            assert resource['skill_id'] == level['skill_id']
+            assert resource['mode'] == level['mode']
+            query = ('skill=' + level['skill_id'] if level['mode'] == 'course'
+                     else 'level=' + level['id'])
+            assert resource['url'] == f'/skills/{item["id"]}?{query}'
+            assert any(row['id'] == f'ability:{item["id"]}' for row in rows)
+            # Search exposes routing metadata, not unpublished answers or scores.
+            assert not {'answer', 'questions', 'score', 'mastery', 'count'} & resource.keys()
+
+
+def test_homepage_related_answer_selects_a_real_level_without_loading_profile(monkeypatch):
+    completions = install_model(monkeypatch, [
+        model_message(tool_calls=[tool_call(
+            'resources-1', 'search_learning_resources', {'query': '交并比'})]),
+        model_message({
+            'reply': '交并比是两个区域的交集面积除以并集面积。先检查框是否贴合目标。',
+            'claims': [], 'used_source_ids': [],
+            'used_resource_ids': ['level:A4-L3'], 'followups': [],
+        }),
+    ])
+    invoked = []
+
+    def load_resources(query):
+        invoked.append(query)
+        assert len(completions.calls) == 1
+        return tutor.search_learning_resources(query)
+
+    def unexpected_loader(*args):
+        raise AssertionError('A topic recommendation must not eagerly read learning or knowledge')
+
+    output = asyncio.run(tutor.answer(
+        '什么是 IoU？', 'GENERAL_TUTOR', {}, [],
+        knowledge_loader=unexpected_loader, learning_context_loader=unexpected_loader,
+        resource_loader=load_resources))
+    assert output['provider'] == 'deepseek'
+    assert output['tools_used'] == ['search_learning_resources']
+    assert invoked == ['交并比']
+    assert output['resources'] == [tutor.search_learning_resources('交并比')[0]]
+    assert output['validation_retries'] == 0
+    assert len(completions.calls) == 2
+
+
+def test_homepage_rejects_invented_or_unsearched_level_ids(monkeypatch):
+    completions = install_model(monkeypatch, [
+        model_message(tool_calls=[tool_call(
+            'resources-1', 'search_learning_resources', {'query': 'IoU'})]),
+        model_message({
+            'reply': '交并比衡量两个区域的重合程度。',
+            'claims': [], 'used_source_ids': [],
+            'used_resource_ids': ['level:A4-L99', 'level:A8-L2'], 'followups': [],
+        }),
+        model_message({
+            'reply': '交并比衡量两个区域的重合程度。可以通过边界控制练习理解它。',
+            'claims': [], 'used_source_ids': [],
+            'used_resource_ids': ['level:A4-L3'], 'followups': [],
+        }),
+    ])
+    output = asyncio.run(tutor.answer(
+        'IoU 是什么？', 'GENERAL_TUTOR', {}, [],
+        resource_loader=tutor.search_learning_resources))
+    assert output['validation_retries'] == 1
+    assert [row['id'] for row in output['resources']] == ['level:A4-L3']
+    validator_prompt = completions.calls[-1]['messages'][-1]['content']
+    assert 'UNKNOWN_RESOURCE' in validator_prompt
+    assert 'level:A4-L99' in validator_prompt and 'level:A8-L2' in validator_prompt
+
+
+def test_homepage_sse_emits_answer_before_selected_level_metadata(monkeypatch):
+    from backend import main
+
+    reply = '交并比是交集面积除以并集面积，框过大会把背景也算入并集。'
+    install_model(monkeypatch, [
+        model_message(tool_calls=[tool_call(
+            'resources-1', 'search_learning_resources', {'query': 'IoU'})]),
+        model_message({'reply': reply, 'claims': [], 'used_source_ids': [],
+                       'used_resource_ids': ['level:A4-L3'], 'followups': []}),
+    ])
+
+    def unexpected_loader(*args, **kwargs):
+        raise AssertionError('The homepage request must load only requested tools')
+
+    monkeypatch.setattr(main, 'ability_state', unexpected_loader)
+    monkeypatch.setattr(tutor, 'retrieve', unexpected_loader)
+
+    async def collect():
+        response = await main.chat(main.ChatBody(message='什么是 IoU？'),
+                                   SimpleNamespace(username='qa-unit'), object())
+        assert response.media_type == 'text/event-stream'
+        return [chunk async for chunk in response.body_iterator]
+
+    chunks = asyncio.run(collect())
+    assert chunks[0].startswith('event: status\n')
+    assert chunks[-1].startswith('event: done\n')
+    answer = ''.join(json.loads(chunk.split('data: ', 1)[1])['text']
+                     for chunk in chunks if chunk.startswith('event: token\n'))
+    assert answer == reply
+    done = json.loads(chunks[-1].split('data: ', 1)[1])
+    assert [resource['id'] for resource in done['resources']] == ['level:A4-L3']
+    assert done['tools_used'] == ['search_learning_resources']

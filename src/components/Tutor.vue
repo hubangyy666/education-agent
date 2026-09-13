@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import Icon from './Icon.vue'
+import TutorRecommendations from './TutorRecommendations.vue'
 const props=withDefaults(defineProps<{floating?:boolean;stage?:boolean;runId?:string;questionId?:string;disabled?:boolean;nudge?:string}>(),{floating:false,stage:false,disabled:false,nudge:''})
 const emit=defineEmits<{openChange:[value:boolean]}>()
 const open=ref(false),input=ref(''),busy=ref(false),error=ref('');const messages=ref<any[]>([]);const list=ref<HTMLElement>();let controller:AbortController|undefined
@@ -9,9 +10,19 @@ function setOpen(value:boolean){open.value=value;emit('openChange',value)}
 function handleEscape(event:KeyboardEvent){if(event.key==='Escape'&&props.stage&&open.value)setOpen(false)}
 function cleanText(text:string){return (text||'').replaceAll('**','').replaceAll('`','').replace(/\n{3,}/g,'\n\n')}
 const announcement=computed(()=>busy.value?'小基正在整理回答':cleanText([...messages.value].reverse().find(m=>m.role==='assistant')?.text||''))
-function uniqueSources(sources:any[]=[]){const seen=new Set<string>();return sources.filter(s=>{const key=`${s.id||''}|${s.source_url||''}`;if(!s.source_url||seen.has(key))return false;seen.add(key);return true})}
+function uniqueSources(sources:any[]=[]){
+  const seen=new Set<string>()
+  return (Array.isArray(sources)?sources:[]).filter(s=>{
+    if(typeof s?.source_url!=='string'||typeof s?.title!=='string'||!s.title.trim())return false
+    try{
+      const url=new URL(s.source_url)
+      if(!['https:','http:'].includes(url.protocol)||!url.hostname||url.username||url.password||seen.has(url.href))return false
+      seen.add(url.href);return true
+    }catch{return false}
+  })
+}
 function uniqueResources(resources:any[]=[]){const seen=new Set<string>();return resources.filter(r=>{if(!r.url||seen.has(r.id))return false;seen.add(r.id);return true})}
-function providerLabel(provider:string){return provider==='deepseek'?'AI 生成说明':props.runId?'课程与题目事实提示':'平台提示'}
+function otherResources(resources:any[]=[]){return uniqueResources(resources).filter(r=>props.runId||r.resource_type!=='level')}
 watch(()=>props.questionId,()=>{controller?.abort();busy.value=false;messages.value=[];error.value=''})
 onMounted(()=>window.addEventListener('keydown',handleEscape))
 onBeforeUnmount(()=>{controller?.abort();window.removeEventListener('keydown',handleEscape)})
@@ -24,7 +35,7 @@ async function send(text?:string,hintRequest=false){
     const response=await fetch('/api/ai/chat',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify({message,mode:props.runId?'QUESTION_TUTOR':'GENERAL_TUTOR',run_id:props.runId,question_id:props.questionId,hint_request:hintRequest,history:messages.value.slice(0,-2).map(m=>({role:m.role,text:m.text}))})})
     if(!response.ok){const e=await response.json();throw new Error(e.detail||'暂时无法回复，请再试一次。')}
     const reader=response.body!.getReader();const decoder=new TextDecoder();let buffer=''
-    while(true){const {done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const frames=buffer.split('\n\n');buffer=frames.pop()||'';for(const frame of frames){const event=frame.match(/event: (\w+)/)?.[1];const raw=frame.match(/data: (.+)/)?.[1];if(!raw)continue;const data=JSON.parse(raw);if(event==='token')reply.text+=data.text;if(event==='done')Object.assign(reply,data)}messages.value=[...messages.value];await scroll()}
+    while(true){const {done,value}=await reader.read();if(done)break;buffer+=decoder.decode(value,{stream:true});const frames=buffer.split('\n\n');buffer=frames.pop()||'';for(const frame of frames){const event=frame.match(/event: (\w+)/)?.[1];const raw=frame.match(/data: (.+)/)?.[1];if(!raw)continue;const data=JSON.parse(raw);if(event==='token')reply.text+=data.text;if(event==='done')Object.assign(reply,data,{complete:true})}messages.value=[...messages.value];await scroll()}
   }catch(e){if(controller===activeController&&(e as Error).name!=='AbortError')error.value=(e as Error).message}finally{if(controller===activeController)busy.value=false}
 }
 defineExpose({send})
@@ -50,11 +61,16 @@ defineExpose({send})
       <div v-if="!messages.length" class="chat-welcome"><p>你好！我会陪你一起学会数据标注。</p><p>{{runId?'告诉我你卡在哪里，我们一步一步来看。':'可以问我标注规范，也可以一起规划接下来的学习。'}}</p></div>
       <div v-for="(m,i) in messages" :key="i" class="chat-message" :class="m.role">
         <div class="message-text">{{cleanText(m.text) || '正在查找相关资料…'}}</div>
-        <small v-if="m.role==='assistant' && m.text" class="ai-label">{{providerLabel(m.provider)}}</small>
-        <small v-if="m.notice" class="model-notice">{{m.notice}}</small>
-        <details v-if="uniqueSources(m.sources).length" class="chat-sources"><summary>查看回答依据（{{uniqueSources(m.sources).length}}）</summary><a v-for="s in uniqueSources(m.sources)" :key="`${s.id}|${s.source_url}`" :href="s.source_url" target="_blank" rel="noopener noreferrer"><Icon name="BookOpen" :size="12"/>{{s.title}}</a></details>
-        <details v-if="uniqueResources(m.resources).length" class="chat-sources"><summary>查看平台学习资源（{{uniqueResources(m.resources).length}}）</summary><a v-for="r in uniqueResources(m.resources)" :key="r.id" :href="r.url" :target="r.url.startsWith('http')?'_blank':undefined" rel="noopener noreferrer"><Icon name="BookOpen" :size="12"/>{{r.title}}</a></details>
+        <small v-if="!runId&&m.notice" class="model-notice">{{m.notice}}</small>
+        <div v-if="m.role==='assistant'&&m.complete&&uniqueSources(m.sources).length" class="knowledge-sources" aria-label="知识来源">
+          <div class="knowledge-sources-label"><Icon name="BookOpen" :size="13"/>知识来源</div>
+          <a v-for="s in uniqueSources(m.sources).slice(0,3)" :key="s.source_url" class="knowledge-source-link" :href="s.source_url" target="_blank" rel="noopener noreferrer" :aria-label="`${s.title}（在新标签页打开）`"><span>{{s.title}}<small v-if="s.source_name&&s.source_name!==s.title">{{s.source_name}}</small></span><Icon name="ArrowUpRight" :size="13"/></a>
+          <details v-if="uniqueSources(m.sources).length>3" class="knowledge-sources-more"><summary>更多来源（{{uniqueSources(m.sources).length-3}}）</summary><a v-for="s in uniqueSources(m.sources).slice(3)" :key="s.source_url" class="knowledge-source-link" :href="s.source_url" target="_blank" rel="noopener noreferrer" :aria-label="`${s.title}（在新标签页打开）`"><span>{{s.title}}<small v-if="s.source_name&&s.source_name!==s.title">{{s.source_name}}</small></span><Icon name="ArrowUpRight" :size="13"/></a></details>
+        </div>
+        <TutorRecommendations v-if="!runId&&m.role==='assistant'&&m.complete" :resources="m.resources||[]"/>
+        <details v-if="otherResources(m.resources).length" class="chat-sources"><summary>查看平台学习资源（{{otherResources(m.resources).length}}）</summary><a v-for="r in otherResources(m.resources)" :key="r.id" :href="r.url" :target="r.url.startsWith('http')?'_blank':undefined" rel="noopener noreferrer"><Icon name="BookOpen" :size="12"/>{{r.title}}</a></details>
         <div v-if="m.role==='assistant'&&i===messages.length-1&&m.suggestions?.length" class="tutor-followups"><button v-for="suggestion in m.suggestions" :key="suggestion" type="button" :disabled="busy" @click="send(suggestion)">{{suggestion}}</button></div>
+        <small v-if="m.role==='assistant'&&m.text" class="answer-ai-label">部分内容为ai生成</small>
       </div>
       <div v-if="error" class="error-message" role="alert">{{error}}</div>
     </div>
@@ -66,6 +82,8 @@ defineExpose({send})
 
 <style scoped>
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.answer-ai-label{display:block;margin-top:10px;color:#85818b;font-size:12px;line-height:1.6}
 .chat-sources{margin-top:9px}.chat-sources summary{cursor:pointer;color:#72578e;font-size:13px}.chat-sources a{margin-top:6px}
+.knowledge-sources{margin-top:12px;padding-top:10px;border-top:1px solid #e7e3ec;font-size:12px;line-height:1.6}.knowledge-sources-label{display:flex;align-items:center;gap:5px;color:#737078}.knowledge-source-link{display:flex;align-items:flex-start;gap:6px;margin-top:7px;color:#694b85}.knowledge-source-link>span{min-width:0;overflow-wrap:anywhere}.knowledge-source-link>svg{margin-top:3px}.knowledge-source-link small{display:block;margin-top:1px;color:#77717f;font-size:11px}.knowledge-source-link:hover>span{text-decoration:underline;text-underline-offset:3px}.knowledge-sources-more{margin-top:7px}.knowledge-sources-more summary{cursor:pointer;color:#72578e}
 .tutor-followups{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.tutor-followups button{padding:5px 9px;border:1px solid #dfd5eb;border-radius:14px;background:#fff;color:#694b85;font-size:12px;text-align:left}.tutor-followups button:disabled{opacity:.55}
 </style>

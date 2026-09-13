@@ -86,6 +86,55 @@ await check('six bundled WAV files match manifest and have PCM headers and audib
   }
 })
 
+await check('precision reward is a downloaded CC0 human voice distinct from ordinary encouragement', async () => {
+  const base = path.join(root, 'public/audio/precision')
+  const manifest = JSON.parse(await readFile(path.join(base, 'manifest.json'), 'utf8'))
+  const data = await readFile(path.join(base, 'congratulations.wav'))
+  assert.equal(createHash('sha256').update(data).digest('hex'), manifest.sha256)
+  assert.equal(manifest.spoken_text, 'Congratulations!')
+  assert.equal(manifest.speech.kind, 'downloaded human voice recording')
+  assert.equal(manifest.speech.license, 'CC0-1.0')
+  assert.equal(manifest.speech.voice_actor, 'Jeffrey M. Smith')
+  assert.equal(manifest.synthesis_input, undefined)
+  assert.equal(manifest.speech.model, undefined)
+  assert.match(manifest.speech.source_url, /^https:\/\/kenney.nl\//)
+  assert.match(manifest.speech.source_sha256, /^[a-f0-9]{64}$/)
+  assert.match(manifest.speech.recording_sha256, /^[a-f0-9]{64}$/)
+  const license = await readFile(path.join(base, 'KENNEY-LICENSE.txt'), 'utf8')
+  assert.ok(license.includes('Creative Commons Zero, CC0'))
+  const ordinary = JSON.parse(await readFile(path.join(root, 'public/audio/encouragement/manifest.json'), 'utf8'))
+  assert.ok(ordinary.clips.every(clip => clip.sha256 !== manifest.sha256))
+  assert.equal(manifest.trigger, 'annotation IoU > 0.90 after deterministic grading')
+  assert.ok(manifest.duration_seconds > .5 && manifest.duration_seconds < 2)
+  assert.equal(data.toString('ascii', 0, 4), 'RIFF')
+  assert.equal(data.readUInt32LE(24), 44100)
+  assert.ok(manifest.rms > .01)
+  assert.ok(source.includes('/audio/precision/congratulations.wav'))
+})
+
+await check('precision animation is valid local Lottie JSON with source license', async () => {
+  const base = path.join(root, 'public/animations')
+  const bytes = await readFile(path.join(base, 'success-checkmark.json'))
+  const animation = JSON.parse(bytes)
+  const manifest = JSON.parse(await readFile(path.join(base, 'manifest.json'), 'utf8'))
+  const license = await readFile(path.join(base, 'LICENSE.txt'), 'utf8')
+  const component = await readFile(path.join(root, 'src/components/PrecisionReward.vue'), 'utf8')
+  assert.ok(animation.v && animation.fr > 0 && animation.op > animation.ip && animation.layers.length)
+  assert.ok(license.includes('Ismail Tofey (AUX)') && license.includes('Lottie Simple License'))
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), manifest.sha256)
+  assert.ok(component.includes("path:'/animations/success-checkmark.json'") && component.includes('loop:false'))
+  assert.equal(animation.assets.length, 0)
+  const renderedLayers = animation.layers.filter(layer => layer.ty !== 3)
+  assert.equal(renderedLayers.length, 1, 'only the check path can draw; no background or confetti layers')
+  assert.equal(renderedLayers[0].ind, 48522)
+  const parts = renderedLayers[0].shapes[0].it
+  assert.equal(parts.filter(part => part.ty === 'sh').length, 1)
+  assert.equal(parts.find(part => part.ty === 'sh').ks.k.v.length, 17, 'retain the original curved check silhouette')
+  assert.deepEqual(parts.find(part => part.ty === 'fl').c.k, [56 / 255, 161 / 255, 105 / 255, 1])
+  assert.ok(component.includes('border-radius:50%;background:#fff'))
+  assert.ok(!component.includes('precision-medal') && !component.includes('box-shadow'))
+})
+
 await check('no playback before user unlock; unlock does not speak', async () => {
   const { api, events } = player()
   assert.equal(await api.playEncouragement(), 'unavailable')
@@ -100,7 +149,16 @@ await check('six phrases rotate and wrap; only one sound is active; clips are ca
   assert.deepEqual(events.filter(e => e.type === 'start').map(e => e.path),
     [1, 2, 3, 4, 5, 6, 1].map(i => `/audio/encouragement/correct-0${i}.wav`))
   assert.equal(events.filter(e => e.type === 'stop').length, 6)
-  assert.equal(events.filter(e => e.type === 'fetch').length, 6)
+  assert.equal(events.filter(e => e.type === 'fetch').length, 7)
+})
+
+await check('precision reward uses its dedicated clip without rotating ordinary phrases', async () => {
+  const { api, events } = player()
+  await api.unlockEncouragementAudio()
+  assert.equal(await api.playPrecisionReward(), 'played')
+  assert.equal(await api.playEncouragement(), 'played')
+  assert.deepEqual(events.filter(e => e.type === 'start').map(e => e.path),
+    ['/audio/precision/congratulations.wav', '/audio/encouragement/correct-01.wav'])
 })
 
 await check('muting stops current audio and blocks both unlock and future rewards', async () => {
@@ -110,6 +168,7 @@ await check('muting stops current audio and blocks both unlock and future reward
   api.setEncouragementEnabled(false)
   assert.equal(api.getEncouragementEnabled(), false)
   assert.equal(await api.playEncouragement(), 'muted')
+  assert.equal(await api.playPrecisionReward(), 'muted')
   assert.equal(await api.unlockEncouragementAudio(), false)
   assert.equal(events.filter(e => e.type === 'start').length, 1)
   assert.equal(events.filter(e => e.type === 'stop').length, 1)
@@ -118,13 +177,15 @@ await check('muting stops current audio and blocks both unlock and future reward
 })
 
 await check('leaving a question cancels audio waiting for download/decode', async () => {
-  const gate = deferred(), { api, events } = player({ gate })
-  await api.unlockEncouragementAudio()
-  const pending = api.playEncouragement()
-  api.stopEncouragementAudio()
-  gate.resolve()
-  assert.equal(await pending, 'cancelled')
-  assert.equal(events.filter(e => e.type === 'start').length, 0)
+  for (const method of ['playEncouragement', 'playPrecisionReward']) {
+    const gate = deferred(), { api, events } = player({ gate })
+    await api.unlockEncouragementAudio()
+    const pending = api[method]()
+    api.stopEncouragementAudio()
+    gate.resolve()
+    assert.equal(await pending, 'cancelled')
+    assert.equal(events.filter(e => e.type === 'start').length, 0)
+  }
 })
 
 await check('muting while loading prevents delayed sound', async () => {
@@ -181,6 +242,7 @@ async function component(name, options = {}) {
       state: vue.reactive({ user: { voice: true } }),
       notify() {}, toggleVoice() {}, prepareEncouragement() {},
       async encourage() { events.push({ type: 'reward' }); return options.reward ? await options.reward.promise : 'played' },
+      async encouragePrecision() { events.push({ type: 'precision-reward' }); return 'played' },
       async refreshDashboard() { return options.dashboard ? await options.dashboard.promise : {} },
     },
     '../audio': { stopEncouragementAudio() { events.push({ type: 'stop' }) } },
@@ -220,7 +282,9 @@ await check('training response after unmount cannot play; submitted answer is sn
 await check('changing training route rejects old grading response', async () => {
   const response = deferred(), page = await component('Training', { response })
   page.state.run.value = trainingRun()
+  page.state.answer.value = { value: 'original' }
   const pending = page.state.submit()
+  assert.equal(page.events.filter(e => e.type === 'post').length, 1)
   page.route.params.id = 'run-new'
   await vue.nextTick()
   response.resolve({ result: { correct: true } })
@@ -234,7 +298,9 @@ await check('changing training route rejects old grading response', async () => 
 await check('late playback status cannot be written onto the next question', async () => {
   const reward = deferred(), page = await component('Training', { reward })
   page.state.run.value = trainingRun()
+  page.state.answer.value = { value: 'original' }
   await page.state.submit()
+  assert.equal(page.events.filter(e => e.type === 'reward').length, 1)
   page.state.go(1)
   reward.resolve('played')
   await Promise.resolve()
@@ -242,6 +308,24 @@ await check('late playback status cannot be written onto the next question', asy
   assert.equal(page.state.audioNotice.value, '')
   assert.equal(page.state.index.value, 1)
   page.unmount()
+})
+
+await check('annotation reward threshold is strict: 90% is ordinary, above 90% is precision', async () => {
+  const atThreshold = await component('Training', { response: { promise: Promise.resolve({ result: { correct: true, iou: .9 } }) } })
+  atThreshold.state.run.value = trainingRun(); atThreshold.state.run.value.questions[0].type = 'box'
+  atThreshold.state.answer.value = { boxes: [{ label: '猫', box: [.1,.1,.3,.3] }] }
+  await atThreshold.state.submit()
+  assert.equal(atThreshold.events.filter(e => e.type === 'precision-reward').length, 0)
+  assert.equal(atThreshold.events.filter(e => e.type === 'reward').length, 1)
+  atThreshold.unmount()
+
+  const aboveThreshold = await component('Training', { response: { promise: Promise.resolve({ result: { correct: false, iou: .901 } }) } })
+  aboveThreshold.state.run.value = trainingRun(); aboveThreshold.state.run.value.questions[0].type = 'box'
+  aboveThreshold.state.answer.value = { boxes: [{ label: '猫', box: [.1,.1,.3,.3] }] }
+  await aboveThreshold.state.submit()
+  assert.equal(aboveThreshold.events.filter(e => e.type === 'precision-reward').length, 1)
+  assert.equal(aboveThreshold.events.filter(e => e.type === 'reward').length, 0)
+  aboveThreshold.unmount()
 })
 
 await check('batch completion awaiting dashboard cannot reward after exit', async () => {
@@ -260,8 +344,10 @@ await check('batch completion awaiting dashboard cannot reward after exit', asyn
 await check('onboarding response after exit cannot advance steps or play', async () => {
   const response = deferred(), page = await component('Onboarding', { response })
   page.state.run.value = trainingRun()
+  page.state.answer.value = { boxes: [{ label: '猫', box: [.1, .1, .3, .3] }] }
   page.state.step.value = 6
   const pending = page.state.submitIndependent()
+  assert.equal(page.events.filter(e => e.type === 'post').length, 1)
   page.unmount()
   response.resolve({ result: { correct: true } })
   await pending

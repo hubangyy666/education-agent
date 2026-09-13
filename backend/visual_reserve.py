@@ -94,6 +94,24 @@ def visual_questions(aid):
         for skill in (1,2):
             for i,(sentence,value,label) in enumerate(cases):
                 result.append({'id':f'NER-S{skill}-{i}','type':'entity','skill_id':f'A8-S{skill}','title':f'选择句子中完整的{label}实体，并指定类型。','text':sentence,'labels':['地点','人名','机构'],'answer':{'start':sentence.index(value),'end':sentence.index(value)+len(value),'label':label},'project_rule':'实体包含名称本身，不包含动作、助词与标点；所有人名与机构均为虚构教学文本。','explanation':'结合语境选择完整名称，避免把介词、动词或标点包含在实体内。','hint':['先找到句子中有独立含义的名称。','结合语境判断名称表示人物、地点还是机构。','从名称第一个字到最后一个字选中，检查两端不要多选。'],'source':'智基原创虚构教学语料','source_url':'https://spacy.io/usage/linguistic-features#named-entities','ai_generated':False,'gt_origin':'authored_entity_span'})
+    # The curriculum requires every skill and every level to have executable
+    # image annotation. Reuse only source annotations already shipped with the
+    # repository; do not invent boxes, polygons or image labels.
+    if aid=='A6':
+        for s in samples(True):
+            if s.get('dataset')!='KolektorSDD' or not s['targets']:continue
+            for skill in range(1,6):
+                for kind in ('box','polygon'):
+                    if kind=='polygon' and not max(s['targets'],key=lambda t:t['box'][2]*t['box'][3]).get('polygon_valid',False):continue
+                    q=make_question(s,aid,skill,'largest',kind)
+                    if q:q['curriculum_fallback']=True;result.append(q)
+    for s in samples():
+        largest=max(s['targets'],key=lambda t:t['box'][2]*t['box'][3])
+        kind='polygon' if aid=='A5' else 'box'
+        if kind=='polygon' and not largest.get('polygon_valid',False):continue
+        for skill in range(1,6):
+            q=make_question(s,aid,skill,'largest',kind)
+            if q:q['curriculum_fallback']=True;result.append(q)
     return result
 
 def combined_pool(aid,version,store,previous=(),visual=None,published=None):
@@ -107,14 +125,19 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
     old_questions=[q for qs in published.values() for q in qs if content_hash(q) not in retired]
     old_limits=Counter(content_hash(q) for q in old_questions)
     previous=set(previous)
-    rank=lambda q:(content_hash(q) in previous,hashlib.sha256(f'{version}:'.encode()+content_hash(q).encode()).hexdigest())
+    rank=lambda q:(aid=='A6' and q.get('source','').startswith('COCO'),content_hash(q) in previous,hashlib.sha256(f'{version}:'.encode()+content_hash(q).encode()).hexdigest())
     visual.sort(key=rank);scenarios.sort(key=rank)
+    enforce_visual_layout=bool(visual)
     pool={};used=set();usage=Counter();old_ids=set()
     for lid,skills in balanced_plan(aid).items():
-        course='-L' in lid;pool[lid]=[]
+        course='-L' in lid;visual_count=(2 if course else 10) if enforce_visual_layout else 0;pool[lid]=[]
         for index,sid in enumerate(skills):
-            # A short concept check precedes direct manipulation where supported.
-            options=(scenarios+visual) if course and index<2 else (visual+scenarios)
+            visual_slot=index<visual_count
+            # Image annotation always comes first. Later slots keep the
+            # existing choice/entity practice without interleaving another
+            # box or polygon after it.
+            options=([q for q in visual if q.get('image') and q['type'] in ('box','polygon')]
+                     if visual_slot else [q for q in visual if not (q.get('image') and q['type'] in ('box','polygon'))]+scenarios)
             eligible=[q for q in options if q['skill_id']==sid and content_hash(q) not in used]
             # New content wins across both kinds of reserve. If this skill has
             # no fresh content, keep using its validated reserve; never relabel
@@ -127,6 +150,7 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
                 # Existing V1 duplicates may be retained, never multiplied.
                 backups=published.get(lid,[])+old_questions
                 candidate=next((q for q in backups if q['skill_id']==sid and q['id'] not in old_ids
+                    and bool(q.get('image') and q['type'] in ('box','polygon'))==visual_slot
                     and content_hash(q) not in retired and usage[content_hash(q)]<old_limits[content_hash(q)]),None)
                 retained=candidate is not None
             if not candidate:raise ValueError(f'技能储备不足：{sid}')
@@ -140,5 +164,8 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
             pool[lid].append(q)
     from .factory import validate
     validate(pool,aid)
+    if enforce_visual_layout:
+        from .factory import validate_visual_layout
+        validate_visual_layout(pool,aid)
     if any(count>max(1,old_limits[fingerprint]) for fingerprint,count in usage.items()):raise ValueError('整套题目内容重复')
     return pool

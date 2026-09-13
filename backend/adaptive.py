@@ -5,6 +5,8 @@ from .catalog import ABILITIES, levels
 from .db import Progress, Run
 from .grading import grade
 
+MODE_WEIGHTS = {'course': 1.0, 'job': 2.0, 'competition': 3.0}
+
 
 def _recent_average(values):
     selected = values[:3]  # newest first; a later regression must remain visible
@@ -55,8 +57,17 @@ def ability_state(db, user):
             result = results.get(qid) if run.status == 'completed' else None
             if result is None or not isinstance(result.get('correct'), bool):
                 result = grade(question, run.answers[qid])
+            attempts, correct_attempts = 1, int(result['correct'])
+            if run.mode == 'course' and not run.level_id.startswith('JT-'):
+                attempt_key = f'course-score-attempts:{qid}'
+                correct_key = f'course-score-correct-attempts:{qid}'
+                attempts = max(1, int((run.hints or {}).get(attempt_key, 0)))
+                correct_attempts = int((run.hints or {}).get(correct_key, int(result['correct'])))
+            weight = MODE_WEIGHTS.get(run.mode, 1.0)
             skill_counts[sid]['answer_count'] += 1
             skill_counts[sid]['correct_count'] += int(result['correct'])
+            skill_counts[sid]['weighted_answer_count'] += attempts * weight
+            skill_counts[sid]['weighted_correct_count'] += correct_attempts * weight
             observed_skills.add(sid)
             if result.get('error_type') and error_runs[sid] < 3:
                 skill_errors[sid][result['error_type']] += 1
@@ -71,10 +82,14 @@ def ability_state(db, user):
             sid = f'{a["id"]}-S{index}'
             counts = skill_counts[sid]
             answers, correct = counts['answer_count'], counts['correct_count']
-            accuracy = correct / answers if answers else 0
+            weighted_answers = counts['weighted_answer_count']
+            weighted_correct = counts['weighted_correct_count']
+            accuracy = weighted_correct / weighted_answers if weighted_answers else 0
             metrics.append({'skill_id': sid, 'name': name, 'score': round(accuracy * 100, 2),
                             'skill_score': round(accuracy * 10, 2),
                             'answer_count': answers, 'correct_count': correct,
+                            'weighted_answer_count': weighted_answers,
+                            'weighted_correct_count': weighted_correct,
                             'source': 'training' if answers else 'unassessed', 'assessed': bool(answers),
                             'recent_errors': [key for key, _ in skill_errors[sid].most_common(3)]})
         level_states = []
@@ -87,14 +102,18 @@ def ability_state(db, user):
                 best_score=done.get(level['id'], 0))
             if level['mode'] == 'course':
                 metric = next(s for s in metrics if s['skill_id'] == level['skill_id'])
-                state.update({key: metric[key] for key in ('skill_score', 'answer_count', 'correct_count')})
+                state.update({key: metric[key] for key in ('skill_score', 'answer_count', 'correct_count',
+                                                            'weighted_answer_count', 'weighted_correct_count')})
             level_states.append(state)
         diag = diagnosis[a['id']]
         answers = sum(s['answer_count'] for s in metrics)
         correct = sum(s['correct_count'] for s in metrics)
-        accuracy = correct / answers if answers else 0
+        weighted_answers = sum(s['weighted_answer_count'] for s in metrics)
+        weighted_correct = sum(s['weighted_correct_count'] for s in metrics)
+        accuracy = weighted_correct / weighted_answers if weighted_answers else 0
         states.append(dict(a, mastery=round(accuracy * 100, 2), skill_score=round(accuracy * 10, 2),
             answer_count=answers, correct_count=correct,
+            weighted_answer_count=weighted_answers, weighted_correct_count=weighted_correct,
             completed=sum(l['completed'] for l in level_states), total=len(lv), levels=level_states,
             skill_mastery=metrics, diagnostic_score=round(sum(e['correct'] for e in diag) / len(diag) * 100) if diag else None,
             recent_errors=list(dict.fromkeys(error for s in metrics for error in s['recent_errors']))))

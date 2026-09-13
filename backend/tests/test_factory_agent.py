@@ -43,7 +43,7 @@ class FactoryChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             store = f.Store(d); rows = []
             for i in range(5):
-                for n in range(12):
+                for n in range(14):
                     q = question(f'A10-S{i+1}', n)
                     q.update(status='approved', content_hash=f.content_hash(q),
                              ai_review={'decision':'approved', 'duplicate':False,
@@ -52,9 +52,9 @@ class FactoryChecks(unittest.TestCase):
             store.merge('A10', rows)
             pool = f.build_pool('A10', 1, store)
             all_q = [q for qs in pool.values() for q in qs]
-            self.assertEqual(len(all_q), 55)
-            self.assertEqual(len({q['content_hash'] for q in all_q}), 55)
-            self.assertEqual(set(f.Counter(q['skill_id'] for q in all_q).values()), {11})
+            self.assertEqual(len(all_q), 65)
+            self.assertEqual(len({q['content_hash'] for q in all_q}), 65)
+            self.assertEqual(set(f.Counter(q['skill_id'] for q in all_q).values()), {13})
             job = pool['A10-JOB']; self.assertEqual(set(f.Counter(q['skill_id'] for q in job).values()), {4})
             next_pool = f.build_pool('A10', 2, store)
             self.assertNotEqual({q['content_hash'] for q in all_q}, {q['content_hash'] for qs in next_pool.values() for q in qs})

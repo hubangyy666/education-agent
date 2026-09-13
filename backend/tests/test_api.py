@@ -6,7 +6,7 @@ import httpx
 import pytest
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from backend.db import engine, cache, Run, Progress, TaskCard, now
+from backend.db import engine, cache, Run, Progress, Mistake, TaskCard, now
 from conftest import BASE_URL, SECRET, correct_answer
 
 def post_answer(client, rid, q, answer):
@@ -17,7 +17,7 @@ def assert_redacted(run):
         assert not {'answer','hint','explanation','threshold','standard_answer'}.intersection(q)
     if run['status'] == 'active': assert run['report'] is None
 
-@pytest.mark.parametrize('path', ['/api/auth/me','/api/abilities','/api/dashboard','/api/tasks','/api/knowledge','/api/abilities/A1/refresh'])
+@pytest.mark.parametrize('path', ['/api/auth/me','/api/abilities','/api/dashboard','/api/mistakes','/api/tasks','/api/knowledge','/api/abilities/A1/refresh'])
 def test_anonymous_denied(path):
     assert httpx.get(BASE_URL + path).status_code == 401
 
@@ -74,9 +74,10 @@ def test_course_latest_answer_persistence_finish_idempotent(account, seeded_run)
     for q in qs:
         assert post_answer(c,rid,q,correct_answer(q)).json()['result']['correct']
     active=c.get('/api/abilities/A1').json()
-    assert (active['answer_count'],active['correct_count'],active['skill_score'])==(len(qs),len(qs),10)
+    assert (active['answer_count'],active['correct_count'])==(len(qs),len(qs))
+    assert active['skill_score']==round(len(qs)/(len(qs)+1)*10,2)
     assert active['completed']==0
-    assert active['levels'][0]['skill_score']==10
+    assert active['levels'][0]['skill_score']==round(len(qs)/(len(qs)+1)*10,2)
     with Session(engine) as db:
         stored=db.get(Run,rid)
         assert stored.status=='active' and len(stored.answers)==len(qs)
@@ -121,18 +122,18 @@ def test_skill_score_updates_after_each_saved_answer_without_finishing(account, 
     assert post_answer(c,rid,qs[1],{'value':'错误'}).status_code==200
     state=c.get('/api/abilities/A1').json()
     assert (state['answer_count'],state['correct_count'],state['skill_score'])==(2,1,5)
-    assert post_answer(c,rid,qs[2],{'value':'错误'}).status_code==409
+    assert post_answer(c,rid,qs[2],{'value':'错误'}).status_code==200
     assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
     assert post_answer(c,rid,qs[2],{'value':'错误'}).status_code==200
     refreshed=c.get('/api/abilities').json()[0]
-    assert (refreshed['answer_count'],refreshed['correct_count'],refreshed['skill_score'])==(3,2,6.67)
+    assert (refreshed['answer_count'],refreshed['correct_count'],refreshed['skill_score'])==(3,2,4)
     with Session(engine) as db:
         stored=db.get(Run,rid)
         assert stored.answers[qs[1]['id']]==correct_answer(qs[1])
         assert stored.status=='active'
-    assert c.get('/api/dashboard').json()['abilities'][0]['skill_score']==6.67
+    assert c.get('/api/dashboard').json()['abilities'][0]['skill_score']==4
 
-def test_course_requires_correct_answers_and_persists_two_wrong_attempt_coaching(account, seeded_run):
+def test_course_wrong_answer_can_continue_or_retry_and_finish_with_mistakes(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account);wrong={'value':'错误'}
     first=post_answer(c,rid,qs[0],wrong).json()
     assert first['wrong_attempts']==1 and first['coach_encouragement']==''
@@ -142,16 +143,44 @@ def test_course_requires_correct_answers_and_persists_two_wrong_attempt_coaching
     assert third['wrong_attempts']==3 and third['coach_encouragement']==''
     fourth=post_answer(c,rid,qs[0],wrong).json()
     assert fourth['wrong_attempts']==4 and fourth['coach_encouragement']
-    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==409
+    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
     resumed=c.get(f'/api/runs/{rid}').json()
     assert resumed['question_status'][qs[0]['id']]=='incorrect'
     assert resumed['hints'][f'course-wrong-attempts:{qs[0]["id"]}']==4
     assert c.post(f'/api/runs/{rid}/finish').status_code==400
-    corrected=post_answer(c,rid,qs[0],correct_answer(qs[0])).json()
-    assert corrected['result']['correct'] and corrected['wrong_attempts']==0
-    assert post_answer(c,rid,qs[1],correct_answer(qs[1])).status_code==200
     for q in qs[2:]: assert post_answer(c,rid,q,correct_answer(q)).status_code==200
-    assert c.post(f'/api/runs/{rid}/finish').json()['report']['score']==100
+    scored=c.get('/api/abilities/A1').json()
+    assert scored['skill_score']==6 and scored['weighted_answer_count']==4+len(qs)-1
+    finished=c.post(f'/api/runs/{rid}/finish').json()
+    assert finished['report']['correct_count']==len(qs)-1
+    assert finished['report']['score']<100
+
+def test_mistake_notebook_review_is_isolated_from_skill_score_and_can_be_removed(account, account_factory, seeded_run):
+    c=account['client'];rid,qs=seeded_run(account);wrong={'value':'错误'}
+    assert post_answer(c,rid,qs[0],wrong).json()['result']['correct'] is False
+    before=c.get('/api/abilities/A1').json()['skill_score']
+    listed=c.get('/api/mistakes')
+    assert listed.status_code==200 and len(listed.json())==1
+    mistake=listed.json()[0]
+    assert mistake['question']['id']==qs[0]['id'] and 'answer' not in mistake['question']
+    assert c.get('/api/dashboard').json()['mistake_count']==1
+    other=account_factory()['client']
+    assert other.get(f'/api/mistakes/{mistake["id"]}').status_code==404
+    review=c.post(f'/api/mistakes/{mistake["id"]}/answer',json={'answer':correct_answer(qs[0])})
+    assert review.status_code==200 and review.json()['result']['correct']
+    assert review.json()['affects_skill_score'] is False
+    assert c.get('/api/abilities/A1').json()['skill_score']==before
+    with Session(engine) as db:
+        stored=db.get(Mistake,mistake['id'])
+        assert stored.review_attempts==1 and stored.review_correct is True
+    dashboard=c.get('/api/dashboard').json()
+    assert len(dashboard['badges'])==17
+    assert len({badge['id'] for badge in dashboard['badges']})==17
+    assert all({'category','progress','target','earned'}<=set(badge) for badge in dashboard['badges'])
+    assert next(badge for badge in dashboard['badges'] if badge['id']=='review')['earned'] is True
+    assert c.delete(f'/api/mistakes/{mistake["id"]}').status_code==200
+    assert c.get('/api/mistakes').json()==[]
+    assert c.get('/api/dashboard').json()['mistake_count']==0
 
 def test_deadline_server_enforced_and_report_persisted(account, seeded_run):
     c=account['client'];rid,qs=seeded_run(account,'A1-RACE','competition',deadline=now()-timedelta(seconds=2))

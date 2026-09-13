@@ -15,7 +15,7 @@ def ability(aid): return next((a for a in ABILITIES if a['id']==aid),None)
 def levels(aid):
     a=ability(aid)
     if not a: return []
-    return [{'id':f'{aid}-L{i+1}','name':name,'mode':'course','count':5,'skill_id':f'{aid}-S{i+1}','minutes':5+i} for i,name in enumerate(a['skills'])]+[
+    return [{'id':f'{aid}-L{i+1}','name':name,'mode':'course','count':7,'skill_id':f'{aid}-S{i+1}','minutes':7+i} for i,name in enumerate(a['skills'])]+[
         {'id':f'{aid}-JOB','name':'企业试标 · 批量任务','mode':'job','count':20,'skill_id':f'{aid}-S5','minutes':20},
         {'id':f'{aid}-RACE','name':'能力挑战 · 限时赛','mode':'competition','count':10,'skill_id':f'{aid}-S5','minutes':10}]
 

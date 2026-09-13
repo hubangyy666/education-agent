@@ -4,7 +4,7 @@ import hashlib
 import secrets
 from datetime import datetime, timezone
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, String, JSON, Integer, Float, DateTime, ForeignKey, Text, Boolean, text
+from sqlalchemy import create_engine, String, JSON, Integer, Float, DateTime, ForeignKey, Text, Boolean, UniqueConstraint, text
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Session
 from pgvector.sqlalchemy import Vector
 import redis
@@ -55,6 +55,27 @@ class Progress(Base):
     score = mapped_column(Float, default=0)
     attempts = mapped_column(Integer, default=1)
     completed_at = mapped_column(DateTime(timezone=True), default=now)
+class Mistake(Base):
+    """A learner-owned, removable snapshot of a formally missed question."""
+    __tablename__ = 'mistakes'
+    __table_args__ = (UniqueConstraint('username', 'question_id', name='uq_mistakes_user_question'),)
+    id = mapped_column(String(40), primary_key=True)
+    username = mapped_column(ForeignKey('users.username'), index=True)
+    question_id = mapped_column(String(100), index=True)
+    ability_id = mapped_column(String(10))
+    skill_id = mapped_column(String(30), nullable=True)
+    level_id = mapped_column(String(30))
+    mode = mapped_column(String(20))
+    question = mapped_column(JSON)
+    latest_wrong_answer = mapped_column(JSON, default=dict)
+    wrong_count = mapped_column(Integer, default=1)
+    review_attempts = mapped_column(Integer, default=0)
+    review_wrong_attempts = mapped_column(Integer, default=0)
+    latest_review_answer = mapped_column(JSON, nullable=True)
+    review_correct = mapped_column(Boolean, nullable=True)
+    last_wrong_at = mapped_column(DateTime(timezone=True), default=now)
+    last_reviewed_at = mapped_column(DateTime(timezone=True), nullable=True)
+    removed_at = mapped_column(DateTime(timezone=True), nullable=True)
 class QuestionSet(Base):
     __tablename__ = 'question_sets'
     id = mapped_column(String(60), primary_key=True)
@@ -121,6 +142,7 @@ def init_db():
     # create_all does not add columns to an existing installation.
     with engine.begin() as conn:
         conn.execute(text("ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) NOT NULL DEFAULT 'student'"))
+        conn.execute(text("ALTER TABLE mistakes ADD COLUMN IF NOT EXISTS review_wrong_attempts INTEGER NOT NULL DEFAULT 0"))
     with Session(engine) as db:
         demo_accounts_enabled = os.getenv('DEMO_ACCOUNTS_ENABLED', 'true').lower() in {'1', 'true', 'yes', 'on'}
         student_password = os.getenv('BOOTSTRAP_STUDENT_PASSWORD', '123456')
@@ -134,6 +156,8 @@ def init_db():
             db.add(User(username='user1',name='系统管理员',password=password_hash(admin_password),role='admin',onboarding=True))
         else:
             administrator.role='admin'
+        from .mistakes import backfill_mistakes
+        backfill_mistakes(db)
         db.commit()
     cache.ping()
     if not storage.bucket_exists('zhiji-training'): storage.make_bucket('zhiji-training')

@@ -158,6 +158,8 @@
 }
 
 .home-tutor .tutor-stage.is-open.has-messages > .tutor-chat {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   align-self: stretch;
   width: min(760px, calc(100vw - 48px));
   min-height: 0;

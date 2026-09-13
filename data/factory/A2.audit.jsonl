@@ -384,3 +384,4 @@
 {"at": "2026-09-10T09:11:04.319601+00:00", "stage": "candidate_rejected", "skill_id": "A2-S5", "reason": "duplicate_content"}
 {"at": "2026-09-10T09:11:09.297270+00:00", "stage": "candidate_rejected", "skill_id": "A2-S5", "reason": "duplicate_content"}
 {"at": "2026-09-10T09:11:09.304421+00:00", "stage": "candidate_rejected", "skill_id": "A2-S5", "reason": "duplicate_content"}
+{"at": "2026-09-13T09:17:54.835336+00:00", "stage": "published", "version": 4, "question_count": 65, "new_question_count": 63, "reused_question_count": 2, "changed_levels": ["A2-L1", "A2-L2", "A2-L3", "A2-L4", "A2-L5", "A2-JOB", "A2-RACE"], "count": 65, "skill_counts": {"A2-S1": 13, "A2-S2": 13, "A2-S3": 13, "A2-S4": 13, "A2-S5": 13}}

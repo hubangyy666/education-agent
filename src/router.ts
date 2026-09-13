@@ -9,6 +9,7 @@ const router = createRouter({ history: createWebHistory(), routes: [
   {path:'/skills/:id',component:()=>import('./views/Module.vue')},
   {path:'/train/:id',component:()=>import('./views/Training.vue')},
   {path:'/profile',component:()=>import('./views/Profile.vue')},
+  {path:'/profile/mistakes/:id?',component:()=>import('./views/Mistakes.vue')},
   {path:'/admin',component:()=>import('./views/Admin.vue')},
   {path:'/tasks',component:()=>import('./views/Tasks.vue')},
   {path:'/jobs',component:()=>import('./views/Jobs.vue')},

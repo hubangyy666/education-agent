@@ -201,7 +201,8 @@ def training_questions(step, db):
     source = step.get('question_source', 'active_set')
     if source == 'visual_reserve':
         from .visual_reserve import visual_questions
-        candidates = [q for q in visual_questions(aid) if q['skill_id'] == skill_id]
+        candidates = [q for q in visual_questions(aid)
+                      if q['skill_id'] == skill_id and not q.get('curriculum_fallback')]
         if step.get('target_labels'):
             candidates = [q for q in candidates if q['type'] == 'box' and
                           all(target['label'] in step['target_labels'] for target in q['answer'])]

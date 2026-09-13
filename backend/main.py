@@ -10,12 +10,13 @@ from fastapi.responses import StreamingResponse, FileResponse
 from pydantic import BaseModel, Field
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
-from .db import init_db, get_db, engine, cache, storage, ROOT, User, Run, Progress, QuestionSet, Knowledge, TaskCard, now, password_valid
+from .db import init_db, get_db, engine, cache, storage, ROOT, User, Run, Progress, Mistake, QuestionSet, Knowledge, TaskCard, now, password_valid
 from .catalog import ABILITIES, ability, levels
 from .factory import initialize_sets, public_question, samples, image_question, choice
 from .grading import grade, report
 from . import tutor
 from .factory_workflow import refresh_questions,refresh_status as factory_refresh_status,monitor_pending
+from .mistakes import record_wrong, record_report_mistakes
 
 COURSE_COACH_ENCOURAGEMENTS = (
     '不是很对，先别急。换一个观察角度，再试一次。',
@@ -66,6 +67,8 @@ def get_run(run_id,user,db,lock=False):
 def finish(run,db):
     if run.status!='active': return
     run.report=report(run.questions,run.answers);run.status='completed';run.finished_at=now()
+    if run.mode in ('job','competition'):
+        record_report_mistakes(db,run)
     key=f'{run.username}:{run.level_id}'
     if run.mode!='onboarding':
         p=db.get(Progress,key)
@@ -93,14 +96,28 @@ async def expiration_loop():
             import logging
             logging.getLogger('zhiji').exception('到期任务结算失败，将重试')
         await asyncio.sleep(1)
+def annotation_feedback(question,result,wrong_attempts=0):
+    """Return grading evidence; annotation coordinates require an explicit read."""
+    annotation=question['type'] in ('box','polygon')
+    feedback={key:value for key,value in result.items() if not (annotation and key=='standard_answer')}
+    feedback.update(wrong_attempts=wrong_attempts,
+                    can_view_standard=bool(annotation and (result.get('correct') or wrong_attempts>=3)))
+    return feedback
+
+def run_question_feedback(run,question):
+    qid=question['id']
+    if qid not in (run.answers or {}): return None
+    if run.mode not in ('course','onboarding') and run.status!='completed': return None
+    wrong_attempts=int((run.hints or {}).get(f'course-wrong-attempts:{qid}',0))
+    return annotation_feedback(question,grade(question,run.answers[qid]),wrong_attempts)
+
 def run_dict(run):
     from .jobs import training_context
-    may_show_status=run.mode in ('course','onboarding') or run.status=='completed'
-    question_status={
-        q['id']:('correct' if grade(q,run.answers[q['id']])['correct'] else 'incorrect')
-        for q in run.questions if may_show_status and q['id'] in run.answers
-    }
-    return {'job_learning':training_context(run),'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'question_status':question_status,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
+    question_feedback={q['id']:feedback for q in run.questions
+                       if (feedback:=run_question_feedback(run,q)) is not None}
+    question_status={qid:'correct' if feedback['correct'] else 'incorrect'
+                     for qid,feedback in question_feedback.items()}
+    return {'job_learning':training_context(run),'id':run.id,'ability_id':run.ability_id,'level_id':run.level_id,'mode':run.mode,'status':run.status,'questions':[public_question(q) for q in run.questions],'answers':run.answers,'question_status':question_status,'question_feedback':question_feedback,'deadline':run.deadline,'server_time':now(),'report':run.report,'started_at':run.started_at,'hints':run.hints,'revision_of':run.revision_of}
 
 class LoginBody(BaseModel):
     username:str=Field(min_length=1,max_length=40)
@@ -150,9 +167,41 @@ def dashboard(user:User=Depends(current_user),db:Session=Depends(get_db)):
     streak=0;date=today if activities.get(today.isoformat()) else today-timedelta(days=1)
     while activities.get(date.isoformat()): streak+=1;date-=timedelta(days=1)
     count=sum(r.report['count'] for r in runs if r.report);completed=sum(a['completed'] for a in states)
-    badges=[{'id':'first','name':'第一枚标注','description':'完成新手入门体验','icon':'ScanLine','earned':user.onboarding},{'id':'ten','name':'小步不停','description':'累计完成 10 道题目','icon':'Zap','earned':count>=10},{'id':'course','name':'学有所成','description':'完成 5 个技能关卡','icon':'GraduationCap','earned':completed>=5},{'id':'quality','name':'质量守护者','description':'岗位任务达到试标要求','icon':'ShieldCheck','earned':any(r.mode=='job' and r.report['passed'] for r in runs)},{'id':'race','name':'迎接挑战','description':'完成一次限时比赛','icon':'Trophy','earned':any(r.mode=='competition' for r in runs)}]
+    completed_courses=sum(l['completed'] for a in states for l in a['levels'] if l['mode']=='course')
+    job_runs=[r for r in runs if r.mode=='job' and r.report]
+    race_runs=[r for r in runs if r.mode=='competition' and r.report]
+    perfect_runs=sum((r.report or {}).get('score',0)>=99.95 for r in runs)
+    precise_annotations=sum(
+        (result.get('iou') is not None and result['iou']>.9)
+        for r in runs for result in (r.report or {}).get('results',[])
+    )
+    reviewed_mistakes=db.scalar(select(func.count()).select_from(Mistake).where(
+        Mistake.username==user.username,Mistake.review_attempts>0))
+    def badge(id,name,description,icon,category,progress,target):
+        return {'id':id,'name':name,'description':description,'icon':icon,'category':category,
+                'progress':min(progress,target),'target':target,'earned':progress>=target}
+    badges=[
+        badge('first','第一枚标注','完成新手入门体验','ScanLine','起步',int(user.onboarding),1),
+        badge('first-practice','正式启程','完成第一道正式训练题','Play','练习',count,1),
+        badge('ten','小步不停','累计完成 10 道题目','Zap','练习',count,10),
+        badge('fifty','稳定输出','累计完成 50 道题目','Layers3','练习',count,50),
+        badge('hundred','百题达人','累计完成 100 道题目','Target','练习',count,100),
+        badge('course-start','课程探索者','完成 1 个课关','BookOpen','课程',completed_courses,1),
+        badge('course','学有所成','完成 5 个课关','GraduationCap','课程',completed_courses,5),
+        badge('course-master','课程通关者','完成 25 个课关','CheckCheck','课程',completed_courses,25),
+        badge('job-start','岗位初探','完成 1 次岗位任务','BriefcaseBusiness','岗位',len(job_runs),1),
+        badge('quality','质量守护者','岗位任务达到试标要求','ShieldCheck','岗位',sum(bool(r.report.get('passed')) for r in job_runs),1),
+        badge('race','迎接挑战','完成 1 次限时比赛','Trophy','竞赛',len(race_runs),1),
+        badge('race-expert','赛场高手','限时比赛达到 80 分','Flame','竞赛',sum(r.report.get('score',0)>=80 for r in race_runs),1),
+        badge('perfect','满分时刻','获得 1 次 100 分报告','Sparkles','质量',perfect_runs,1),
+        badge('precision','精准标注','标注题交并比超过 90%','Focus','质量',precise_annotations,1),
+        badge('review','复盘有方','在错题本完成 1 次复习','RotateCcw','复盘',reviewed_mistakes,1),
+        badge('streak-three','三日坚持','连续学习 3 天','Flame','坚持',streak,3),
+        badge('streak-seven','一周不辍','连续学习 7 天','CalendarDays','坚持',streak,7),
+    ]
     active=db.scalar(select(Run).where(Run.username==user.username,Run.status=='active',Run.mode!='onboarding').order_by(Run.started_at.desc()))
-    return {'user':user_dict(user),'abilities':states,'recommendation':recommendation(states,user.goal),'today_count':today_count,'today_rate':round(sum(r.report['score']*r.report['count'] for r in today_runs)/today_count,1) if today_count else 0,'total_count':count,'completed_levels':completed,'streak':streak,'activities':activities,'badges':badges,'diagnostic':user.diagnostic,'active_run':{'id':active.id,'ability_id':active.ability_id,'answered':len(active.answers),'count':len(active.questions)} if active else None,'recent_runs':[{'id':r.id,'ability_id':r.ability_id,'level_id':r.level_id,'mode':r.mode,'score':r.report['score'],'date':r.finished_at,'passed':r.report['passed']} for r in runs[:8]]}
+    mistake_count=db.scalar(select(func.count()).select_from(Mistake).where(Mistake.username==user.username,Mistake.removed_at==None))
+    return {'user':user_dict(user),'abilities':states,'recommendation':recommendation(states,user.goal),'today_count':today_count,'today_rate':round(sum(r.report['score']*r.report['count'] for r in today_runs)/today_count,1) if today_count else 0,'total_count':count,'completed_levels':completed,'mistake_count':mistake_count,'streak':streak,'activities':activities,'badges':badges,'diagnostic':user.diagnostic,'active_run':{'id':active.id,'ability_id':active.ability_id,'answered':len(active.answers),'count':len(active.questions)} if active else None,'recent_runs':[{'id':r.id,'ability_id':r.ability_id,'level_id':r.level_id,'mode':r.mode,'score':r.report['score'],'date':r.finished_at,'passed':r.report['passed']} for r in runs[:8]]}
 class SettingsBody(BaseModel):
     name:str=Field(min_length=1,max_length=20)
     goal:str|None=None
@@ -170,6 +219,58 @@ class VoiceBody(BaseModel): voice:bool
 def voice_setting(body:VoiceBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
     user.voice=body.voice
     db.commit();return user_dict(user)
+
+def get_mistake(mistake_id,user,db,lock=False):
+    stmt=select(Mistake).where(Mistake.id==mistake_id,Mistake.username==user.username,Mistake.removed_at==None)
+    if lock: stmt=stmt.with_for_update()
+    item=db.scalar(stmt)
+    if not item: raise HTTPException(404,'没有找到这道错题。')
+    return item
+def mistake_dict(item):
+    wrong_attempts=item.review_wrong_attempts or 0
+    feedback=(annotation_feedback(item.question,grade(item.question,item.latest_review_answer),wrong_attempts)
+              if item.latest_review_answer is not None else None)
+    return {'id':item.id,'question_id':item.question_id,'ability_id':item.ability_id,
+            'skill_id':item.skill_id,'level_id':item.level_id,'mode':item.mode,
+            'question':public_question(item.question),'latest_wrong_answer':item.latest_wrong_answer,
+            'wrong_count':item.wrong_count,'review_attempts':item.review_attempts,
+            'review_correct':item.review_correct,'last_wrong_at':item.last_wrong_at,
+            'last_reviewed_at':item.last_reviewed_at,'latest_review_answer':item.latest_review_answer,
+            'feedback':feedback,'wrong_attempts':wrong_attempts,
+            'can_view_standard':bool(feedback and feedback['can_view_standard'])}
+@app.get('/api/mistakes')
+def mistakes(user:User=Depends(current_user),db:Session=Depends(get_db)):
+    items=db.scalars(select(Mistake).where(
+        Mistake.username==user.username,Mistake.removed_at==None
+    ).order_by(Mistake.last_wrong_at.desc())).all()
+    return [mistake_dict(item) for item in items]
+@app.get('/api/mistakes/{mistake_id}')
+def read_mistake(mistake_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    return mistake_dict(get_mistake(mistake_id,user,db))
+@app.get('/api/mistakes/{mistake_id}/standard-answer')
+def mistake_standard_answer(mistake_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    item=get_mistake(mistake_id,user,db)
+    if not mistake_dict(item)['can_view_standard']:
+        raise HTTPException(403,'答对本题或连续答错 3 次后，可以查看标准答案。')
+    return {'standard_answer':item.question['answer']}
+class MistakeAnswerBody(BaseModel): answer:dict
+@app.post('/api/mistakes/{mistake_id}/answer')
+def answer_mistake(mistake_id:str,body:MistakeAnswerBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    if len(json.dumps(body.answer))>50000: raise HTTPException(422,'标注数据过大。')
+    item=get_mistake(mistake_id,user,db,True)
+    result=grade(item.question,body.answer)
+    item.review_attempts+=1;item.latest_review_answer=body.answer
+    item.review_wrong_attempts=0 if result['correct'] else (item.review_wrong_attempts or 0)+1
+    item.review_correct=result['correct'];item.last_reviewed_at=now()
+    db.commit()
+    feedback=annotation_feedback(item.question,result,item.review_wrong_attempts)
+    return {'saved':True,'result':feedback,'review_attempts':item.review_attempts,
+            'wrong_attempts':item.review_wrong_attempts,'can_view_standard':feedback['can_view_standard'],
+            'affects_skill_score':False}
+@app.delete('/api/mistakes/{mistake_id}')
+def remove_mistake(mistake_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    item=get_mistake(mistake_id,user,db,True);item.removed_at=now();db.commit()
+    return {'ok':True,'id':item.id}
 
 @app.post('/api/onboarding/start')
 def start_onboarding(user:User=Depends(current_user),db:Session=Depends(get_db)):
@@ -213,6 +314,15 @@ def start(body:StartBody,user:User=Depends(current_user),db:Session=Depends(get_
     db.add(run);db.commit();return run_dict(run)
 @app.get('/api/runs/{run_id}')
 def read_run(run_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)): return run_dict(get_run(run_id,user,db,True))
+@app.get('/api/runs/{run_id}/questions/{question_id}/standard-answer')
+def run_standard_answer(run_id:str,question_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    run=get_run(run_id,user,db,True)
+    question=next((q for q in run.questions if q['id']==question_id),None)
+    if not question: raise HTTPException(404,'题目不属于本次训练。')
+    feedback=run_question_feedback(run,question)
+    if not feedback or not feedback['can_view_standard']:
+        raise HTTPException(403,'答对本题或连续答错 3 次后，可以查看标准答案；岗关和赛关需先整包结算。')
+    return {'standard_answer':question['answer']}
 class AnswerBody(BaseModel): question_id:str;answer:dict
 @app.post('/api/runs/{run_id}/answer')
 def submit_answer(run_id:str,body:AnswerBody,user:User=Depends(current_user),db:Session=Depends(get_db)):
@@ -223,31 +333,36 @@ def submit_answer(run_id:str,body:AnswerBody,user:User=Depends(current_user),db:
     if not q: raise HTTPException(404,'题目不属于本次训练。')
     if len(json.dumps(body.answer))>50000: raise HTTPException(422,'标注数据过大。')
     guided_course=run.mode=='course' and not run.level_id.startswith('JT-')
-    if guided_course:
-        blocked=next((prior for prior in run.questions[:question_index]
-                      if prior['id'] not in run.answers or not grade(prior,run.answers[prior['id']])['correct']),None)
-        if blocked: raise HTTPException(409,'请先答对当前题目，再进入下一题。')
     result=grade(q,body.answer);run.answers={**run.answers,body.question_id:body.answer}
     wrong_attempts=0;coach_encouragement=''
-    if guided_course:
+    if guided_course or (run.mode in ('course','onboarding') and q['type'] in ('box','polygon')):
         attempt_key=f'course-wrong-attempts:{body.question_id}'
         wrong_attempts=0 if result['correct'] else int((run.hints or {}).get(attempt_key,0))+1
         run.hints={**(run.hints or {}),attempt_key:wrong_attempts}
+    if guided_course:
+        score_attempt_key=f'course-score-attempts:{body.question_id}'
+        score_correct_key=f'course-score-correct-attempts:{body.question_id}'
+        score_attempts=int((run.hints or {}).get(score_attempt_key,0))+1
+        score_correct_attempts=int((run.hints or {}).get(score_correct_key,0))+int(result['correct'])
+        run.hints={**(run.hints or {}),attempt_key:wrong_attempts,
+                   score_attempt_key:score_attempts,score_correct_key:score_correct_attempts}
+        if not result['correct']:
+            record_wrong(db,run,q,body.answer)
         if wrong_attempts and wrong_attempts%2==0:
             coach_index=(wrong_attempts//2-1)%len(COURSE_COACH_ENCOURAGEMENTS)
             coach_encouragement=COURSE_COACH_ENCOURAGEMENTS[coach_index]
-    # Retrying is allowed; only the latest committed answer is scored.
+    # Retrying is allowed and every formal course submission remains in the skill score.
     db.commit()
     if run.mode in ('course','onboarding'):
-        return {'saved':True,'result':result,'wrong_attempts':wrong_attempts,
+        feedback=annotation_feedback(q,result,wrong_attempts)
+        return {'saved':True,'result':feedback,'wrong_attempts':wrong_attempts,
+                'can_view_standard':feedback['can_view_standard'],
                 'coach_encouragement':coach_encouragement}
     return {'saved':True,'answered':len(run.answers),'count':len(run.questions)}
 @app.post('/api/runs/{run_id}/finish')
 def finish_run(run_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
     run=get_run(run_id,user,db,True)
     if run.mode=='course' and len(run.answers)<len(run.questions): raise HTTPException(400,'请先完成本关的全部题目。')
-    if run.mode=='course' and not run.level_id.startswith('JT-') and any(not grade(q,run.answers.get(q['id'],{}))['correct'] for q in run.questions):
-        raise HTTPException(400,'请先答对本关的全部题目。')
     if run.mode=='job' and len(run.answers)<len(run.questions): raise HTTPException(400,'任务包还有未处理的样本，请全部处理后提交。')
     finish(run,db);return run_dict(run)
 @app.post('/api/runs/{run_id}/repair')
