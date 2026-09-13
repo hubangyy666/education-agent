@@ -32,8 +32,8 @@ def test_committed_initial_question_sets_are_complete_and_executable():
             if question.get('image'):
                 assert (ROOT/'data/samples'/Path(question['image']).name).is_file()
     assert len(ids)==650 and len(set(ids))==650
-    assert types=={'choice':205,'box':368,'polygon':51,'entity':26}
-    assert sum(bool(q.get('image')) for item in initial.values() for qs in item['questions'].values() for q in qs)==436
+    assert types=={'choice':215,'box':358,'polygon':51,'entity':26}
+    assert sum(bool(q.get('image')) for item in initial.values() for qs in item['questions'].values() for q in qs)==426
 
 
 def test_five_question_active_courses_upgrade_to_seven_without_changing_job_or_race():

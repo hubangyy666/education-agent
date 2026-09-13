@@ -320,7 +320,8 @@ def run_standard_answer(run_id:str,question_id:str,user:User=Depends(current_use
     question=next((q for q in run.questions if q['id']==question_id),None)
     if not question: raise HTTPException(404,'题目不属于本次训练。')
     feedback=run_question_feedback(run,question)
-    if not feedback or not feedback['can_view_standard']:
+    onboarding_retry=bool(run.mode=='onboarding' and feedback and not feedback['correct'])
+    if not feedback or (not feedback['can_view_standard'] and not onboarding_retry):
         raise HTTPException(403,'答对本题或连续答错 3 次后，可以查看标准答案；岗关和赛关需先整包结算。')
     return {'standard_answer':question['answer']}
 class AnswerBody(BaseModel): question_id:str;answer:dict

@@ -51,6 +51,9 @@ def generate_initial_set(aid,version=1):
     This is kept as the reproducible source for the committed cold-start seed.
     Runtime initialization loads the frozen artifact instead of regenerating it.
     """
+    if aid=='A1':
+        from .a1_curriculum import generate_pool
+        return generate_pool(version)
     rng=random.Random(f'{aid}:{version}');reserve=samples();rng.shuffle(reserve);pool={}
     # Start from the authored curriculum and replace only as many non-visual
     # questions as the new coverage rule requires. Existing visual exercises
@@ -162,6 +165,9 @@ def validate(pool,aid):
                 if q['answer'] not in q['options'] or len(set(q['options']))!=len(q['options']): raise ValueError('选项或答案无效')
                 golden={'value':q['answer']}
             if not grade(q,golden)['correct']: raise ValueError('标准答案无法被判分器正确执行')
+    if aid=='A1':
+        from .a1_quality import validate_a1_content
+        validate_a1_content(pool)
 def normalize_course_pool(current,initial,aid,version):
     """Upgrade published five-question course levels without touching job/race content."""
     from .factory_agent import content_hash
@@ -228,12 +234,23 @@ def normalize_visual_pool(current,initial,aid,version):
 
 def initialize_sets():
     initial=load_initial_sets()
+    from .a1_quality import needs_repair
     with Session(engine) as db:
         for a in ABILITIES:
             current=db.scalar(select(QuestionSet).where(QuestionSet.ability_id==a['id'],QuestionSet.active==True))
             if not current:
                 item=initial[a['id']]
                 db.add(QuestionSet(id=str(uuid.uuid4()),ability_id=a['id'],version=item['version'],questions=item['questions']))
+            elif a['id']=='A1' and needs_repair(current.questions):
+                # Publish corrected A1 content once; historical sets and Run
+                # snapshots keep their original questions and answers.
+                version=current.version+1
+                questions=copy.deepcopy(initial['A1']['questions'])
+                for lid,rows in questions.items():
+                    for index,question in enumerate(rows,1):question['id']=f'{lid}-V{version}-Q{index}'
+                validate(questions,'A1')
+                current.active=False
+                db.add(QuestionSet(id=str(uuid.uuid4()),ability_id='A1',version=version,questions=questions))
             elif any(len(current.questions.get(lv['id'],[]))!=lv['count'] for lv in levels(a['id'])) or any(
                 not _level_visual_layout_valid(current.questions.get(lv['id'],[]),lv['mode']) for lv in levels(a['id'])
             ):

@@ -111,6 +111,18 @@ def test_guided_annotation_reference_streak_does_not_add_formal_score_counters(a
     assert client.get('/api/mistakes').json()==[]
 
 
+def test_onboarding_wrong_answer_exposes_reference_only_after_the_first_submission(account,annotation_run):
+    client=account['client'];rid,q=annotation_run()
+    with Session(engine) as db:
+        run=db.get(Run,rid);run.mode='onboarding';run.level_id='ONBOARDING'
+        db.commit()
+    path=f'/api/runs/{rid}/questions/{q["id"]}/standard-answer'
+    assert client.get(path).status_code==403
+    first=submit(client,rid,q,{})
+    assert first['wrong_attempts']==1 and first['can_view_standard'] is False
+    assert client.get(path).json()=={'standard_answer':q['answer']}
+
+
 def test_annotation_attempts_belong_to_each_question(account,annotation_run):
     client=account['client'];rid,first=annotation_run()
     second=copy.deepcopy(first);second['id']+='-second'

@@ -1,0 +1,191 @@
+{
+  "description": "2026-09-13 对 data/factory/A1.reserve.json 的 53 道旧储备题进行独立内容复核。依据 backend/catalog.py 的 A1 五项技能，逐题阅读题干、规则、选项、答案、解释和提示，判断直接考点、规则冲突及实质同质。这里只记录拒绝的 31 道题；其余 22 道保留。S1 保留 2/11，S2 保留 3/11，S3 保留 4/11，S4 保留 5/10，S5 保留 8/10。S2 聚焦所需输出与标注任务类型，手工/半自动/自动的产生方式不等同于任务类型。同质判断比较实际判断操作和决策依据，不以不同题号、人物、对象或文本哈希作为新题证明。此文件是本次独立内容复核的排除记录，不修改旧储备原文、状态或已有模型审核元数据，不表示重新调用原 AI 审核服务。content_hash 使用现有 factory_agent.content_hash 的内容指纹。",
+  "rejected": [
+    {
+      "content_hash": "7fb57821fed52a7c967046fad420a494ebd7e8d477d50c2e95d92a241c8ba7c0",
+      "question_id": "QF-7fb57821fed52a7c967046fa",
+      "skill_id": "A1-S1",
+      "reason": "直接考查按线状输出选择折线工具，属于 A1-S2 的任务输出识别，不考查原始数据、区域与标签的区分。"
+    },
+    {
+      "content_hash": "cb9b86729153ad0edfa0135d4755a134142c2d78b28da51f7014a65c7e0ffb05",
+      "question_id": "QF-cb9b86729153ad0edfa0135d",
+      "skill_id": "A1-S1",
+      "reason": "直接考查人工与工具参与的标注产生方式，未考查数据与标签的含义或关联，偏离 A1-S1。"
+    },
+    {
+      "content_hash": "32dcccf699f2b72326c3b337dcf67e06af4a1d19ab4065420a5af2624a815751",
+      "question_id": "QF-32dcccf699f2b72326c3b337",
+      "skill_id": "A1-S1",
+      "reason": "直接考查作业阶段与状态，属于 A1-S4 工作流程；同一判断已由技能归属正确的 QF-00cfa9ec95949ace562ff616 覆盖。"
+    },
+    {
+      "content_hash": "bfe14c390a05c48624f41c8ef494aa0527ec78f4d12df5e2af7602b89831a916",
+      "question_id": "QF-bfe14c390a05c48624f41c8e",
+      "skill_id": "A1-S1",
+      "reason": "直接考查 train/dev/test 文件划分及名称用途对应，没有辨认原始数据、标签、区域或标注结果，不符合 A1-S1 的直接技能点。"
+    },
+    {
+      "content_hash": "15fbd62953f1425f755f6d90043981a6313c3c0c5bf2dff6e873ef9ffd892e9e",
+      "question_id": "QF-15fbd62953f1425f755f6d90",
+      "skill_id": "A1-S1",
+      "reason": "直接判断标注完成但尚未导出的流程状态，属于 A1-S4；同一决策保留 QF-79d780543c1ad4b2457df6a2。"
+    },
+    {
+      "content_hash": "74c91aef8ab10908da283daf70672d318a58b39cc1fd086cc728ab26fb63155d",
+      "question_id": "QF-74c91aef8ab10908da283daf",
+      "skill_id": "A1-S1",
+      "reason": "直接考查 Ground Truth 验证子集的评估范围，属于 A1-S3 标准答案的使用边界；与该技能中的 QF-9fb0dd036177654bfc8738f8 实质重复。"
+    },
+    {
+      "content_hash": "8fb0febdb25ea2ceeb8b6256f8c071123fee6bae7ac8292cbf6820d7807c233b",
+      "question_id": "QF-8fb0febdb25ea2ceeb8b6256",
+      "skill_id": "A1-S1",
+      "reason": "直接考查处理记录不能替代质量检查，属于工作流程与质检证据边界；数据与标签只在背景出现，未成为判断对象。"
+    },
+    {
+      "content_hash": "55ba9eb4bc7c1647ef12e2ef21f939eb6ea49d7f9b1166e9728e236dbcbd07e5",
+      "question_id": "QF-55ba9eb4bc7c1647ef12e2ef",
+      "skill_id": "A1-S1",
+      "reason": "与 QF-a70530d2f9a745e57a5280c6 都以区域和标签缺少其一来判断标注不完整，仅对调缺失要素并替换人物、对象。保留前者作为完整关联判断，另保留区域术语识别题。"
+    },
+    {
+      "content_hash": "e6cafa72179358bcf8b057c3173b5ea44c383474bee6aabb03f5e5fa1204e743",
+      "question_id": "QF-e6cafa72179358bcf8b057c3",
+      "skill_id": "A1-S1",
+      "reason": "直接根据精确轮廓要求选择多边形工具，属于 A1-S2 的任务输出识别，不是数据与标签技能。"
+    },
+    {
+      "content_hash": "1e26be14688e452e6ee451a43bf2bfc7fa22b231b6c81111e077b3b8cc27d71f",
+      "question_id": "QF-1e26be14688e452e6ee451a4",
+      "skill_id": "A1-S2",
+      "reason": "直接判断画框后缺少类别关联，属于 A1-S1，未区分标注任务类型；与 QF-a70530d2f9a745e57a5280c6 仅换人物和类别。"
+    },
+    {
+      "content_hash": "9773321ad5cbbcd965a043501ac6b0de58e2a4962fdeaa0c4dfe57f368f7b3cd",
+      "question_id": "QF-9773321ad5cbbcd965a04350",
+      "skill_id": "A1-S3",
+      "reason": "直接判断画框后缺少标签的结果完整性，属于 A1-S1，不考查标准答案；与 QF-a70530d2f9a745e57a5280c6 实质重复。"
+    },
+    {
+      "content_hash": "1a60d5b2f58f8fafbe6bea6c48e9e9df9b0f2b88d4c3a496a60ccbcc07155710",
+      "question_id": "QF-1a60d5b2f58f8fafbe6bea6c",
+      "skill_id": "A1-S3",
+      "reason": "只判断插值属于半自动产生方式，没有判断参考答案的可靠性、用途、纠错或版本，不符合 A1-S3 标准答案技能。"
+    },
+    {
+      "content_hash": "44ae5781c127bbd4ea09ac461ca892415d57a38154d17b42d4bab79eb8dc46c8",
+      "question_id": "QF-44ae5781c127bbd4ea09ac46",
+      "skill_id": "A1-S5",
+      "reason": "在上传安全判断中混入 train/dev/test 合并和文件命名考点，正确答案要求同时判断数据划分；现有 A1-S5 范围明确排除训练测试集划分与文件格式题。"
+    },
+    {
+      "content_hash": "273b0cec0a2b3ef40ed54fec617bced40984f013527fa2272d4d6affea82c112",
+      "question_id": "QF-273b0cec0a2b3ef40ed54fec",
+      "skill_id": "A1-S2",
+      "reason": "题干先明确本项目车辆必须用矩形框标区域，随后又要求汽车精确轮廓并将多边形设为唯一正确答案，未说明任务变更或矩形规则的例外，造成同题输出要求冲突。"
+    },
+    {
+      "content_hash": "734974c97603e498378299d52b7f76cea21c114d52f029a157d66288d3e255f6",
+      "question_id": "QF-734974c97603e498378299d5",
+      "skill_id": "A1-S2",
+      "reason": "直接读取作业阶段、状态和负责人，属于 A1-S4 工作流程；2D 只是背景字段，未考查任务输出类型。"
+    },
+    {
+      "content_hash": "b14c4ef767274b3bc65804b450059d6d8eb21ec08019507f4b4936514346c48a",
+      "question_id": "QF-b14c4ef767274b3bc65804b4",
+      "skill_id": "A1-S2",
+      "reason": "题干先规定行人用矩形框，再要求同一任务绘制精确轮廓并判多边形为正确，未说明规则例外；同时与 QF-273b0cec0a2b3ef40ed54fec 只是替换车辆为行人。"
+    },
+    {
+      "content_hash": "bd6cae34eef1a3ea9457a1b26723545f84ab52aa162539dfe86d90a6aaa29ce4",
+      "question_id": "QF-bd6cae34eef1a3ea9457a1b2",
+      "skill_id": "A1-S2",
+      "reason": "只区分手工、半自动、自动的标注产生方式；没有依据所需输出区分类别、位置、轮廓或实体等任务类型，不符合本课关直接考点。"
+    },
+    {
+      "content_hash": "fe45b7f6f720b3194bc3dfbbd845e0e081609aa617f12042b9dccde6f03a0270",
+      "question_id": "QF-fe45b7f6f720b3194bc3dfbb",
+      "skill_id": "A1-S2",
+      "reason": "直接区分作业阶段和状态，属于 A1-S4；同一判断保留技能归属正确的 QF-00cfa9ec95949ace562ff616。"
+    },
+    {
+      "content_hash": "c6b439d812a38cd4a47341113d3d207aa73865f0263fca2888ab8ef940ed250e",
+      "question_id": "QF-c6b439d812a38cd4a4734111",
+      "skill_id": "A1-S3",
+      "reason": "仅从图片、框、类别和结果文件中识别标签，属于 A1-S1 的基础术语，未涉及标准答案。"
+    },
+    {
+      "content_hash": "a78f50f5d9fc31acc5c66523d44723859e41dbb8ec943f2d0217049d2f335818",
+      "question_id": "QF-a78f50f5d9fc31acc5c66523",
+      "skill_id": "A1-S4",
+      "reason": "直接判断公开数据的复制、分发许可与来源记录，属于 A1-S5 数据安全，不涉及流程衔接、作业状态或交接。"
+    },
+    {
+      "content_hash": "73e1cb22dfddd7c1d9fb568088162e4c94014c2bf52a7ed165dfaf9765747630",
+      "question_id": "QF-73e1cb22dfddd7c1d9fb5680",
+      "skill_id": "A1-S2",
+      "reason": "直接判断关键帧插值的半自动产生方式，未区分标注输出任务类型；与其他技能中同一插值情境也高度同质。"
+    },
+    {
+      "content_hash": "15e6983a4ef4610fa03f6012772d5925af676b72ef6512dafc0e0c45ac298c18",
+      "question_id": "QF-15e6983a4ef4610fa03f6012",
+      "skill_id": "A1-S2",
+      "reason": "直接辨认原始视频、框、类别和结果中哪一项是任务，属于 A1-S1 的数据与标签术语；没有选择或区分标注任务类型。"
+    },
+    {
+      "content_hash": "b974d2467035b8322c43b54ccd1e534d93d283e74a23b165c6a423d3103943a7",
+      "question_id": "QF-b974d2467035b8322c43b54c",
+      "skill_id": "A1-S3",
+      "reason": "与 QF-9fb0dd036177654bfc8738f8 同样只判断验证子集不能当作全量逐张审核，改为选择报告表述未增加新决策；本题还未给出结果良好这一事实，正确选项却直接声称结果良好。"
+    },
+    {
+      "content_hash": "92c96652d13d40ae3534be600291e813b998eaf6c821fbbe568f993d83b3733f",
+      "question_id": "QF-92c96652d13d40ae3534be60",
+      "skill_id": "A1-S3",
+      "reason": "与 QF-9fb0dd036177654bfc8738f8 共享同一验证子集规则和结论，只把纠正错误报告改为解释结果范围；保留一题覆盖该判断。"
+    },
+    {
+      "content_hash": "1e860a50aad6099984f48da4626b039bf60d0aaef99ed4fc4f5bd354f05238f8",
+      "question_id": "QF-1e860a50aad6099984f48da4",
+      "skill_id": "A1-S3",
+      "reason": "与 QF-9fb0dd036177654bfc8738f8 都要求指出把验证子集估计扩大为全批逐张审核的错误，核心操作、场景与依据相同。"
+    },
+    {
+      "content_hash": "09afa6aea209f2599b59ae499483841de3e5631cf7a6834378bee88ea298dcda",
+      "question_id": "QF-09afa6aea209f2599b59ae49",
+      "skill_id": "A1-S3",
+      "reason": "与 QF-74ddfd769faa88686134d13d 都以发现参考答案明显错误后仍计算质量为情境，判断不可靠基准导致结果失信；保留规则更简洁、直接的前者。"
+    },
+    {
+      "content_hash": "bae4174afe3c6bd8da644e4152ca7fd2d7c6821870f280ed8ff4b85c06924c5d",
+      "question_id": "QF-bae4174afe3c6bd8da644e41",
+      "skill_id": "A1-S4",
+      "reason": "直接按圆形目标选择椭圆工具，属于 A1-S2，不考工作流程；与该技能中的 QF-d4ab03890b72af763250f52a 主要只更换圆形对象。"
+    },
+    {
+      "content_hash": "493ad72c6cc6d2049ec1722ebc0514812cc8e8615c8ca38ad1fe65db0311ad34",
+      "question_id": "QF-493ad72c6cc6d2049ec1722e",
+      "skill_id": "A1-S4",
+      "reason": "与 QF-5128cff6e3a267a856bcf5ea 的已完成步骤、缺失步骤和正确行动完全相同，均为配置标签界面后先导入；仅补充 Label Studio 背景不构成新题。"
+    },
+    {
+      "content_hash": "24225a92f78c6278dd81ad21bd5dba0184e87dc9c4999738726c166f556afc33",
+      "question_id": "QF-24225a92f78c6278dd81ad21",
+      "skill_id": "A1-S4",
+      "reason": "与 QF-5128cff6e3a267a856bcf5ea 都是同一人物在配置完成后尚未导入，要求选择导入为下一步；重写干扰选项没有增加新判断。"
+    },
+    {
+      "content_hash": "ae6394c7723e275baa261e5a0a4066909546020400f2537841252921ffee2eb2",
+      "question_id": "QF-ae6394c7723e275baa261e5a",
+      "skill_id": "A1-S5",
+      "reason": "与 QF-18fea224f5deebde237e0350 都要求原始数据许可不能覆盖标注数据的研究用途限制，判断依据与禁止标注商用、公开分发的结论相同。保留后者，其选项需同时区分两类数据各自允许的用途。"
+    },
+    {
+      "content_hash": "9063c40ea12e523fa90678c13463951b2ead624285d8cec42f4260c69c2c7eec",
+      "question_id": "QF-9063c40ea12e523fa90678c1",
+      "skill_id": "A1-S4",
+      "reason": "与 QF-79d780543c1ad4b2457df6a2 都只依据是否导出判断流程完成，正反更换导出状态并未增加新流程决策；保留需要识别遗漏步骤的版本。"
+    }
+  ]
+}

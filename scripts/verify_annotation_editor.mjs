@@ -117,6 +117,14 @@ await check('standard answer alone enforces read-only on every pointer, keyboard
   assert.equal(events.length, count); assert.deepEqual(plain(props.modelValue), before)
   scope.stop()
 })
+await check('onboarding standard-answer assist keeps drawing and labeling enabled', async () => {
+  const { state, props, scope } = editor({ modelValue: { boxes: [] }, standard: initialBoxes(), standardAssist: true })
+  assert.equal(state.showingStandard.value, true); assert.equal(state.readOnly.value, false)
+  state.down(pointer(.55, .1)); state.up(pointer(.8, .35)); await vue.nextTick()
+  assert.equal(props.modelValue.boxes.length, 1)
+  state.chooseLabel('人'); await vue.nextTick(); assert.equal(props.modelValue.boxes[0].label, '人')
+  scope.stop()
+})
 await check('native label input keys are not stolen; selected-frame arrow keys remain independent', async () => {
   const { state, props, events, scope } = editor({ modelValue: { boxes: initialBoxes() } })
   state.selectBox(1)

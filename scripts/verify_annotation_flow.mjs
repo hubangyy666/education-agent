@@ -56,9 +56,14 @@ for(const name of ['Training','Mistakes']){
 await check('mistake detail restores independent review evidence without autoloading standard',async()=>{
   const p=await page('Mistakes');await p.state.load();assert.equal(p.state.feedback.value.wrong_attempts,3);assert.equal(p.state.canViewStandard.value,true);assert.equal(p.state.showStandard.value,false);p.unmount()
 })
-await check('onboarding retry returns to independent drawing and clears all reference state',async()=>{
+await check('onboarding correct-answer retry returns to independent drawing and clears all reference state',async()=>{
   const p=await page('Onboarding');p.state.run.value={questions:[question,question]};p.state.step.value=6;p.state.answer.value={boxes:standard};p.state.feedback.value={correct:true};p.state.showStandard.value=true;p.state.standardAnswer.value=standard
-  p.state.retryIndependent();assert.equal(p.state.step.value,5);assert.equal(p.state.answer.value.boxes.length,0);assert.equal(p.state.showStandard.value,false);assert.equal(p.state.standardAnswer.value,undefined);p.unmount()
+  await p.state.retryIndependent();assert.equal(p.state.step.value,5);assert.equal(p.state.answer.value.boxes.length,0);assert.equal(p.state.showStandard.value,false);assert.equal(p.state.standardAnswer.value,undefined);p.unmount()
+})
+await check('onboarding wrong-answer retry loads the real standard for an editable flashing guide',async()=>{
+  const p=await page('Onboarding');p.state.run.value={id:'run1',questions:[question,question]};p.state.step.value=6;p.state.answer.value={boxes:standard};p.state.feedback.value={correct:false,wrong_attempts:1,can_view_standard:false}
+  await p.state.retryIndependent();assert.equal(p.state.step.value,5);assert.equal(p.state.answer.value.boxes.length,0);assert.equal(p.state.showStandard.value,true);assert.deepEqual(clone(p.state.standardAnswer.value),standard)
+  assert.equal(p.calls.filter(x=>x.endsWith('/standard-answer')).length,1);p.unmount()
 })
 await check('onboarding reload restores independent answer and three errors without revealing standard',async()=>{
   const p=await page('Onboarding'),saved=run();saved.questions=[{id:'guide',type:'box'},question]

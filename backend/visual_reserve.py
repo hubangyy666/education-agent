@@ -53,6 +53,9 @@ def make_question(sample,aid,skill,selection='largest',kind='box'):
     return q
 
 def visual_questions(aid):
+    if aid=='A1':
+        from .a1_curriculum import authored_choices,authored_visuals
+        return authored_visuals()+authored_choices()
     from .factory import samples
     result=[]
     for s in samples():
@@ -119,8 +122,11 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
     visual=list(visual_questions(aid) if visual is None else visual)
     rows=store.questions(aid)
     retired={content_hash(q) for q in rows if q.get('status')=='retired'}
+    if aid=='A1':
+        from .a1_quality import rejected_hashes,duplicates_candidate
+        retired.update(rejected_hashes())
     visual=[q for q in visual if content_hash(q) not in retired]
-    scenarios=[q for q in rows if q.get('status')=='approved']
+    scenarios=[q for q in rows if q.get('status')=='approved' and (aid!='A1' or content_hash(q) not in retired)]
     published=published or {}
     old_questions=[q for qs in published.values() for q in qs if content_hash(q) not in retired]
     old_limits=Counter(content_hash(q) for q in old_questions)
@@ -128,7 +134,7 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
     rank=lambda q:(aid=='A6' and q.get('source','').startswith('COCO'),content_hash(q) in previous,hashlib.sha256(f'{version}:'.encode()+content_hash(q).encode()).hexdigest())
     visual.sort(key=rank);scenarios.sort(key=rank)
     enforce_visual_layout=bool(visual)
-    pool={};used=set();usage=Counter();old_ids=set()
+    pool={};used=set();usage=Counter();old_ids=set();selected_questions=[]
     for lid,skills in balanced_plan(aid).items():
         course='-L' in lid;visual_count=(2 if course else 10) if enforce_visual_layout else 0;pool[lid]=[]
         for index,sid in enumerate(skills):
@@ -138,7 +144,8 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
             # box or polygon after it.
             options=([q for q in visual if q.get('image') and q['type'] in ('box','polygon')]
                      if visual_slot else [q for q in visual if not (q.get('image') and q['type'] in ('box','polygon'))]+scenarios)
-            eligible=[q for q in options if q['skill_id']==sid and content_hash(q) not in used]
+            eligible=[q for q in options if q['skill_id']==sid and content_hash(q) not in used
+                      and (aid!='A1' or not duplicates_candidate(q,selected_questions))]
             # New content wins across both kinds of reserve. If this skill has
             # no fresh content, keep using its validated reserve; never relabel
             # another skill or alter IDs alone to claim a changed question.
@@ -151,6 +158,7 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
                 backups=published.get(lid,[])+old_questions
                 candidate=next((q for q in backups if q['skill_id']==sid and q['id'] not in old_ids
                     and bool(q.get('image') and q['type'] in ('box','polygon'))==visual_slot
+                    and (aid!='A1' or not duplicates_candidate(q,selected_questions))
                     and content_hash(q) not in retired and usage[content_hash(q)]<old_limits[content_hash(q)]),None)
                 retained=candidate is not None
             if not candidate:raise ValueError(f'技能储备不足：{sid}')
@@ -162,6 +170,7 @@ def combined_pool(aid,version,store,previous=(),visual=None,published=None):
             if retained:old_ids.add(q['id'])
             else:q['content_hash']=fingerprint;q['id']=f'{lid}-V{version}-Q{index+1}'
             pool[lid].append(q)
+            selected_questions.append(q)
     from .factory import validate
     validate(pool,aid)
     if enforce_visual_layout:

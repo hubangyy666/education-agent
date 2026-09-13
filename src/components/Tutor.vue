@@ -2,10 +2,10 @@
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import Icon from './Icon.vue'
 import TutorRecommendations from './TutorRecommendations.vue'
-const props=withDefaults(defineProps<{floating?:boolean;stage?:boolean;runId?:string;questionId?:string;disabled?:boolean;nudge?:string}>(),{floating:false,stage:false,disabled:false,nudge:''})
+const props=withDefaults(defineProps<{floating?:boolean;stage?:boolean;runId?:string;questionId?:string;disabled?:boolean;nudge?:string;initialNudge?:string}>(),{floating:false,stage:false,disabled:false,nudge:'',initialNudge:''})
 const emit=defineEmits<{openChange:[value:boolean]}>()
-const open=ref(false),input=ref(''),busy=ref(false),error=ref('');const messages=ref<any[]>([]);const list=ref<HTMLElement>();let controller:AbortController|undefined
-const launchNudge=computed(()=>props.nudge||'需要一点提示吗？')
+const open=ref(false),input=ref(''),busy=ref(false),error=ref(''),initialNudgeVisible=ref(!!props.initialNudge);const messages=ref<any[]>([]);const list=ref<HTMLElement>();let controller:AbortController|undefined,initialNudgeTimer:ReturnType<typeof setTimeout>|undefined
+const launchNudge=computed(()=>props.nudge||(initialNudgeVisible.value?props.initialNudge:'')||'需要一点提示吗？')
 function setOpen(value:boolean){open.value=value;emit('openChange',value)}
 function handleEscape(event:KeyboardEvent){if(event.key==='Escape'&&props.stage&&open.value)setOpen(false)}
 function cleanText(text:string){return (text||'').replaceAll('**','').replaceAll('`','').replace(/\n{3,}/g,'\n\n')}
@@ -24,8 +24,8 @@ function uniqueSources(sources:any[]=[]){
 function uniqueResources(resources:any[]=[]){const seen=new Set<string>();return resources.filter(r=>{if(!r.url||seen.has(r.id))return false;seen.add(r.id);return true})}
 function otherResources(resources:any[]=[]){return uniqueResources(resources).filter(r=>props.runId||r.resource_type!=='level')}
 watch(()=>props.questionId,()=>{controller?.abort();busy.value=false;messages.value=[];error.value=''})
-onMounted(()=>window.addEventListener('keydown',handleEscape))
-onBeforeUnmount(()=>{controller?.abort();window.removeEventListener('keydown',handleEscape)})
+onMounted(()=>{window.addEventListener('keydown',handleEscape);if(props.initialNudge)initialNudgeTimer=setTimeout(()=>{initialNudgeVisible.value=false},2000)})
+onBeforeUnmount(()=>{controller?.abort();if(initialNudgeTimer)clearTimeout(initialNudgeTimer);window.removeEventListener('keydown',handleEscape)})
 async function scroll(){await nextTick();list.value?.scrollTo({top:list.value.scrollHeight,behavior:'smooth'})}
 async function send(text?:string,hintRequest=false){
   const message=(text||input.value).trim();if(!message||busy.value||props.disabled)return
@@ -42,7 +42,7 @@ defineExpose({send})
 </script>
 <template>
 <div :class="['tutor',{'tutor-floating':floating,'tutor-stage':stage,'is-open':open,'has-messages':messages.length}]">
-  <button v-if="floating" class="mentor-launch" :class="{'has-nudge':launchNudge&&!open}" :disabled="disabled" @click="setOpen(!open)" aria-label="向小基提问" :aria-expanded="open"><span v-if="!open" class="mentor-nudge" :class="{periodic:!nudge}" :role="nudge?'status':undefined" :aria-live="nudge?'polite':undefined" :aria-hidden="!nudge">{{launchNudge}}</span><img src="/mentor-v2.png" alt="小基，AI 学习导师"/></button>
+  <button v-if="floating" class="mentor-launch" :class="{'has-nudge':launchNudge&&!open}" :disabled="disabled" @click="setOpen(!open)" aria-label="向小基提问" :aria-expanded="open"><span v-if="!open" class="mentor-nudge" :class="{periodic:!nudge&&!initialNudgeVisible}" :role="nudge||initialNudgeVisible?'status':undefined" :aria-live="nudge||initialNudgeVisible?'polite':undefined" :aria-hidden="!nudge&&!initialNudgeVisible">{{launchNudge}}</span><img src="/mentor-v2.png" alt="小基，AI 学习导师"/></button>
   <button v-if="stage&&open" class="tutor-stage-close" type="button" aria-label="关闭 AI 学习导师" @click="setOpen(false)"><Icon name="X" :size="20"/></button>
   <section v-if="stage&&open&&!messages.length" class="tutor-stage-intro" aria-labelledby="tutor-stage-title">
     <h2 id="tutor-stage-title">今天想一起解决什么？</h2>

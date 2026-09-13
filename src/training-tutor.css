@@ -3,12 +3,12 @@
   right: auto;
   left: 20px;
   bottom: 96px;
-  width: 92px;
+  width: 100px;
 }
 
 .tutor-floating .mentor-launch {
-  width: 92px;
-  height: 92px;
+  width: 100px;
+  height: 100px;
   margin: 0;
   padding: 0;
   justify-content: flex-start;
@@ -24,14 +24,14 @@
 
 .tutor-floating .mentor-launch > img,
 .tutor-floating.is-open .mentor-launch > img {
-  width: 88px;
-  height: 88px;
+  width: 96px;
+  height: 96px;
   animation: mentor-greet 5.4s ease-in-out infinite;
 }
 
 .mentor-nudge {
   position: absolute;
-  left: 80px;
+  left: 88px;
   bottom: 28px;
   width: max-content;
   max-width: min(280px, calc(100vw - 132px));
@@ -179,17 +179,17 @@
     right: auto;
     left: 10px;
     bottom: 86px;
-    width: 76px;
+    width: 82px;
   }
 
   .tutor-floating .mentor-launch,
   .tutor-floating .mentor-launch > img {
-    width: 74px;
-    height: 74px;
+    width: 80px;
+    height: 80px;
   }
 
   .mentor-nudge {
-    left: 69px;
+    left: 75px;
     bottom: 23px;
     max-width: calc(100vw - 100px);
   }
